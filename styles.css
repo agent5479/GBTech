@@ -195,6 +195,79 @@ p:last-child {
   border-bottom: none;
 }
 
+/* Task breakdown */
+.task-breakdown .task-group {
+  margin-bottom: 1.5rem;
+}
+
+.task-breakdown .task-group:last-child {
+  margin-bottom: 0;
+}
+
+.task-breakdown h3 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.25rem;
+}
+
+.task-breakdown .task-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-breakdown .task-group li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+
+.task-breakdown .task-group li:last-child {
+  border-bottom: none;
+}
+
+/* Pricing / rate card */
+.rate-card {
+  margin: 0;
+  padding: 0;
+}
+
+.rate-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.rate-row:last-child {
+  border-bottom: none;
+}
+
+.rate-amount {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0;
+}
+
+.rate-unit {
+  font-weight: 400;
+  color: var(--text-muted);
+  font-size: 0.9em;
+}
+
+.rate-row dd {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
 /* About / core services */
 .core-services {
   list-style: none;
