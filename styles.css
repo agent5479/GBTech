@@ -136,6 +136,13 @@ p:last-child {
   margin: 0;
 }
 
+.hero-tagline {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin: 0.75rem 0 0;
+  max-width: 42rem;
+}
+
 /* Specializations + status */
 .spec-list {
   list-style: none;
@@ -196,6 +203,30 @@ p:last-child {
 }
 
 /* Task breakdown */
+.task-intro {
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.task-breakdown .task-label {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-right: 0.5rem;
+}
+
+.task-group-general .task-label {
+  color: var(--accent-alt);
+}
+
+.task-group-specialist .task-label {
+  color: var(--accent);
+}
+
 .task-breakdown .task-group {
   margin-bottom: 1.5rem;
 }
