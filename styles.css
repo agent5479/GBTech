@@ -141,10 +141,17 @@ p:last-child {
   text-transform: uppercase;
 }
 
+.hero-subtitle {
+  font-size: 1rem;
+  color: var(--text);
+  margin: 0.5rem 0 0;
+  max-width: 42rem;
+}
+
 .subheadline {
   font-size: 1rem;
   color: var(--text-muted);
-  margin: 0;
+  margin: 0.5rem 0 0;
 }
 
 .hero-tagline {
@@ -152,6 +159,13 @@ p:last-child {
   color: var(--text);
   margin: 0.75rem 0 0;
   max-width: 42rem;
+}
+
+.qualifier-note {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
 
 /* Specializations + status */
@@ -343,6 +357,35 @@ p:last-child {
 
 .core-services strong {
   color: var(--text);
+}
+
+/* Testimonials / case study */
+.testimonial {
+  margin: 0 0 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--border);
+}
+
+.testimonial p {
+  margin: 0 0 0.35rem;
+  font-style: italic;
+}
+
+.testimonial footer {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.case-study-intro {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 1rem 0 0.5rem;
+}
+
+.case-study {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin: 0;
 }
 
 /* Fixed system footer — mainframe status bar */
