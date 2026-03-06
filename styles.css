@@ -29,7 +29,7 @@ body {
   color: var(--text);
   font-family: "Inter Tight", system-ui, sans-serif;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.7;
   position: relative;
 }
 
@@ -92,7 +92,7 @@ p:last-child {
 /* Panels — terminal-style bordered blocks */
 .panel {
   border: 1px solid var(--border);
-  padding: 1.5rem;
+  padding: 2rem;
   background: var(--panel-bg);
   margin-bottom: 0;
 }
@@ -105,7 +105,7 @@ p:last-child {
 .hero {
   border: 1px solid var(--border);
   border-bottom-width: 0;
-  padding: 2rem 1.5rem;
+  padding: 2.5rem 2rem;
   background: var(--panel-bg);
 }
 
@@ -161,6 +161,74 @@ p:last-child {
   max-width: 42rem;
 }
 
+/* CTA Buttons */
+.cta-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--accent);
+  border-radius: 0;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.cta-button.primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.cta-button.primary:hover {
+  background: transparent;
+  color: var(--accent);
+}
+
+.cta-button.secondary {
+  background: transparent;
+  color: var(--accent);
+}
+
+.cta-button.secondary:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Mini CTAs */
+.mini-cta {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.mini-cta p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.mini-cta a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  font-weight: 500;
+}
+
+.mini-cta a:hover {
+  border-bottom-color: var(--accent);
+}
+
 .qualifier-note {
   font-size: 0.9rem;
   color: var(--text-muted);
@@ -168,56 +236,41 @@ p:last-child {
   margin-bottom: 0;
 }
 
-/* Specializations + status */
-.spec-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1rem;
+/* Specializations cards */
+.spec-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.spec-list li {
-  padding: 0.6rem 0;
-  border-bottom: 1px solid var(--border);
+.spec-card {
+  padding: 1.5rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  text-align: center;
 }
 
-.spec-list li:last-child {
-  border-bottom: none;
+.spec-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
-.spec-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.25rem;
+.spec-card h3 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.spec-name {
-  flex: 1;
-}
-
-.spec-meaning {
+.spec-card p {
   margin: 0;
   font-size: 0.9rem;
-  color: var(--text-muted);
-  line-height: 1.45;
-}
-
-.status {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.7rem;
-  font-weight: 600;
-  padding: 0.2rem 0.5rem;
-  border: 1px solid var(--border);
-  color: var(--accent-alt);
-}
-
-.status[data-status="active"] {
-  color: var(--accent-alt);
-}
-
-.spec-note {
-  font-size: 0.9rem;
-  color: var(--text-muted);
+  color: var(--text);
+  line-height: 1.5;
 }
 
 /* Services list */
@@ -296,6 +349,59 @@ p:last-child {
   border-bottom: none;
 }
 
+/* Pricing */
+.pricing-intro {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.pricing-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.pricing-tier {
+  padding: 1.5rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.pricing-tier h3 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 0.75rem;
+}
+
+.pricing-tier p {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.pricing-tier ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pricing-tier li {
+  padding: 0.25rem 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.pricing-tier li:last-child {
+  border-bottom: none;
+}
+
 /* Pricing / rate card */
 .rate-card {
   margin: 0;
@@ -359,33 +465,65 @@ p:last-child {
   color: var(--text);
 }
 
-/* Testimonials / case study */
-.testimonial {
-  margin: 0 0 1rem;
-  padding-left: 1rem;
-  border-left: 2px solid var(--border);
+/* Trust signals and case studies */
+.trust-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
 }
 
-.testimonial p {
-  margin: 0 0 0.35rem;
-  font-style: italic;
+.stat-item {
+  text-align: center;
 }
 
-.testimonial footer {
+.stat-number {
+  display: block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
   font-size: 0.85rem;
   color: var(--text-muted);
+  line-height: 1.4;
 }
 
-.case-study-intro {
-  font-size: 0.9rem;
+.testimonials h3 {
+  font-size: 1rem;
   color: var(--text-muted);
-  margin: 1rem 0 0.5rem;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
 }
 
 .case-study {
-  font-size: 0.95rem;
-  color: var(--text);
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.case-study:last-child {
+  margin-bottom: 0;
+}
+
+.case-study p {
   margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.case-study strong {
+  color: var(--accent);
 }
 
 /* Fixed system footer — mainframe status bar */
@@ -427,19 +565,99 @@ p:last-child {
 }
 
 /* Responsive */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .grid {
-    padding: 1.25rem 1rem 5rem;
+    padding: 1.5rem 1rem 5rem;
+  }
+
+  .hero {
+    padding: 2rem 1.5rem;
+  }
+
+  .panel {
+    padding: 1.5rem;
   }
 
   .hero-content {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 1rem;
+  }
+
+  .portrait {
+    width: 140px;
+    height: 140px;
+  }
+
+  .hero-text {
+    min-width: 0;
+  }
+
+  .cta-container {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .cta-button {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .trust-stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .pricing-options {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .rate-row {
+    grid-template-columns: 5rem 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    padding: 1.25rem 1rem 5rem;
+  }
+
+  .hero {
+    padding: 1.5rem 1rem;
+  }
+
+  .panel {
+    padding: 1.25rem;
   }
 
   .portrait {
     width: 120px;
     height: 120px;
+  }
+
+  .hero-brand {
+    font-size: 0.8rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-subtitle,
+  .hero-tagline {
+    font-size: 0.9rem;
+  }
+
+  .stat-number {
+    font-size: 1.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
   }
 }
