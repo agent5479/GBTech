@@ -123,11 +123,22 @@ p:last-child {
   object-fit: cover;
   border: 1px solid var(--border);
   display: block;
+  filter: saturate(0.75) contrast(1.08);
 }
 
 .hero-text {
   flex: 1;
   min-width: 0;
+}
+
+.hero-brand {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin: 0 0 0.35rem;
+  text-transform: uppercase;
 }
 
 .subheadline {
@@ -151,10 +162,7 @@ p:last-child {
 }
 
 .spec-list li {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.4rem 0;
+  padding: 0.6rem 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -162,8 +170,22 @@ p:last-child {
   border-bottom: none;
 }
 
+.spec-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
 .spec-name {
   flex: 1;
+}
+
+.spec-meaning {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.45;
 }
 
 .status {
@@ -268,10 +290,10 @@ p:last-child {
 
 .rate-row {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 1rem;
-  align-items: baseline;
-  padding: 0.75rem 0;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  padding: 0.85rem 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -281,10 +303,11 @@ p:last-child {
 
 .rate-amount {
   font-family: "JetBrains Mono", monospace;
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--accent);
   margin: 0;
+  white-space: nowrap;
 }
 
 .rate-unit {
@@ -297,6 +320,8 @@ p:last-child {
   margin: 0;
   font-size: 0.95rem;
   color: var(--text);
+  line-height: 1.5;
+  max-width: 28rem;
 }
 
 /* About / core services */
