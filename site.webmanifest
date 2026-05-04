@@ -1,0 +1,23 @@
+{
+  "name": "Golden Bay Technologies",
+  "short_name": "GBTech",
+  "description": "Systems architecture and IT consulting — Nelson/Tasman, NZ.",
+  "start_url": "./",
+  "display": "browser",
+  "background_color": "#121212",
+  "theme_color": "#121212",
+  "icons": [
+    {
+      "src": "img/jelly192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img/jelly512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
