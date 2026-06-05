@@ -12,6 +12,11 @@
   --marshall-maroon: #4A101D;
   --panel-bg: #1c1917;
   --accent-glow: rgba(201, 162, 39, 0.3);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --section-gap: 1.25rem;
+  --shadow-panel: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 *,
@@ -30,78 +35,68 @@ body {
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
-  font-family: "Inter Tight", system-ui, sans-serif;
+  font-family: "DM Sans", system-ui, sans-serif;
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.75;
   position: relative;
 }
 
-/* Subtle scanline / hardware overlay */
 .scanline {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.03) 2px,
-    rgba(0, 0, 0, 0.03) 4px
-  );
-  opacity: 0.5;
+  display: none;
 }
 
 /* Grid layout */
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0;
+  gap: var(--section-gap);
   max-width: 56rem;
   margin: 0 auto;
   padding: 2rem 1.5rem 5rem;
 }
 
 /* Typography */
-h1, h2 {
-  font-family: "JetBrains Mono", "Roboto Mono", monospace;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+h1, h2, h3 {
+  font-family: "DM Sans", system-ui, sans-serif;
 }
 
 h1 {
-  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
   margin: 0 0 0.75rem;
-  line-height: 1.3;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 h2 {
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin: 0 0 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 1.25rem;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 p {
-  margin: 0 0 1rem;
+  margin: 0 0 1.25rem;
+}
+
+.panel p {
+  max-width: 42rem;
 }
 
 p:last-child {
   margin-bottom: 0;
 }
 
-/* Panels — terminal-style bordered blocks */
+/* Panels — spaced cards */
 .panel {
   border: 1px solid var(--border);
+  border-radius: var(--radius-md);
   padding: 2rem;
   background: var(--panel-bg);
   margin-bottom: 0;
-}
-
-.panel + .panel {
-  border-top-width: 0;
+  box-shadow: var(--shadow-panel);
 }
 
 .panel p a {
@@ -118,9 +113,10 @@ p:last-child {
 /* Hero */
 .hero {
   border: 1px solid var(--border);
-  border-bottom-width: 0;
+  border-radius: var(--radius-md);
   padding: 2.5rem 2rem;
   background: var(--panel-bg);
+  box-shadow: var(--shadow-panel);
 }
 
 .hero-content {
@@ -136,6 +132,7 @@ p:last-child {
   height: 160px;
   object-fit: cover;
   border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
   display: block;
   filter: saturate(0.75) contrast(1.08);
 }
@@ -146,24 +143,22 @@ p:last-child {
 }
 
 .hero-brand {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.01em;
   color: var(--accent);
   margin: 0 0 0.35rem;
-  text-transform: uppercase;
 }
 
 .hero-subtitle {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--text);
   margin: 0.5rem 0 0;
   max-width: 42rem;
 }
 
 .subheadline {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--text-muted);
   margin: 0.5rem 0 0;
 }
@@ -186,14 +181,12 @@ p:last-child {
 .cta-button {
   display: inline-block;
   padding: 0.75rem 1.25rem;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.85rem;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
   border: 1px solid var(--accent);
-  border-radius: 0;
+  border-radius: var(--radius-sm);
   transition: all 0.2s ease;
   white-space: nowrap;
 }
@@ -265,6 +258,7 @@ p:last-child {
   padding: 1.5rem;
   background: var(--bg);
   border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
   text-align: center;
 }
 
@@ -274,13 +268,10 @@ p:last-child {
 }
 
 .spec-card h3 {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--accent);
   margin: 0 0 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 .spec-card p {
@@ -300,8 +291,7 @@ p:last-child {
 .service-list li {
   padding: 0.5rem 0;
   border-bottom: 1px solid var(--border);
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
 }
 
 .service-list li:last-child {
@@ -317,10 +307,8 @@ p:last-child {
 
 .task-breakdown .task-label {
   display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  font-weight: 500;
   color: var(--text-muted);
   margin-right: 0.5rem;
 }
@@ -342,8 +330,7 @@ p:last-child {
 }
 
 .task-breakdown h3 {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--accent);
   margin: 0 0 0.5rem;
@@ -385,11 +372,11 @@ p:last-child {
   padding: 1.5rem;
   background: var(--bg);
   border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
 }
 
 .pricing-tier h3 {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--accent);
   margin: 0 0 0.75rem;
@@ -439,7 +426,6 @@ p:last-child {
 }
 
 .rate-amount {
-  font-family: "JetBrains Mono", monospace;
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--accent);
@@ -491,6 +477,7 @@ p:last-child {
   padding: 1.5rem;
   background: var(--bg);
   border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
 }
 
 .stat-item {
@@ -499,9 +486,8 @@ p:last-child {
 
 .stat-number {
   display: block;
-  font-family: "JetBrains Mono", monospace;
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--accent);
   margin-bottom: 0.5rem;
 }
@@ -515,11 +501,10 @@ p:last-child {
 .testimonials h3 {
   font-size: 1rem;
   color: var(--text-muted);
-  text-transform: uppercase;
   margin: 0 0 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border);
-  font-weight: 500;
+  padding-bottom: 0;
+  border-bottom: none;
+  font-weight: 600;
 }
 
 .case-study {
@@ -527,6 +512,7 @@ p:last-child {
   padding: 1rem;
   background: var(--bg);
   border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
 }
 
 .case-study:last-child {
@@ -571,9 +557,9 @@ body.marshall-page .hero {
   padding: 1rem 2rem;
   background: var(--panel-bg);
   border: 1px solid var(--border);
-  border-bottom-width: 0;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.8rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-panel);
 }
 
 .page-nav-back {
@@ -602,6 +588,7 @@ body.marshall-page .hero {
   max-width: 100%;
   height: auto;
   border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
 }
 
 .image-block {
@@ -658,14 +645,12 @@ body.marshall-page .hero {
 .spec-card-link .spec-more {
   display: inline-block;
   margin-top: 0.75rem;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
-/* Fixed system footer — mainframe status bar */
+/* Fixed system footer */
 .system-footer {
   position: fixed;
   bottom: 0;
@@ -676,11 +661,12 @@ body.marshall-page .hero {
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.5rem 1rem;
-  padding: 0.75rem 1rem;
+  padding: 0.9rem 1rem;
   background: var(--panel-bg);
   border-top: 1px solid var(--border);
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.8rem;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
   z-index: 1000;
 }
 
@@ -742,7 +728,9 @@ body.marshall-page .hero {
   .cta-button {
     width: 100%;
     padding: 0.875rem 1rem;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    white-space: normal;
+    text-align: center;
   }
 
   .trust-stats {
