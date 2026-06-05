@@ -101,6 +101,17 @@ p:last-child {
   border-top-width: 0;
 }
 
+.panel p a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  font-weight: 500;
+}
+
+.panel p a:hover {
+  border-bottom-color: var(--accent);
+}
+
 /* Hero */
 .hero {
   border: 1px solid var(--border);
@@ -529,6 +540,110 @@ p:last-child {
   color: var(--accent);
 }
 
+/* Marshall Solutions sub-page */
+.page-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  padding: 1rem 2rem;
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-bottom-width: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+}
+
+.page-nav-back {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.page-nav-back:hover {
+  border-bottom-color: var(--accent);
+}
+
+.page-nav-brand {
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.page-nav-brand strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.content-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+}
+
+.image-block {
+  margin: 1.5rem 0 0;
+}
+
+.image-block:first-child {
+  margin-top: 0;
+}
+
+.hero .image-block + .hero-text {
+  margin-top: 1.5rem;
+}
+
+.trade-slides {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.benefit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefit-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+
+.benefit-list li:last-child {
+  border-bottom: none;
+}
+
+.benefit-list li::before {
+  content: "✓ ";
+  color: var(--accent-alt);
+  font-weight: 600;
+}
+
+.spec-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.2s ease;
+}
+
+.spec-card-link:hover {
+  border-color: var(--accent);
+}
+
+.spec-card-link .spec-more {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 /* Fixed system footer — mainframe status bar */
 .system-footer {
   position: fixed;
@@ -622,6 +737,16 @@ p:last-child {
   .rate-row {
     grid-template-columns: 5rem 1fr;
     gap: 1rem;
+  }
+
+  .page-nav {
+    padding: 1rem 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .page-nav-brand {
+    text-align: left;
   }
 }
 
