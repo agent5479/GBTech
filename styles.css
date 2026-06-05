@@ -1,14 +1,17 @@
-/* GBTech — "The Diagnostic Interface" */
-/* High-Contrast Logic / Terminal Aesthetic */
+/* GBTech + Marshall Solutions — warm professional palette */
+/* Gold accent, natural green secondary, maroon Marshall touchpoints */
 
 :root {
-  --bg: #121212;
-  --border: #333;
-  --text: #E0E0E0;
-  --text-muted: #888;
-  --accent: #FF8C00;
-  --accent-alt: #32CD32;
-  --panel-bg: #1a1a1a;
+  --bg: #141210;
+  --border: #3d3530;
+  --text: #E8E4DF;
+  --text-muted: #9a9188;
+  --accent: #C9A227;
+  --accent-alt: #5A9E6F;
+  --accent-warm: #A34C0F;
+  --marshall-maroon: #4A101D;
+  --panel-bg: #1c1917;
+  --accent-glow: rgba(201, 162, 39, 0.3);
 }
 
 *,
@@ -198,7 +201,7 @@ p:last-child {
 .cta-button.primary {
   background: var(--accent);
   color: var(--bg);
-  box-shadow: 0 2px 8px rgba(255, 140, 0, 0.3);
+  box-shadow: 0 2px 8px var(--accent-glow);
   font-size: 0.9rem;
   padding: 0.875rem 1.5rem;
 }
@@ -541,6 +544,24 @@ p:last-child {
 }
 
 /* Marshall Solutions sub-page */
+body.marshall-page .hero-brand {
+  color: var(--accent);
+}
+
+body.marshall-page .page-nav {
+  background: var(--marshall-maroon);
+  border-color: #5c1a28;
+}
+
+body.marshall-page .page-nav-brand strong {
+  color: #f0e6c8;
+}
+
+body.marshall-page .panel,
+body.marshall-page .hero {
+  background: #1a1614;
+}
+
 .page-nav {
   display: flex;
   align-items: center;
