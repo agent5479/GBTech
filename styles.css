@@ -1,21 +1,19 @@
-/* GBTech + Marshall Solutions — palette from generalpitch header */
-/* Primary green, dark forest panels, maroon/gold for trade-slide touchpoints */
+/* GBTech + Marshall Solutions — maroon & golden orange from hero branding */
 
 :root {
-  --bg: #121610;
-  --border: #354030;
+  --bg: #141210;
+  --border: #3d3530;
   --text: #F5F5F0;
-  --text-muted: #9aa894;
-  --accent: #6AAF43;
-  --accent-bright: #7FBD4A;
-  --accent-alt: #6AAF43;
-  --accent-gold: #C9A227;
-  --accent-warm: #5a8f38;
-  --marshall-maroon: #4A101D;
-  --marshall-green-dark: #2a3d1f;
-  --marshall-green-mid: #4a7a32;
-  --panel-bg: #1a1f18;
-  --accent-glow: rgba(106, 175, 67, 0.35);
+  --text-muted: #a89f96;
+  --accent: #D3993C;
+  --accent-bright: #E5AD4A;
+  --accent-alt: #D3993C;
+  --accent-magenta: #4B0D1C;
+  --accent-magenta-mid: #7A2438;
+  --accent-magenta-dark: #3a0c17;
+  --panel-bg: #1c1917;
+  --accent-glow: rgba(211, 153, 60, 0.35);
+  --magenta-glow: rgba(75, 13, 28, 0.45);
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
@@ -222,18 +220,18 @@ p:last-child {
   display: block;
   margin-top: 0.5rem;
   padding: 1.25rem 1.5rem;
-  background: linear-gradient(135deg, var(--marshall-green-dark) 0%, #1a2812 100%);
-  border: 1px solid var(--marshall-green-mid);
+  background: linear-gradient(135deg, var(--accent-magenta) 0%, var(--accent-magenta-dark) 100%);
+  border: 1px solid var(--accent-magenta-mid);
   border-radius: var(--radius-md);
   text-decoration: none;
   color: var(--text);
-  box-shadow: 0 4px 16px rgba(42, 61, 31, 0.5);
+  box-shadow: 0 4px 16px var(--magenta-glow);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .hero-feature:hover {
   transform: translateY(-2px);
-  border-color: var(--accent-bright);
+  border-color: var(--accent);
   box-shadow: 0 6px 20px var(--accent-glow);
 }
 
@@ -243,9 +241,9 @@ p:last-child {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #fff;
-  background: var(--accent);
-  border: 1px solid var(--accent-bright);
+  color: var(--accent);
+  background: rgba(211, 153, 60, 0.12);
+  border: 1px solid var(--accent);
   border-radius: var(--radius-sm);
   padding: 0.2rem 0.6rem;
   margin-bottom: 0.6rem;
@@ -273,11 +271,11 @@ p:last-child {
   display: inline-block;
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--accent-bright);
+  color: var(--accent);
 }
 
 .hero-feature:hover .hero-feature-action {
-  color: #fff;
+  color: var(--accent-bright);
 }
 
 /* Mini CTAs */
@@ -425,11 +423,11 @@ p:last-child {
 }
 
 .task-group-marshall .task-label {
-  color: var(--accent-bright);
+  color: var(--accent);
 }
 
 .task-group-marshall h3 {
-  color: var(--accent-bright);
+  color: var(--accent);
 }
 
 .task-breakdown .task-group {
@@ -653,17 +651,17 @@ body.marshall-page .hero-brand {
 }
 
 body.marshall-page .page-nav {
-  background: var(--marshall-green-dark);
-  border-color: var(--marshall-green-mid);
+  background: var(--accent-magenta);
+  border-color: var(--accent-magenta-mid);
 }
 
 body.marshall-page .page-nav-brand strong {
-  color: var(--accent-bright);
+  color: var(--accent);
 }
 
 body.marshall-page .panel,
 body.marshall-page .hero {
-  background: #161c14;
+  background: #1a1614;
 }
 
 .page-nav {

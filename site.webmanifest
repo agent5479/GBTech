@@ -4,8 +4,8 @@
   "description": "Systems architecture and IT consulting — Nelson/Tasman, NZ.",
   "start_url": "./",
   "display": "browser",
-  "background_color": "#121610",
-  "theme_color": "#2a3d1f",
+  "background_color": "#141210",
+  "theme_color": "#4B0D1C",
   "icons": [
     {
       "src": "img/jelly192.png",
