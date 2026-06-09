@@ -214,6 +214,68 @@ p:last-child {
   color: var(--bg);
 }
 
+.hero-feature {
+  display: block;
+  margin-top: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, var(--marshall-maroon) 0%, #3a0c17 100%);
+  border: 1px solid #7a2438;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--text);
+  box-shadow: 0 4px 16px rgba(74, 16, 29, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-feature:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 6px 20px rgba(201, 162, 39, 0.25);
+}
+
+.hero-feature-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #f0e6c8;
+  background: rgba(201, 162, 39, 0.2);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 0.2rem 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.hero-feature-title {
+  display: block;
+  font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+  font-weight: 700;
+  line-height: 1.35;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+
+.hero-feature-desc {
+  display: block;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #d4ccc4;
+  margin-bottom: 0.75rem;
+  max-width: 36rem;
+}
+
+.hero-feature-action {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.hero-feature:hover .hero-feature-action {
+  color: #f0e6c8;
+}
+
 /* Mini CTAs */
 .mini-cta {
   margin-top: 1.5rem;
@@ -708,6 +770,16 @@ body.marshall-page .hero {
     align-items: center;
     text-align: center;
     gap: 1rem;
+  }
+
+  .hero-feature {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-feature-desc {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .portrait {
