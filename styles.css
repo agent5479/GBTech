@@ -1,24 +1,29 @@
-/* GBTech + Marshall Solutions — maroon & golden orange from hero branding */
+/* GBTech + Marshall Solutions — warm light theme, burgundy & golden orange branding */
 
 :root {
-  --bg: #141210;
-  --border: #3d3530;
-  --text: #F5F5F0;
-  --text-muted: #a89f96;
+  --bg: #FAF6F2;
+  --bg-subtle: #F3EBE4;
+  --panel-bg: #FFFFFF;
+  --border: #E5D8CF;
+  --border-strong: #C9B5A8;
+  --text: #2E1A20;
+  --text-muted: #6B5258;
   --accent: #D3993C;
-  --accent-bright: #E5AD4A;
-  --accent-alt: #D3993C;
+  --accent-bright: #C4862E;
+  --accent-alt: #B87A1F;
   --accent-magenta: #4B0D1C;
   --accent-magenta-mid: #7A2438;
-  --accent-magenta-dark: #3a0c17;
-  --panel-bg: #1c1917;
-  --accent-glow: rgba(211, 153, 60, 0.35);
-  --magenta-glow: rgba(75, 13, 28, 0.45);
+  --accent-magenta-dark: #3A0C17;
+  --accent-magenta-light: #F5EBEE;
+  --text-on-accent: #FFFFFF;
+  --text-on-burgundy: #FAF6F2;
+  --accent-glow: rgba(211, 153, 60, 0.28);
+  --magenta-glow: rgba(75, 13, 28, 0.14);
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --section-gap: 1.25rem;
-  --shadow-panel: 0 1px 3px rgba(0, 0, 0, 0.25);
+  --shadow-panel: 0 2px 10px rgba(75, 13, 28, 0.06), 0 1px 2px rgba(75, 13, 28, 0.04);
 }
 
 *,
@@ -35,7 +40,8 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--bg);
+  background: linear-gradient(180deg, #FFFDFB 0%, var(--bg) 35%, #F5EDE6 100%);
+  background-attachment: fixed;
   color: var(--text);
   font-family: "DM Sans", system-ui, sans-serif;
   font-weight: 400;
@@ -68,12 +74,13 @@ h1 {
   margin: 0 0 0.75rem;
   line-height: 1.25;
   letter-spacing: -0.01em;
+  color: var(--accent-magenta);
 }
 
 h2 {
   font-size: 1.15rem;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-magenta);
   margin: 0 0 1.25rem;
   padding-bottom: 0;
   border-bottom: none;
@@ -102,7 +109,7 @@ p:last-child {
 }
 
 .panel p a {
-  color: var(--accent);
+  color: var(--accent-magenta);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   font-weight: 500;
@@ -110,6 +117,7 @@ p:last-child {
 
 .panel p a:hover {
   border-bottom-color: var(--accent);
+  color: var(--accent-magenta-dark);
 }
 
 /* Hero */
@@ -133,10 +141,10 @@ p:last-child {
   width: 160px;
   height: 160px;
   object-fit: cover;
-  border: 1px solid var(--border);
+  border: 2px solid var(--border-strong);
   border-radius: var(--radius-sm);
   display: block;
-  filter: saturate(0.75) contrast(1.08);
+  box-shadow: 0 2px 8px rgba(75, 13, 28, 0.08);
 }
 
 .hero-text {
@@ -148,7 +156,7 @@ p:last-child {
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  color: var(--accent);
+  color: var(--accent-magenta);
   margin: 0 0 0.35rem;
 }
 
@@ -194,26 +202,30 @@ p:last-child {
 }
 
 .cta-button.primary {
-  background: var(--accent);
-  color: var(--bg);
-  box-shadow: 0 2px 8px var(--accent-glow);
+  background: var(--accent-magenta);
+  border-color: var(--accent-magenta);
+  color: var(--text-on-burgundy);
+  box-shadow: 0 2px 8px var(--magenta-glow);
   font-size: 0.9rem;
   padding: 0.875rem 1.5rem;
 }
 
 .cta-button.primary:hover {
-  background: transparent;
-  color: var(--accent);
+  background: var(--accent-magenta-dark);
+  border-color: var(--accent-magenta-dark);
+  color: var(--text-on-burgundy);
 }
 
 .cta-button.secondary {
   background: transparent;
-  color: var(--accent);
+  border-color: var(--accent-magenta-mid);
+  color: var(--accent-magenta);
 }
 
 .cta-button.secondary:hover {
-  background: var(--accent);
-  color: var(--bg);
+  background: var(--accent-magenta-light);
+  border-color: var(--accent-magenta);
+  color: var(--accent-magenta-dark);
 }
 
 .hero-feature {
@@ -254,7 +266,7 @@ p:last-child {
   font-size: clamp(1.05rem, 2.5vw, 1.2rem);
   font-weight: 700;
   line-height: 1.35;
-  color: #fff;
+  color: var(--text-on-burgundy);
   margin-bottom: 0.4rem;
 }
 
@@ -262,7 +274,7 @@ p:last-child {
   display: block;
   font-size: 0.95rem;
   line-height: 1.5;
-  color: #d4ccc4;
+  color: rgba(250, 246, 242, 0.88);
   margin-bottom: 0.75rem;
   max-width: 36rem;
 }
@@ -293,7 +305,7 @@ p:last-child {
 }
 
 .mini-cta a {
-  color: var(--accent);
+  color: var(--accent-magenta);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   font-weight: 500;
@@ -301,6 +313,7 @@ p:last-child {
 
 .mini-cta a:hover {
   border-bottom-color: var(--accent);
+  color: var(--accent-magenta-dark);
 }
 
 .qualifier-note {
@@ -320,7 +333,7 @@ p:last-child {
 
 .spec-card {
   padding: 1.5rem;
-  background: var(--bg);
+  background: var(--bg-subtle);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   text-align: center;
@@ -334,7 +347,7 @@ p:last-child {
 .spec-card h3 {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-magenta);
   margin: 0 0 0.75rem;
 }
 
@@ -408,7 +421,7 @@ p:last-child {
 }
 
 .task-intro a {
-  color: var(--accent);
+  color: var(--accent-magenta);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   font-weight: 500;
@@ -416,6 +429,7 @@ p:last-child {
 
 .task-intro a:hover {
   border-bottom-color: var(--accent);
+  color: var(--accent-magenta-dark);
 }
 
 .task-group-specialist .task-label {
@@ -441,7 +455,7 @@ p:last-child {
 .task-breakdown h3 {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-magenta);
   margin: 0 0 0.5rem;
   padding-bottom: 0.25rem;
 }
@@ -486,7 +500,7 @@ p:last-child {
 
 .pricing-tier {
   padding: 1.5rem;
-  background: var(--bg);
+  background: var(--bg-subtle);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
 }
@@ -494,7 +508,7 @@ p:last-child {
 .pricing-tier h3 {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-magenta);
   margin: 0 0 0.75rem;
 }
 
@@ -591,7 +605,7 @@ p:last-child {
   gap: 1.5rem;
   margin-bottom: 2rem;
   padding: 1.5rem;
-  background: var(--bg);
+  background: var(--bg-subtle);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
 }
@@ -626,7 +640,7 @@ p:last-child {
 .case-study {
   margin-bottom: 1.5rem;
   padding: 1rem;
-  background: var(--bg);
+  background: var(--bg-subtle);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
 }
@@ -642,26 +656,30 @@ p:last-child {
 }
 
 .case-study strong {
-  color: var(--accent);
+  color: var(--accent-magenta);
 }
 
 /* Marshall Solutions sub-page */
 body.marshall-page .hero-brand {
-  color: var(--accent);
+  color: var(--accent-magenta);
 }
 
 body.marshall-page .page-nav {
   background: var(--accent-magenta);
   border-color: var(--accent-magenta-mid);
+  color: var(--text-on-burgundy);
+}
+
+body.marshall-page .page-nav-back {
+  color: var(--accent);
+}
+
+body.marshall-page .page-nav-brand {
+  color: rgba(250, 246, 242, 0.85);
 }
 
 body.marshall-page .page-nav-brand strong {
   color: var(--accent);
-}
-
-body.marshall-page .panel,
-body.marshall-page .hero {
-  background: #1a1614;
 }
 
 .page-nav {
@@ -743,7 +761,7 @@ body.marshall-page .hero {
 
 .benefit-list li::before {
   content: "✓ ";
-  color: var(--accent-alt);
+  color: var(--accent);
   font-weight: 600;
 }
 
@@ -771,8 +789,9 @@ body.marshall-page .hero {
 }
 
 .case-study-featured {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px rgba(211, 153, 60, 0.15);
+  background: var(--accent-magenta-light);
+  border-color: var(--accent-magenta-mid);
+  box-shadow: 0 0 0 1px rgba(122, 36, 56, 0.12);
 }
 
 .spec-card-link {
@@ -798,21 +817,23 @@ body.marshall-page .hero {
   flex-wrap: wrap;
   gap: 0.5rem 1rem;
   padding: 0.9rem 1rem;
-  background: var(--panel-bg);
-  border-top: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  border-top: 2px solid var(--accent-magenta);
   font-family: "DM Sans", system-ui, sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
   z-index: 1000;
+  box-shadow: 0 -4px 16px rgba(75, 13, 28, 0.06);
 }
 
 .footer-label {
-  color: var(--text-muted);
+  color: var(--accent-magenta);
   margin-right: 0.25rem;
 }
 
 .footer-link {
-  color: var(--accent);
+  color: var(--accent-magenta);
   text-decoration: none;
   border-bottom: 1px solid transparent;
 }
@@ -822,7 +843,7 @@ body.marshall-page .hero {
 }
 
 .footer-sep {
-  color: var(--border);
+  color: var(--border-strong);
 }
 
 /* Responsive */
