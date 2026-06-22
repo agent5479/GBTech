@@ -15,7 +15,7 @@
   --accent-magenta-mid: #7A2438;
   --accent-magenta-dark: #3A0C17;
   --accent-magenta-light: #F5EBEE;
-  --text-on-accent: #FFFFFF;
+  --text-on-accent: #4B0D1C;
   --text-on-burgundy: #FAF6F2;
   --accent-glow: rgba(211, 153, 60, 0.28);
   --magenta-glow: rgba(75, 13, 28, 0.14);
@@ -202,29 +202,29 @@ p:last-child {
 }
 
 .cta-button.primary {
-  background: var(--accent-magenta);
-  border-color: var(--accent-magenta);
-  color: var(--text-on-burgundy);
-  box-shadow: 0 2px 8px var(--magenta-glow);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-magenta);
+  box-shadow: 0 2px 8px var(--accent-glow);
   font-size: 0.9rem;
   padding: 0.875rem 1.5rem;
 }
 
 .cta-button.primary:hover {
-  background: var(--accent-magenta-dark);
-  border-color: var(--accent-magenta-dark);
-  color: var(--text-on-burgundy);
+  background: var(--accent-bright);
+  border-color: var(--accent-bright);
+  color: var(--accent-magenta-dark);
 }
 
 .cta-button.secondary {
   background: transparent;
-  border-color: var(--accent-magenta-mid);
+  border-color: var(--accent-magenta);
   color: var(--accent-magenta);
 }
 
 .cta-button.secondary:hover {
   background: var(--accent-magenta-light);
-  border-color: var(--accent-magenta);
+  border-color: var(--accent-magenta-dark);
   color: var(--accent-magenta-dark);
 }
 
