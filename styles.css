@@ -180,6 +180,55 @@ p:last-child {
   max-width: 42rem;
 }
 
+.hero-skip {
+  font-size: 0.9rem;
+  margin: 0.75rem 0 0;
+}
+
+.hero-skip a {
+  color: var(--accent-magenta);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  font-weight: 500;
+}
+
+.hero-skip a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.offerings-bridge {
+  background: var(--bg-subtle);
+  border-color: var(--border-strong);
+}
+
+.stage-panel h2 {
+  margin-bottom: 0.75rem;
+}
+
+.stage-panel > p:first-of-type {
+  margin-bottom: 1.25rem;
+}
+
+.pricing-tier .tier-cta {
+  margin: 1.25rem 0 0;
+}
+
+.pricing-tier .tier-cta .cta-button {
+  width: 100%;
+  text-align: center;
+  white-space: normal;
+}
+
+.offerings-overview .pricing-tier {
+  display: flex;
+  flex-direction: column;
+}
+
+.offerings-overview .pricing-tier .tier-cta {
+  margin-top: auto;
+  padding-top: 1.25rem;
+}
+
 /* CTA Buttons */
 .cta-container {
   display: flex;
