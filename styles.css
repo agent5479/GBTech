@@ -747,6 +747,34 @@ body.marshall-page .hero {
   font-weight: 600;
 }
 
+.cost-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+}
+
+.cost-list li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.cost-list li:last-child {
+  border-bottom: none;
+}
+
+.cost-list li::before {
+  content: "− ";
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.case-study-featured {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(211, 153, 60, 0.15);
+}
+
 .spec-card-link {
   display: block;
   color: inherit;
