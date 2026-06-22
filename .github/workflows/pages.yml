@@ -1,0 +1,56 @@
+name: Deploy static site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Validate and deploy static HTML
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify required pages exist
+        run: |
+          test -f index.html
+          test -f marshall-solutions.html
+          test -f robots.txt
+          test -f styles.css
+
+      - name: Verify SEO meta tags on each page
+        run: |
+          for page in index.html marshall-solutions.html; do
+            grep -q '<title>' "$page"
+            grep -q 'name="description"' "$page"
+            grep -q 'rel="canonical"' "$page"
+            grep -q 'application/ld+json' "$page"
+          done
+
+      - name: Regenerate sitemap from static routes
+        run: python3 .github/scripts/generate-sitemap.py
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
