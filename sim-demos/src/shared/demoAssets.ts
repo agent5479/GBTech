@@ -46,7 +46,7 @@ export function demoTileSources(id: DemoImageId, index: number, base = demoAsset
     webpSrcSet: srcset(base, kind, TILE_WIDTHS, 'webp'),
     jpgSrcSet: srcset(base, kind, TILE_WIDTHS, 'jpg'),
     fallback: `${base}/${kind}-720.jpg`,
-    sizes: '(max-width: 640px) 45vw, 180px',
+    sizes: '(max-width: 640px) 45vw, (max-width: 1100px) 22vw, 250px',
     width: 720,
     height: 720,
   }
