@@ -56,6 +56,16 @@ export function demoTileList(id: DemoImageId, base = demoAssetBase(id)) {
   return Array.from({ length: DEMO_TILE_COUNT }, (_, i) => demoTileSources(id, i, base))
 }
 
+/** Fisher–Yates shuffle — new array, original order unchanged. */
+export function shuffleTiles<T>(items: readonly T[]): T[] {
+  const out = [...items]
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[out[i], out[j]] = [out[j], out[i]]
+  }
+  return out
+}
+
 export const DEMO_META: Record<DemoImageId, { title: string; alt: string }> = {
   coastal: { title: 'Coastal Charter', alt: 'Calm skippered yacht on a New Zealand bay' },
   adventure: { title: 'Bay Adventure', alt: 'Active coastal sailing adventure' },

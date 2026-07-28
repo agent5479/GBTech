@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import type { DemoImageId } from '../shared/demoAssets'
-import { DEMO_META, demoCardSources, demoTileList } from '../shared/demoAssets'
+import { DEMO_META, demoCardSources, demoTileList, shuffleTiles } from '../shared/demoAssets'
 
 interface PictureProps {
   webpSrcSet: string
@@ -50,13 +51,13 @@ interface TilesProps {
 
 /** Row of square crops from the primary photo — replaces wide banners. */
 export function DemoImageTiles({ id, alt }: TilesProps) {
-  const tiles = demoTileList(id)
+  const [tiles] = useState(() => shuffleTiles(demoTileList(id)))
   const label = alt ?? DEMO_META[id].alt
   return (
     <div className="demo-image-tiles" role="img" aria-label={label}>
       {tiles.map((tile, i) => (
         <ResponsivePicture
-          key={i}
+          key={tile.fallback}
           {...tile}
           alt=""
           className="demo-image-tile"
