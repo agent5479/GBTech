@@ -540,6 +540,66 @@ p:last-child {
   margin-bottom: 0;
 }
 
+.package-price {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: var(--accent-magenta);
+  margin: 0.25rem 0 0.15rem;
+  line-height: 1.2;
+}
+
+.package-hours {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0 0 0.75rem;
+  font-weight: 500;
+}
+
+.package-tier {
+  display: flex;
+  flex-direction: column;
+}
+
+.package-tier .tier-cta {
+  margin-top: auto;
+  padding-top: 1.25rem;
+}
+
+.package-addons {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.package-addons h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-magenta);
+  margin: 0 0 0.75rem;
+}
+
+.package-addons a {
+  color: var(--accent-magenta);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.package-addons a:hover {
+  border-bottom-color: var(--accent);
+}
+
+#packages .qualifier-note a {
+  color: var(--accent-magenta);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+#packages .qualifier-note a:hover {
+  border-bottom-color: var(--accent);
+}
+
 .pricing-tier-lead {
   font-size: 0.9rem;
   color: var(--text-muted);
