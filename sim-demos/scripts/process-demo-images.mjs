@@ -34,13 +34,8 @@ const TILE_WIDTHS = [360, 720]
 const JPEG_Q = 80
 const WEBP_Q = 74
 
-/** Normalized square crops: left/top as fractions of image, size as fraction of min(w,h). */
-const TILE_REGIONS = [
-  { left: 0.14, top: 0.2, size: 0.4 },
-  { left: 0.36, top: 0.16, size: 0.42 },
-  { left: 0.54, top: 0.18, size: 0.4 },
-  { left: 0.28, top: 0.42, size: 0.46 },
-]
+const TILE_REGIONS = null // unused — regions computed per-image by tileRegionsFor()
+
 
 const OBSOLETE = [
   /^hero-\d+\.(jpg|webp)$/,
@@ -60,11 +55,21 @@ function clearObsolete(dir) {
   }
 }
 
-function squareRegion(w, h, { left: lf, top: tf, size: sf }) {
-  const side = Math.max(64, Math.round(Math.min(w, h) * sf))
-  const left = Math.max(0, Math.min(Math.round(w * lf), w - side))
-  const top = Math.max(0, Math.min(Math.round(h * tf), h - side))
-  return { left, top, width: side, height: side }
+function tileRegionsFor(w, h) {
+  // True 2×2 quadrant squares with a clear gap between them —
+  // each tile shows a different part of the primary with no shared content.
+  const gap = Math.max(24, Math.round(Math.min(w, h) * 0.08))
+  const halfW = Math.floor((w - gap) / 2)
+  const halfH = Math.floor((h - gap) / 2)
+  const side = Math.min(halfW, halfH)
+  const ox = Math.floor((halfW - side) / 2)
+  const oy = Math.floor((halfH - side) / 2)
+  return [
+    { left: ox, top: oy, width: side, height: side }, // NW quadrant
+    { left: halfW + gap + ox, top: oy, width: side, height: side }, // NE quadrant
+    { left: ox, top: halfH + gap + oy, width: side, height: side }, // SW quadrant
+    { left: halfW + gap + ox, top: halfH + gap + oy, width: side, height: side }, // SE quadrant
+  ]
 }
 
 async function writeJpegWebp(pipeline, outDir, basename) {
@@ -130,7 +135,7 @@ async function processDemo(id) {
     height: h,
     aspect,
     card: { widths: CARD_WIDTHS, fit: 'inside', jpg: {}, webp: {}, heights: {} },
-    tiles: { count: TILE_REGIONS.length, widths: TILE_WIDTHS, regions: TILE_REGIONS, files: [] },
+    tiles: { count: 4, widths: TILE_WIDTHS, files: [] },
   }
 
   // Showcase cards: full frame shrunk (no crop) — keep original proportions
@@ -150,8 +155,9 @@ async function processDemo(id) {
     }
   }
 
-  for (let i = 0; i < TILE_REGIONS.length; i++) {
-    const region = squareRegion(w, h, TILE_REGIONS[i])
+  const regions = tileRegionsFor(w, h)
+  for (let i = 0; i < regions.length; i++) {
+    const region = regions[i]
     const tileEntry = { index: i, region, jpg: {}, webp: {} }
     for (const width of TILE_WIDTHS) {
       const pipe = sharp(primary)

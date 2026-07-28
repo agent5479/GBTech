@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-28T20:45:18.343Z",
+  "generated": "2026-07-28T22:51:12.705Z",
   "demos": {
     "coastal": {
       "id": "coastal",
@@ -36,36 +36,14 @@
           360,
           720
         ],
-        "regions": [
-          {
-            "left": 0.14,
-            "top": 0.2,
-            "size": 0.4
-          },
-          {
-            "left": 0.36,
-            "top": 0.16,
-            "size": 0.42
-          },
-          {
-            "left": 0.54,
-            "top": 0.18,
-            "size": 0.4
-          },
-          {
-            "left": 0.28,
-            "top": 0.42,
-            "size": 0.46
-          }
-        ],
         "files": [
           {
             "index": 0,
             "region": {
-              "left": 168,
-              "top": 160,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-0-360.jpg",
@@ -79,10 +57,10 @@
           {
             "index": 1,
             "region": {
-              "left": 432,
-              "top": 128,
-              "width": 336,
-              "height": 336
+              "left": 732,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-1-360.jpg",
@@ -96,10 +74,10 @@
           {
             "index": 2,
             "region": {
-              "left": 648,
-              "top": 144,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 432,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-2-360.jpg",
@@ -113,8 +91,8 @@
           {
             "index": 3,
             "region": {
-              "left": 336,
-              "top": 336,
+              "left": 732,
+              "top": 432,
               "width": 368,
               "height": 368
             },
@@ -165,36 +143,14 @@
           360,
           720
         ],
-        "regions": [
-          {
-            "left": 0.14,
-            "top": 0.2,
-            "size": 0.4
-          },
-          {
-            "left": 0.36,
-            "top": 0.16,
-            "size": 0.42
-          },
-          {
-            "left": 0.54,
-            "top": 0.18,
-            "size": 0.4
-          },
-          {
-            "left": 0.28,
-            "top": 0.42,
-            "size": 0.46
-          }
-        ],
         "files": [
           {
             "index": 0,
             "region": {
-              "left": 168,
-              "top": 160,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-0-360.jpg",
@@ -208,10 +164,10 @@
           {
             "index": 1,
             "region": {
-              "left": 432,
-              "top": 128,
-              "width": 336,
-              "height": 336
+              "left": 732,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-1-360.jpg",
@@ -225,10 +181,10 @@
           {
             "index": 2,
             "region": {
-              "left": 648,
-              "top": 144,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 432,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-2-360.jpg",
@@ -242,8 +198,8 @@
           {
             "index": 3,
             "region": {
-              "left": 336,
-              "top": 336,
+              "left": 732,
+              "top": 432,
               "width": 368,
               "height": 368
             },
@@ -294,36 +250,14 @@
           360,
           720
         ],
-        "regions": [
-          {
-            "left": 0.14,
-            "top": 0.2,
-            "size": 0.4
-          },
-          {
-            "left": 0.36,
-            "top": 0.16,
-            "size": 0.42
-          },
-          {
-            "left": 0.54,
-            "top": 0.18,
-            "size": 0.4
-          },
-          {
-            "left": 0.28,
-            "top": 0.42,
-            "size": 0.46
-          }
-        ],
         "files": [
           {
             "index": 0,
             "region": {
-              "left": 168,
-              "top": 160,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-0-360.jpg",
@@ -337,10 +271,10 @@
           {
             "index": 1,
             "region": {
-              "left": 432,
-              "top": 128,
-              "width": 336,
-              "height": 336
+              "left": 732,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-1-360.jpg",
@@ -354,10 +288,10 @@
           {
             "index": 2,
             "region": {
-              "left": 648,
-              "top": 144,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 432,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-2-360.jpg",
@@ -371,8 +305,8 @@
           {
             "index": 3,
             "region": {
-              "left": 336,
-              "top": 336,
+              "left": 732,
+              "top": 432,
               "width": 368,
               "height": 368
             },
@@ -423,36 +357,14 @@
           360,
           720
         ],
-        "regions": [
-          {
-            "left": 0.14,
-            "top": 0.2,
-            "size": 0.4
-          },
-          {
-            "left": 0.36,
-            "top": 0.16,
-            "size": 0.42
-          },
-          {
-            "left": 0.54,
-            "top": 0.18,
-            "size": 0.4
-          },
-          {
-            "left": 0.28,
-            "top": 0.42,
-            "size": 0.46
-          }
-        ],
         "files": [
           {
             "index": 0,
             "region": {
-              "left": 168,
-              "top": 160,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-0-360.jpg",
@@ -466,10 +378,10 @@
           {
             "index": 1,
             "region": {
-              "left": 432,
-              "top": 128,
-              "width": 336,
-              "height": 336
+              "left": 732,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-1-360.jpg",
@@ -483,10 +395,10 @@
           {
             "index": 2,
             "region": {
-              "left": 648,
-              "top": 144,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 432,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-2-360.jpg",
@@ -500,8 +412,8 @@
           {
             "index": 3,
             "region": {
-              "left": 336,
-              "top": 336,
+              "left": 732,
+              "top": 432,
               "width": 368,
               "height": 368
             },
@@ -552,36 +464,14 @@
           360,
           720
         ],
-        "regions": [
-          {
-            "left": 0.14,
-            "top": 0.2,
-            "size": 0.4
-          },
-          {
-            "left": 0.36,
-            "top": 0.16,
-            "size": 0.42
-          },
-          {
-            "left": 0.54,
-            "top": 0.18,
-            "size": 0.4
-          },
-          {
-            "left": 0.28,
-            "top": 0.42,
-            "size": 0.46
-          }
-        ],
         "files": [
           {
             "index": 0,
             "region": {
-              "left": 168,
-              "top": 160,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-0-360.jpg",
@@ -595,10 +485,10 @@
           {
             "index": 1,
             "region": {
-              "left": 432,
-              "top": 128,
-              "width": 336,
-              "height": 336
+              "left": 732,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-1-360.jpg",
@@ -612,10 +502,10 @@
           {
             "index": 2,
             "region": {
-              "left": 648,
-              "top": 144,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 432,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-2-360.jpg",
@@ -629,8 +519,8 @@
           {
             "index": 3,
             "region": {
-              "left": 336,
-              "top": 336,
+              "left": 732,
+              "top": 432,
               "width": 368,
               "height": 368
             },
@@ -681,36 +571,14 @@
           360,
           720
         ],
-        "regions": [
-          {
-            "left": 0.14,
-            "top": 0.2,
-            "size": 0.4
-          },
-          {
-            "left": 0.36,
-            "top": 0.16,
-            "size": 0.42
-          },
-          {
-            "left": 0.54,
-            "top": 0.18,
-            "size": 0.4
-          },
-          {
-            "left": 0.28,
-            "top": 0.42,
-            "size": 0.46
-          }
-        ],
         "files": [
           {
             "index": 0,
             "region": {
-              "left": 168,
-              "top": 160,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-0-360.jpg",
@@ -724,10 +592,10 @@
           {
             "index": 1,
             "region": {
-              "left": 432,
-              "top": 128,
-              "width": 336,
-              "height": 336
+              "left": 732,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-1-360.jpg",
@@ -741,10 +609,10 @@
           {
             "index": 2,
             "region": {
-              "left": 648,
-              "top": 144,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 432,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-2-360.jpg",
@@ -758,8 +626,8 @@
           {
             "index": 3,
             "region": {
-              "left": 336,
-              "top": 336,
+              "left": 732,
+              "top": 432,
               "width": 368,
               "height": 368
             },
@@ -810,36 +678,14 @@
           360,
           720
         ],
-        "regions": [
-          {
-            "left": 0.14,
-            "top": 0.2,
-            "size": 0.4
-          },
-          {
-            "left": 0.36,
-            "top": 0.16,
-            "size": 0.42
-          },
-          {
-            "left": 0.54,
-            "top": 0.18,
-            "size": 0.4
-          },
-          {
-            "left": 0.28,
-            "top": 0.42,
-            "size": 0.46
-          }
-        ],
         "files": [
           {
             "index": 0,
             "region": {
-              "left": 168,
-              "top": 160,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-0-360.jpg",
@@ -853,10 +699,10 @@
           {
             "index": 1,
             "region": {
-              "left": 432,
-              "top": 128,
-              "width": 336,
-              "height": 336
+              "left": 732,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-1-360.jpg",
@@ -870,10 +716,10 @@
           {
             "index": 2,
             "region": {
-              "left": 648,
-              "top": 144,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 432,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-2-360.jpg",
@@ -887,8 +733,8 @@
           {
             "index": 3,
             "region": {
-              "left": 336,
-              "top": 336,
+              "left": 732,
+              "top": 432,
               "width": 368,
               "height": 368
             },
@@ -939,36 +785,14 @@
           360,
           720
         ],
-        "regions": [
-          {
-            "left": 0.14,
-            "top": 0.2,
-            "size": 0.4
-          },
-          {
-            "left": 0.36,
-            "top": 0.16,
-            "size": 0.42
-          },
-          {
-            "left": 0.54,
-            "top": 0.18,
-            "size": 0.4
-          },
-          {
-            "left": 0.28,
-            "top": 0.42,
-            "size": 0.46
-          }
-        ],
         "files": [
           {
             "index": 0,
             "region": {
-              "left": 168,
-              "top": 160,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-0-360.jpg",
@@ -982,10 +806,10 @@
           {
             "index": 1,
             "region": {
-              "left": 432,
-              "top": 128,
-              "width": 336,
-              "height": 336
+              "left": 732,
+              "top": 0,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-1-360.jpg",
@@ -999,10 +823,10 @@
           {
             "index": 2,
             "region": {
-              "left": 648,
-              "top": 144,
-              "width": 320,
-              "height": 320
+              "left": 100,
+              "top": 432,
+              "width": 368,
+              "height": 368
             },
             "jpg": {
               "360": "tile-2-360.jpg",
@@ -1016,8 +840,8 @@
           {
             "index": 3,
             "region": {
-              "left": 336,
-              "top": 336,
+              "left": 732,
+              "top": 432,
               "width": 368,
               "height": 368
             },
