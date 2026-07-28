@@ -10,38 +10,53 @@ export interface SailingRoute {
   zoom: number
 }
 
-/** Approximate Golden Bay / Abel Tasman approaches — demo only. */
+/**
+ * Water-only Golden Bay / Abel Tasman approaches — demo paths stay in estuary
+ * channels and open bay (not over land). Coordinates approximate; simulated only.
+ */
 export const SAILING_ROUTES: SailingRoute[] = [
   {
     id: 'coastal',
     name: 'Coastal cruise',
-    blurb: 'Tākaka estuary out toward Separation Point — calm water, wildlife spotting.',
+    blurb: 'Leave the Waitapu estuary channel, hug the Motupipi / Pōhara coast, then ease toward Separation Point approaches — calm water, wildlife spotting.',
     durationHint: '3–4 hrs',
-    center: [-40.82, 172.85],
+    center: [-40.82, 172.88],
     zoom: 11,
     path: [
-      [-40.855, 172.808],
-      [-40.84, 172.83],
-      [-40.82, 172.86],
-      [-40.8, 172.89],
-      [-40.79, 172.92],
+      // Waitapu estuary mouth (channel)
+      [-40.842, 172.825],
+      [-40.838, 172.838],
+      [-40.834, 172.855],
+      // Offshore of Pōhara / Tata beach strip
+      [-40.828, 172.875],
+      [-40.822, 172.895],
+      [-40.815, 172.915],
+      // Toward Separation Point approaches (still in bay water)
+      [-40.805, 172.935],
+      [-40.795, 172.955],
     ],
   },
   {
     id: 'island',
     name: 'Island loop',
-    blurb: 'Wider loop toward Abel Tasman approaches — more exposure, bigger views.',
+    blurb: 'Wider open-water loop into Golden Bay then back via Abel Tasman approaches — more exposure, bigger views. Path stays offshore.',
     durationHint: '5–6 hrs',
-    center: [-40.8, 172.92],
+    center: [-40.78, 172.95],
     zoom: 10,
     path: [
-      [-40.855, 172.808],
-      [-40.83, 172.85],
-      [-40.78, 172.95],
-      [-40.76, 173.02],
-      [-40.79, 172.98],
-      [-40.84, 172.88],
-      [-40.855, 172.808],
+      [-40.842, 172.825],
+      [-40.835, 172.86],
+      [-40.82, 172.9],
+      [-40.8, 172.95],
+      [-40.775, 173.0],
+      [-40.755, 173.04],
+      // Turn back in open water (Adele / Fisherman approaches area)
+      [-40.765, 173.06],
+      [-40.79, 173.02],
+      [-40.81, 172.97],
+      [-40.83, 172.91],
+      [-40.838, 172.86],
+      [-40.842, 172.825],
     ],
   },
 ]

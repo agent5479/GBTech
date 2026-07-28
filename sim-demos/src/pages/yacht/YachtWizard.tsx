@@ -153,7 +153,13 @@ export function YachtWizard() {
             ))}
           </div>
           <p className="hint">{route.blurb}</p>
-          <MapRoute path={route.path} center={route.center} zoom={route.zoom} pathColor="#C9A227" />
+          <MapRoute
+            path={route.path}
+            center={route.center}
+            zoom={route.zoom}
+            pathColor="#C9A227"
+            label="Water-only sail path · estuary & open bay"
+          />
           <div className="btn-row">
             <button type="button" className="btn ghost" onClick={() => setStep(3)}>
               Back

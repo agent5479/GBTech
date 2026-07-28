@@ -3,7 +3,7 @@ dist/
 demo/
 sim/
 sim-demos/node_modules/
-sim-demos/dist/
+sim-demos/osrm-routes.json
 staff-demo/dist/
 staff-demo/node_modules/
 booking-demo/dist/

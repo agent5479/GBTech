@@ -145,6 +145,19 @@ textarea {
   height: 180px;
 }
 
+.map-route-wrap {
+  margin: 0.75rem 0;
+}
+
+.map-route-label {
+  margin: 0.35rem 0 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
 /* Hub */
 .hub {
   max-width: 56rem;

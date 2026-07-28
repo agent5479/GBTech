@@ -77,7 +77,14 @@ export default function BayAdventure() {
               </button>
             ))}
           </div>
-          <MapRoute path={route.path} center={route.center} zoom={route.zoom} pathColor="#E85A4F" className="demo-map adventure-map" />
+          <MapRoute
+            path={route.path}
+            center={route.center}
+            zoom={route.zoom}
+            pathColor="#E85A4F"
+            className="demo-map adventure-map"
+            label="Water-only sail path · estuary & open bay"
+          />
           <p className="adventure-blurb">{route.blurb}</p>
         </aside>
 

@@ -3,8 +3,9 @@ import { DemoChrome } from '../../components/DemoChrome'
 import { PhoneShell } from '../../components/PhoneShell'
 import { MapRoute } from '../../components/MapRoute'
 import { FareBreakdownView } from '../../components/FareBreakdown'
-import { GB_PLACES, distanceKm, placeById } from '../../shared/gbPlaces'
+import { GB_PLACES, placeById } from '../../shared/gbPlaces'
 import { estimateFare, type VehicleTier } from '../../shared/fareEstimate'
+import { roadDistanceKm, roadPathBetween } from '../../shared/taxiRoutes'
 import type { LatLng } from '../../shared/sailingRoutes'
 
 /** Mohua Ride — phone-shell ride-hail flow. */
@@ -19,18 +20,17 @@ export function TaxiWizard() {
   const from = placeById(pickup)!
   const to = placeById(dropoff)!
   const same = pickup === dropoff
-  const km = same ? 0 : distanceKm(from, to)
+  const km = same ? 0 : (roadDistanceKm(pickup, dropoff) ?? 0)
   const peak = when === 'later' || new Date().getHours() >= 17
   const fare = useMemo(() => estimateFare(km || 1, tier, peak && !same), [km, tier, peak, same])
 
-  const path: LatLng[] = useMemo(() => {
-    const mid: LatLng = [(from.lat + to.lat) / 2 + 0.01, (from.lng + to.lng) / 2 - 0.01]
-    return [
-      [from.lat, from.lng],
-      mid,
-      [to.lat, to.lng],
-    ]
-  }, [from, to])
+  const path: LatLng[] = useMemo(
+    () =>
+      same
+        ? [[from.lat, from.lng]]
+        : roadPathBetween(pickup, dropoff, [from.lat, from.lng], [to.lat, to.lng]),
+    [same, pickup, dropoff, from, to]
+  )
 
   const center: LatLng = [(from.lat + to.lat) / 2, (from.lng + to.lng) / 2]
 
@@ -59,7 +59,7 @@ export function TaxiWizard() {
       <DemoChrome
         theme="Mohua Ride"
         title="Mohua Ride"
-        subtitle="Phone-first private taxi — select places, see fare, request (simulated)."
+        subtitle="Phone-first private taxi — road route + fare estimate (simulated)."
       />
       <PhoneShell brand="Mohua Ride">
         <div className="taxi-flow">
@@ -107,7 +107,14 @@ export function TaxiWizard() {
             )}
           </div>
 
-          <MapRoute path={path} center={center} zoom={11} pathColor="#D3993C" className="demo-map mini" />
+          <MapRoute
+            path={path}
+            center={center}
+            zoom={11}
+            pathColor="#D3993C"
+            className="demo-map mini"
+            label="Road route · OpenStreetMap / OSRM"
+          />
 
           {!same && <FareBreakdownView fare={fare} peak={peak} />}
 

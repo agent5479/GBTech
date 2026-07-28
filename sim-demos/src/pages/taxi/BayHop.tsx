@@ -1,11 +1,13 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MapRoute } from '../../components/MapRoute'
-import { GB_PLACES, distanceKm, placeById } from '../../shared/gbPlaces'
+import { GB_PLACES, placeById } from '../../shared/gbPlaces'
 import { estimateFare, type VehicleTier } from '../../shared/fareEstimate'
+import { roadDistanceKm, roadPathBetween } from '../../shared/taxiRoutes'
 import type { LatLng } from '../../shared/sailingRoutes'
 
 const SLOTS = ['ASAP', '16:00', '17:00', '18:00', '19:30', '21:00']
+const BAY_CENTER: LatLng = [-40.82, 172.82]
 
 /**
  * Bay Hop — tablet trip board (not a phone shell).
@@ -23,7 +25,7 @@ export default function BayHop() {
   const from = pickup ? placeById(pickup) : undefined
   const to = dropoff ? placeById(dropoff) : undefined
   const ready = Boolean(from && to && from.id !== to.id)
-  const km = ready ? distanceKm(from!, to!) : 0
+  const km = ready ? (roadDistanceKm(from!.id, to!.id) ?? 0) : 0
   const peak = slot !== 'ASAP'
   const fare = useMemo(
     () => (ready ? estimateFare(km, tier, peak) : null),
@@ -31,16 +33,11 @@ export default function BayHop() {
   )
 
   const path: LatLng[] = useMemo(() => {
-    if (!from || !to) return [[-40.82, 172.82], [-40.82, 172.82]]
-    const mid: LatLng = [(from.lat + to.lat) / 2 - 0.015, (from.lng + to.lng) / 2 + 0.02]
-    return [
-      [from.lat, from.lng],
-      mid,
-      [to.lat, to.lng],
-    ]
+    if (!from || !to || from.id === to.id) return [BAY_CENTER]
+    return roadPathBetween(from.id, to.id, [from.lat, from.lng], [to.lat, to.lng])
   }, [from, to])
 
-  const center: LatLng = from && to ? [(from.lat + to.lat) / 2, (from.lng + to.lng) / 2] : [-40.82, 172.82]
+  const center: LatLng = from && to ? [(from.lat + to.lat) / 2, (from.lng + to.lng) / 2] : BAY_CENTER
 
   if (done && from && to && fare) {
     return (
@@ -145,13 +142,20 @@ export default function BayHop() {
         </section>
 
         <section className="bayhop-side">
-          <MapRoute path={path} center={center} zoom={11} pathColor="#C8F542" className="demo-map bayhop-map" />
+          <MapRoute
+            path={path}
+            center={center}
+            zoom={ready ? 11 : 10}
+            pathColor="#C8F542"
+            className="demo-map bayhop-map"
+            label={ready ? 'Road route · OpenStreetMap / OSRM' : 'Select From and To'}
+          />
 
           {ready && fare && (
             <>
               <div className="bayhop-estimate">
                 <div>
-                  <span>Distance</span>
+                  <span>Road distance</span>
                   <strong>{km} km</strong>
                 </div>
                 <div>
@@ -191,7 +195,7 @@ export default function BayHop() {
             </>
           )}
 
-          {!ready && <p className="bayhop-hint">Select From, then To on the place board — map and fare appear here.</p>}
+          {!ready && <p className="bayhop-hint">Select From, then To on the place board — road path and fare appear here.</p>}
         </section>
       </div>
     </div>

@@ -6,7 +6,7 @@ const DEMOS = [
     title: 'Coastal Charter',
     kind: 'Yacht · wizard',
     look: 'Navy · cream · gold',
-    blurb: 'Classic 5-step sail booking — packages, blocked calendar, weather strip, sailing path map.',
+    blurb: 'Classic 5-step sail booking — packages, blocked calendar, weather strip, water-only sail path.',
     card: 'hub-card-coastal',
   },
   {
@@ -14,7 +14,7 @@ const DEMOS = [
     title: 'Bay Adventure',
     kind: 'Yacht · mission deck',
     look: 'Teal · sand · coral',
-    blurb: 'Different UI — map-first mission deck with day rail, time chips, and crew stepper (not a wizard recolour).',
+    blurb: 'Different UI — map-first mission deck with water-only routes, day rail, time chips, and crew stepper.',
     card: 'hub-card-adventure',
   },
   {
@@ -22,7 +22,7 @@ const DEMOS = [
     title: 'Mohua Ride',
     kind: 'Taxi · phone hail',
     look: 'Burgundy · orange',
-    blurb: 'Phone-shell ride hail — pickup/drop-off, fare breakdown, mini route map.',
+    blurb: 'Phone-shell ride hail — pickup/drop-off, fare breakdown, road-snapped OSRM route.',
     card: 'hub-card-mohua',
   },
   {
@@ -30,7 +30,7 @@ const DEMOS = [
     title: 'Bay Hop',
     kind: 'Taxi · trip board',
     look: 'Charcoal · citrus',
-    blurb: 'Different UI — tablet place-grid From/To board with vehicle cards and time rail (not a phone recolour).',
+    blurb: 'Different UI — tablet place-grid From/To board with road path, vehicle cards and time rail.',
     card: 'hub-card-bayhop',
   },
 ]
