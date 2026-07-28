@@ -1,4 +1,5 @@
 import type { FareBreakdown } from '../shared/fareEstimate'
+import { formatFareBracket } from '../shared/fareEstimate'
 
 interface Props {
   fare: FareBreakdown
@@ -13,6 +14,10 @@ export function FareBreakdownView({ fare, peak }: Props) {
         <strong>{fare.km} km</strong>
       </div>
       <div className="fare-row">
+        <span>Passengers</span>
+        <strong>{fare.passengers}</strong>
+      </div>
+      <div className="fare-row">
         <span>Base fare</span>
         <span>${fare.base.toFixed(2)}</span>
       </div>
@@ -22,6 +27,12 @@ export function FareBreakdownView({ fare, peak }: Props) {
         </span>
         <span>${fare.distanceCharge.toFixed(2)}</span>
       </div>
+      {fare.passengerSurcharge > 0 && (
+        <div className="fare-row">
+          <span>Extra passengers</span>
+          <span>${fare.passengerSurcharge.toFixed(2)}</span>
+        </div>
+      )}
       {peak && (
         <div className="fare-row">
           <span>Peak surcharge (20%)</span>
@@ -35,9 +46,10 @@ export function FareBreakdownView({ fare, peak }: Props) {
         </div>
       )}
       <div className="fare-row fare-total">
-        <span>Estimated total</span>
-        <strong>${fare.total.toFixed(2)}</strong>
+        <span>Estimated cost</span>
+        <strong>{formatFareBracket(fare)}</strong>
       </div>
+      <p className="fare-bracket-note">Estimate bracket — final fare may vary with traffic and wait time.</p>
     </div>
   )
 }

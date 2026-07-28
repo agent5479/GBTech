@@ -1,8 +1,13 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MapRoute } from '../../components/MapRoute'
 import { GB_PLACES, placeById } from '../../shared/gbPlaces'
-import { estimateFare, type VehicleTier } from '../../shared/fareEstimate'
+import {
+  estimateFare,
+  formatFareBracket,
+  maxPassengersFor,
+  type VehicleTier,
+} from '../../shared/fareEstimate'
 import { roadDistanceKm, roadPathBetween } from '../../shared/taxiRoutes'
 import type { LatLng } from '../../shared/sailingRoutes'
 
@@ -11,16 +16,28 @@ const BAY_CENTER: LatLng = [-40.82, 172.82]
 
 /**
  * Bay Hop — tablet trip board (not a phone shell).
- * Sequence: tap From → tap To on place grid → vehicle cards → time rail → confirm.
- * Landscape: map + estimate column; place grid as primary interaction.
+ * Sequence: tap From → tap To on place grid → vehicle cards → passengers → time rail → confirm.
  */
 export default function BayHop() {
   const [phase, setPhase] = useState<'from' | 'to' | 'book'>('from')
   const [pickup, setPickup] = useState<string>()
   const [dropoff, setDropoff] = useState<string>()
   const [tier, setTier] = useState<VehicleTier>('standard')
+  const [passengers, setPassengers] = useState(2)
   const [slot, setSlot] = useState('ASAP')
   const [done, setDone] = useState(false)
+
+  const maxPax = maxPassengersFor(tier)
+  const paxOptions = 7
+
+  const setPassengerCount = (n: number) => {
+    setPassengers(n)
+    if (n > 4) setTier('van')
+  }
+
+  useEffect(() => {
+    setPassengers((p) => Math.min(p, maxPax))
+  }, [maxPax])
 
   const from = pickup ? placeById(pickup) : undefined
   const to = dropoff ? placeById(dropoff) : undefined
@@ -28,8 +45,8 @@ export default function BayHop() {
   const km = ready ? (roadDistanceKm(from!.id, to!.id) ?? 0) : 0
   const peak = slot !== 'ASAP'
   const fare = useMemo(
-    () => (ready ? estimateFare(km, tier, peak) : null),
-    [ready, km, tier, peak]
+    () => (ready ? estimateFare(km, tier, peak, passengers) : null),
+    [ready, km, tier, peak, passengers]
   )
 
   const path: LatLng[] = useMemo(() => {
@@ -48,9 +65,9 @@ export default function BayHop() {
           <p>
             {from.name} → {to.name}
           </p>
-          <p className="bayhop-big">${fare.total.toFixed(2)}</p>
+          <p className="bayhop-big">{formatFareBracket(fare)}</p>
           <p>
-            {tier === 'van' ? 'Van' : 'Standard'} · {slot}
+            {passengers} passenger{passengers === 1 ? '' : 's'} · {tier === 'van' ? 'Van' : 'Standard'} · {slot}
           </p>
           <button
             type="button"
@@ -159,8 +176,8 @@ export default function BayHop() {
                   <strong>{km} km</strong>
                 </div>
                 <div>
-                  <span>Est. fare</span>
-                  <strong className="bayhop-big">${fare.total.toFixed(2)}</strong>
+                  <span>Est. cost</span>
+                  <strong className="bayhop-big">{formatFareBracket(fare)}</strong>
                 </div>
               </div>
 
@@ -171,8 +188,25 @@ export default function BayHop() {
                 </button>
                 <button type="button" className={`v-card${tier === 'van' ? ' on' : ''}`} onClick={() => setTier('van')}>
                   <strong>Van</strong>
-                  <span>Up to 7 · +15%</span>
+                  <span>Up to 7</span>
                 </button>
+              </div>
+
+              <div className="pax-block">
+                <span className="pax-label">Passengers</span>
+                <div className="pax-row" role="group" aria-label="Passenger count">
+                  {Array.from({ length: paxOptions }, (_, i) => i + 1).map((n) => (
+                    <button
+                      key={n}
+                      type="button"
+                      className={`pax-chip${passengers === n ? ' on' : ''}`}
+                      onClick={() => setPassengerCount(n)}
+                    >
+                      {n}
+                    </button>
+                  ))}
+                </div>
+                {passengers > 4 && <p className="fare-bracket-note">5+ passengers uses Van.</p>}
               </div>
 
               <div className="slot-rail">
@@ -185,12 +219,15 @@ export default function BayHop() {
               </div>
 
               <p className="bayhop-breakdown">
-                Base ${fare.base.toFixed(2)} + distance ${fare.distanceCharge.toFixed(2)}
-                {fare.peakSurcharge > 0 ? ` + peak $${fare.peakSurcharge.toFixed(2)}` : ''}
+                Mid ${fare.mid.toFixed(2)}
+                {fare.passengerSurcharge > 0 ? ` · +$${fare.passengerSurcharge.toFixed(2)} for extra pax` : ''}
+                {fare.peakSurcharge > 0 ? ` · peak $${fare.peakSurcharge.toFixed(2)}` : ''}
+                {' · '}
+                bracket {formatFareBracket(fare)}
               </p>
 
               <button type="button" className="btn primary launch-btn" disabled={phase !== 'book'} onClick={() => setDone(true)}>
-                Confirm hop (demo)
+                Confirm hop · {formatFareBracket(fare)}
               </button>
             </>
           )}

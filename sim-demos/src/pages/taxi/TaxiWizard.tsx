@@ -1,10 +1,15 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { DemoChrome } from '../../components/DemoChrome'
 import { PhoneShell } from '../../components/PhoneShell'
 import { MapRoute } from '../../components/MapRoute'
 import { FareBreakdownView } from '../../components/FareBreakdown'
 import { GB_PLACES, placeById } from '../../shared/gbPlaces'
-import { estimateFare, type VehicleTier } from '../../shared/fareEstimate'
+import {
+  estimateFare,
+  formatFareBracket,
+  maxPassengersFor,
+  type VehicleTier,
+} from '../../shared/fareEstimate'
 import { roadDistanceKm, roadPathBetween } from '../../shared/taxiRoutes'
 import type { LatLng } from '../../shared/sailingRoutes'
 
@@ -13,16 +18,32 @@ export function TaxiWizard() {
   const [pickup, setPickup] = useState('takaka')
   const [dropoff, setDropoff] = useState('pohara')
   const [tier, setTier] = useState<VehicleTier>('standard')
+  const [passengers, setPassengers] = useState(1)
   const [when, setWhen] = useState<'now' | 'later'>('now')
   const [laterTime, setLaterTime] = useState('17:30')
   const [done, setDone] = useState(false)
+
+  const maxPax = maxPassengersFor(tier)
+  const paxOptions = 7
+
+  const setPassengerCount = (n: number) => {
+    setPassengers(n)
+    if (n > 4) setTier('van')
+  }
+
+  useEffect(() => {
+    setPassengers((p) => Math.min(p, maxPax))
+  }, [maxPax])
 
   const from = placeById(pickup)!
   const to = placeById(dropoff)!
   const same = pickup === dropoff
   const km = same ? 0 : (roadDistanceKm(pickup, dropoff) ?? 0)
   const peak = when === 'later' || new Date().getHours() >= 17
-  const fare = useMemo(() => estimateFare(km || 1, tier, peak && !same), [km, tier, peak, same])
+  const fare = useMemo(
+    () => estimateFare(km || 1, tier, peak && !same, passengers),
+    [km, tier, peak, same, passengers]
+  )
 
   const path: LatLng[] = useMemo(
     () =>
@@ -44,7 +65,10 @@ export function TaxiWizard() {
             <p>
               {from.name} → {to.name}
             </p>
-            <p className="estimate">${fare.total.toFixed(2)} est.</p>
+            <p>
+              {passengers} passenger{passengers === 1 ? '' : 's'} · {tier === 'van' ? 'Van' : 'Standard'}
+            </p>
+            <p className="estimate">{formatFareBracket(fare)} est.</p>
             <button type="button" className="btn primary" onClick={() => setDone(false)}>
               New demo ride
             </button>
@@ -59,7 +83,7 @@ export function TaxiWizard() {
       <DemoChrome
         theme="Mohua Ride"
         title="Mohua Ride"
-        subtitle="Phone-first private taxi — road route + fare estimate (simulated)."
+        subtitle="Phone-first private taxi — road route + passenger-based fare bracket (simulated)."
       />
       <PhoneShell brand="Mohua Ride">
         <div className="taxi-flow">
@@ -86,12 +110,31 @@ export function TaxiWizard() {
 
           {same && <p className="warn">Choose different pickup and drop-off.</p>}
 
+          <div className="pax-block">
+            <span className="pax-label">Passengers</span>
+            <div className="pax-row" role="group" aria-label="Passenger count">
+              {Array.from({ length: paxOptions }, (_, i) => i + 1).map((n) => (
+                <button
+                  key={n}
+                  type="button"
+                  className={`pax-chip${passengers === n ? ' on' : ''}`}
+                  onClick={() => setPassengerCount(n)}
+                >
+                  {n}
+                </button>
+              ))}
+            </div>
+            {passengers > 4 && <p className="fare-bracket-note">5+ passengers uses Van.</p>}
+          </div>
+
           <div className="tier-row">
             <button type="button" className={`tier${tier === 'standard' ? ' on' : ''}`} onClick={() => setTier('standard')}>
               Standard
+              <small>Up to 4</small>
             </button>
             <button type="button" className={`tier${tier === 'van' ? ' on' : ''}`} onClick={() => setTier('van')}>
               Van
+              <small>Up to 7</small>
             </button>
           </div>
 
@@ -119,7 +162,7 @@ export function TaxiWizard() {
           {!same && <FareBreakdownView fare={fare} peak={peak} />}
 
           <button type="button" className="btn primary sticky-cta" disabled={same} onClick={() => setDone(true)}>
-            Request demo ride · ${same ? '—' : fare.total.toFixed(2)}
+            Request demo ride · {same ? '—' : formatFareBracket(fare)}
           </button>
         </div>
       </PhoneShell>

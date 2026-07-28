@@ -596,6 +596,67 @@ textarea {
   font-size: 1.05rem;
 }
 
+.fare-bracket-note {
+  margin: 0.45rem 0 0;
+  font-size: 0.72rem;
+  opacity: 0.7;
+  line-height: 1.35;
+}
+
+.pax-block {
+  margin: 0.75rem 0;
+}
+
+.pax-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+  opacity: 0.85;
+}
+
+.pax-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pax-chip {
+  min-width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pax-chip.on {
+  background: var(--accent, #d3993c);
+  color: #1a0a10;
+  border-color: transparent;
+}
+
+.theme-bayhop .pax-chip {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.theme-bayhop .pax-chip.on {
+  background: #c8f542;
+  color: #111;
+}
+
+.tier small {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  opacity: 0.75;
+  margin-top: 0.15rem;
+}
+
 .warn {
   color: #ffb4a8;
   font-size: 0.85rem;
