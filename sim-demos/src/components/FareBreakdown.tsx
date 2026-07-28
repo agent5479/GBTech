@@ -1,0 +1,43 @@
+import type { FareBreakdown } from '../shared/fareEstimate'
+
+interface Props {
+  fare: FareBreakdown
+  peak: boolean
+}
+
+export function FareBreakdownView({ fare, peak }: Props) {
+  return (
+    <div className="fare-box">
+      <div className="fare-row">
+        <span>Distance</span>
+        <strong>{fare.km} km</strong>
+      </div>
+      <div className="fare-row">
+        <span>Base fare</span>
+        <span>${fare.base.toFixed(2)}</span>
+      </div>
+      <div className="fare-row">
+        <span>
+          Distance ({fare.km} × ${fare.perKm.toFixed(2)})
+        </span>
+        <span>${fare.distanceCharge.toFixed(2)}</span>
+      </div>
+      {peak && (
+        <div className="fare-row">
+          <span>Peak surcharge (20%)</span>
+          <span>${fare.peakSurcharge.toFixed(2)}</span>
+        </div>
+      )}
+      {fare.vehicleMultiplier > 1 && (
+        <div className="fare-row">
+          <span>Van multiplier</span>
+          <span>×{fare.vehicleMultiplier}</span>
+        </div>
+      )}
+      <div className="fare-row fare-total">
+        <span>Estimated total</span>
+        <strong>${fare.total.toFixed(2)}</strong>
+      </div>
+    </div>
+  )
+}

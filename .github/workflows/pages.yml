@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   deploy:
-    name: Validate and deploy static HTML
+    name: Validate, build demos, and deploy
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -39,6 +39,27 @@ jobs:
             grep -q 'rel="canonical"' "$page"
             grep -q 'application/ld+json' "$page"
           done
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: sim-demos/package-lock.json
+
+      - name: Build simulated booking demos
+        working-directory: sim-demos
+        run: |
+          npm ci
+          npm run build
+          mkdir -p ../sim
+          cp -r dist/. ../sim/
+          # SPA fallbacks for GitHub Pages deep links
+          for d in yacht/coastal yacht/adventure taxi/mohua taxi/bayhop; do
+            mkdir -p "../sim/$d"
+            cp ../sim/index.html "../sim/$d/index.html"
+          done
+          cp ../sim/index.html ../sim/404.html
 
       - name: Regenerate sitemap from static routes
         run: python3 .github/scripts/generate-sitemap.py

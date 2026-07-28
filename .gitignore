@@ -1,0 +1,14 @@
+node_modules/
+dist/
+demo/
+sim/
+sim-demos/node_modules/
+sim-demos/dist/
+staff-demo/dist/
+staff-demo/node_modules/
+booking-demo/dist/
+booking-demo/node_modules/
+.env
+.env.local
+*.tsbuildinfo
+.DS_Store

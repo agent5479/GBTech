@@ -12,6 +12,10 @@ ROUTES = [
     ("marshall-solutions.html", "marshall-solutions.html", "0.8"),
 ]
 
+# Simulated demo hub (built by CI into sim/)
+if os.path.isfile(os.path.join("sim", "index.html")):
+    ROUTES.append(("sim/index.html", "sim/", "0.6"))
+
 urlset = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
 
 for filename, path, priority in ROUTES:
@@ -20,7 +24,8 @@ for filename, path, priority in ROUTES:
 
     mtime = date.fromtimestamp(os.path.getmtime(filename)).isoformat()
     url = ET.SubElement(urlset, "url")
-    ET.SubElement(url, "loc").text = f"{BASE_URL}/{path}"
+    loc = f"{BASE_URL}/{path}" if path else f"{BASE_URL}/"
+    ET.SubElement(url, "loc").text = loc
     ET.SubElement(url, "lastmod").text = mtime
     ET.SubElement(url, "changefreq").text = "monthly"
     ET.SubElement(url, "priority").text = priority
