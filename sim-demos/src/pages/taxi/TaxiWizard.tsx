@@ -12,9 +12,11 @@ import {
 } from '../../shared/fareEstimate'
 import { roadDistanceKm, roadPathBetween } from '../../shared/taxiRoutes'
 import type { LatLng } from '../../shared/sailingRoutes'
+import { useDemoPalette } from '../../hooks/useDemoPalette'
 
 /** Mohua Ride — phone-shell ride-hail flow. */
 export function TaxiWizard() {
+  const { paletteId, setPaletteId, style } = useDemoPalette('taxi-mohua')
   const [pickup, setPickup] = useState('takaka')
   const [dropoff, setDropoff] = useState('pohara')
   const [tier, setTier] = useState<VehicleTier>('standard')
@@ -57,8 +59,14 @@ export function TaxiWizard() {
 
   if (done) {
     return (
-      <div className="taxi-page theme-mohua">
-        <DemoChrome theme="Mohua Ride" title="Demo ride requested" subtitle="Nothing was dispatched — simulation only." />
+      <div className="taxi-page theme-mohua" style={style}>
+        <DemoChrome
+          theme="Mohua Ride"
+          title="Demo ride requested"
+          subtitle="Nothing was dispatched — simulation only."
+          paletteId={paletteId}
+          onPaletteChange={setPaletteId}
+        />
         <PhoneShell brand="Mohua Ride">
           <div className="taxi-success">
             <h2>Driver matching… (demo)</h2>
@@ -79,11 +87,13 @@ export function TaxiWizard() {
   }
 
   return (
-    <div className="taxi-page theme-mohua">
+    <div className="taxi-page theme-mohua" style={style}>
       <DemoChrome
         theme="Mohua Ride"
         title="Mohua Ride"
-        subtitle="Phone-first private taxi — road route + passenger-based fare bracket (simulated)."
+        subtitle="Phone-first private taxi — road route + passenger-based fare bracket (simulated). Aesthetics fully customisable."
+        paletteId={paletteId}
+        onPaletteChange={setPaletteId}
       />
       <PhoneShell brand="Mohua Ride">
         <div className="taxi-flow">

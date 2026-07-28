@@ -8,11 +8,13 @@ import {
   estimatePruning,
   formatPruningBracket,
 } from '../../shared/pruningTrees'
+import { useDemoPalette } from '../../hooks/useDemoPalette'
 
 /**
  * Canopy Care — vertical catalog with qty steppers, then when / review.
  */
 export default function CanopyCare() {
+  const { paletteId, setPaletteId, style } = useDemoPalette('pruning-canopy')
   const days = useMemo(() => buildYachtCalendar(8), [])
   const [step, setStep] = useState(1)
   const [qty, setQty] = useState<Record<string, number>>({ fruit: 2 })
@@ -35,8 +37,14 @@ export default function CanopyCare() {
 
   if (done && estimate) {
     return (
-      <div className="pruning-page theme-canopy">
-        <DemoChrome theme="Canopy Care" title="Demo prune booked" subtitle="Nothing was scheduled — simulation only." />
+      <div className="pruning-page theme-canopy" style={style}>
+        <DemoChrome
+          theme="Canopy Care"
+          title="Demo prune booked"
+          subtitle="Nothing was scheduled — simulation only."
+          paletteId={paletteId}
+          onPaletteChange={setPaletteId}
+        />
         <div className="yacht-panel success-panel">
           <h2>Visit pencilled in (demo)</h2>
           <ul className="prune-lines">
@@ -69,11 +77,13 @@ export default function CanopyCare() {
   }
 
   return (
-    <div className="pruning-page theme-canopy">
+    <div className="pruning-page theme-canopy" style={style}>
       <DemoChrome
         theme="Canopy Care"
         title="Canopy Care"
-        subtitle="Tree pruning — pick types and quantities from a catalog list."
+        subtitle="Tree pruning — pick types and quantities from a catalog list. Aesthetics fully customisable."
+        paletteId={paletteId}
+        onPaletteChange={setPaletteId}
       />
 
       <ol className="wizard-steps" aria-label="Booking steps">

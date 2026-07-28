@@ -10,6 +10,8 @@ import {
 } from '../../shared/fareEstimate'
 import { roadDistanceKm, roadPathBetween } from '../../shared/taxiRoutes'
 import type { LatLng } from '../../shared/sailingRoutes'
+import { PaletteSwitcher } from '../../components/PaletteSwitcher'
+import { useDemoPalette } from '../../hooks/useDemoPalette'
 
 const SLOTS = ['ASAP', '16:00', '17:00', '18:00', '19:30', '21:00']
 const BAY_CENTER: LatLng = [-40.82, 172.82]
@@ -19,6 +21,7 @@ const BAY_CENTER: LatLng = [-40.82, 172.82]
  * Sequence: tap From → tap To on place grid → vehicle cards → passengers → time rail → confirm.
  */
 export default function BayHop() {
+  const { paletteId, setPaletteId, style } = useDemoPalette('taxi-bayhop')
   const [phase, setPhase] = useState<'from' | 'to' | 'book'>('from')
   const [pickup, setPickup] = useState<string>()
   const [dropoff, setDropoff] = useState<string>()
@@ -58,7 +61,8 @@ export default function BayHop() {
 
   if (done && from && to && fare) {
     return (
-      <div className="bayhop-page theme-bayhop">
+      <div className="bayhop-page theme-bayhop" style={style}>
+        <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
         <div className="bayhop-done">
           <p className="demo-badge">Simulated · not dispatched</p>
           <h1>Hop confirmed</h1>
@@ -90,7 +94,7 @@ export default function BayHop() {
   }
 
   return (
-    <div className="bayhop-page theme-bayhop">
+    <div className="bayhop-page theme-bayhop" style={style}>
       <header className="bayhop-bar">
         <Link to="/" className="demo-back">
           ← All demos
@@ -105,6 +109,7 @@ export default function BayHop() {
           <li className={phase === 'book' ? 'on' : ''}>3 Book</li>
         </ol>
       </header>
+      <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
 
       <div className="bayhop-board">
         <section className="bayhop-places">

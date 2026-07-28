@@ -9,12 +9,14 @@ import {
   formatHandymanBracket,
   jobById,
 } from '../../shared/handymanJobs'
+import { useDemoPalette } from '../../hooks/useDemoPalette'
 
 /**
  * Bay Fix — classic job-ticket wizard.
  * Steps: Jobs (multi-select) → When → Site → Review.
  */
 export default function BayFix() {
+  const { paletteId, setPaletteId, style } = useDemoPalette('handyman-bayfix')
   const days = useMemo(() => buildYachtCalendar(8), [])
   const [step, setStep] = useState(1)
   const [selected, setSelected] = useState<string[]>(['plumbing'])
@@ -35,8 +37,14 @@ export default function BayFix() {
 
   if (done && estimate) {
     return (
-      <div className="handyman-page theme-bayfix">
-        <DemoChrome theme="Bay Fix" title="Demo job ticket logged" subtitle="Nothing was booked — simulation only." />
+      <div className="handyman-page theme-bayfix" style={style}>
+        <DemoChrome
+          theme="Bay Fix"
+          title="Demo job ticket logged"
+          subtitle="Nothing was booked — simulation only."
+          paletteId={paletteId}
+          onPaletteChange={setPaletteId}
+        />
         <div className="yacht-panel success-panel">
           <h2>You&apos;re on the list (demo)</h2>
           <p>
@@ -65,11 +73,13 @@ export default function BayFix() {
   }
 
   return (
-    <div className="handyman-page theme-bayfix">
+    <div className="handyman-page theme-bayfix" style={style}>
       <DemoChrome
         theme="Bay Fix"
         title="Bay Fix"
-        subtitle="Handyman for hire — multi-select job types on a classic ticket wizard."
+        subtitle="Handyman for hire — multi-select job types on a classic ticket wizard. Aesthetics fully customisable."
+        paletteId={paletteId}
+        onPaletteChange={setPaletteId}
       />
 
       <ol className="wizard-steps" aria-label="Booking steps">

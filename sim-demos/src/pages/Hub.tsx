@@ -75,7 +75,8 @@ export default function Hub() {
         <h1>Try a booking demo</h1>
         <p>
           Fully simulated — no Google Calendar writes, no payments, no dispatch. Eight distinct interfaces: yacht,
-          taxi, handyman, and tree pruning patterns for Golden Bay operators.
+          taxi, handyman, and tree pruning patterns for Golden Bay operators. Every design includes a live palette
+          switcher — aesthetics are fully customisable to your brand.
         </p>
         <a className="hub-back" href="/GBTech/marshall-solutions.html#demos">
           ← Back to Marshall Solutions

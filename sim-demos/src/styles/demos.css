@@ -700,8 +700,8 @@ textarea {
 }
 
 .theme-mohua .btn.primary {
-  background: #d3993c;
-  color: #4b0d1c;
+  background: var(--accent, #d3993c);
+  color: var(--demo-accent-ink, #4b0d1c);
 }
 
 .theme-bayhop {
@@ -725,8 +725,8 @@ textarea {
 }
 
 .theme-bayhop .btn.primary {
-  background: #c8f542;
-  color: #111;
+  background: var(--accent, #c8f542);
+  color: var(--demo-accent-ink, #111);
 }
 
 .theme-bayhop .tier.on {
@@ -1001,8 +1001,8 @@ textarea {
 }
 
 .theme-adventure .btn.primary {
-  background: #e85a4f;
-  color: #fff;
+  background: var(--accent, #e85a4f);
+  color: var(--demo-accent-ink, #fff);
 }
 
 .adventure-launch-ok,
@@ -1296,8 +1296,8 @@ textarea {
 }
 
 .theme-bayhop .btn.primary {
-  background: #c8f542;
-  color: #111;
+  background: var(--accent, #c8f542);
+  color: var(--demo-accent-ink, #111);
 }
 
 .bayhop-done {
@@ -1318,15 +1318,15 @@ textarea {
 }
 
 .theme-bayfix .btn.primary {
-  background: #c47a1a;
-  color: #fff;
+  background: var(--accent, #c47a1a);
+  color: var(--demo-accent-ink, #fff);
 }
 
 .theme-bayfix .day-pill.on,
 .theme-bayfix .time-chip.on {
-  background: #c47a1a;
-  border-color: #c47a1a;
-  color: #fff;
+  background: var(--accent, #c47a1a);
+  border-color: var(--accent, #c47a1a);
+  color: var(--demo-accent-ink, #fff);
 }
 
 .job-check-list {
@@ -1397,8 +1397,8 @@ textarea {
 }
 
 .theme-tradeboard .btn.primary {
-  background: #ff8c42;
-  color: #111;
+  background: var(--accent, #ff8c42);
+  color: var(--demo-accent-ink, #111);
 }
 
 .theme-tradeboard .day-pill {
@@ -1409,9 +1409,9 @@ textarea {
 
 .theme-tradeboard .day-pill.on,
 .theme-tradeboard .time-chip.on {
-  background: #ff8c42;
-  border-color: #ff8c42;
-  color: #111;
+  background: var(--accent, #ff8c42);
+  border-color: var(--accent, #ff8c42);
+  color: var(--demo-accent-ink, #111);
 }
 
 .theme-tradeboard .time-chip {
@@ -1493,8 +1493,8 @@ textarea {
 
 .job-chip.on {
   border-color: transparent;
-  background: #ff8c42;
-  color: #111;
+  background: var(--accent, #ff8c42);
+  color: var(--demo-accent-ink, #111);
 }
 
 .tradeboard-side {
@@ -1542,19 +1542,19 @@ textarea {
 }
 
 .theme-canopy .btn.primary {
-  background: #2d5a37;
-  color: #fff;
+  background: var(--accent, #2d5a37);
+  color: var(--demo-accent-ink, #fff);
 }
 
 .theme-canopy .crew-stepper button {
-  background: #2d5a37;
+  background: var(--accent, #2d5a37);
 }
 
 .theme-canopy .day-pill.on,
 .theme-canopy .time-chip.on {
-  background: #2d5a37;
-  border-color: #2d5a37;
-  color: #fff;
+  background: var(--accent, #2d5a37);
+  border-color: var(--accent, #2d5a37);
+  color: var(--demo-accent-ink, #fff);
 }
 
 .prune-catalog {
@@ -1648,15 +1648,15 @@ textarea {
 }
 
 .theme-orchard .btn.primary {
-  background: #4a6b2f;
-  color: #fff;
+  background: var(--accent, #4a6b2f);
+  color: var(--demo-accent-ink, #fff);
 }
 
 .theme-orchard .day-pill.on,
 .theme-orchard .time-chip.on {
-  background: #4a6b2f;
-  border-color: #4a6b2f;
-  color: #fff;
+  background: var(--accent, #4a6b2f);
+  border-color: var(--accent, #4a6b2f);
+  color: var(--demo-accent-ink, #fff);
 }
 
 .orchard-top {
@@ -1880,6 +1880,109 @@ textarea {
 
 .hub-card-orchard .hub-kind {
   color: #4a6b2f;
+}
+
+/* Palette switcher — proves aesthetics are fully customisable */
+.palette-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0.85rem 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.theme-tradeboard .palette-switcher,
+.theme-bayhop .palette-switcher,
+.theme-mohua .palette-switcher {
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.palette-switcher-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  max-width: 28rem;
+}
+
+.palette-switcher-copy strong {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.palette-switcher-copy span {
+  font-size: 0.82rem;
+  opacity: 0.8;
+  line-height: 1.35;
+}
+
+.palette-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.palette-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.4rem;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  min-width: 3.6rem;
+}
+
+.palette-swatch em {
+  font-style: normal;
+  font-size: 0.65rem;
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+.palette-swatch.on {
+  border-color: var(--accent, currentColor);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.palette-swatch-a,
+.palette-swatch-b {
+  display: block;
+  width: 1.35rem;
+  height: 0.7rem;
+  border-radius: 3px;
+}
+
+.palette-swatch-a {
+  border-radius: 4px 4px 0 0;
+  width: 1.6rem;
+  height: 0.85rem;
+}
+
+.palette-swatch-b {
+  border-radius: 0 0 4px 4px;
+  width: 1.6rem;
+  height: 0.55rem;
+  margin-top: -2px;
+}
+
+.estimate-bracket {
+  color: var(--accent, inherit);
+}
+
+@media (max-width: 640px) {
+  .palette-switcher {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 @media (max-width: 640px) {

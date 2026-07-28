@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MapRoute } from '../../components/MapRoute'
+import { PaletteSwitcher } from '../../components/PaletteSwitcher'
+import { useDemoPalette } from '../../hooks/useDemoPalette'
 import { buildYachtCalendar } from '../../shared/calendarMock'
 import { forecastForDate } from '../../shared/weatherMock'
 import { SAILING_ROUTES } from '../../shared/sailingRoutes'
@@ -12,6 +14,7 @@ import { YACHT_PACKAGES } from '../../shared/yachtPackages'
  * Split layout on tablet (map | controls), not a 5-step wizard.
  */
 export default function BayAdventure() {
+  const { paletteId, setPaletteId, style } = useDemoPalette('yacht-adventure')
   const days = useMemo(() => buildYachtCalendar(8), [])
   const [routeId, setRouteId] = useState(SAILING_ROUTES[1].id)
   const [date, setDate] = useState<string>()
@@ -28,7 +31,8 @@ export default function BayAdventure() {
 
   if (launched) {
     return (
-      <div className="adventure-page theme-adventure">
+      <div className="adventure-page theme-adventure" style={style}>
+        <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
         <div className="adventure-launch-ok">
           <p className="demo-badge">Simulated · not a real booking</p>
           <h1>Mission locked in</h1>
@@ -50,7 +54,7 @@ export default function BayAdventure() {
   }
 
   return (
-    <div className="adventure-page theme-adventure">
+    <div className="adventure-page theme-adventure" style={style}>
       <header className="adventure-top">
         <Link to="/" className="demo-back">
           ← All demos
@@ -61,6 +65,7 @@ export default function BayAdventure() {
         </div>
         <span className="demo-theme-tag">Different UI · not a recolour</span>
       </header>
+      <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
 
       <div className="adventure-deck">
         <aside className="adventure-map-pane">

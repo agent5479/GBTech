@@ -3,6 +3,7 @@ import { DemoChrome } from '../../components/DemoChrome'
 import { CalendarGrid } from '../../components/CalendarGrid'
 import { WeatherStrip } from '../../components/WeatherStrip'
 import { MapRoute } from '../../components/MapRoute'
+import { useDemoPalette } from '../../hooks/useDemoPalette'
 import { buildYachtCalendar } from '../../shared/calendarMock'
 import { buildDemoForecast, forecastForDate } from '../../shared/weatherMock'
 import { SAILING_ROUTES } from '../../shared/sailingRoutes'
@@ -10,6 +11,7 @@ import { YACHT_PACKAGES } from '../../shared/yachtPackages'
 
 /** Coastal Charter — classic multi-step wizard (package → calendar → weather → route → confirm). */
 export function YachtWizard() {
+  const { paletteId, setPaletteId, style } = useDemoPalette('yacht-coastal')
   const days = useMemo(() => buildYachtCalendar(10), [])
   const forecast = useMemo(() => buildDemoForecast(7), [])
   const [step, setStep] = useState(1)
@@ -27,8 +29,14 @@ export function YachtWizard() {
 
   if (done) {
     return (
-      <div className="yacht-page theme-coastal">
-        <DemoChrome theme="Coastal Charter" title="Demo booking confirmed" subtitle="Nothing was sent — this is a simulation only." />
+      <div className="yacht-page theme-coastal" style={style}>
+        <DemoChrome
+          theme="Coastal Charter"
+          title="Demo booking confirmed"
+          subtitle="Nothing was sent — this is a simulation only."
+          paletteId={paletteId}
+          onPaletteChange={setPaletteId}
+        />
         <div className="yacht-panel success-panel">
           <h2>You&apos;re on the list (demo)</h2>
           <p>
@@ -54,11 +62,13 @@ export function YachtWizard() {
   }
 
   return (
-    <div className="yacht-page theme-coastal">
+    <div className="yacht-page theme-coastal" style={style}>
       <DemoChrome
         theme="Coastal Charter"
         title="Coastal Charter"
-        subtitle="Skippered Golden Bay sails — calm water, refined pacing. Classic step-by-step booking."
+        subtitle="Skippered Golden Bay sails — calm water, refined pacing. Classic step-by-step booking. Aesthetics fully customisable."
+        paletteId={paletteId}
+        onPaletteChange={setPaletteId}
       />
 
       <ol className="wizard-steps" aria-label="Booking steps">
