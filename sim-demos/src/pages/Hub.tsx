@@ -4,30 +4,34 @@ const DEMOS = [
   {
     to: '/yacht/coastal',
     title: 'Coastal Charter',
-    kind: 'Yacht skipper',
+    kind: 'Yacht · wizard',
     look: 'Navy · cream · gold',
-    blurb: 'Luxury skippered sails with blocked calendar, weather strip, and sailing path map.',
+    blurb: 'Classic 5-step sail booking — packages, blocked calendar, weather strip, sailing path map.',
+    card: 'hub-card-coastal',
   },
   {
     to: '/yacht/adventure',
     title: 'Bay Adventure',
-    kind: 'Yacht skipper',
+    kind: 'Yacht · mission deck',
     look: 'Teal · sand · coral',
-    blurb: 'Active outdoor charter flow — same simulation, bolder adventure aesthetic.',
+    blurb: 'Different UI — map-first mission deck with day rail, time chips, and crew stepper (not a wizard recolour).',
+    card: 'hub-card-adventure',
   },
   {
     to: '/taxi/mohua',
     title: 'Mohua Ride',
-    kind: 'Private taxi',
+    kind: 'Taxi · phone hail',
     look: 'Burgundy · orange',
-    blurb: 'Phone-first Golden Bay taxi with distance, fare breakdown, and mini route map.',
+    blurb: 'Phone-shell ride hail — pickup/drop-off, fare breakdown, mini route map.',
+    card: 'hub-card-mohua',
   },
   {
     to: '/taxi/bayhop',
     title: 'Bay Hop',
-    kind: 'Private taxi',
+    kind: 'Taxi · trip board',
     look: 'Charcoal · citrus',
-    blurb: 'Night-driver taxi UI — same calculator, larger taps and peak energy.',
+    blurb: 'Different UI — tablet place-grid From/To board with vehicle cards and time rail (not a phone recolour).',
+    card: 'hub-card-bayhop',
   },
 ]
 
@@ -38,8 +42,8 @@ export default function Hub() {
         <p className="demo-badge">Marshall Solutions · simulated templates</p>
         <h1>Try a booking demo</h1>
         <p>
-          Fully simulated — no Google Calendar writes, no payments, no dispatch. Two yacht themes and two
-          private-taxi themes for Golden Bay operators.
+          Fully simulated — no Google Calendar writes, no payments, no dispatch. Four distinct interfaces: two yacht
+          booking patterns and two private-taxi patterns for Golden Bay operators.
         </p>
         <a className="hub-back" href="/GBTech/marshall-solutions.html#demos">
           ← Back to Marshall Solutions
@@ -47,7 +51,7 @@ export default function Hub() {
       </header>
       <div className="hub-grid">
         {DEMOS.map((d) => (
-          <Link key={d.to} to={d.to} className="hub-card">
+          <Link key={d.to} to={d.to} className={`hub-card ${d.card}`}>
             <span className="hub-kind">{d.kind}</span>
             <h2>{d.title}</h2>
             <p className="hub-look">{d.look}</p>

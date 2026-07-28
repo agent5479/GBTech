@@ -646,6 +646,43 @@ p:last-child {
   color: var(--text-muted);
 }
 
+.demo-card-coastal {
+  border-color: rgba(11, 31, 51, 0.22);
+  background: linear-gradient(165deg, #f7f3ea 0%, var(--bg-subtle) 100%);
+}
+
+.demo-card-adventure {
+  border-color: rgba(13, 115, 119, 0.28);
+  background: linear-gradient(165deg, #e8d5b7 0%, #f4f8f7 100%);
+}
+
+.demo-card-adventure .demo-card-kind {
+  color: #0d7377;
+}
+
+.demo-card-mohua {
+  border-color: rgba(75, 13, 28, 0.28);
+  background: linear-gradient(165deg, #faf6f2 0%, var(--bg-subtle) 100%);
+}
+
+.demo-card-bayhop {
+  border-color: rgba(74, 90, 20, 0.35);
+  background: linear-gradient(165deg, #1c1c1c 0%, #111 100%);
+  color: #f2f2f2;
+}
+
+.demo-card-bayhop .demo-card-kind {
+  color: #c8f542;
+}
+
+.demo-card-bayhop h3 {
+  color: #f2f2f2;
+}
+
+.demo-card-bayhop p {
+  color: rgba(242, 242, 242, 0.72);
+}
+
 #packages .qualifier-note a {
   color: var(--accent-magenta);
   font-weight: 500;

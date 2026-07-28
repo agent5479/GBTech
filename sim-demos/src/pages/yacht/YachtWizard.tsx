@@ -8,13 +8,8 @@ import { buildDemoForecast, forecastForDate } from '../../shared/weatherMock'
 import { SAILING_ROUTES } from '../../shared/sailingRoutes'
 import { YACHT_PACKAGES } from '../../shared/yachtPackages'
 
-interface Props {
-  themeClass: 'theme-coastal' | 'theme-adventure'
-  brandName: string
-  tagline: string
-}
-
-export function YachtWizard({ themeClass, brandName, tagline }: Props) {
+/** Coastal Charter — classic multi-step wizard (package → calendar → weather → route → confirm). */
+export function YachtWizard() {
   const days = useMemo(() => buildYachtCalendar(10), [])
   const forecast = useMemo(() => buildDemoForecast(7), [])
   const [step, setStep] = useState(1)
@@ -29,12 +24,11 @@ export function YachtWizard({ themeClass, brandName, tagline }: Props) {
   const route = SAILING_ROUTES.find((r) => r.id === routeId)!
   const pkg = YACHT_PACKAGES.find((p) => p.id === pkgId)!
   const dayWeather = date ? forecastForDate(date) : undefined
-  const pathColor = themeClass === 'theme-coastal' ? '#C9A227' : '#E85A4F'
 
   if (done) {
     return (
-      <div className={`yacht-page ${themeClass}`}>
-        <DemoChrome theme={brandName} title="Demo booking confirmed" subtitle="Nothing was sent — this is a simulation only." />
+      <div className="yacht-page theme-coastal">
+        <DemoChrome theme="Coastal Charter" title="Demo booking confirmed" subtitle="Nothing was sent — this is a simulation only." />
         <div className="yacht-panel success-panel">
           <h2>You&apos;re on the list (demo)</h2>
           <p>
@@ -44,7 +38,14 @@ export function YachtWizard({ themeClass, brandName, tagline }: Props) {
             Route: {route.name} · Party of {party}
           </p>
           {notes && <p>Notes: {notes}</p>}
-          <button type="button" className="btn primary" onClick={() => { setDone(false); setStep(1) }}>
+          <button
+            type="button"
+            className="btn primary"
+            onClick={() => {
+              setDone(false)
+              setStep(1)
+            }}
+          >
             Book another (demo)
           </button>
         </div>
@@ -53,8 +54,12 @@ export function YachtWizard({ themeClass, brandName, tagline }: Props) {
   }
 
   return (
-    <div className={`yacht-page ${themeClass}`}>
-      <DemoChrome theme={brandName} title={brandName} subtitle={tagline} />
+    <div className="yacht-page theme-coastal">
+      <DemoChrome
+        theme="Coastal Charter"
+        title="Coastal Charter"
+        subtitle="Skippered Golden Bay sails — calm water, refined pacing. Classic step-by-step booking."
+      />
 
       <ol className="wizard-steps" aria-label="Booking steps">
         {[1, 2, 3, 4, 5].map((n) => (
@@ -148,7 +153,7 @@ export function YachtWizard({ themeClass, brandName, tagline }: Props) {
             ))}
           </div>
           <p className="hint">{route.blurb}</p>
-          <MapRoute path={route.path} center={route.center} zoom={route.zoom} pathColor={pathColor} />
+          <MapRoute path={route.path} center={route.center} zoom={route.zoom} pathColor="#C9A227" />
           <div className="btn-row">
             <button type="button" className="btn ghost" onClick={() => setStep(3)}>
               Back
@@ -165,13 +170,7 @@ export function YachtWizard({ themeClass, brandName, tagline }: Props) {
           <h2>5. Party &amp; confirm</h2>
           <label className="field">
             Party size
-            <input
-              type="number"
-              min={1}
-              max={10}
-              value={party}
-              onChange={(e) => setParty(Number(e.target.value))}
-            />
+            <input type="number" min={1} max={10} value={party} onChange={(e) => setParty(Number(e.target.value))} />
           </label>
           <label className="field">
             Notes for the skipper

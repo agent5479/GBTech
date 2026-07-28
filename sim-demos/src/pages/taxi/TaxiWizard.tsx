@@ -7,13 +7,8 @@ import { GB_PLACES, distanceKm, placeById } from '../../shared/gbPlaces'
 import { estimateFare, type VehicleTier } from '../../shared/fareEstimate'
 import type { LatLng } from '../../shared/sailingRoutes'
 
-interface Props {
-  themeClass: 'theme-mohua' | 'theme-bayhop'
-  brandName: string
-  tagline: string
-}
-
-export function TaxiWizard({ themeClass, brandName, tagline }: Props) {
+/** Mohua Ride — phone-shell ride-hail flow. */
+export function TaxiWizard() {
   const [pickup, setPickup] = useState('takaka')
   const [dropoff, setDropoff] = useState('pohara')
   const [tier, setTier] = useState<VehicleTier>('standard')
@@ -25,7 +20,7 @@ export function TaxiWizard({ themeClass, brandName, tagline }: Props) {
   const to = placeById(dropoff)!
   const same = pickup === dropoff
   const km = same ? 0 : distanceKm(from, to)
-  const peak = when === 'later' || (typeof window !== 'undefined' && new Date().getHours() >= 17)
+  const peak = when === 'later' || new Date().getHours() >= 17
   const fare = useMemo(() => estimateFare(km || 1, tier, peak && !same), [km, tier, peak, same])
 
   const path: LatLng[] = useMemo(() => {
@@ -37,14 +32,13 @@ export function TaxiWizard({ themeClass, brandName, tagline }: Props) {
     ]
   }, [from, to])
 
-  const pathColor = themeClass === 'theme-mohua' ? '#D3993C' : '#C8F542'
   const center: LatLng = [(from.lat + to.lat) / 2, (from.lng + to.lng) / 2]
 
   if (done) {
     return (
-      <div className={`taxi-page ${themeClass}`}>
-        <DemoChrome theme={brandName} title="Demo ride requested" subtitle="Nothing was dispatched — simulation only." />
-        <PhoneShell brand={brandName}>
+      <div className="taxi-page theme-mohua">
+        <DemoChrome theme="Mohua Ride" title="Demo ride requested" subtitle="Nothing was dispatched — simulation only." />
+        <PhoneShell brand="Mohua Ride">
           <div className="taxi-success">
             <h2>Driver matching… (demo)</h2>
             <p>
@@ -61,9 +55,13 @@ export function TaxiWizard({ themeClass, brandName, tagline }: Props) {
   }
 
   return (
-    <div className={`taxi-page ${themeClass}`}>
-      <DemoChrome theme={brandName} title={brandName} subtitle={tagline} />
-      <PhoneShell brand={brandName}>
+    <div className="taxi-page theme-mohua">
+      <DemoChrome
+        theme="Mohua Ride"
+        title="Mohua Ride"
+        subtitle="Phone-first private taxi — select places, see fare, request (simulated)."
+      />
+      <PhoneShell brand="Mohua Ride">
         <div className="taxi-flow">
           <label className="field">
             Pickup
@@ -109,7 +107,7 @@ export function TaxiWizard({ themeClass, brandName, tagline }: Props) {
             )}
           </div>
 
-          <MapRoute path={path} center={center} zoom={11} pathColor={pathColor} className="demo-map mini" />
+          <MapRoute path={path} center={center} zoom={11} pathColor="#D3993C" className="demo-map mini" />
 
           {!same && <FareBreakdownView fare={fare} peak={peak} />}
 

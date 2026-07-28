@@ -659,6 +659,614 @@ textarea {
   color: #111;
 }
 
+/* ——— Bay Adventure: map-first mission deck (not a wizard) ——— */
+.adventure-page {
+  min-height: 100vh;
+  padding: 0 0 2.5rem;
+}
+
+.adventure-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(13, 115, 119, 0.2);
+}
+
+.adventure-top h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+}
+
+.adventure-deck {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (min-width: 860px) {
+  .adventure-deck {
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: start;
+  }
+}
+
+.adventure-map-pane,
+.adventure-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.adventure-controls {
+  padding: 1.1rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(13, 115, 119, 0.18);
+  backdrop-filter: blur(6px);
+}
+
+.adventure-controls h2 {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0d7377;
+}
+
+.adventure-controls section + section {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(13, 115, 119, 0.12);
+}
+
+.route-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.mission-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-align: left;
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  border: 2px solid rgba(13, 115, 119, 0.25);
+  background: rgba(255, 255, 255, 0.65);
+  color: inherit;
+  cursor: pointer;
+}
+
+.mission-tab strong {
+  font-size: 0.95rem;
+}
+
+.mission-tab span {
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+.mission-tab.on {
+  border-color: #e85a4f;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(232, 90, 79, 0.18);
+}
+
+.adventure-map {
+  min-height: 260px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(13, 115, 119, 0.25);
+}
+
+.adventure-blurb {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.day-rail {
+  display: flex;
+  gap: 0.45rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.day-pill {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 4.5rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(13, 115, 119, 0.3);
+  background: #fff;
+  color: inherit;
+  cursor: pointer;
+  text-align: center;
+}
+
+.day-pill small {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.day-pill.on {
+  background: #0d7377;
+  color: #fff;
+  border-color: #0d7377;
+}
+
+.day-pill.blocked {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.time-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+}
+
+.time-chip {
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid rgba(13, 115, 119, 0.25);
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.time-chip.on {
+  background: #e85a4f;
+  color: #fff;
+  border-color: #e85a4f;
+}
+
+.time-chip:disabled,
+.time-chip.status-booked,
+.time-chip.status-weather,
+.time-chip.status-maintenance {
+  opacity: 0.4;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.adventure-wx {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  background: rgba(13, 115, 119, 0.08);
+  font-size: 0.85rem;
+}
+
+.adventure-wx em {
+  font-style: normal;
+  opacity: 0.8;
+}
+
+.exp-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.exp-row {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  padding: 0.7rem 0.8rem;
+  border-radius: 12px;
+  border: 1px solid rgba(13, 115, 119, 0.2);
+  background: #fff;
+  cursor: pointer;
+}
+
+.exp-row span {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.exp-row small {
+  opacity: 0.75;
+  font-weight: 500;
+}
+
+.exp-row.on {
+  border-color: #e85a4f;
+  box-shadow: inset 0 0 0 1px #e85a4f;
+}
+
+.crew-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.35rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(13, 115, 119, 0.25);
+}
+
+.crew-stepper button {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: none;
+  background: #0d7377;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.crew-stepper strong {
+  min-width: 1.5rem;
+  text-align: center;
+  font-size: 1.15rem;
+}
+
+.launch-btn {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.theme-adventure .btn.primary {
+  background: #e85a4f;
+  color: #fff;
+}
+
+.adventure-launch-ok,
+.bayhop-done {
+  max-width: 28rem;
+  margin: 3rem auto;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.adventure-hub-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ——— Bay Hop: tablet trip board (not a phone shell) ——— */
+.bayhop-page {
+  min-height: 100vh;
+  padding-bottom: 2.5rem;
+}
+
+.bayhop-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(200, 245, 66, 0.2);
+}
+
+.bayhop-bar h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+}
+
+.bayhop-bar .demo-back {
+  color: #c8f542;
+}
+
+.bayhop-phases {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.bayhop-phases li {
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  opacity: 0.55;
+}
+
+.bayhop-phases li.on {
+  opacity: 1;
+  background: #c8f542;
+  color: #111;
+  border-color: transparent;
+}
+
+.bayhop-phases li.done {
+  opacity: 0.9;
+  border-color: #c8f542;
+  color: #c8f542;
+}
+
+.bayhop-board {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .bayhop-board {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: start;
+  }
+}
+
+.bayhop-places h2,
+.bayhop-side h2 {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #c8f542;
+}
+
+.place-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.55rem;
+}
+
+.place-tile {
+  position: relative;
+  min-height: 4.25rem;
+  padding: 0.85rem 0.75rem 0.7rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: #161616;
+  color: #f2f2f2;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.place-tile:hover:not(:disabled) {
+  border-color: #c8f542;
+  transform: translateY(-1px);
+}
+
+.place-tile:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.place-tile.is-from {
+  border-color: #c8f542;
+  background: rgba(200, 245, 66, 0.12);
+}
+
+.place-tile.is-to {
+  border-color: #7dd3fc;
+  background: rgba(125, 211, 252, 0.12);
+}
+
+.place-tile.locked:not(.is-from):not(.is-to) {
+  opacity: 0.28;
+}
+
+.place-tag {
+  display: block;
+  min-height: 0.9rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: #c8f542;
+  margin-bottom: 0.2rem;
+}
+
+.place-tile.is-to .place-tag {
+  color: #7dd3fc;
+}
+
+.bayhop-reset {
+  margin-top: 0.85rem;
+  color: #c8f542;
+  border-color: rgba(200, 245, 66, 0.4);
+}
+
+.bayhop-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1rem;
+  border-radius: 18px;
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bayhop-map {
+  min-height: 220px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(200, 245, 66, 0.25);
+}
+
+.bayhop-estimate {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.bayhop-estimate > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.75rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.bayhop-estimate span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+.bayhop-big {
+  font-size: 1.45rem;
+  color: #c8f542;
+}
+
+.vehicle-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+
+.v-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.85rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.v-card span {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.v-card.on {
+  border-color: transparent;
+  background: #c8f542;
+  color: #111;
+}
+
+.v-card.on span {
+  opacity: 0.75;
+}
+
+.slot-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.slot small {
+  font-size: 0.65rem;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.slot.on {
+  background: #c8f542;
+  color: #111;
+  border-color: transparent;
+}
+
+.bayhop-breakdown {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.bayhop-hint {
+  margin: 0;
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(200, 245, 66, 0.08);
+  border: 1px dashed rgba(200, 245, 66, 0.35);
+  color: #c8f542;
+  font-size: 0.9rem;
+}
+
+.theme-bayhop .btn.primary {
+  background: #c8f542;
+  color: #111;
+}
+
+.bayhop-done {
+  background: #161616;
+  border-color: rgba(200, 245, 66, 0.25);
+  color: #f2f2f2;
+}
+
+/* Hub card accents */
+.hub-card-coastal {
+  border-color: rgba(11, 31, 51, 0.25);
+  background: linear-gradient(165deg, #f7f3ea, #fff);
+}
+
+.hub-card-adventure {
+  border-color: rgba(13, 115, 119, 0.3);
+  background: linear-gradient(165deg, #e8d5b7, #f4f8f7);
+}
+
+.hub-card-mohua {
+  border-color: rgba(75, 13, 28, 0.35);
+  background: linear-gradient(165deg, #faf6f2, #fff);
+}
+
+.hub-card-mohua .hub-kind {
+  color: #4b0d1c;
+}
+
+.hub-card-bayhop {
+  border-color: rgba(200, 245, 66, 0.35);
+  background: linear-gradient(165deg, #1a1a1a, #111);
+  color: #f2f2f2;
+}
+
+.hub-card-bayhop .hub-kind,
+.hub-card-bayhop .hub-go {
+  color: #c8f542;
+}
+
+.hub-card-bayhop .hub-look {
+  opacity: 0.75;
+}
+
 @media (max-width: 640px) {
   .demo-chrome {
     padding: 1rem;
@@ -670,6 +1278,18 @@ textarea {
   }
 
   .cal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .adventure-top,
+  .bayhop-bar,
+  .adventure-deck,
+  .bayhop-board {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .place-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
