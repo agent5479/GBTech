@@ -1,15 +1,19 @@
 {
-  "generated": "2026-07-28T20:38:46.389Z",
+  "generated": "2026-07-28T20:45:18.343Z",
   "demos": {
     "coastal": {
       "id": "coastal",
       "primary": "primary.jpg",
+      "width": 1200,
+      "height": 800,
+      "aspect": 1.5,
       "card": {
         "widths": [
           480,
           800,
           1200
         ],
+        "fit": "inside",
         "jpg": {
           "480": "card-480.jpg",
           "800": "card-800.jpg",
@@ -19,6 +23,11 @@
           "480": "card-480.webp",
           "800": "card-800.webp",
           "1200": "card-1200.webp"
+        },
+        "heights": {
+          "480": 320,
+          "800": 533,
+          "1200": 800
         }
       },
       "tiles": {
@@ -124,12 +133,16 @@
     "adventure": {
       "id": "adventure",
       "primary": "primary.jpg",
+      "width": 1200,
+      "height": 800,
+      "aspect": 1.5,
       "card": {
         "widths": [
           480,
           800,
           1200
         ],
+        "fit": "inside",
         "jpg": {
           "480": "card-480.jpg",
           "800": "card-800.jpg",
@@ -139,6 +152,11 @@
           "480": "card-480.webp",
           "800": "card-800.webp",
           "1200": "card-1200.webp"
+        },
+        "heights": {
+          "480": 320,
+          "800": 533,
+          "1200": 800
         }
       },
       "tiles": {
@@ -244,12 +262,16 @@
     "mohua": {
       "id": "mohua",
       "primary": "primary.jpg",
+      "width": 1200,
+      "height": 800,
+      "aspect": 1.5,
       "card": {
         "widths": [
           480,
           800,
           1200
         ],
+        "fit": "inside",
         "jpg": {
           "480": "card-480.jpg",
           "800": "card-800.jpg",
@@ -259,6 +281,11 @@
           "480": "card-480.webp",
           "800": "card-800.webp",
           "1200": "card-1200.webp"
+        },
+        "heights": {
+          "480": 320,
+          "800": 533,
+          "1200": 800
         }
       },
       "tiles": {
@@ -364,12 +391,16 @@
     "bayhop": {
       "id": "bayhop",
       "primary": "primary.jpg",
+      "width": 1200,
+      "height": 800,
+      "aspect": 1.5,
       "card": {
         "widths": [
           480,
           800,
           1200
         ],
+        "fit": "inside",
         "jpg": {
           "480": "card-480.jpg",
           "800": "card-800.jpg",
@@ -379,6 +410,11 @@
           "480": "card-480.webp",
           "800": "card-800.webp",
           "1200": "card-1200.webp"
+        },
+        "heights": {
+          "480": 320,
+          "800": 533,
+          "1200": 800
         }
       },
       "tiles": {
@@ -484,12 +520,16 @@
     "bayfix": {
       "id": "bayfix",
       "primary": "primary.jpg",
+      "width": 1200,
+      "height": 800,
+      "aspect": 1.5,
       "card": {
         "widths": [
           480,
           800,
           1200
         ],
+        "fit": "inside",
         "jpg": {
           "480": "card-480.jpg",
           "800": "card-800.jpg",
@@ -499,6 +539,11 @@
           "480": "card-480.webp",
           "800": "card-800.webp",
           "1200": "card-1200.webp"
+        },
+        "heights": {
+          "480": 320,
+          "800": 533,
+          "1200": 800
         }
       },
       "tiles": {
@@ -604,12 +649,16 @@
     "tradeboard": {
       "id": "tradeboard",
       "primary": "primary.jpg",
+      "width": 1200,
+      "height": 800,
+      "aspect": 1.5,
       "card": {
         "widths": [
           480,
           800,
           1200
         ],
+        "fit": "inside",
         "jpg": {
           "480": "card-480.jpg",
           "800": "card-800.jpg",
@@ -619,6 +668,11 @@
           "480": "card-480.webp",
           "800": "card-800.webp",
           "1200": "card-1200.webp"
+        },
+        "heights": {
+          "480": 320,
+          "800": 533,
+          "1200": 800
         }
       },
       "tiles": {
@@ -724,12 +778,16 @@
     "canopy": {
       "id": "canopy",
       "primary": "primary.jpg",
+      "width": 1200,
+      "height": 800,
+      "aspect": 1.5,
       "card": {
         "widths": [
           480,
           800,
           1200
         ],
+        "fit": "inside",
         "jpg": {
           "480": "card-480.jpg",
           "800": "card-800.jpg",
@@ -739,6 +797,11 @@
           "480": "card-480.webp",
           "800": "card-800.webp",
           "1200": "card-1200.webp"
+        },
+        "heights": {
+          "480": 320,
+          "800": 533,
+          "1200": 800
         }
       },
       "tiles": {
@@ -844,12 +907,16 @@
     "orchard": {
       "id": "orchard",
       "primary": "primary.jpg",
+      "width": 1200,
+      "height": 800,
+      "aspect": 1.5,
       "card": {
         "widths": [
           480,
           800,
           1200
         ],
+        "fit": "inside",
         "jpg": {
           "480": "card-480.jpg",
           "800": "card-800.jpg",
@@ -859,6 +926,11 @@
           "480": "card-480.webp",
           "800": "card-800.webp",
           "1200": "card-1200.webp"
+        },
+        "heights": {
+          "480": 320,
+          "800": 533,
+          "1200": 800
         }
       },
       "tiles": {

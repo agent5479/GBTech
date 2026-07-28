@@ -1,6 +1,6 @@
 /**
- * Process primary demo photos into responsive cards + square tiles.
- * Tiles are distinct crops from the full primary (no wide banners).
+ * Process primary demo photos into responsive showcase cards + square tiles.
+ * Cards: full frame scaled down (no crop). Tiles: distinct square crops.
  *
  * Outputs mirrored to:
  *   - img/demos/{id}/
@@ -122,24 +122,31 @@ async function processDemo(id) {
     fs.copyFileSync(primary, path.join(dir, 'primary.jpg'))
   })
 
+  const aspect = w / h
   const manifest = {
     id,
     primary: 'primary.jpg',
-    card: { widths: CARD_WIDTHS, jpg: {}, webp: {} },
+    width: w,
+    height: h,
+    aspect,
+    card: { widths: CARD_WIDTHS, fit: 'inside', jpg: {}, webp: {}, heights: {} },
     tiles: { count: TILE_REGIONS.length, widths: TILE_WIDTHS, regions: TILE_REGIONS, files: [] },
   }
 
+  // Showcase cards: full frame shrunk (no crop) — keep original proportions
   for (const width of CARD_WIDTHS) {
+    const height = Math.max(1, Math.round(width / aspect))
     const pipe = sharp(primary).resize({
       width,
-      height: Math.round((width * 9) / 16),
-      fit: 'cover',
-      position: 'centre',
+      height,
+      fit: 'inside',
+      withoutEnlargement: true,
     })
     for (const dir of outDirs) {
       const files = await writeJpegWebp(pipe, dir, `card-${width}`)
       manifest.card.jpg[width] = files.jpg
       manifest.card.webp[width] = files.webp
+      manifest.card.heights[width] = height
     }
   }
 

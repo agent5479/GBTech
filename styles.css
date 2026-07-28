@@ -627,8 +627,8 @@ p:last-child {
 .demo-card-image {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 
 .demo-card .demo-card-kind,

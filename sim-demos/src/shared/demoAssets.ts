@@ -28,13 +28,14 @@ function srcset(base: string, kind: string, widths: readonly number[], ext: 'jpg
 }
 
 export function demoCardSources(id: DemoImageId, base = demoAssetBase(id)) {
+  // Full primary shrunk (no crop). Height is a CLS hint for common landscape primaries (~3:2).
   return {
     webpSrcSet: srcset(base, 'card', CARD_WIDTHS, 'webp'),
     jpgSrcSet: srcset(base, 'card', CARD_WIDTHS, 'jpg'),
     fallback: `${base}/card-800.jpg`,
     sizes: '(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 360px',
     width: 800,
-    height: 450,
+    height: 533,
   }
 }
 

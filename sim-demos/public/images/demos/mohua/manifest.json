@@ -1,12 +1,16 @@
 {
   "id": "mohua",
   "primary": "primary.jpg",
+  "width": 1200,
+  "height": 800,
+  "aspect": 1.5,
   "card": {
     "widths": [
       480,
       800,
       1200
     ],
+    "fit": "inside",
     "jpg": {
       "480": "card-480.jpg",
       "800": "card-800.jpg",
@@ -16,6 +20,11 @@
       "480": "card-480.webp",
       "800": "card-800.webp",
       "1200": "card-1200.webp"
+    },
+    "heights": {
+      "480": 320,
+      "800": 533,
+      "1200": 800
     }
   },
   "tiles": {
