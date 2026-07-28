@@ -11,6 +11,7 @@ import {
 import { roadDistanceKm, roadPathBetween } from '../../shared/taxiRoutes'
 import type { LatLng } from '../../shared/sailingRoutes'
 import { PaletteSwitcher } from '../../components/PaletteSwitcher'
+import { DemoHeroImage, demoAtmosphereStyle } from '../../components/DemoHeroImage'
 import { useDemoPalette } from '../../hooks/useDemoPalette'
 
 const SLOTS = ['ASAP', '16:00', '17:00', '18:00', '19:30', '21:00']
@@ -21,7 +22,8 @@ const BAY_CENTER: LatLng = [-40.82, 172.82]
  * Sequence: tap From → tap To on place grid → vehicle cards → passengers → time rail → confirm.
  */
 export default function BayHop() {
-  const { paletteId, setPaletteId, style } = useDemoPalette('taxi-bayhop')
+  const { paletteId, setPaletteId, style: paletteStyle } = useDemoPalette('taxi-bayhop')
+  const style = { ...demoAtmosphereStyle('bayhop'), ...paletteStyle }
   const [phase, setPhase] = useState<'from' | 'to' | 'book'>('from')
   const [pickup, setPickup] = useState<string>()
   const [dropoff, setDropoff] = useState<string>()
@@ -61,7 +63,7 @@ export default function BayHop() {
 
   if (done && from && to && fare) {
     return (
-      <div className="bayhop-page theme-bayhop" style={style}>
+      <div className="bayhop-page theme-bayhop has-demo-atmosphere" style={style}>
         <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
         <div className="bayhop-done">
           <p className="demo-badge">Simulated · not dispatched</p>
@@ -94,7 +96,7 @@ export default function BayHop() {
   }
 
   return (
-    <div className="bayhop-page theme-bayhop" style={style}>
+    <div className="bayhop-page theme-bayhop has-demo-atmosphere" style={style}>
       <header className="bayhop-bar">
         <Link to="/" className="demo-back">
           ← All demos
@@ -109,6 +111,7 @@ export default function BayHop() {
           <li className={phase === 'book' ? 'on' : ''}>3 Book</li>
         </ol>
       </header>
+      <DemoHeroImage id="bayhop" />
       <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
 
       <div className="bayhop-board">

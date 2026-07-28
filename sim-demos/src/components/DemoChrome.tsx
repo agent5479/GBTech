@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { PaletteSwitcher } from './PaletteSwitcher'
+import { DemoHeroImage } from './DemoHeroImage'
+import type { DemoImageId } from '../shared/demoAssets'
 
 interface Props {
   theme: string
@@ -7,9 +9,19 @@ interface Props {
   subtitle?: string
   paletteId: string
   onPaletteChange: (id: string) => void
+  imageId: DemoImageId
+  heroAlt?: string
 }
 
-export function DemoChrome({ theme, title, subtitle, paletteId, onPaletteChange }: Props) {
+export function DemoChrome({
+  theme,
+  title,
+  subtitle,
+  paletteId,
+  onPaletteChange,
+  imageId,
+  heroAlt,
+}: Props) {
   return (
     <>
       <header className="demo-chrome">
@@ -23,6 +35,7 @@ export function DemoChrome({ theme, title, subtitle, paletteId, onPaletteChange 
         </div>
         <span className="demo-theme-tag">{theme}</span>
       </header>
+      <DemoHeroImage id={imageId} alt={heroAlt} />
       <PaletteSwitcher value={paletteId} onChange={onPaletteChange} />
     </>
   )

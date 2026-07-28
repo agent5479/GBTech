@@ -1,0 +1,53 @@
+{
+  "id": "tradeboard",
+  "primary": "primary.jpg",
+  "card": {
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "jpg": {
+      "480": "card-480.jpg",
+      "800": "card-800.jpg",
+      "1200": "card-1200.jpg"
+    },
+    "webp": {
+      "480": "card-480.webp",
+      "800": "card-800.webp",
+      "1200": "card-1200.webp"
+    }
+  },
+  "hero": {
+    "widths": [
+      800,
+      1200,
+      1600
+    ],
+    "jpg": {
+      "800": "hero-800.jpg",
+      "1200": "hero-1200.jpg",
+      "1600": "hero-1600.jpg"
+    },
+    "webp": {
+      "800": "hero-800.webp",
+      "1200": "hero-1200.webp",
+      "1600": "hero-1600.webp"
+    }
+  },
+  "cutouts": {
+    "bg": {
+      "jpg": "cutout-bg.jpg",
+      "webp": "cutout-bg.webp"
+    },
+    "detail": {
+      "jpg": "cutout-detail.jpg",
+      "webp": "cutout-detail.webp"
+    },
+    "band": {
+      "jpg": "cutout-band.jpg",
+      "webp": "cutout-band.webp"
+    },
+    "overlay": "cutout-overlay.png"
+  }
+}

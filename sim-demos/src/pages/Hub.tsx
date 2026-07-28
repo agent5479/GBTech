@@ -1,6 +1,16 @@
 import { Link } from 'react-router-dom'
+import { DemoCardImage } from '../components/DemoHeroImage'
+import type { DemoImageId } from '../shared/demoAssets'
 
-const DEMOS = [
+const DEMOS: {
+  to: string
+  title: string
+  kind: string
+  look: string
+  blurb: string
+  card: string
+  imageId: DemoImageId
+}[] = [
   {
     to: '/yacht/coastal',
     title: 'Coastal Charter',
@@ -8,6 +18,7 @@ const DEMOS = [
     look: 'Navy · cream · gold',
     blurb: 'Classic 5-step sail booking — packages, blocked calendar, weather strip, water-only sail path.',
     card: 'hub-card-coastal',
+    imageId: 'coastal',
   },
   {
     to: '/yacht/adventure',
@@ -16,6 +27,7 @@ const DEMOS = [
     look: 'Teal · sand · coral',
     blurb: 'Different UI — map-first mission deck with water-only routes, day rail, time chips, and crew stepper.',
     card: 'hub-card-adventure',
+    imageId: 'adventure',
   },
   {
     to: '/taxi/mohua',
@@ -24,6 +36,7 @@ const DEMOS = [
     look: 'Burgundy · orange',
     blurb: 'Phone-shell ride hail — pickup/drop-off, fare breakdown, road-snapped OSRM route.',
     card: 'hub-card-mohua',
+    imageId: 'mohua',
   },
   {
     to: '/taxi/bayhop',
@@ -32,6 +45,7 @@ const DEMOS = [
     look: 'Charcoal · citrus',
     blurb: 'Different UI — tablet place-grid From/To board with road path, vehicle cards and time rail.',
     card: 'hub-card-bayhop',
+    imageId: 'bayhop',
   },
   {
     to: '/handyman/bayfix',
@@ -40,6 +54,7 @@ const DEMOS = [
     look: 'Steel · amber',
     blurb: 'Multi-select job types on a classic ticket wizard — plumbing, electrical, carpentry, and more.',
     card: 'hub-card-bayfix',
+    imageId: 'bayfix',
   },
   {
     to: '/handyman/tradeboard',
@@ -48,6 +63,7 @@ const DEMOS = [
     look: 'Graphite · signal orange',
     blurb: 'Different UI — pin multiple job chips on one board with day/time rail and live estimate.',
     card: 'hub-card-tradeboard',
+    imageId: 'tradeboard',
   },
   {
     to: '/pruning/canopy',
@@ -56,6 +72,7 @@ const DEMOS = [
     look: 'Forest · bark',
     blurb: 'Tree pruning catalog with per-type quantity steppers, add-ons, and schedule.',
     card: 'hub-card-canopy',
+    imageId: 'canopy',
   },
   {
     to: '/pruning/orchard',
@@ -64,6 +81,7 @@ const DEMOS = [
     look: 'Moss · cream',
     blurb: 'Different UI — species tiles with counters, side panel for schedule and cost bracket.',
     card: 'hub-card-orchard',
+    imageId: 'orchard',
   },
 ]
 
@@ -85,6 +103,7 @@ export default function Hub() {
       <div className="hub-grid">
         {DEMOS.map((d) => (
           <Link key={d.to} to={d.to} className={`hub-card ${d.card}`}>
+            <DemoCardImage id={d.imageId} />
             <span className="hub-kind">{d.kind}</span>
             <h2>{d.title}</h2>
             <p className="hub-look">{d.look}</p>

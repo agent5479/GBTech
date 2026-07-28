@@ -9,12 +9,14 @@ import {
   formatPruningBracket,
 } from '../../shared/pruningTrees'
 import { useDemoPalette } from '../../hooks/useDemoPalette'
+import { demoAtmosphereStyle } from '../../components/DemoHeroImage'
 
 /**
  * Canopy Care — vertical catalog with qty steppers, then when / review.
  */
 export default function CanopyCare() {
-  const { paletteId, setPaletteId, style } = useDemoPalette('pruning-canopy')
+  const { paletteId, setPaletteId, style: paletteStyle } = useDemoPalette('pruning-canopy')
+  const style = { ...demoAtmosphereStyle('canopy'), ...paletteStyle }
   const days = useMemo(() => buildYachtCalendar(8), [])
   const [step, setStep] = useState(1)
   const [qty, setQty] = useState<Record<string, number>>({ fruit: 2 })
@@ -37,13 +39,14 @@ export default function CanopyCare() {
 
   if (done && estimate) {
     return (
-      <div className="pruning-page theme-canopy" style={style}>
+      <div className="pruning-page theme-canopy has-demo-atmosphere" style={style}>
         <DemoChrome
           theme="Canopy Care"
           title="Demo prune booked"
           subtitle="Nothing was scheduled — simulation only."
           paletteId={paletteId}
           onPaletteChange={setPaletteId}
+          imageId="canopy"
         />
         <div className="yacht-panel success-panel">
           <h2>Visit pencilled in (demo)</h2>
@@ -77,13 +80,14 @@ export default function CanopyCare() {
   }
 
   return (
-    <div className="pruning-page theme-canopy" style={style}>
+    <div className="pruning-page theme-canopy has-demo-atmosphere" style={style}>
       <DemoChrome
         theme="Canopy Care"
         title="Canopy Care"
         subtitle="Tree pruning — pick types and quantities from a catalog list. Aesthetics fully customisable."
         paletteId={paletteId}
         onPaletteChange={setPaletteId}
+        imageId="canopy"
       />
 
       <ol className="wizard-steps" aria-label="Booking steps">

@@ -609,13 +609,41 @@ p:last-child {
 
 .demo-card {
   display: block;
-  padding: 1.25rem;
+  padding: 0;
+  overflow: hidden;
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
   background: var(--bg-subtle);
   text-decoration: none;
   color: inherit;
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.demo-card picture {
+  display: block;
+  width: 100%;
+}
+
+.demo-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.demo-card .demo-card-kind,
+.demo-card h3,
+.demo-card p {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+
+.demo-card .demo-card-kind {
+  margin-top: 1rem;
+}
+
+.demo-card p {
+  margin-bottom: 1.15rem;
 }
 
 .demo-card:hover {

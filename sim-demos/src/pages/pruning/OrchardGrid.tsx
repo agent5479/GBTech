@@ -8,6 +8,7 @@ import {
   formatPruningBracket,
 } from '../../shared/pruningTrees'
 import { PaletteSwitcher } from '../../components/PaletteSwitcher'
+import { DemoHeroImage, demoAtmosphereStyle } from '../../components/DemoHeroImage'
 import { useDemoPalette } from '../../hooks/useDemoPalette'
 
 /**
@@ -15,7 +16,8 @@ import { useDemoPalette } from '../../hooks/useDemoPalette'
  * Side panel: schedule + estimate.
  */
 export default function OrchardGrid() {
-  const { paletteId, setPaletteId, style } = useDemoPalette('pruning-orchard')
+  const { paletteId, setPaletteId, style: paletteStyle } = useDemoPalette('pruning-orchard')
+  const style = { ...demoAtmosphereStyle('orchard'), ...paletteStyle }
   const days = useMemo(() => buildYachtCalendar(8), [])
   const [qty, setQty] = useState<Record<string, number>>({ hedge: 12, native: 1 })
   const [addOns, setAddOns] = useState<string[]>(['chipper'])
@@ -37,7 +39,7 @@ export default function OrchardGrid() {
 
   if (done && estimate) {
     return (
-      <div className="orchard-page theme-orchard" style={style}>
+      <div className="orchard-page theme-orchard has-demo-atmosphere" style={style}>
         <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
         <div className="adventure-launch-ok">
           <p className="demo-badge">Simulated · not a real booking</p>
@@ -65,7 +67,7 @@ export default function OrchardGrid() {
   }
 
   return (
-    <div className="orchard-page theme-orchard" style={style}>
+    <div className="orchard-page theme-orchard has-demo-atmosphere" style={style}>
       <header className="orchard-top">
         <Link to="/" className="demo-back">
           ← All demos
@@ -76,6 +78,7 @@ export default function OrchardGrid() {
         </div>
         <span className="demo-theme-tag">Different UI · not a catalog</span>
       </header>
+      <DemoHeroImage id="orchard" />
       <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
 
       <div className="orchard-deck">

@@ -9,6 +9,7 @@ import {
   jobById,
 } from '../../shared/handymanJobs'
 import { PaletteSwitcher } from '../../components/PaletteSwitcher'
+import { DemoHeroImage, demoAtmosphereStyle } from '../../components/DemoHeroImage'
 import { useDemoPalette } from '../../hooks/useDemoPalette'
 
 /**
@@ -16,7 +17,8 @@ import { useDemoPalette } from '../../hooks/useDemoPalette'
  * Job chips + day/time rail + estimate column.
  */
 export default function TradeBoard() {
-  const { paletteId, setPaletteId, style } = useDemoPalette('handyman-tradeboard')
+  const { paletteId, setPaletteId, style: paletteStyle } = useDemoPalette('handyman-tradeboard')
+  const style = { ...demoAtmosphereStyle('tradeboard'), ...paletteStyle }
   const days = useMemo(() => buildYachtCalendar(8), [])
   const [selected, setSelected] = useState<string[]>(['gutters', 'carpentry'])
   const [date, setDate] = useState<string>()
@@ -34,7 +36,7 @@ export default function TradeBoard() {
 
   if (done && estimate) {
     return (
-      <div className="tradeboard-page theme-tradeboard" style={style}>
+      <div className="tradeboard-page theme-tradeboard has-demo-atmosphere" style={style}>
         <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
         <div className="adventure-launch-ok">
           <p className="demo-badge">Simulated · not a real booking</p>
@@ -56,7 +58,7 @@ export default function TradeBoard() {
   }
 
   return (
-    <div className="tradeboard-page theme-tradeboard" style={style}>
+    <div className="tradeboard-page theme-tradeboard has-demo-atmosphere" style={style}>
       <header className="tradeboard-top">
         <Link to="/" className="demo-back">
           ← All demos
@@ -67,6 +69,7 @@ export default function TradeBoard() {
         </div>
         <span className="demo-theme-tag">Different UI · not a wizard</span>
       </header>
+      <DemoHeroImage id="tradeboard" />
       <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
 
       <div className="tradeboard-deck">
