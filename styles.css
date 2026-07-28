@@ -683,6 +683,51 @@ p:last-child {
   color: rgba(242, 242, 242, 0.72);
 }
 
+.demo-card-bayfix {
+  border-color: rgba(180, 120, 40, 0.35);
+  background: linear-gradient(165deg, #f3efe6 0%, #e8e2d6 100%);
+}
+
+.demo-card-bayfix .demo-card-kind {
+  color: #8a5a12;
+}
+
+.demo-card-tradeboard {
+  border-color: rgba(40, 40, 40, 0.35);
+  background: linear-gradient(165deg, #2a2a2a 0%, #1a1a1a 100%);
+  color: #f2f2f2;
+}
+
+.demo-card-tradeboard .demo-card-kind {
+  color: #ff8c42;
+}
+
+.demo-card-tradeboard h3 {
+  color: #f2f2f2;
+}
+
+.demo-card-tradeboard p {
+  color: rgba(242, 242, 242, 0.72);
+}
+
+.demo-card-canopy {
+  border-color: rgba(45, 90, 55, 0.35);
+  background: linear-gradient(165deg, #e8f0e6 0%, #d5e4d2 100%);
+}
+
+.demo-card-canopy .demo-card-kind {
+  color: #2d5a37;
+}
+
+.demo-card-orchard {
+  border-color: rgba(90, 110, 50, 0.35);
+  background: linear-gradient(165deg, #f4f1e4 0%, #e4ebd4 100%);
+}
+
+.demo-card-orchard .demo-card-kind {
+  color: #4a6b2f;
+}
+
 #packages .qualifier-note a {
   color: var(--accent-magenta);
   font-weight: 500;

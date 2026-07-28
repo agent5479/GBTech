@@ -33,6 +33,38 @@ const DEMOS = [
     blurb: 'Different UI — tablet place-grid From/To board with road path, vehicle cards and time rail.',
     card: 'hub-card-bayhop',
   },
+  {
+    to: '/handyman/bayfix',
+    title: 'Bay Fix',
+    kind: 'Handyman · ticket wizard',
+    look: 'Steel · amber',
+    blurb: 'Multi-select job types on a classic ticket wizard — plumbing, electrical, carpentry, and more.',
+    card: 'hub-card-bayfix',
+  },
+  {
+    to: '/handyman/tradeboard',
+    title: 'Trade Board',
+    kind: 'Handyman · board',
+    look: 'Graphite · signal orange',
+    blurb: 'Different UI — pin multiple job chips on one board with day/time rail and live estimate.',
+    card: 'hub-card-tradeboard',
+  },
+  {
+    to: '/pruning/canopy',
+    title: 'Canopy Care',
+    kind: 'Pruning · catalog',
+    look: 'Forest · bark',
+    blurb: 'Tree pruning catalog with per-type quantity steppers, add-ons, and schedule.',
+    card: 'hub-card-canopy',
+  },
+  {
+    to: '/pruning/orchard',
+    title: 'Orchard Grid',
+    kind: 'Pruning · tile grid',
+    look: 'Moss · cream',
+    blurb: 'Different UI — species tiles with counters, side panel for schedule and cost bracket.',
+    card: 'hub-card-orchard',
+  },
 ]
 
 export default function Hub() {
@@ -42,8 +74,8 @@ export default function Hub() {
         <p className="demo-badge">Marshall Solutions · simulated templates</p>
         <h1>Try a booking demo</h1>
         <p>
-          Fully simulated — no Google Calendar writes, no payments, no dispatch. Four distinct interfaces: two yacht
-          booking patterns and two private-taxi patterns for Golden Bay operators.
+          Fully simulated — no Google Calendar writes, no payments, no dispatch. Eight distinct interfaces: yacht,
+          taxi, handyman, and tree pruning patterns for Golden Bay operators.
         </p>
         <a className="hub-back" href="/GBTech/marshall-solutions.html#demos">
           ← Back to Marshall Solutions

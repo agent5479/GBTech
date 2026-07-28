@@ -4,6 +4,10 @@ import CoastalCharter from './pages/yacht/CoastalCharter'
 import BayAdventure from './pages/yacht/BayAdventure'
 import MohuaRide from './pages/taxi/MohuaRide'
 import BayHop from './pages/taxi/BayHop'
+import BayFix from './pages/handyman/BayFix'
+import TradeBoard from './pages/handyman/TradeBoard'
+import CanopyCare from './pages/pruning/CanopyCare'
+import OrchardGrid from './pages/pruning/OrchardGrid'
 import './styles/demos.css'
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
@@ -17,6 +21,10 @@ export default function App() {
         <Route path="/yacht/adventure" element={<BayAdventure />} />
         <Route path="/taxi/mohua" element={<MohuaRide />} />
         <Route path="/taxi/bayhop" element={<BayHop />} />
+        <Route path="/handyman/bayfix" element={<BayFix />} />
+        <Route path="/handyman/tradeboard" element={<TradeBoard />} />
+        <Route path="/pruning/canopy" element={<CanopyCare />} />
+        <Route path="/pruning/orchard" element={<OrchardGrid />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
