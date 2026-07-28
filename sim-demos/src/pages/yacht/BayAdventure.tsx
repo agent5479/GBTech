@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MapRoute } from '../../components/MapRoute'
 import { PaletteSwitcher } from '../../components/PaletteSwitcher'
-import { DemoHeroImage, demoAtmosphereStyle } from '../../components/DemoHeroImage'
+import { DemoImageTiles } from '../../components/DemoHeroImage'
 import { useDemoPalette } from '../../hooks/useDemoPalette'
 import { buildYachtCalendar } from '../../shared/calendarMock'
 import { forecastForDate } from '../../shared/weatherMock'
@@ -15,8 +15,7 @@ import { YACHT_PACKAGES } from '../../shared/yachtPackages'
  * Split layout on tablet (map | controls), not a 5-step wizard.
  */
 export default function BayAdventure() {
-  const { paletteId, setPaletteId, style: paletteStyle } = useDemoPalette('yacht-adventure')
-  const style = { ...demoAtmosphereStyle('adventure'), ...paletteStyle }
+  const { paletteId, setPaletteId, style } = useDemoPalette('yacht-adventure')
   const days = useMemo(() => buildYachtCalendar(8), [])
   const [routeId, setRouteId] = useState(SAILING_ROUTES[1].id)
   const [date, setDate] = useState<string>()
@@ -33,7 +32,7 @@ export default function BayAdventure() {
 
   if (launched) {
     return (
-      <div className="adventure-page theme-adventure has-demo-atmosphere" style={style}>
+      <div className="adventure-page theme-adventure" style={style}>
         <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
         <div className="adventure-launch-ok">
           <p className="demo-badge">Simulated · not a real booking</p>
@@ -56,7 +55,7 @@ export default function BayAdventure() {
   }
 
   return (
-    <div className="adventure-page theme-adventure has-demo-atmosphere" style={style}>
+    <div className="adventure-page theme-adventure" style={style}>
       <header className="adventure-top">
         <Link to="/" className="demo-back">
           ← All demos
@@ -67,7 +66,7 @@ export default function BayAdventure() {
         </div>
         <span className="demo-theme-tag">Different UI · not a recolour</span>
       </header>
-      <DemoHeroImage id="adventure" />
+      <DemoImageTiles id="adventure" />
       <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
 
       <div className="adventure-deck">

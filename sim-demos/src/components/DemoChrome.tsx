@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { PaletteSwitcher } from './PaletteSwitcher'
-import { DemoHeroImage } from './DemoHeroImage'
+import { DemoImageTiles } from './DemoHeroImage'
 import type { DemoImageId } from '../shared/demoAssets'
 
 interface Props {
@@ -35,7 +35,7 @@ export function DemoChrome({
         </div>
         <span className="demo-theme-tag">{theme}</span>
       </header>
-      <DemoHeroImage id={imageId} alt={heroAlt} />
+      <DemoImageTiles id={imageId} alt={heroAlt} />
       <PaletteSwitcher value={paletteId} onChange={onPaletteChange} />
     </>
   )

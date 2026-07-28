@@ -8,12 +8,9 @@ import { buildYachtCalendar } from '../../shared/calendarMock'
 import { buildDemoForecast, forecastForDate } from '../../shared/weatherMock'
 import { SAILING_ROUTES } from '../../shared/sailingRoutes'
 import { YACHT_PACKAGES } from '../../shared/yachtPackages'
-import { demoAtmosphereStyle } from '../../components/DemoHeroImage'
-
 /** Coastal Charter — classic multi-step wizard (package → calendar → weather → route → confirm). */
 export function YachtWizard() {
-  const { paletteId, setPaletteId, style: paletteStyle } = useDemoPalette('yacht-coastal')
-  const style = { ...demoAtmosphereStyle('coastal'), ...paletteStyle }
+  const { paletteId, setPaletteId, style } = useDemoPalette('yacht-coastal')
   const days = useMemo(() => buildYachtCalendar(10), [])
   const forecast = useMemo(() => buildDemoForecast(7), [])
   const [step, setStep] = useState(1)
@@ -31,7 +28,7 @@ export function YachtWizard() {
 
   if (done) {
     return (
-      <div className="yacht-page theme-coastal has-demo-atmosphere" style={style}>
+      <div className="yacht-page theme-coastal" style={style}>
         <DemoChrome
           theme="Coastal Charter"
           title="Demo booking confirmed"
@@ -65,7 +62,7 @@ export function YachtWizard() {
   }
 
   return (
-    <div className="yacht-page theme-coastal has-demo-atmosphere" style={style}>
+    <div className="yacht-page theme-coastal" style={style}>
       <DemoChrome
         theme="Coastal Charter"
         title="Coastal Charter"

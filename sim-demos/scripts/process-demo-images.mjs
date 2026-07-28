@@ -1,11 +1,12 @@
 /**
- * Process primary demo heroes into responsive sizes + cutouts.
- * Sources: img/demos/demo-{id}.jpg (or public/images/demos/)
+ * Process primary demo photos into responsive cards + square tiles.
+ * Tiles are distinct crops from the full primary (no wide banners).
+ *
  * Outputs mirrored to:
  *   - img/demos/{id}/
  *   - sim-demos/public/images/demos/{id}/
  *
- * Run: node scripts/process-demo-images.mjs  (from sim-demos/)
+ * Run: npm run images  (from sim-demos/)
  */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -29,20 +30,72 @@ const DEMOS = [
 ]
 
 const CARD_WIDTHS = [480, 800, 1200]
-const HERO_WIDTHS = [800, 1200, 1600]
-const JPEG_Q = 78
-const WEBP_Q = 72
+const TILE_WIDTHS = [360, 720]
+const JPEG_Q = 80
+const WEBP_Q = 74
+
+/** Normalized square crops: left/top as fractions of image, size as fraction of min(w,h). */
+const TILE_REGIONS = [
+  { left: 0.14, top: 0.2, size: 0.4 },
+  { left: 0.36, top: 0.16, size: 0.42 },
+  { left: 0.54, top: 0.18, size: 0.4 },
+  { left: 0.28, top: 0.42, size: 0.46 },
+]
+
+const OBSOLETE = [
+  /^hero-\d+\.(jpg|webp)$/,
+  /^cutout-/,
+]
 
 function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true })
 }
 
+function clearObsolete(dir) {
+  if (!fs.existsSync(dir)) return
+  for (const name of fs.readdirSync(dir)) {
+    if (OBSOLETE.some((re) => re.test(name))) {
+      fs.unlinkSync(path.join(dir, name))
+    }
+  }
+}
+
+function squareRegion(w, h, { left: lf, top: tf, size: sf }) {
+  const side = Math.max(64, Math.round(Math.min(w, h) * sf))
+  const left = Math.max(0, Math.min(Math.round(w * lf), w - side))
+  const top = Math.max(0, Math.min(Math.round(h * tf), h - side))
+  return { left, top, width: side, height: side }
+}
+
 async function writeJpegWebp(pipeline, outDir, basename) {
   const jpgPath = path.join(outDir, `${basename}.jpg`)
   const webpPath = path.join(outDir, `${basename}.webp`)
-  await pipeline.clone().jpeg({ quality: JPEG_Q, mozjpeg: true }).toFile(jpgPath)
-  await pipeline.clone().webp({ quality: WEBP_Q }).toFile(webpPath)
+  const jpgTmp = `${jpgPath}.tmp`
+  const webpTmp = `${webpPath}.tmp`
+  await pipeline.clone().jpeg({ quality: JPEG_Q, mozjpeg: true }).toFile(jpgTmp)
+  await pipeline.clone().webp({ quality: WEBP_Q }).toFile(webpTmp)
+  replaceFile(jpgTmp, jpgPath)
+  replaceFile(webpTmp, webpPath)
   return { jpg: `${basename}.jpg`, webp: `${basename}.webp` }
+}
+
+function replaceFile(tmp, dest) {
+  for (let i = 0; i < 8; i++) {
+    try {
+      if (fs.existsSync(dest)) fs.unlinkSync(dest)
+      fs.copyFileSync(tmp, dest)
+      fs.unlinkSync(tmp)
+      return
+    } catch {
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 80 * (i + 1))
+    }
+  }
+  fs.copyFileSync(tmp, dest)
+  try {
+    fs.unlinkSync(tmp)
+  } catch {
+    /* ignore */
+  }
 }
 
 async function processDemo(id) {
@@ -63,24 +116,26 @@ async function processDemo(id) {
   const h = meta.height || 675
 
   const outDirs = [path.join(IMG_DEMOS, id), path.join(SIM_PUBLIC, id)]
-  outDirs.forEach(ensureDir)
-
-  // Copy primary into each folder
-  for (const dir of outDirs) {
+  outDirs.forEach((dir) => {
+    ensureDir(dir)
+    clearObsolete(dir)
     fs.copyFileSync(primary, path.join(dir, 'primary.jpg'))
-  }
+  })
 
   const manifest = {
     id,
     primary: 'primary.jpg',
     card: { widths: CARD_WIDTHS, jpg: {}, webp: {} },
-    hero: { widths: HERO_WIDTHS, jpg: {}, webp: {} },
-    cutouts: {},
+    tiles: { count: TILE_REGIONS.length, widths: TILE_WIDTHS, regions: TILE_REGIONS, files: [] },
   }
 
-  // Card: full 16:9 cover at multiple widths
   for (const width of CARD_WIDTHS) {
-    const pipe = sharp(primary).resize({ width, height: Math.round((width * 9) / 16), fit: 'cover', position: 'centre' })
+    const pipe = sharp(primary).resize({
+      width,
+      height: Math.round((width * 9) / 16),
+      fit: 'cover',
+      position: 'centre',
+    })
     for (const dir of outDirs) {
       const files = await writeJpegWebp(pipe, dir, `card-${width}`)
       manifest.card.jpg[width] = files.jpg
@@ -88,102 +143,22 @@ async function processDemo(id) {
     }
   }
 
-  // Hero banner: wider shorter crop (≈ 2.75:1) from upper-middle of image
-  for (const width of HERO_WIDTHS) {
-    const height = Math.round(width / 2.75)
-    const top = Math.round(h * 0.12)
-    const cropH = Math.min(Math.round(h * 0.55), h - top)
-    const pipe = sharp(primary)
-      .extract({ left: 0, top, width: w, height: cropH })
-      .resize({ width, height, fit: 'cover', position: 'centre' })
-    for (const dir of outDirs) {
-      const files = await writeJpegWebp(pipe, dir, `hero-${width}`)
-      manifest.hero.jpg[width] = files.jpg
-      manifest.hero.webp[width] = files.webp
-    }
-  }
-
-  // Cutout: background — centre third, soft-blur + slight desat for CSS backgrounds
-  {
-    const left = Math.round(w * 0.2)
-    const top = Math.round(h * 0.2)
-    const cw = Math.round(w * 0.6)
-    const ch = Math.round(h * 0.6)
-    const pipe = sharp(primary)
-      .extract({ left, top, width: cw, height: ch })
-      .resize({ width: 900 })
-      .modulate({ saturation: 0.75, brightness: 1.05 })
-      .blur(18)
-    for (const dir of outDirs) {
-      const files = await writeJpegWebp(pipe, dir, 'cutout-bg')
-      manifest.cutouts.bg = files
-    }
-  }
-
-  // Cutout: detail — lower-right interest crop (tools/trees/boat detail)
-  {
-    const cw = Math.round(w * 0.42)
-    const ch = Math.round(h * 0.5)
-    const left = Math.max(0, w - cw - Math.round(w * 0.05))
-    const top = Math.max(0, h - ch - Math.round(h * 0.08))
-    const pipe = sharp(primary)
-      .extract({ left, top, width: cw, height: ch })
-      .resize({ width: 640, height: 480, fit: 'cover' })
-    for (const dir of outDirs) {
-      const files = await writeJpegWebp(pipe, dir, 'cutout-detail')
-      manifest.cutouts.detail = files
-    }
-  }
-
-  // Cutout: band — thin horizontal strip (for chrome / palette bar texture)
-  {
-    const top = Math.round(h * 0.42)
-    const ch = Math.max(48, Math.round(h * 0.14))
-    const pipe = sharp(primary)
-      .extract({ left: 0, top, width: w, height: Math.min(ch, h - top) })
-      .resize({ width: 1400, height: 120, fit: 'cover' })
-    for (const dir of outDirs) {
-      const files = await writeJpegWebp(pipe, dir, 'cutout-band')
-      manifest.cutouts.band = files
-    }
-  }
-
-  // Cutout: accent overlay PNG — left vignette section with alpha fade (for transparency overlays)
-  {
-    const cw = Math.round(w * 0.45)
-    const ch = Math.round(h * 0.7)
-    const top = Math.round(h * 0.15)
-    const raw = await sharp(primary)
-      .extract({ left: 0, top, width: cw, height: ch })
-      .resize({ width: 360, height: 450, fit: 'cover' })
-      .ensureAlpha()
-      .raw()
-      .toBuffer({ resolveWithObject: true })
-
-    const { data, info } = raw
-    // Fade right edge to transparent + soft top/bottom
-    for (let y = 0; y < info.height; y++) {
-      for (let x = 0; x < info.width; x++) {
-        const i = (y * info.width + x) * 4
-        const fx = x / (info.width - 1)
-        const fy = y / (info.height - 1)
-        const edgeX = Math.min(1, Math.max(0, (0.72 - fx) / 0.72))
-        const edgeY = Math.min(fy / 0.12, (1 - fy) / 0.12, 1)
-        const a = Math.round(200 * edgeX * edgeY)
-        data[i + 3] = a
+  for (let i = 0; i < TILE_REGIONS.length; i++) {
+    const region = squareRegion(w, h, TILE_REGIONS[i])
+    const tileEntry = { index: i, region, jpg: {}, webp: {} }
+    for (const width of TILE_WIDTHS) {
+      const pipe = sharp(primary)
+        .extract(region)
+        .resize({ width, height: width, fit: 'cover' })
+      for (const dir of outDirs) {
+        const files = await writeJpegWebp(pipe, dir, `tile-${i}-${width}`)
+        tileEntry.jpg[width] = files.jpg
+        tileEntry.webp[width] = files.webp
       }
     }
-
-    for (const dir of outDirs) {
-      const out = path.join(dir, 'cutout-overlay.png')
-      await sharp(data, { raw: { width: info.width, height: info.height, channels: 4 } })
-        .png({ compressionLevel: 9, palette: true, quality: 70 })
-        .toFile(out)
-      manifest.cutouts.overlay = 'cutout-overlay.png'
-    }
+    manifest.tiles.files.push(tileEntry)
   }
 
-  // Write manifest into both output dirs
   for (const dir of outDirs) {
     fs.writeFileSync(path.join(dir, 'manifest.json'), JSON.stringify(manifest, null, 2))
   }

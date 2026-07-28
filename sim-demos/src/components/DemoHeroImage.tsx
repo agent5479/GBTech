@@ -1,6 +1,5 @@
-import type { CSSProperties } from 'react'
 import type { DemoImageId } from '../shared/demoAssets'
-import { DEMO_META, demoCardSources, demoCutouts, demoHeroSources } from '../shared/demoAssets'
+import { DEMO_META, demoCardSources, demoTileList } from '../shared/demoAssets'
 
 interface PictureProps {
   webpSrcSet: string
@@ -44,22 +43,33 @@ function ResponsivePicture({
   )
 }
 
-interface HeroProps {
+interface TilesProps {
   id: DemoImageId
   alt?: string
 }
 
-/** Full-bleed mood hero under chrome — uses responsive hero cut + transparent overlay. */
-export function DemoHeroImage({ id, alt }: HeroProps) {
-  const hero = demoHeroSources(id)
-  const cut = demoCutouts(id)
+/** Row of square crops from the primary photo — replaces wide banners. */
+export function DemoImageTiles({ id, alt }: TilesProps) {
+  const tiles = demoTileList(id)
   const label = alt ?? DEMO_META[id].alt
   return (
-    <div className="demo-hero-image">
-      <ResponsivePicture {...hero} alt={label} className="demo-hero-photo" loading="eager" />
-      <img className="demo-hero-overlay" src={cut.overlay} alt="" aria-hidden="true" width={360} height={450} />
+    <div className="demo-image-tiles" role="img" aria-label={label}>
+      {tiles.map((tile, i) => (
+        <ResponsivePicture
+          key={i}
+          {...tile}
+          alt=""
+          className="demo-image-tile"
+          loading={i === 0 ? 'eager' : 'lazy'}
+        />
+      ))}
     </div>
   )
+}
+
+/** @deprecated Prefer DemoImageTiles — kept so existing imports keep working. */
+export function DemoHeroImage(props: TilesProps) {
+  return <DemoImageTiles {...props} />
 }
 
 interface CardProps {
@@ -77,14 +87,4 @@ export function DemoCardImage({ id, alt, className }: CardProps) {
       className={className ?? 'hub-card-image'}
     />
   )
-}
-
-/** CSS variables for page background + band texture from primary cutouts. */
-export function demoAtmosphereStyle(id: DemoImageId): CSSProperties {
-  const cut = demoCutouts(id)
-  return {
-    ['--demo-bg-image' as string]: `url(${cut.bg})`,
-    ['--demo-band-image' as string]: `url(${cut.band})`,
-    ['--demo-detail-image' as string]: `url(${cut.detail})`,
-  }
 }

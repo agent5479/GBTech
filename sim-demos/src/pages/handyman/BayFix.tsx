@@ -10,15 +10,13 @@ import {
   jobById,
 } from '../../shared/handymanJobs'
 import { useDemoPalette } from '../../hooks/useDemoPalette'
-import { demoAtmosphereStyle } from '../../components/DemoHeroImage'
 
 /**
  * Bay Fix — classic job-ticket wizard.
  * Steps: Jobs (multi-select) → When → Site → Review.
  */
 export default function BayFix() {
-  const { paletteId, setPaletteId, style: paletteStyle } = useDemoPalette('handyman-bayfix')
-  const style = { ...demoAtmosphereStyle('bayfix'), ...paletteStyle }
+  const { paletteId, setPaletteId, style } = useDemoPalette('handyman-bayfix')
   const days = useMemo(() => buildYachtCalendar(8), [])
   const [step, setStep] = useState(1)
   const [selected, setSelected] = useState<string[]>(['plumbing'])
@@ -39,7 +37,7 @@ export default function BayFix() {
 
   if (done && estimate) {
     return (
-      <div className="handyman-page theme-bayfix has-demo-atmosphere" style={style}>
+      <div className="handyman-page theme-bayfix" style={style}>
         <DemoChrome
           theme="Bay Fix"
           title="Demo job ticket logged"
@@ -76,7 +74,7 @@ export default function BayFix() {
   }
 
   return (
-    <div className="handyman-page theme-bayfix has-demo-atmosphere" style={style}>
+    <div className="handyman-page theme-bayfix" style={style}>
       <DemoChrome
         theme="Bay Fix"
         title="Bay Fix"

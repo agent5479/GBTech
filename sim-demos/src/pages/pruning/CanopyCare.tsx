@@ -9,14 +9,12 @@ import {
   formatPruningBracket,
 } from '../../shared/pruningTrees'
 import { useDemoPalette } from '../../hooks/useDemoPalette'
-import { demoAtmosphereStyle } from '../../components/DemoHeroImage'
 
 /**
  * Canopy Care — vertical catalog with qty steppers, then when / review.
  */
 export default function CanopyCare() {
-  const { paletteId, setPaletteId, style: paletteStyle } = useDemoPalette('pruning-canopy')
-  const style = { ...demoAtmosphereStyle('canopy'), ...paletteStyle }
+  const { paletteId, setPaletteId, style } = useDemoPalette('pruning-canopy')
   const days = useMemo(() => buildYachtCalendar(8), [])
   const [step, setStep] = useState(1)
   const [qty, setQty] = useState<Record<string, number>>({ fruit: 2 })
@@ -39,7 +37,7 @@ export default function CanopyCare() {
 
   if (done && estimate) {
     return (
-      <div className="pruning-page theme-canopy has-demo-atmosphere" style={style}>
+      <div className="pruning-page theme-canopy" style={style}>
         <DemoChrome
           theme="Canopy Care"
           title="Demo prune booked"
@@ -80,7 +78,7 @@ export default function CanopyCare() {
   }
 
   return (
-    <div className="pruning-page theme-canopy has-demo-atmosphere" style={style}>
+    <div className="pruning-page theme-canopy" style={style}>
       <DemoChrome
         theme="Canopy Care"
         title="Canopy Care"

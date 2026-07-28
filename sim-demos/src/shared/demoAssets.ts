@@ -1,4 +1,4 @@
-/** Demo image asset helpers — responsive cards/heroes + cutouts from primary photos. */
+/** Demo image asset helpers — responsive cards + square tiles cut from primaries. */
 
 export type DemoImageId =
   | 'coastal'
@@ -11,7 +11,8 @@ export type DemoImageId =
   | 'orchard'
 
 const CARD_WIDTHS = [480, 800, 1200] as const
-const HERO_WIDTHS = [800, 1200, 1600] as const
+const TILE_WIDTHS = [360, 720] as const
+export const DEMO_TILE_COUNT = 4
 
 export function demoAssetBase(id: DemoImageId): string {
   return `${import.meta.env.BASE_URL}images/demos/${id}`
@@ -22,7 +23,7 @@ export function staticDemoAssetBase(id: DemoImageId): string {
   return `img/demos/${id}`
 }
 
-function srcset(base: string, kind: 'card' | 'hero', widths: readonly number[], ext: 'jpg' | 'webp') {
+function srcset(base: string, kind: string, widths: readonly number[], ext: 'jpg' | 'webp') {
   return widths.map((w) => `${base}/${kind}-${w}.${ext} ${w}w`).join(', ')
 }
 
@@ -37,33 +38,24 @@ export function demoCardSources(id: DemoImageId, base = demoAssetBase(id)) {
   }
 }
 
-export function demoHeroSources(id: DemoImageId, base = demoAssetBase(id)) {
+/** One square tile crop from the primary photo. */
+export function demoTileSources(id: DemoImageId, index: number, base = demoAssetBase(id)) {
+  const kind = `tile-${index}`
   return {
-    webpSrcSet: srcset(base, 'hero', HERO_WIDTHS, 'webp'),
-    jpgSrcSet: srcset(base, 'hero', HERO_WIDTHS, 'jpg'),
-    fallback: `${base}/hero-1200.jpg`,
-    sizes: '100vw',
-    width: 1200,
-    height: 436,
+    webpSrcSet: srcset(base, kind, TILE_WIDTHS, 'webp'),
+    jpgSrcSet: srcset(base, kind, TILE_WIDTHS, 'jpg'),
+    fallback: `${base}/${kind}-720.jpg`,
+    sizes: '(max-width: 640px) 45vw, 180px',
+    width: 720,
+    height: 720,
   }
 }
 
-export function demoCutouts(id: DemoImageId, base = demoAssetBase(id)) {
-  return {
-    bg: `${base}/cutout-bg.webp`,
-    bgJpg: `${base}/cutout-bg.jpg`,
-    detail: `${base}/cutout-detail.webp`,
-    detailJpg: `${base}/cutout-detail.jpg`,
-    band: `${base}/cutout-band.webp`,
-    bandJpg: `${base}/cutout-band.jpg`,
-    overlay: `${base}/cutout-overlay.png`,
-  }
+export function demoTileList(id: DemoImageId, base = demoAssetBase(id)) {
+  return Array.from({ length: DEMO_TILE_COUNT }, (_, i) => demoTileSources(id, i, base))
 }
 
-export const DEMO_META: Record<
-  DemoImageId,
-  { title: string; alt: string }
-> = {
+export const DEMO_META: Record<DemoImageId, { title: string; alt: string }> = {
   coastal: { title: 'Coastal Charter', alt: 'Calm skippered yacht on a New Zealand bay' },
   adventure: { title: 'Bay Adventure', alt: 'Active coastal sailing adventure' },
   mohua: { title: 'Mohua Ride', alt: 'Rural private taxi on a Golden Bay country road' },

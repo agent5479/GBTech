@@ -18,36 +18,103 @@
       "1200": "card-1200.webp"
     }
   },
-  "hero": {
+  "tiles": {
+    "count": 4,
     "widths": [
-      800,
-      1200,
-      1600
+      360,
+      720
     ],
-    "jpg": {
-      "800": "hero-800.jpg",
-      "1200": "hero-1200.jpg",
-      "1600": "hero-1600.jpg"
-    },
-    "webp": {
-      "800": "hero-800.webp",
-      "1200": "hero-1200.webp",
-      "1600": "hero-1600.webp"
-    }
-  },
-  "cutouts": {
-    "bg": {
-      "jpg": "cutout-bg.jpg",
-      "webp": "cutout-bg.webp"
-    },
-    "detail": {
-      "jpg": "cutout-detail.jpg",
-      "webp": "cutout-detail.webp"
-    },
-    "band": {
-      "jpg": "cutout-band.jpg",
-      "webp": "cutout-band.webp"
-    },
-    "overlay": "cutout-overlay.png"
+    "regions": [
+      {
+        "left": 0.14,
+        "top": 0.2,
+        "size": 0.4
+      },
+      {
+        "left": 0.36,
+        "top": 0.16,
+        "size": 0.42
+      },
+      {
+        "left": 0.54,
+        "top": 0.18,
+        "size": 0.4
+      },
+      {
+        "left": 0.28,
+        "top": 0.42,
+        "size": 0.46
+      }
+    ],
+    "files": [
+      {
+        "index": 0,
+        "region": {
+          "left": 168,
+          "top": 160,
+          "width": 320,
+          "height": 320
+        },
+        "jpg": {
+          "360": "tile-0-360.jpg",
+          "720": "tile-0-720.jpg"
+        },
+        "webp": {
+          "360": "tile-0-360.webp",
+          "720": "tile-0-720.webp"
+        }
+      },
+      {
+        "index": 1,
+        "region": {
+          "left": 432,
+          "top": 128,
+          "width": 336,
+          "height": 336
+        },
+        "jpg": {
+          "360": "tile-1-360.jpg",
+          "720": "tile-1-720.jpg"
+        },
+        "webp": {
+          "360": "tile-1-360.webp",
+          "720": "tile-1-720.webp"
+        }
+      },
+      {
+        "index": 2,
+        "region": {
+          "left": 648,
+          "top": 144,
+          "width": 320,
+          "height": 320
+        },
+        "jpg": {
+          "360": "tile-2-360.jpg",
+          "720": "tile-2-720.jpg"
+        },
+        "webp": {
+          "360": "tile-2-360.webp",
+          "720": "tile-2-720.webp"
+        }
+      },
+      {
+        "index": 3,
+        "region": {
+          "left": 336,
+          "top": 336,
+          "width": 368,
+          "height": 368
+        },
+        "jpg": {
+          "360": "tile-3-360.jpg",
+          "720": "tile-3-720.jpg"
+        },
+        "webp": {
+          "360": "tile-3-360.webp",
+          "720": "tile-3-720.webp"
+        }
+      }
+    ]
   }
 }

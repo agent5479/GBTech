@@ -4,7 +4,6 @@ import { PhoneShell } from '../../components/PhoneShell'
 import { MapRoute } from '../../components/MapRoute'
 import { useDemoPalette } from '../../hooks/useDemoPalette'
 import { FareBreakdownView } from '../../components/FareBreakdown'
-import { demoAtmosphereStyle } from '../../components/DemoHeroImage'
 import { GB_PLACES, placeById } from '../../shared/gbPlaces'
 import {
   estimateFare,
@@ -17,8 +16,7 @@ import type { LatLng } from '../../shared/sailingRoutes'
 
 /** Mohua Ride — phone-shell ride-hail flow. */
 export function TaxiWizard() {
-  const { paletteId, setPaletteId, style: paletteStyle } = useDemoPalette('taxi-mohua')
-  const style = { ...demoAtmosphereStyle('mohua'), ...paletteStyle }
+  const { paletteId, setPaletteId, style } = useDemoPalette('taxi-mohua')
   const [pickup, setPickup] = useState('takaka')
   const [dropoff, setDropoff] = useState('pohara')
   const [tier, setTier] = useState<VehicleTier>('standard')
@@ -61,7 +59,7 @@ export function TaxiWizard() {
 
   if (done) {
     return (
-      <div className="taxi-page theme-mohua has-demo-atmosphere" style={style}>
+      <div className="taxi-page theme-mohua" style={style}>
         <DemoChrome
           theme="Mohua Ride"
           title="Demo ride requested"
@@ -90,7 +88,7 @@ export function TaxiWizard() {
   }
 
   return (
-    <div className="taxi-page theme-mohua has-demo-atmosphere" style={style}>
+    <div className="taxi-page theme-mohua" style={style}>
       <DemoChrome
         theme="Mohua Ride"
         title="Mohua Ride"
