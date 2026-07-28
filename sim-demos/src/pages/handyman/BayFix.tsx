@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DemoChrome } from '../../components/DemoChrome'
+import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import { buildYachtCalendar } from '../../shared/calendarMock'
 import { GB_PLACES } from '../../shared/gbPlaces'
 import {
@@ -9,14 +10,12 @@ import {
   formatHandymanBracket,
   jobById,
 } from '../../shared/handymanJobs'
-import { useDemoPalette } from '../../hooks/useDemoPalette'
 
 /**
  * Bay Fix — classic job-ticket wizard.
  * Steps: Jobs (multi-select) → When → Site → Review.
  */
 export default function BayFix() {
-  const { paletteId, setPaletteId, style } = useDemoPalette('handyman-bayfix')
   const days = useMemo(() => buildYachtCalendar(8), [])
   const [step, setStep] = useState(1)
   const [selected, setSelected] = useState<string[]>(['plumbing'])
@@ -37,13 +36,11 @@ export default function BayFix() {
 
   if (done && estimate) {
     return (
-      <div className="handyman-page theme-bayfix" style={style}>
+      <div className="handyman-page theme-bayfix">
         <DemoChrome
           theme="Bay Fix"
           title="Demo job ticket logged"
           subtitle="Nothing was booked — simulation only."
-          paletteId={paletteId}
-          onPaletteChange={setPaletteId}
           imageId="bayfix"
         />
         <div className="yacht-panel success-panel">
@@ -55,9 +52,10 @@ export default function BayFix() {
             {date} @ {time} · {GB_PLACES.find((p) => p.id === placeId)?.name}
           </p>
           <p className="estimate-bracket">{formatHandymanBracket(estimate)}</p>
+          <DemoQuoteCta styleName="Bay Fix" />
           <button
             type="button"
-            className="btn primary"
+            className="btn ghost"
             onClick={() => {
               setDone(false)
               setStep(1)
@@ -69,19 +67,29 @@ export default function BayFix() {
             ← All demos
           </Link>
         </div>
+        <DemoPitchBar
+          packageTier="essential"
+          compareTo="/handyman/tradeboard"
+          compareLabel="Trade Board"
+          engineNote="Same job types and live estimate engine — wizard vs pin-board UI."
+        />
       </div>
     )
   }
 
   return (
-    <div className="handyman-page theme-bayfix" style={style}>
+    <div className="handyman-page theme-bayfix">
       <DemoChrome
         theme="Bay Fix"
         title="Bay Fix"
-        subtitle="Handyman for hire — multi-select job types on a classic ticket wizard. Aesthetics fully customisable."
-        paletteId={paletteId}
-        onPaletteChange={setPaletteId}
+        subtitle="Handyman for hire — multi-select job types on a classic ticket wizard."
         imageId="bayfix"
+      />
+      <DemoPitchBar
+        packageTier="essential"
+        compareTo="/handyman/tradeboard"
+        compareLabel="Trade Board"
+        engineNote="Same job types and live estimate engine — wizard vs pin-board UI."
       />
 
       <ol className="wizard-steps" aria-label="Booking steps">
@@ -195,6 +203,12 @@ export default function BayFix() {
             Notes for the tradie
             <textarea rows={3} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Gate code, parking, pets…" />
           </label>
+          <div className="photo-attach">
+            <button type="button" className="btn ghost" disabled title="Demo only — photo upload ships in a live build">
+              Attach photo (coming soon)
+            </button>
+            <p className="hint">Real tickets usually need a photo of the problem — included in a live portal.</p>
+          </div>
           <div className="btn-row">
             <button type="button" className="btn ghost" onClick={() => setStep(2)}>
               Back

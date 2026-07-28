@@ -1,9 +1,8 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MapRoute } from '../../components/MapRoute'
-import { PaletteSwitcher } from '../../components/PaletteSwitcher'
 import { DemoImageTiles } from '../../components/DemoHeroImage'
-import { useDemoPalette } from '../../hooks/useDemoPalette'
+import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import { buildYachtCalendar } from '../../shared/calendarMock'
 import { forecastForDate } from '../../shared/weatherMock'
 import { SAILING_ROUTES } from '../../shared/sailingRoutes'
@@ -12,10 +11,8 @@ import { YACHT_PACKAGES } from '../../shared/yachtPackages'
 /**
  * Bay Adventure — map-first "mission deck" UI.
  * Sequence: route on map → day rail → time → experience → crew → launch.
- * Split layout on tablet (map | controls), not a 5-step wizard.
  */
 export default function BayAdventure() {
-  const { paletteId, setPaletteId, style } = useDemoPalette('yacht-adventure')
   const days = useMemo(() => buildYachtCalendar(8), [])
   const [routeId, setRouteId] = useState(SAILING_ROUTES[1].id)
   const [date, setDate] = useState<string>()
@@ -32,8 +29,7 @@ export default function BayAdventure() {
 
   if (launched) {
     return (
-      <div className="adventure-page theme-adventure" style={style}>
-        <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
+      <div className="adventure-page theme-adventure">
         <div className="adventure-launch-ok">
           <p className="demo-badge">Simulated · not a real booking</p>
           <h1>Mission locked in</h1>
@@ -43,31 +39,44 @@ export default function BayAdventure() {
           <p>
             {date} @ {time} · crew {crew}
           </p>
-          <button type="button" className="btn primary" onClick={() => setLaunched(false)}>
+          <DemoQuoteCta styleName="Bay Adventure" />
+          <button type="button" className="btn ghost" onClick={() => setLaunched(false)}>
             Plan another mission
           </button>
           <Link to="/" className="adventure-hub-link">
             ← All demos
           </Link>
         </div>
+        <DemoPitchBar
+          packageTier="advanced"
+          compareTo="/yacht/coastal"
+          compareLabel="Coastal Charter"
+          engineNote="Same sail packages, calendar, and water-only routes — mission-deck UI."
+        />
       </div>
     )
   }
 
   return (
-    <div className="adventure-page theme-adventure" style={style}>
+    <div className="adventure-page theme-adventure">
       <header className="adventure-top">
         <Link to="/" className="demo-back">
           ← All demos
         </Link>
         <div>
-          <p className="demo-badge">Bay Adventure · map-first booking</p>
-          <h1>Pick your mission</h1>
+          <p className="demo-badge">Bay Adventure · mission deck</p>
+          <h1>Lock your mission</h1>
+          <p className="demo-sub">Map-first booking with playful launch language — same engine as Coastal Charter.</p>
         </div>
         <span className="demo-theme-tag">Different UI · not a recolour</span>
       </header>
       <DemoImageTiles id="adventure" />
-      <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
+      <DemoPitchBar
+        packageTier="advanced"
+        compareTo="/yacht/coastal"
+        compareLabel="Coastal Charter"
+        engineNote="Same sail packages, calendar, and water-only routes — mission-deck UI."
+      />
 
       <div className="adventure-deck">
         <aside className="adventure-map-pane">
@@ -96,6 +105,24 @@ export default function BayAdventure() {
         </aside>
 
         <aside className="adventure-controls">
+          <div className="mission-recap" aria-live="polite">
+            <span className="mission-recap-kicker">Mission locked so far</span>
+            <ul>
+              <li>
+                <em>Route</em> {route.name}
+              </li>
+              <li>
+                <em>When</em> {date && time ? `${date} @ ${time}` : '—'}
+              </li>
+              <li>
+                <em>Experience</em> {pkg.name}
+              </li>
+              <li>
+                <em>Crew</em> {crew}
+              </li>
+            </ul>
+          </div>
+
           <section>
             <h2>When</h2>
             <div className="day-rail" role="listbox" aria-label="Available days">

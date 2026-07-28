@@ -10,19 +10,23 @@ import {
 } from '../../shared/fareEstimate'
 import { roadDistanceKm, roadPathBetween } from '../../shared/taxiRoutes'
 import type { LatLng } from '../../shared/sailingRoutes'
-import { PaletteSwitcher } from '../../components/PaletteSwitcher'
 import { DemoImageTiles } from '../../components/DemoHeroImage'
-import { useDemoPalette } from '../../hooks/useDemoPalette'
+import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 
 const SLOTS = ['ASAP', '16:00', '17:00', '18:00', '19:30', '21:00']
 const BAY_CENTER: LatLng = [-40.82, 172.82]
+
+function slotIsPeak(slot: string): boolean {
+  if (slot === 'ASAP') return false
+  const hour = Number(slot.split(':')[0])
+  return Number.isFinite(hour) && hour >= 17
+}
 
 /**
  * Bay Hop — tablet trip board (not a phone shell).
  * Sequence: tap From → tap To on place grid → vehicle cards → passengers → time rail → confirm.
  */
 export default function BayHop() {
-  const { paletteId, setPaletteId, style } = useDemoPalette('taxi-bayhop')
   const [phase, setPhase] = useState<'from' | 'to' | 'book'>('from')
   const [pickup, setPickup] = useState<string>()
   const [dropoff, setDropoff] = useState<string>()
@@ -47,7 +51,7 @@ export default function BayHop() {
   const to = dropoff ? placeById(dropoff) : undefined
   const ready = Boolean(from && to && from.id !== to.id)
   const km = ready ? (roadDistanceKm(from!.id, to!.id) ?? 0) : 0
-  const peak = slot !== 'ASAP'
+  const peak = slotIsPeak(slot)
   const fare = useMemo(
     () => (ready ? estimateFare(km, tier, peak, passengers) : null),
     [ready, km, tier, peak, passengers]
@@ -62,8 +66,7 @@ export default function BayHop() {
 
   if (done && from && to && fare) {
     return (
-      <div className="bayhop-page theme-bayhop" style={style}>
-        <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
+      <div className="bayhop-page theme-bayhop">
         <div className="bayhop-done">
           <p className="demo-badge">Simulated · not dispatched</p>
           <h1>Hop confirmed</h1>
@@ -74,9 +77,10 @@ export default function BayHop() {
           <p>
             {passengers} passenger{passengers === 1 ? '' : 's'} · {tier === 'van' ? 'Van' : 'Standard'} · {slot}
           </p>
+          <DemoQuoteCta styleName="Bay Hop" />
           <button
             type="button"
-            className="btn primary"
+            className="btn ghost"
             onClick={() => {
               setDone(false)
               setPhase('from')
@@ -90,12 +94,18 @@ export default function BayHop() {
             ← All demos
           </Link>
         </div>
+        <DemoPitchBar
+          packageTier="advanced"
+          compareTo="/taxi/mohua"
+          compareLabel="Mohua Ride"
+          engineNote="Same road-snapped routes and fare brackets — trip board vs phone shell."
+        />
       </div>
     )
   }
 
   return (
-    <div className="bayhop-page theme-bayhop" style={style}>
+    <div className="bayhop-page theme-bayhop">
       <header className="bayhop-bar">
         <Link to="/" className="demo-back">
           ← All demos
@@ -111,7 +121,12 @@ export default function BayHop() {
         </ol>
       </header>
       <DemoImageTiles id="bayhop" />
-      <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
+      <DemoPitchBar
+        packageTier="advanced"
+        compareTo="/taxi/mohua"
+        compareLabel="Mohua Ride"
+        engineNote="Same road-snapped routes and fare brackets — trip board vs phone shell."
+      />
 
       <div className="bayhop-board">
         <section className="bayhop-places">
@@ -172,7 +187,7 @@ export default function BayHop() {
             zoom={ready ? 11 : 10}
             pathColor="#C8F542"
             className="demo-map bayhop-map"
-            label={ready ? 'Road route · OpenStreetMap / OSRM' : 'Select From and To'}
+            label={ready ? 'Live road-snapped route · OpenStreetMap / OSRM' : 'Select From and To'}
           />
 
           {ready && fare && (
@@ -190,10 +205,26 @@ export default function BayHop() {
 
               <div className="vehicle-cards">
                 <button type="button" className={`v-card${tier === 'standard' ? ' on' : ''}`} onClick={() => setTier('standard')}>
+                  <span className="v-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 40 24" width="40" height="24">
+                      <rect x="4" y="8" width="28" height="10" rx="2" fill="currentColor" opacity="0.9" />
+                      <circle cx="12" cy="19" r="3" fill="currentColor" />
+                      <circle cx="28" cy="19" r="3" fill="currentColor" />
+                      <path d="M10 8 L14 3 H26 L30 8" fill="currentColor" opacity="0.75" />
+                    </svg>
+                  </span>
                   <strong>Standard</strong>
                   <span>Up to 4</span>
                 </button>
                 <button type="button" className={`v-card${tier === 'van' ? ' on' : ''}`} onClick={() => setTier('van')}>
+                  <span className="v-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 40 24" width="40" height="24">
+                      <rect x="3" y="5" width="30" height="13" rx="2" fill="currentColor" opacity="0.9" />
+                      <circle cx="11" cy="19" r="3" fill="currentColor" />
+                      <circle cx="27" cy="19" r="3" fill="currentColor" />
+                      <rect x="22" y="7" width="8" height="6" rx="1" fill="currentColor" opacity="0.45" />
+                    </svg>
+                  </span>
                   <strong>Van</strong>
                   <span>Up to 7</span>
                 </button>
@@ -220,7 +251,7 @@ export default function BayHop() {
                 {SLOTS.map((s) => (
                   <button key={s} type="button" className={`slot${slot === s ? ' on' : ''}`} onClick={() => setSlot(s)}>
                     {s}
-                    {s !== 'ASAP' && <small>peak</small>}
+                    {slotIsPeak(s) && <small>peak</small>}
                   </button>
                 ))}
               </div>

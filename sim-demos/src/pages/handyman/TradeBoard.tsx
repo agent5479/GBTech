@@ -8,16 +8,14 @@ import {
   formatHandymanBracket,
   jobById,
 } from '../../shared/handymanJobs'
-import { PaletteSwitcher } from '../../components/PaletteSwitcher'
 import { DemoImageTiles } from '../../components/DemoHeroImage'
-import { useDemoPalette } from '../../hooks/useDemoPalette'
+import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 
 /**
  * Trade Board — single-screen multi-select (not a wizard).
  * Job chips + day/time rail + estimate column.
  */
 export default function TradeBoard() {
-  const { paletteId, setPaletteId, style } = useDemoPalette('handyman-tradeboard')
   const days = useMemo(() => buildYachtCalendar(8), [])
   const [selected, setSelected] = useState<string[]>(['gutters', 'carpentry'])
   const [date, setDate] = useState<string>()
@@ -35,8 +33,7 @@ export default function TradeBoard() {
 
   if (done && estimate) {
     return (
-      <div className="tradeboard-page theme-tradeboard" style={style}>
-        <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
+      <div className="tradeboard-page theme-tradeboard">
         <div className="adventure-launch-ok">
           <p className="demo-badge">Simulated · not a real booking</p>
           <h1>Board ticket locked</h1>
@@ -45,19 +42,26 @@ export default function TradeBoard() {
             {date} @ {time}
           </p>
           <p className="estimate-bracket">{formatHandymanBracket(estimate)}</p>
-          <button type="button" className="btn primary" onClick={() => setDone(false)}>
+          <DemoQuoteCta styleName="Trade Board" />
+          <button type="button" className="btn ghost" onClick={() => setDone(false)}>
             Plan another job
           </button>
           <Link to="/" className="adventure-hub-link">
             ← All demos
           </Link>
         </div>
+        <DemoPitchBar
+          packageTier="advanced"
+          compareTo="/handyman/bayfix"
+          compareLabel="Bay Fix"
+          engineNote="One engine, two interfaces — same jobs and pricing as Bay Fix, pin-board skin."
+        />
       </div>
     )
   }
 
   return (
-    <div className="tradeboard-page theme-tradeboard" style={style}>
+    <div className="tradeboard-page theme-tradeboard">
       <header className="tradeboard-top">
         <Link to="/" className="demo-back">
           ← All demos
@@ -65,11 +69,17 @@ export default function TradeBoard() {
         <div>
           <p className="demo-badge">Trade Board · multi-select jobs</p>
           <h1>Pin the work</h1>
+          <p className="demo-sub">Same pricing engine as Bay Fix — one engine, many interfaces.</p>
         </div>
         <span className="demo-theme-tag">Different UI · not a wizard</span>
       </header>
       <DemoImageTiles id="tradeboard" />
-      <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
+      <DemoPitchBar
+        packageTier="advanced"
+        compareTo="/handyman/bayfix"
+        compareLabel="Bay Fix"
+        engineNote="One engine, two interfaces — same jobs and pricing as Bay Fix, pin-board skin."
+      />
 
       <div className="tradeboard-deck">
         <aside className="tradeboard-jobs">

@@ -2,8 +2,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { DemoChrome } from '../../components/DemoChrome'
 import { PhoneShell } from '../../components/PhoneShell'
 import { MapRoute } from '../../components/MapRoute'
-import { useDemoPalette } from '../../hooks/useDemoPalette'
 import { FareBreakdownView } from '../../components/FareBreakdown'
+import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import { GB_PLACES, placeById } from '../../shared/gbPlaces'
 import {
   estimateFare,
@@ -14,9 +14,14 @@ import {
 import { roadDistanceKm, roadPathBetween } from '../../shared/taxiRoutes'
 import type { LatLng } from '../../shared/sailingRoutes'
 
+function isPeakBooking(when: 'now' | 'later', laterTime: string): boolean {
+  if (when !== 'later') return false
+  const hour = Number(laterTime.split(':')[0])
+  return Number.isFinite(hour) && hour >= 17
+}
+
 /** Mohua Ride — phone-shell ride-hail flow. */
 export function TaxiWizard() {
-  const { paletteId, setPaletteId, style } = useDemoPalette('taxi-mohua')
   const [pickup, setPickup] = useState('takaka')
   const [dropoff, setDropoff] = useState('pohara')
   const [tier, setTier] = useState<VehicleTier>('standard')
@@ -41,7 +46,7 @@ export function TaxiWizard() {
   const to = placeById(dropoff)!
   const same = pickup === dropoff
   const km = same ? 0 : (roadDistanceKm(pickup, dropoff) ?? 0)
-  const peak = when === 'later' || new Date().getHours() >= 17
+  const peak = isPeakBooking(when, laterTime)
   const fare = useMemo(
     () => estimateFare(km || 1, tier, peak && !same, passengers),
     [km, tier, peak, same, passengers]
@@ -59,13 +64,11 @@ export function TaxiWizard() {
 
   if (done) {
     return (
-      <div className="taxi-page theme-mohua" style={style}>
+      <div className="taxi-page theme-mohua">
         <DemoChrome
           theme="Mohua Ride"
           title="Demo ride requested"
           subtitle="Nothing was dispatched — simulation only."
-          paletteId={paletteId}
-          onPaletteChange={setPaletteId}
           imageId="mohua"
         />
         <PhoneShell brand="Mohua Ride">
@@ -76,26 +79,38 @@ export function TaxiWizard() {
             </p>
             <p>
               {passengers} passenger{passengers === 1 ? '' : 's'} · {tier === 'van' ? 'Van' : 'Standard'}
+              {when === 'later' ? ` · ${laterTime}` : ' · Now'}
             </p>
             <p className="estimate">{formatFareBracket(fare)} est.</p>
-            <button type="button" className="btn primary" onClick={() => setDone(false)}>
+            <DemoQuoteCta styleName="Mohua Ride" />
+            <button type="button" className="btn ghost" onClick={() => setDone(false)}>
               New demo ride
             </button>
           </div>
         </PhoneShell>
+        <DemoPitchBar
+          packageTier="essential"
+          compareTo="/taxi/bayhop"
+          compareLabel="Bay Hop"
+          engineNote="Same road-snapped routes and fare brackets — phone shell vs trip board."
+        />
       </div>
     )
   }
 
   return (
-    <div className="taxi-page theme-mohua" style={style}>
+    <div className="taxi-page theme-mohua">
       <DemoChrome
         theme="Mohua Ride"
         title="Mohua Ride"
-        subtitle="Phone-first private taxi — road route + passenger-based fare bracket (simulated). Aesthetics fully customisable."
-        paletteId={paletteId}
-        onPaletteChange={setPaletteId}
+        subtitle="Phone-first private taxi — road route + passenger-based fare bracket (simulated)."
         imageId="mohua"
+      />
+      <DemoPitchBar
+        packageTier="essential"
+        compareTo="/taxi/bayhop"
+        compareLabel="Bay Hop"
+        engineNote="Same road-snapped routes and fare brackets — phone shell vs trip board."
       />
       <PhoneShell brand="Mohua Ride">
         <div className="taxi-flow">
@@ -161,14 +176,16 @@ export function TaxiWizard() {
               <input type="time" value={laterTime} onChange={(e) => setLaterTime(e.target.value)} />
             )}
           </div>
+          {when === 'later' && peak && <p className="fare-bracket-note">Peak surcharge applies from 5:00 pm.</p>}
 
+          <p className="map-route-live">Live road-snapped route · OpenStreetMap / OSRM</p>
           <MapRoute
             path={path}
             center={center}
             zoom={11}
             pathColor="#D3993C"
             className="demo-map mini"
-            label="Road route · OpenStreetMap / OSRM"
+            label="Road-snapped path (not a straight line)"
           />
 
           {!same && <FareBreakdownView fare={fare} peak={peak} />}

@@ -7,16 +7,14 @@ import {
   estimatePruning,
   formatPruningBracket,
 } from '../../shared/pruningTrees'
-import { PaletteSwitcher } from '../../components/PaletteSwitcher'
 import { DemoImageTiles } from '../../components/DemoHeroImage'
-import { useDemoPalette } from '../../hooks/useDemoPalette'
+import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 
 /**
  * Orchard Grid — species tile grid with per-tile counters (not a catalog list).
  * Side panel: schedule + estimate.
  */
 export default function OrchardGrid() {
-  const { paletteId, setPaletteId, style } = useDemoPalette('pruning-orchard')
   const days = useMemo(() => buildYachtCalendar(8), [])
   const [qty, setQty] = useState<Record<string, number>>({ hedge: 12, native: 1 })
   const [addOns, setAddOns] = useState<string[]>(['chipper'])
@@ -38,8 +36,7 @@ export default function OrchardGrid() {
 
   if (done && estimate) {
     return (
-      <div className="orchard-page theme-orchard" style={style}>
-        <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
+      <div className="orchard-page theme-orchard">
         <div className="adventure-launch-ok">
           <p className="demo-badge">Simulated · not a real booking</p>
           <h1>Orchard visit set</h1>
@@ -54,19 +51,26 @@ export default function OrchardGrid() {
             {date} @ {time}
           </p>
           <p className="estimate-bracket">{formatPruningBracket(estimate)}</p>
-          <button type="button" className="btn primary" onClick={() => setDone(false)}>
+          <DemoQuoteCta styleName="Orchard Grid" />
+          <button type="button" className="btn ghost" onClick={() => setDone(false)}>
             Plan another visit
           </button>
           <Link to="/" className="adventure-hub-link">
             ← All demos
           </Link>
         </div>
+        <DemoPitchBar
+          packageTier="advanced"
+          compareTo="/pruning/canopy"
+          compareLabel="Canopy Care"
+          engineNote="Same tree catalog and pricing — tile counters vs catalog list."
+        />
       </div>
     )
   }
 
   return (
-    <div className="orchard-page theme-orchard" style={style}>
+    <div className="orchard-page theme-orchard">
       <header className="orchard-top">
         <Link to="/" className="demo-back">
           ← All demos
@@ -78,7 +82,12 @@ export default function OrchardGrid() {
         <span className="demo-theme-tag">Different UI · not a catalog</span>
       </header>
       <DemoImageTiles id="orchard" />
-      <PaletteSwitcher value={paletteId} onChange={setPaletteId} />
+      <DemoPitchBar
+        packageTier="advanced"
+        compareTo="/pruning/canopy"
+        compareLabel="Canopy Care"
+        engineNote="Same tree catalog and pricing — tile counters vs catalog list."
+      />
 
       <div className="orchard-deck">
         <section className="orchard-grid-pane">
@@ -88,9 +97,11 @@ export default function OrchardGrid() {
               const count = qty[t.id] ?? 0
               return (
                 <div key={t.id} className={`orchard-tile${count > 0 ? ' on' : ''}`}>
-                  <span className="orchard-badge" aria-hidden="true">
-                    {count}
-                  </span>
+                  {count > 0 && (
+                    <span className="orchard-badge" aria-hidden="true">
+                      {count}
+                    </span>
+                  )}
                   <strong>{t.name}</strong>
                   <small>
                     ${t.pricePerUnit}/{t.unitLabel}

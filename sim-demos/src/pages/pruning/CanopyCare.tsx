@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DemoChrome } from '../../components/DemoChrome'
+import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import { buildYachtCalendar } from '../../shared/calendarMock'
 import {
   PRUNING_ADDONS,
@@ -8,13 +9,11 @@ import {
   estimatePruning,
   formatPruningBracket,
 } from '../../shared/pruningTrees'
-import { useDemoPalette } from '../../hooks/useDemoPalette'
 
 /**
  * Canopy Care — vertical catalog with qty steppers, then when / review.
  */
 export default function CanopyCare() {
-  const { paletteId, setPaletteId, style } = useDemoPalette('pruning-canopy')
   const days = useMemo(() => buildYachtCalendar(8), [])
   const [step, setStep] = useState(1)
   const [qty, setQty] = useState<Record<string, number>>({ fruit: 2 })
@@ -37,13 +36,11 @@ export default function CanopyCare() {
 
   if (done && estimate) {
     return (
-      <div className="pruning-page theme-canopy" style={style}>
+      <div className="pruning-page theme-canopy">
         <DemoChrome
           theme="Canopy Care"
           title="Demo prune booked"
           subtitle="Nothing was scheduled — simulation only."
-          paletteId={paletteId}
-          onPaletteChange={setPaletteId}
           imageId="canopy"
         />
         <div className="yacht-panel success-panel">
@@ -59,9 +56,10 @@ export default function CanopyCare() {
             {date} @ {time}
           </p>
           <p className="estimate-bracket">{formatPruningBracket(estimate)}</p>
+          <DemoQuoteCta styleName="Canopy Care" />
           <button
             type="button"
-            className="btn primary"
+            className="btn ghost"
             onClick={() => {
               setDone(false)
               setStep(1)
@@ -73,19 +71,29 @@ export default function CanopyCare() {
             ← All demos
           </Link>
         </div>
+        <DemoPitchBar
+          packageTier="essential"
+          compareTo="/pruning/orchard"
+          compareLabel="Orchard Grid"
+          engineNote="Same tree catalog and pricing — catalog wizard vs tile grid."
+        />
       </div>
     )
   }
 
   return (
-    <div className="pruning-page theme-canopy" style={style}>
+    <div className="pruning-page theme-canopy">
       <DemoChrome
         theme="Canopy Care"
         title="Canopy Care"
-        subtitle="Tree pruning — pick types and quantities from a catalog list. Aesthetics fully customisable."
-        paletteId={paletteId}
-        onPaletteChange={setPaletteId}
+        subtitle="Tree pruning — pick types and quantities from a catalog list."
         imageId="canopy"
+      />
+      <DemoPitchBar
+        packageTier="essential"
+        compareTo="/pruning/orchard"
+        compareLabel="Orchard Grid"
+        engineNote="Same tree catalog and pricing — catalog wizard vs tile grid."
       />
 
       <ol className="wizard-steps" aria-label="Booking steps">
@@ -188,8 +196,16 @@ export default function CanopyCare() {
           )}
           <label className="field">
             Access notes
-            <textarea rows={2} value={access} onChange={(e) => setAccess(e.target.value)} placeholder="Steep drive, soft ground, powerlines…" />
+            <textarea
+              rows={3}
+              value={access}
+              onChange={(e) => setAccess(e.target.value)}
+              placeholder="Steep drive, soft ground, powerlines, locked gate, dogs on site…"
+            />
           </label>
+          <p className="hint">
+            Site access details change travel time and equipment — a live portal can flag these for the crew.
+          </p>
           <div className="btn-row">
             <button type="button" className="btn ghost" onClick={() => setStep(1)}>
               Back
