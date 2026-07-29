@@ -9,6 +9,8 @@ export type DemoImageId =
   | 'tradeboard'
   | 'canopy'
   | 'orchard'
+  | 'freshcoat'
+  | 'paintboard'
 
 const CARD_WIDTHS = [480, 800, 1200] as const
 const TILE_WIDTHS = [360, 720] as const
@@ -75,4 +77,6 @@ export const DEMO_META: Record<DemoImageId, { title: string; alt: string }> = {
   tradeboard: { title: 'Trade Board', alt: 'Trade van at a residential job site' },
   canopy: { title: 'Canopy Care', alt: 'Fruit tree pruning in an orchard' },
   orchard: { title: 'Orchard Grid', alt: 'Orchard rows of fruit trees' },
+  freshcoat: { title: 'Fresh Coat', alt: 'Interior wall being painted with a roller' },
+  paintboard: { title: 'Paint Board', alt: 'Exterior weatherboards mid-paint job' },
 }

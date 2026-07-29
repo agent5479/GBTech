@@ -83,6 +83,24 @@ const DEMOS: {
     card: 'hub-card-orchard',
     imageId: 'orchard',
   },
+  {
+    to: '/painting/freshcoat',
+    title: 'Fresh Coat',
+    kind: 'Painting · quote wizard',
+    look: 'Slate · sky',
+    blurb: 'Wall sizes, indoor/outdoor, paint types and undercoats — automatic Golden Bay ballpark quote.',
+    card: 'hub-card-freshcoat',
+    imageId: 'freshcoat',
+  },
+  {
+    to: '/painting/paintboard',
+    title: 'Paint Board',
+    kind: 'Painting · wall board',
+    look: 'Charcoal · paint yellow',
+    blurb: 'Different UI — pin wall cards and paint chips with a live ballpark column.',
+    card: 'hub-card-paintboard',
+    imageId: 'paintboard',
+  },
 ]
 
 export default function Hub() {
@@ -92,8 +110,9 @@ export default function Hub() {
         <p className="demo-badge">Marshall Solutions · simulated templates</p>
         <h1>Try a booking demo</h1>
         <p>
-          Fully simulated — no Google Calendar writes, no payments, no dispatch. Eight distinct interfaces: yacht,
-          taxi, handyman, and tree pruning — each as a classic wizard and a different UI on the same booking engine.
+          Fully simulated — no Google Calendar writes, no payments, no dispatch. Ten distinct interfaces: yacht,
+          taxi, handyman, tree pruning, and painting — each as a classic wizard and a different UI on the same booking
+          engine.
         </p>
         <a className="hub-back" href="/GBTech/marshall-solutions.html#demos">
           ← Back to Marshall Solutions

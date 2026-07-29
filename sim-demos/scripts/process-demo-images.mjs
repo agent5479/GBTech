@@ -27,6 +27,8 @@ const DEMOS = [
   'tradeboard',
   'canopy',
   'orchard',
+  'freshcoat',
+  'paintboard',
 ]
 
 const CARD_WIDTHS = [480, 800, 1200]

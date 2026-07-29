@@ -756,6 +756,33 @@ p:last-child {
   color: #4a6b2f;
 }
 
+.demo-card-freshcoat {
+  border-color: rgba(44, 95, 138, 0.35);
+  background: linear-gradient(165deg, #e8eef4 0%, #f7f9fb 100%);
+}
+
+.demo-card-freshcoat .demo-card-kind {
+  color: #2c5f8a;
+}
+
+.demo-card-paintboard {
+  border-color: rgba(40, 40, 40, 0.4);
+  background: linear-gradient(165deg, #2a3038 0%, #1a1e24 100%);
+  color: #f2f2f2;
+}
+
+.demo-card-paintboard .demo-card-kind {
+  color: #e8b923;
+}
+
+.demo-card-paintboard h3 {
+  color: #f2f2f2;
+}
+
+.demo-card-paintboard p {
+  color: rgba(242, 242, 242, 0.72);
+}
+
 #packages .qualifier-note a {
   color: var(--accent-magenta);
   font-weight: 500;

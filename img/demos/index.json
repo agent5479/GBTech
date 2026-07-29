@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-28T22:51:12.705Z",
+  "generated": "2026-07-29T01:02:31.194Z",
   "demos": {
     "coastal": {
       "id": "coastal",
@@ -844,6 +844,220 @@
               "top": 432,
               "width": 368,
               "height": 368
+            },
+            "jpg": {
+              "360": "tile-3-360.jpg",
+              "720": "tile-3-720.jpg"
+            },
+            "webp": {
+              "360": "tile-3-360.webp",
+              "720": "tile-3-720.webp"
+            }
+          }
+        ]
+      }
+    },
+    "freshcoat": {
+      "id": "freshcoat",
+      "primary": "primary.jpg",
+      "width": 1536,
+      "height": 1024,
+      "aspect": 1.5,
+      "card": {
+        "widths": [
+          480,
+          800,
+          1200
+        ],
+        "fit": "inside",
+        "jpg": {
+          "480": "card-480.jpg",
+          "800": "card-800.jpg",
+          "1200": "card-1200.jpg"
+        },
+        "webp": {
+          "480": "card-480.webp",
+          "800": "card-800.webp",
+          "1200": "card-1200.webp"
+        },
+        "heights": {
+          "480": 320,
+          "800": 533,
+          "1200": 800
+        }
+      },
+      "tiles": {
+        "count": 4,
+        "widths": [
+          360,
+          720
+        ],
+        "files": [
+          {
+            "index": 0,
+            "region": {
+              "left": 128,
+              "top": 0,
+              "width": 471,
+              "height": 471
+            },
+            "jpg": {
+              "360": "tile-0-360.jpg",
+              "720": "tile-0-720.jpg"
+            },
+            "webp": {
+              "360": "tile-0-360.webp",
+              "720": "tile-0-720.webp"
+            }
+          },
+          {
+            "index": 1,
+            "region": {
+              "left": 937,
+              "top": 0,
+              "width": 471,
+              "height": 471
+            },
+            "jpg": {
+              "360": "tile-1-360.jpg",
+              "720": "tile-1-720.jpg"
+            },
+            "webp": {
+              "360": "tile-1-360.webp",
+              "720": "tile-1-720.webp"
+            }
+          },
+          {
+            "index": 2,
+            "region": {
+              "left": 128,
+              "top": 553,
+              "width": 471,
+              "height": 471
+            },
+            "jpg": {
+              "360": "tile-2-360.jpg",
+              "720": "tile-2-720.jpg"
+            },
+            "webp": {
+              "360": "tile-2-360.webp",
+              "720": "tile-2-720.webp"
+            }
+          },
+          {
+            "index": 3,
+            "region": {
+              "left": 937,
+              "top": 553,
+              "width": 471,
+              "height": 471
+            },
+            "jpg": {
+              "360": "tile-3-360.jpg",
+              "720": "tile-3-720.jpg"
+            },
+            "webp": {
+              "360": "tile-3-360.webp",
+              "720": "tile-3-720.webp"
+            }
+          }
+        ]
+      }
+    },
+    "paintboard": {
+      "id": "paintboard",
+      "primary": "primary.jpg",
+      "width": 1536,
+      "height": 1024,
+      "aspect": 1.5,
+      "card": {
+        "widths": [
+          480,
+          800,
+          1200
+        ],
+        "fit": "inside",
+        "jpg": {
+          "480": "card-480.jpg",
+          "800": "card-800.jpg",
+          "1200": "card-1200.jpg"
+        },
+        "webp": {
+          "480": "card-480.webp",
+          "800": "card-800.webp",
+          "1200": "card-1200.webp"
+        },
+        "heights": {
+          "480": 320,
+          "800": 533,
+          "1200": 800
+        }
+      },
+      "tiles": {
+        "count": 4,
+        "widths": [
+          360,
+          720
+        ],
+        "files": [
+          {
+            "index": 0,
+            "region": {
+              "left": 128,
+              "top": 0,
+              "width": 471,
+              "height": 471
+            },
+            "jpg": {
+              "360": "tile-0-360.jpg",
+              "720": "tile-0-720.jpg"
+            },
+            "webp": {
+              "360": "tile-0-360.webp",
+              "720": "tile-0-720.webp"
+            }
+          },
+          {
+            "index": 1,
+            "region": {
+              "left": 937,
+              "top": 0,
+              "width": 471,
+              "height": 471
+            },
+            "jpg": {
+              "360": "tile-1-360.jpg",
+              "720": "tile-1-720.jpg"
+            },
+            "webp": {
+              "360": "tile-1-360.webp",
+              "720": "tile-1-720.webp"
+            }
+          },
+          {
+            "index": 2,
+            "region": {
+              "left": 128,
+              "top": 553,
+              "width": 471,
+              "height": 471
+            },
+            "jpg": {
+              "360": "tile-2-360.jpg",
+              "720": "tile-2-720.jpg"
+            },
+            "webp": {
+              "360": "tile-2-360.webp",
+              "720": "tile-2-720.webp"
+            }
+          },
+          {
+            "index": 3,
+            "region": {
+              "left": 937,
+              "top": 553,
+              "width": 471,
+              "height": 471
             },
             "jpg": {
               "360": "tile-3-360.jpg",

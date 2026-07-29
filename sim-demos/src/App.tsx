@@ -8,6 +8,8 @@ import BayFix from './pages/handyman/BayFix'
 import TradeBoard from './pages/handyman/TradeBoard'
 import CanopyCare from './pages/pruning/CanopyCare'
 import OrchardGrid from './pages/pruning/OrchardGrid'
+import FreshCoat from './pages/painting/FreshCoat'
+import PaintBoard from './pages/painting/PaintBoard'
 import './styles/demos.css'
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
@@ -25,6 +27,8 @@ export default function App() {
         <Route path="/handyman/tradeboard" element={<TradeBoard />} />
         <Route path="/pruning/canopy" element={<CanopyCare />} />
         <Route path="/pruning/orchard" element={<OrchardGrid />} />
+        <Route path="/painting/freshcoat" element={<FreshCoat />} />
+        <Route path="/painting/paintboard" element={<PaintBoard />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
