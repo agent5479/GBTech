@@ -43,7 +43,7 @@ export default function BayFix() {
           subtitle="Nothing was booked — simulation only."
           imageId="bayfix"
         />
-        <div className="yacht-panel success-panel">
+        <div className="yacht-panel success-panel demo-enter-success">
           <h2>You&apos;re on the list (demo)</h2>
           <p>
             {selected.map((id) => jobById(id)?.name).filter(Boolean).join(' · ')}
@@ -101,7 +101,7 @@ export default function BayFix() {
       </ol>
 
       {step === 1 && (
-        <section className="yacht-panel">
+        <section key="step-1" className="yacht-panel demo-enter">
           <h2>1. What needs doing?</h2>
           <p className="hint">Select one or more job types.</p>
           <div className="job-check-list">
@@ -134,7 +134,7 @@ export default function BayFix() {
       )}
 
       {step === 2 && (
-        <section className="yacht-panel">
+        <section key="step-2" className="yacht-panel demo-enter">
           <h2>2. Preferred window</h2>
           <div className="day-rail" role="listbox" aria-label="Available days">
             {days.map((d) => {
@@ -187,7 +187,7 @@ export default function BayFix() {
       )}
 
       {step === 3 && (
-        <section className="yacht-panel">
+        <section key="step-3" className="yacht-panel demo-enter">
           <h2>3. Site details</h2>
           <label className="field">
             Area
@@ -221,7 +221,7 @@ export default function BayFix() {
       )}
 
       {step === 4 && estimate && (
-        <section className="yacht-panel">
+        <section key="step-4" className="yacht-panel demo-enter">
           <h2>4. Review ticket</h2>
           <div className="summary">
             <p>

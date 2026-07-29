@@ -37,7 +37,7 @@ export default function OrchardGrid() {
   if (done && estimate) {
     return (
       <div className="orchard-page theme-orchard">
-        <div className="adventure-launch-ok">
+        <div className="adventure-launch-ok demo-enter-success">
           <p className="demo-badge">Simulated · not a real booking</p>
           <h1>Orchard visit set</h1>
           <ul className="prune-lines">
@@ -89,7 +89,7 @@ export default function OrchardGrid() {
         engineNote="Same tree catalog and pricing — tile counters vs catalog list."
       />
 
-      <div className="orchard-deck">
+      <div className="orchard-deck demo-enter">
         <section className="orchard-grid-pane">
           <h2>Species tiles</h2>
           <div className="orchard-tiles">

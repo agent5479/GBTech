@@ -72,7 +72,7 @@ export function TaxiWizard() {
           imageId="mohua"
         />
         <PhoneShell brand="Mohua Ride">
-          <div className="taxi-success">
+          <div className="taxi-success demo-enter-success">
             <h2>Driver matching… (demo)</h2>
             <p>
               {from.name} → {to.name}
@@ -113,7 +113,7 @@ export function TaxiWizard() {
         engineNote="Same road-snapped routes and fare brackets — phone shell vs trip board."
       />
       <PhoneShell brand="Mohua Ride">
-        <div className="taxi-flow">
+        <div className="taxi-flow demo-enter">
           <label className="field">
             Pickup
             <select value={pickup} onChange={(e) => setPickup(e.target.value)}>

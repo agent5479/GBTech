@@ -34,7 +34,7 @@ export default function TradeBoard() {
   if (done && estimate) {
     return (
       <div className="tradeboard-page theme-tradeboard">
-        <div className="adventure-launch-ok">
+        <div className="adventure-launch-ok demo-enter-success">
           <p className="demo-badge">Simulated · not a real booking</p>
           <h1>Board ticket locked</h1>
           <p>{selected.map((id) => jobById(id)?.name).join(' · ')}</p>
@@ -81,7 +81,7 @@ export default function TradeBoard() {
         engineNote="One engine, two interfaces — same jobs and pricing as Bay Fix, pin-board skin."
       />
 
-      <div className="tradeboard-deck">
+      <div className="tradeboard-deck demo-enter">
         <aside className="tradeboard-jobs">
           <h2>Job types</h2>
           <p className="hint">Tap to pin — select as many as you need.</p>

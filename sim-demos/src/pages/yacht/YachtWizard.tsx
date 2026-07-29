@@ -34,7 +34,7 @@ export function YachtWizard() {
           subtitle="Nothing was sent — this is a simulation only."
           imageId="coastal"
         />
-        <div className="yacht-panel success-panel">
+        <div className="yacht-panel success-panel demo-enter-success">
           <h2>You&apos;re on the list (demo)</h2>
           <p>
             <strong>{pkg.name}</strong> on <strong>{date}</strong> at <strong>{time}</strong>
@@ -89,7 +89,7 @@ export function YachtWizard() {
       </ol>
 
       {step === 1 && (
-        <section className="yacht-panel">
+        <section key="step-1" className="yacht-panel demo-enter">
           <h2>1. Choose your experience</h2>
           <div className="pkg-grid">
             {YACHT_PACKAGES.map((p) => (
@@ -113,7 +113,7 @@ export function YachtWizard() {
       )}
 
       {step === 2 && (
-        <section className="yacht-panel">
+        <section key="step-2" className="yacht-panel demo-enter">
           <h2>2. Choose a sailing path</h2>
           <div className="route-chips">
             {SAILING_ROUTES.map((r) => (
@@ -147,7 +147,7 @@ export function YachtWizard() {
       )}
 
       {step === 3 && (
-        <section className="yacht-panel">
+        <section key="step-3" className="yacht-panel demo-enter">
           <h2>3. Date, time &amp; weather</h2>
           <p className="hint">
             Weather cues sit on each day — pick when conditions suit your sail. Grey slots are booked, weather hold, or
@@ -181,7 +181,7 @@ export function YachtWizard() {
       )}
 
       {step === 4 && (
-        <section className="yacht-panel">
+        <section key="step-4" className="yacht-panel demo-enter">
           <h2>4. Party &amp; confirm</h2>
           <label className="field">
             Party size

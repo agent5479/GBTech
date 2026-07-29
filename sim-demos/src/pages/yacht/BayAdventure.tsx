@@ -30,7 +30,7 @@ export default function BayAdventure() {
   if (launched) {
     return (
       <div className="adventure-page theme-adventure">
-        <div className="adventure-launch-ok">
+        <div className="adventure-launch-ok demo-enter-success">
           <p className="demo-badge">Simulated · not a real booking</p>
           <h1>Mission locked in</h1>
           <p>
@@ -78,7 +78,7 @@ export default function BayAdventure() {
         engineNote="Same sail packages, calendar, and water-only routes — mission-deck UI."
       />
 
-      <div className="adventure-deck">
+      <div className="adventure-deck demo-enter">
         <aside className="adventure-map-pane">
           <div className="route-toggle">
             {SAILING_ROUTES.map((r) => (
@@ -105,7 +105,11 @@ export default function BayAdventure() {
         </aside>
 
         <aside className="adventure-controls">
-          <div className="mission-recap" aria-live="polite">
+          <div
+            className="mission-recap demo-live-tick"
+            key={`${routeId}-${date ?? ''}-${time ?? ''}-${pkgId}-${crew}`}
+            aria-live="polite"
+          >
             <span className="mission-recap-kicker">Mission locked so far</span>
             <ul>
               <li>

@@ -67,7 +67,7 @@ export default function BayHop() {
   if (done && from && to && fare) {
     return (
       <div className="bayhop-page theme-bayhop">
-        <div className="bayhop-done">
+        <div className="bayhop-done demo-enter-success">
           <p className="demo-badge">Simulated · not dispatched</p>
           <h1>Hop confirmed</h1>
           <p>
@@ -128,7 +128,7 @@ export default function BayHop() {
         engineNote="Same road-snapped routes and fare brackets — trip board vs phone shell."
       />
 
-      <div className="bayhop-board">
+      <div className="bayhop-board demo-enter" key={phase}>
         <section className="bayhop-places">
           <h2>
             {phase === 'from' && 'Tap pickup'}

@@ -43,7 +43,7 @@ export default function CanopyCare() {
           subtitle="Nothing was scheduled — simulation only."
           imageId="canopy"
         />
-        <div className="yacht-panel success-panel">
+        <div className="yacht-panel success-panel demo-enter-success">
           <h2>Visit pencilled in (demo)</h2>
           <ul className="prune-lines">
             {estimate.lines.map((l) => (
@@ -105,7 +105,7 @@ export default function CanopyCare() {
       </ol>
 
       {step === 1 && (
-        <section className="yacht-panel">
+        <section key="step-1" className="yacht-panel demo-enter">
           <h2>1. Trees &amp; hedges</h2>
           <p className="hint">Set quantity per type. Zero means not included.</p>
           <div className="prune-catalog">
@@ -156,7 +156,7 @@ export default function CanopyCare() {
       )}
 
       {step === 2 && (
-        <section className="yacht-panel">
+        <section key="step-2" className="yacht-panel demo-enter">
           <h2>2. Preferred window</h2>
           <div className="day-rail">
             {days.map((d) => {
@@ -218,7 +218,7 @@ export default function CanopyCare() {
       )}
 
       {step === 3 && estimate && (
-        <section className="yacht-panel">
+        <section key="step-3" className="yacht-panel demo-enter">
           <h2>3. Review</h2>
           <div className="summary">
             <ul className="prune-lines">

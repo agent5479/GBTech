@@ -88,7 +88,7 @@ const DEMOS: {
 export default function Hub() {
   return (
     <div className="hub">
-      <header className="hub-hero">
+      <header className="hub-hero demo-enter">
         <p className="demo-badge">Marshall Solutions · simulated templates</p>
         <h1>Try a booking demo</h1>
         <p>

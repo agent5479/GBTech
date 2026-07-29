@@ -8,7 +8,7 @@ interface Props {
 
 export function FareBreakdownView({ fare, peak }: Props) {
   return (
-    <div className="fare-box">
+    <div className="fare-box demo-live-tick" key={`${fare.km}-${fare.passengers}-${fare.low}-${fare.high}`}>
       <div className="fare-row">
         <span>Distance</span>
         <strong>{fare.km} km</strong>
