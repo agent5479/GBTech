@@ -36,9 +36,20 @@ jobs:
           for page in index.html marshall-solutions.html; do
             grep -q '<title>' "$page"
             grep -q 'name="description"' "$page"
+            grep -q 'name="robots"' "$page"
             grep -q 'rel="canonical"' "$page"
+            grep -q 'og:title' "$page"
+            grep -q 'twitter:card' "$page"
             grep -q 'application/ld+json' "$page"
           done
+
+      - name: Verify robots.txt allows marketing and blocks demos
+        run: |
+          grep -q 'Sitemap: https://agent5479.github.io/GBTech/sitemap.xml' robots.txt
+          grep -q 'Disallow: /sim/' robots.txt
+          grep -q 'Disallow: /sim-demos/' robots.txt
+          grep -q 'Disallow: /staff-demo/' robots.txt
+          grep -q 'Allow: /' robots.txt
 
       - name: Setup Node
         uses: actions/setup-node@v4

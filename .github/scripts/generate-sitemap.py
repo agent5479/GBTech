@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Regenerate sitemap.xml from static HTML routes (SSG-friendly, no JS runtime)."""
+"""Regenerate sitemap.xml from indexable marketing routes only.
+
+Simulated demos (/sim/) are noindex and Disallow'd in robots.txt — do not list them.
+"""
 
 import os
 from datetime import date
@@ -7,14 +10,11 @@ from xml.etree import ElementTree as ET
 
 BASE_URL = "https://agent5479.github.io/GBTech"
 
+# (source file for lastmod, public path, priority)
 ROUTES = [
     ("index.html", "", "1.0"),
-    ("marshall-solutions.html", "marshall-solutions.html", "0.8"),
+    ("marshall-solutions.html", "marshall-solutions.html", "0.9"),
 ]
-
-# Simulated demo hub (built by CI into sim/)
-if os.path.isfile(os.path.join("sim", "index.html")):
-    ROUTES.append(("sim/index.html", "sim/", "0.6"))
 
 urlset = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
 
@@ -33,3 +33,4 @@ for filename, path, priority in ROUTES:
 tree = ET.ElementTree(urlset)
 ET.indent(tree, space="  ")
 tree.write("sitemap.xml", encoding="UTF-8", xml_declaration=True)
+print(f"Wrote sitemap.xml with {len(ROUTES)} URL(s)")

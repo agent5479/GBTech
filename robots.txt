@@ -1,13 +1,41 @@
+# Golden Bay Technologies — https://agent5479.github.io/GBTech/
+# Index marketing pages only; keep demos, source, and private apps out of search.
+
 User-agent: *
 Allow: /
+Allow: /index.html
+Allow: /marshall-solutions.html
+Allow: /styles.css
+Allow: /site.webmanifest
+Allow: /img/
+Allow: /profile.png
+
+# Simulated booking demos (noindex; thin/demo content)
+Disallow: /sim/
+Disallow: /sim-demos/
+
+# Source / private apps (not part of the public marketing site)
+Disallow: /booking-demo/
+Disallow: /staff-demo/
+Disallow: /demoplan/
+Disallow: /.github/
 
 User-agent: Googlebot
 Allow: /
+Disallow: /sim/
+Disallow: /sim-demos/
+Disallow: /booking-demo/
+Disallow: /staff-demo/
+Disallow: /demoplan/
+Disallow: /.github/
 
 User-agent: Bingbot
 Allow: /
-
-User-agent: LinkedInBot
-Allow: /
+Disallow: /sim/
+Disallow: /sim-demos/
+Disallow: /booking-demo/
+Disallow: /staff-demo/
+Disallow: /demoplan/
+Disallow: /.github/
 
 Sitemap: https://agent5479.github.io/GBTech/sitemap.xml
