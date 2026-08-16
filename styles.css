@@ -600,11 +600,40 @@ p:last-child {
   border-bottom-color: var(--accent);
 }
 
+.pricing-tier code,
+#how-we-work code {
+  font-size: 0.85em;
+  background: var(--bg);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+
 .demo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
   margin: 1.25rem 0 1.5rem;
+}
+
+.portfolio-group {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-magenta);
+  margin: 1.75rem 0 0.35rem;
+}
+
+.portfolio-group:first-of-type {
+  margin-top: 1.25rem;
+}
+
+#portfolio .demo-grid {
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+#portfolio .demo-grid:last-of-type {
+  margin-bottom: 0;
 }
 
 .demo-card {
@@ -960,6 +989,17 @@ p:last-child {
 
 .case-study strong {
   color: var(--accent-magenta);
+}
+
+.case-study a {
+  color: var(--accent-magenta);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.case-study a:hover {
+  border-bottom-color: var(--accent);
 }
 
 /* Marshall Solutions sub-page */
