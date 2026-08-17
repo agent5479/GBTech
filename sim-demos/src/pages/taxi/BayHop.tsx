@@ -97,8 +97,8 @@ export default function BayHop() {
         <DemoPitchBar
           packageTier="advanced"
           compareTo="/taxi/mohua"
-          compareLabel="Mohua Ride"
-          engineNote="Same road-snapped routes and fare brackets — trip board vs phone shell."
+          compareLabel="Phone hail"
+          engineNote="Two jobs, not two skins — place-to-place trip board vs phone hail."
         />
       </div>
     )
@@ -112,7 +112,7 @@ export default function BayHop() {
         </Link>
         <div>
           <p className="demo-badge">Bay Hop · trip board</p>
-          <h1>Where to?</h1>
+          <h1>Place-to-place trip board</h1>
         </div>
         <ol className="bayhop-phases">
           <li className={phase === 'from' ? 'on' : pickup ? 'done' : ''}>1 From</li>
@@ -121,12 +121,12 @@ export default function BayHop() {
         </ol>
       </header>
       <DemoImageTiles id="bayhop" />
-      <DemoPitchBar
-        packageTier="advanced"
-        compareTo="/taxi/mohua"
-        compareLabel="Mohua Ride"
-        engineNote="Same road-snapped routes and fare brackets — trip board vs phone shell."
-      />
+        <DemoPitchBar
+          packageTier="advanced"
+          compareTo="/taxi/mohua"
+          compareLabel="Phone hail"
+          engineNote="Two jobs, not two skins — place-to-place trip board vs phone hail."
+        />
 
       <div className="bayhop-board demo-enter" key={phase}>
         <section className="bayhop-places">

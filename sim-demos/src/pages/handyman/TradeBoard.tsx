@@ -4,6 +4,7 @@ import { buildYachtCalendar } from '../../shared/calendarMock'
 import { GB_PLACES } from '../../shared/gbPlaces'
 import {
   HANDYMAN_JOBS,
+  HANDYMAN_QUICK_ADDS,
   estimateHandymanJobs,
   formatHandymanBracket,
   jobById,
@@ -53,8 +54,8 @@ export default function TradeBoard() {
         <DemoPitchBar
           packageTier="advanced"
           compareTo="/handyman/bayfix"
-          compareLabel="Bay Fix"
-          engineNote="One engine, two interfaces — same jobs and pricing as Bay Fix, pin-board skin."
+          compareLabel="Repair ticket"
+          engineNote="Two jobs, not two skins — site job board vs repair ticket."
         />
       </div>
     )
@@ -68,23 +69,37 @@ export default function TradeBoard() {
         </Link>
         <div>
           <p className="demo-badge">Trade Board · multi-select jobs</p>
-          <h1>Pin the work</h1>
-          <p className="demo-sub">Same pricing engine as Bay Fix — one engine, many interfaces.</p>
+          <h1>Site job board</h1>
+          <p className="demo-sub">Pin trades on one board — same pricing as a repair ticket.</p>
         </div>
         <span className="demo-theme-tag">Different UI · not a wizard</span>
       </header>
       <DemoImageTiles id="tradeboard" />
-      <DemoPitchBar
-        packageTier="advanced"
-        compareTo="/handyman/bayfix"
-        compareLabel="Bay Fix"
-        engineNote="One engine, two interfaces — same jobs and pricing as Bay Fix, pin-board skin."
-      />
+        <DemoPitchBar
+          packageTier="advanced"
+          compareTo="/handyman/bayfix"
+          compareLabel="Repair ticket"
+          engineNote="Two jobs, not two skins — site job board vs repair ticket."
+        />
 
       <div className="tradeboard-deck demo-enter">
         <aside className="tradeboard-jobs">
           <h2>Job types</h2>
-          <p className="hint">Tap to pin — select as many as you need.</p>
+          <p className="hint">Tap a trade to pin it, or use the chips.</p>
+          <div className="add-kind-row">
+            {HANDYMAN_QUICK_ADDS.map((q) => (
+              <button
+                key={q.id}
+                type="button"
+                className="chip"
+                onClick={() =>
+                  setSelected((prev) => (prev.includes(q.id) ? prev : [...prev, q.id]))
+                }
+              >
+                {q.label}
+              </button>
+            ))}
+          </div>
           <div className="job-chip-stack">
             {HANDYMAN_JOBS.map((j) => {
               const on = selected.includes(j.id)

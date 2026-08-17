@@ -16,7 +16,7 @@ import {
 export default function CanopyCare() {
   const days = useMemo(() => buildYachtCalendar(8), [])
   const [step, setStep] = useState(1)
-  const [qty, setQty] = useState<Record<string, number>>({ fruit: 2 })
+  const [qty, setQty] = useState<Record<string, number>>({ apple: 2 })
   const [addOns, setAddOns] = useState<string[]>([])
   const [date, setDate] = useState<string>()
   const [time, setTime] = useState<string>()
@@ -74,8 +74,8 @@ export default function CanopyCare() {
         <DemoPitchBar
           packageTier="essential"
           compareTo="/pruning/orchard"
-          compareLabel="Orchard Grid"
-          engineNote="Same tree catalog and pricing — catalog wizard vs tile grid."
+          compareLabel="Orchard count grid"
+          engineNote="Two jobs, not two skins — garden prune catalog vs orchard count grid."
         />
       </div>
     )
@@ -85,16 +85,16 @@ export default function CanopyCare() {
     <div className="pruning-page theme-canopy">
       <DemoChrome
         theme="Canopy Care"
-        title="Canopy Care"
-        subtitle="Tree pruning — pick types and quantities from a catalog list."
+        title="Garden prune catalog"
+        subtitle="Garden trees by type — apple, citrus, stone fruit, natives, hedges — then schedule."
         imageId="canopy"
       />
-      <DemoPitchBar
-        packageTier="essential"
-        compareTo="/pruning/orchard"
-        compareLabel="Orchard Grid"
-        engineNote="Same tree catalog and pricing — catalog wizard vs tile grid."
-      />
+        <DemoPitchBar
+          packageTier="essential"
+          compareTo="/pruning/orchard"
+          compareLabel="Orchard count grid"
+          engineNote="Two jobs, not two skins — garden prune catalog vs orchard count grid."
+        />
 
       <ol className="wizard-steps" aria-label="Booking steps">
         {[1, 2, 3].map((n) => (

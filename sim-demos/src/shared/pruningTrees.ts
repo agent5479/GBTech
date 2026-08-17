@@ -24,11 +24,25 @@ export interface PruningEstimate {
 
 export const PRUNING_TREES: PruningTreeType[] = [
   {
-    id: 'fruit',
-    name: 'Fruit tree',
-    blurb: 'Apple, pear, citrus — seasonal prune.',
+    id: 'apple',
+    name: 'Apple',
+    blurb: 'Seasonal prune — fruiting wood and shape.',
     unitLabel: 'tree',
     pricePerUnit: 55,
+  },
+  {
+    id: 'citrus',
+    name: 'Citrus',
+    blurb: 'Lemon, orange, mandarin — light canopy work.',
+    unitLabel: 'tree',
+    pricePerUnit: 50,
+  },
+  {
+    id: 'stone',
+    name: 'Stone fruit',
+    blurb: 'Plum, peach, apricot — winter prune.',
+    unitLabel: 'tree',
+    pricePerUnit: 58,
   },
   {
     id: 'native',
@@ -63,6 +77,12 @@ export const PRUNING_TREES: PruningTreeType[] = [
 export const PRUNING_ADDONS: PruningAddOn[] = [
   { id: 'ladder', name: 'Extension ladder access', price: 25 },
   { id: 'chipper', name: 'On-site chipper', price: 60 },
+]
+
+export const PRUNING_FRUIT_ADDS: { id: string; label: string }[] = [
+  { id: 'apple', label: '+ Apple' },
+  { id: 'citrus', label: '+ Citrus' },
+  { id: 'stone', label: '+ Stone fruit' },
 ]
 
 const CALL_OUT = 40

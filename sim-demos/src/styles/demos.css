@@ -1721,6 +1721,12 @@ textarea {
   color: #f2f2f2;
 }
 
+.theme-tradeboard .chip {
+  background: #2a2a2e;
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #f2f2f2;
+}
+
 .theme-tradeboard .field select {
   background: #222;
   border-color: rgba(255, 255, 255, 0.2);
@@ -2341,10 +2347,79 @@ textarea {
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
+.wall-kind-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 0.65rem;
+}
+
 .wall-dims {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.65rem;
+}
+
+.add-kind-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.pitch-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+}
+
+.wall-board-kind {
+  margin-bottom: 0.55rem;
+}
+
+.print-lines {
+  margin: 0.65rem 0 0;
+  font-size: 0.82rem;
+  opacity: 0.9;
+}
+
+.hub-group {
+  margin: 2rem 0 0;
+}
+
+.hub-group > h2 {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hub-group .hub-grid {
+  margin-top: 0.75rem;
+}
+
+.estimates-hub {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 3rem;
+}
+
+.estimates-hub-intro {
+  margin: 0 0 1.25rem;
+  max-width: 40rem;
+}
+
+.estimates-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 700px) {
+  .estimates-cards {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .wall-editor-meta {
@@ -2770,5 +2845,33 @@ textarea {
   .job-chip:hover,
   .hub-card:hover {
     transform: none;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .paintboard-page,
+  .theme-paintboard {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  .paintboard-deck {
+    display: block;
+    max-width: none;
+    padding: 0;
+  }
+
+  .paintboard-estimate {
+    background: #fff;
+    border: 1px solid #ccc;
+    color: #111;
+  }
+
+  .paintboard-estimate strong {
+    color: #111;
   }
 }

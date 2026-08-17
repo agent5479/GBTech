@@ -61,6 +61,12 @@ export const HANDYMAN_JOBS: HandymanJob[] = [
   },
 ]
 
+export const HANDYMAN_QUICK_ADDS: { id: string; label: string }[] = [
+  { id: 'plumbing', label: '+ Plumbing' },
+  { id: 'electrical', label: '+ Electrical' },
+  { id: 'carpentry', label: '+ Carpentry' },
+]
+
 const TRAVEL_FEE = 25
 
 function roundBracket(n: number) {

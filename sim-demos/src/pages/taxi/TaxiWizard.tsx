@@ -91,8 +91,8 @@ export function TaxiWizard() {
         <DemoPitchBar
           packageTier="essential"
           compareTo="/taxi/bayhop"
-          compareLabel="Bay Hop"
-          engineNote="Same road-snapped routes and fare brackets — phone shell vs trip board."
+          compareLabel="Place-to-place trip board"
+          engineNote="Two jobs, not two skins — phone hail vs place-to-place trip board."
         />
       </div>
     )
@@ -102,16 +102,16 @@ export function TaxiWizard() {
     <div className="taxi-page theme-mohua">
       <DemoChrome
         theme="Mohua Ride"
-        title="Mohua Ride"
-        subtitle="Phone-first private taxi — road route + passenger-based fare bracket (simulated)."
+        title="Phone hail"
+        subtitle="Phone-first private taxi — named Golden Bay places, road route, and a passenger-based fare bracket."
         imageId="mohua"
       />
-      <DemoPitchBar
-        packageTier="essential"
-        compareTo="/taxi/bayhop"
-        compareLabel="Bay Hop"
-        engineNote="Same road-snapped routes and fare brackets — phone shell vs trip board."
-      />
+        <DemoPitchBar
+          packageTier="essential"
+          compareTo="/taxi/bayhop"
+          compareLabel="Place-to-place trip board"
+          engineNote="Two jobs, not two skins — phone hail vs place-to-place trip board."
+        />
       <PhoneShell brand="Mohua Ride">
         <div className="taxi-flow demo-enter">
           <label className="field">

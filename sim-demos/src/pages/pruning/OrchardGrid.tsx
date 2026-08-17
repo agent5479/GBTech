@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { buildYachtCalendar } from '../../shared/calendarMock'
 import {
   PRUNING_ADDONS,
+  PRUNING_FRUIT_ADDS,
   PRUNING_TREES,
   estimatePruning,
   formatPruningBracket,
@@ -62,8 +63,8 @@ export default function OrchardGrid() {
         <DemoPitchBar
           packageTier="advanced"
           compareTo="/pruning/canopy"
-          compareLabel="Canopy Care"
-          engineNote="Same tree catalog and pricing — tile counters vs catalog list."
+          compareLabel="Garden prune catalog"
+          engineNote="Two jobs, not two skins — orchard count grid vs garden prune catalog."
         />
       </div>
     )
@@ -77,21 +78,33 @@ export default function OrchardGrid() {
         </Link>
         <div>
           <p className="demo-badge">Orchard Grid · tile counters</p>
-          <h1>Count the canopy</h1>
+          <h1>Orchard count grid</h1>
         </div>
         <span className="demo-theme-tag">Different UI · not a catalog</span>
       </header>
       <DemoImageTiles id="orchard" />
-      <DemoPitchBar
-        packageTier="advanced"
-        compareTo="/pruning/canopy"
-        compareLabel="Canopy Care"
-        engineNote="Same tree catalog and pricing — tile counters vs catalog list."
-      />
+        <DemoPitchBar
+          packageTier="advanced"
+          compareTo="/pruning/canopy"
+          compareLabel="Garden prune catalog"
+          engineNote="Two jobs, not two skins — orchard count grid vs garden prune catalog."
+        />
 
       <div className="orchard-deck demo-enter">
         <section className="orchard-grid-pane">
           <h2>Species tiles</h2>
+          <div className="add-kind-row">
+            {PRUNING_FRUIT_ADDS.map((q) => (
+              <button
+                key={q.id}
+                type="button"
+                className="chip"
+                onClick={() => bump(q.id, 1)}
+              >
+                {q.label}
+              </button>
+            ))}
+          </div>
           <div className="orchard-tiles">
             {PRUNING_TREES.map((t) => {
               const count = qty[t.id] ?? 0

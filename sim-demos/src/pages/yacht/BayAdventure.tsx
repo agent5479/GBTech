@@ -50,8 +50,8 @@ export default function BayAdventure() {
         <DemoPitchBar
           packageTier="advanced"
           compareTo="/yacht/coastal"
-          compareLabel="Coastal Charter"
-          engineNote="Same sail packages, calendar, and water-only routes — mission-deck UI."
+          compareLabel="Skippered bay sail"
+          engineNote="Two jobs, not two skins — map-first adventure day vs skippered bay sail."
         />
       </div>
     )
@@ -65,18 +65,18 @@ export default function BayAdventure() {
         </Link>
         <div>
           <p className="demo-badge">Bay Adventure · mission deck</p>
-          <h1>Lock your mission</h1>
-          <p className="demo-sub">Map-first booking with playful launch language — same engine as Coastal Charter.</p>
+          <h1>Map-first adventure day</h1>
+          <p className="demo-sub">Route the map first, then day, time, and crew — same engine as a skippered bay sail.</p>
         </div>
         <span className="demo-theme-tag">Different UI · not a recolour</span>
       </header>
       <DemoImageTiles id="adventure" />
-      <DemoPitchBar
-        packageTier="advanced"
-        compareTo="/yacht/coastal"
-        compareLabel="Coastal Charter"
-        engineNote="Same sail packages, calendar, and water-only routes — mission-deck UI."
-      />
+        <DemoPitchBar
+          packageTier="advanced"
+          compareTo="/yacht/coastal"
+          compareLabel="Skippered bay sail"
+          engineNote="Two jobs, not two skins — map-first adventure day vs skippered bay sail."
+        />
 
       <div className="adventure-deck demo-enter">
         <aside className="adventure-map-pane">

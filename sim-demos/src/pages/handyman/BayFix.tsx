@@ -6,6 +6,7 @@ import { buildYachtCalendar } from '../../shared/calendarMock'
 import { GB_PLACES } from '../../shared/gbPlaces'
 import {
   HANDYMAN_JOBS,
+  HANDYMAN_QUICK_ADDS,
   estimateHandymanJobs,
   formatHandymanBracket,
   jobById,
@@ -70,8 +71,8 @@ export default function BayFix() {
         <DemoPitchBar
           packageTier="essential"
           compareTo="/handyman/tradeboard"
-          compareLabel="Trade Board"
-          engineNote="Same job types and live estimate engine — wizard vs pin-board UI."
+          compareLabel="Site job board"
+          engineNote="Two jobs, not two skins — repair ticket vs site job board."
         />
       </div>
     )
@@ -81,16 +82,16 @@ export default function BayFix() {
     <div className="handyman-page theme-bayfix">
       <DemoChrome
         theme="Bay Fix"
-        title="Bay Fix"
-        subtitle="Handyman for hire — multi-select job types on a classic ticket wizard."
+        title="Repair ticket"
+        subtitle="Handyman for hire — add plumbing, electrical, or carpentry, then schedule the visit."
         imageId="bayfix"
       />
-      <DemoPitchBar
-        packageTier="essential"
-        compareTo="/handyman/tradeboard"
-        compareLabel="Trade Board"
-        engineNote="Same job types and live estimate engine — wizard vs pin-board UI."
-      />
+        <DemoPitchBar
+          packageTier="essential"
+          compareTo="/handyman/tradeboard"
+          compareLabel="Site job board"
+          engineNote="Two jobs, not two skins — repair ticket vs site job board."
+        />
 
       <ol className="wizard-steps" aria-label="Booking steps">
         {[1, 2, 3, 4].map((n) => (
@@ -103,7 +104,21 @@ export default function BayFix() {
       {step === 1 && (
         <section key="step-1" className="yacht-panel demo-enter">
           <h2>1. What needs doing?</h2>
-          <p className="hint">Select one or more job types.</p>
+          <p className="hint">Add a trade, then tick anything else.</p>
+          <div className="add-kind-row">
+            {HANDYMAN_QUICK_ADDS.map((q) => (
+              <button
+                key={q.id}
+                type="button"
+                className="chip"
+                onClick={() =>
+                  setSelected((prev) => (prev.includes(q.id) ? prev : [...prev, q.id]))
+                }
+              >
+                {q.label}
+              </button>
+            ))}
+          </div>
           <div className="job-check-list">
             {HANDYMAN_JOBS.map((j) => {
               const on = selected.includes(j.id)

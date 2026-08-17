@@ -2,57 +2,54 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DemoChrome } from '../../components/DemoChrome'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
-import { buildYachtCalendar } from '../../shared/calendarMock'
-import { GB_PLACES } from '../../shared/gbPlaces'
 import {
-  PAINT_TYPES,
-  UNDERCOATS,
+  INDOOR_KINDS,
+  INDOOR_PAINT_TYPES,
+  INDOOR_UNDERCOATS,
+  defaultIndoorSurfaces,
   estimatePaintJob,
+  formatAreaLine,
   formatPaintBracket,
-  newWall,
+  kindMeta,
+  newIndoorSurface,
   paintTypeById,
+  paintedAreaM2,
   undercoatById,
-  wallAreaM2,
-  type PaintSetting,
+  type IndoorKind,
+  type PaintSurface,
   type PaintTypeId,
   type UndercoatId,
-  type WallSurface,
 } from '../../shared/paintingQuote'
 
 /**
- * Fresh Coat — classic painter quote wizard.
- * Walls (sizes) → paint system → schedule → review ballpark.
+ * Fresh Coat — indoor rooms estimate wizard.
+ * Surfaces (kind + measures) → paint system → ballpark. Not an outdoor job.
  */
 export default function FreshCoat() {
-  const days = useMemo(() => buildYachtCalendar(8), [])
   const [step, setStep] = useState(1)
-  const [walls, setWalls] = useState<WallSurface[]>([
-    newWall({ label: 'Lounge — long wall', widthM: 4.2, heightM: 2.4, qty: 1 }),
-    newWall({ label: 'Lounge — end walls', widthM: 3.2, heightM: 2.4, qty: 2 }),
-  ])
-  const [setting, setSetting] = useState<PaintSetting>('indoor')
+  const [surfaces, setSurfaces] = useState<PaintSurface[]>(() => defaultIndoorSurfaces())
   const [paintTypeId, setPaintTypeId] = useState<PaintTypeId>('standard')
   const [undercoatId, setUndercoatId] = useState<UndercoatId>('acrylic')
-  const [date, setDate] = useState<string>()
-  const [time, setTime] = useState<string>()
-  const [placeId, setPlaceId] = useState(GB_PLACES[0].id)
   const [notes, setNotes] = useState('')
   const [done, setDone] = useState(false)
 
   const estimate = useMemo(
-    () => estimatePaintJob(walls, setting, paintTypeId, undercoatId),
-    [walls, setting, paintTypeId, undercoatId],
+    () => estimatePaintJob(surfaces, 'indoor', paintTypeId, undercoatId),
+    [surfaces, paintTypeId, undercoatId],
   )
-  const selectedDay = days.find((d) => d.date === date)
-  const canWhen = Boolean(date && time)
-  const canConfirm = Boolean(estimate && canWhen)
 
-  const updateWall = (id: string, patch: Partial<WallSurface>) => {
-    setWalls((prev) => prev.map((w) => (w.id === id ? { ...w, ...patch } : w)))
+  const updateSurface = (id: string, patch: Partial<PaintSurface>) => {
+    setSurfaces((prev) => prev.map((s) => (s.id === id ? { ...s, ...patch } : s)))
   }
 
-  const removeWall = (id: string) => {
-    setWalls((prev) => (prev.length <= 1 ? prev : prev.filter((w) => w.id !== id)))
+  const changeKind = (id: string, kind: IndoorKind) => {
+    setSurfaces((prev) =>
+      prev.map((s) => (s.id === id ? newIndoorSurface(kind, { id: s.id, label: s.label }) : s)),
+    )
+  }
+
+  const removeSurface = (id: string) => {
+    setSurfaces((prev) => (prev.length <= 1 ? prev : prev.filter((s) => s.id !== id)))
   }
 
   if (done && estimate) {
@@ -60,18 +57,18 @@ export default function FreshCoat() {
       <div className="painting-page theme-freshcoat">
         <DemoChrome
           theme="Fresh Coat"
-          title="Demo paint quote locked"
-          subtitle="Nothing was booked — simulation only."
+          title="Indoor ballpark saved"
+          subtitle="Impression only — nothing was quoted or booked."
           imageId="freshcoat"
+          badge="Ballpark only · impression, not a quote"
+          backTo="/painting"
+          backLabel="← Painting estimates"
         />
         <div className="yacht-panel success-panel demo-enter-success">
-          <h2>Ballpark quote saved (demo)</h2>
+          <h2>Indoor rooms (demo)</h2>
           <p>
-            {estimate.totalAreaM2} m² · {setting} · {paintTypeById(paintTypeId)?.name}
+            Painted {formatAreaLine(estimate)} · {paintTypeById(paintTypeId)?.name}
             {undercoatId !== 'none' ? ` · ${undercoatById(undercoatId)?.name}` : ''}
-          </p>
-          <p>
-            {date} @ {time} · {GB_PLACES.find((p) => p.id === placeId)?.name}
           </p>
           <p className="estimate-bracket">{formatPaintBracket(estimate)}</p>
           <DemoQuoteCta styleName="Fresh Coat" />
@@ -83,17 +80,17 @@ export default function FreshCoat() {
               setStep(1)
             }}
           >
-            Quote another job (demo)
+            Measure another room (demo)
           </button>
-          <Link to="/" className="adventure-hub-link">
-            ← All demos
+          <Link to="/painting" className="adventure-hub-link">
+            ← Painting estimates
           </Link>
         </div>
         <DemoPitchBar
           packageTier="essential"
           compareTo="/painting/paintboard"
-          compareLabel="Paint Board"
-          engineNote="Same wall m² quote engine — wizard vs wall-board UI."
+          compareLabel="Weatherboards, corrugate & roof"
+          engineNote="Two jobs, not two skins — indoor rooms vs weatherboards, corrugate and roof."
         />
       </div>
     )
@@ -103,19 +100,22 @@ export default function FreshCoat() {
     <div className="painting-page theme-freshcoat">
       <DemoChrome
         theme="Fresh Coat"
-        title="Fresh Coat"
-        subtitle="Golden Bay painter quote — measure walls, choose paint & undercoat, get a ballpark figure."
+        title="Indoor rooms"
+        subtitle="Walls, ceilings, skirting, windows, and trim — a ballpark for interior paint, not weatherboards."
         imageId="freshcoat"
+        badge="Ballpark only · impression, not a quote"
+        backTo="/painting"
+        backLabel="← Painting estimates"
       />
       <DemoPitchBar
         packageTier="essential"
         compareTo="/painting/paintboard"
-        compareLabel="Paint Board"
-        engineNote="Same wall m² quote engine — wizard vs wall-board UI."
+        compareLabel="Weatherboards, corrugate & roof"
+        engineNote="Two jobs, not two skins — indoor rooms vs weatherboards, corrugate and roof."
       />
 
       <ol className="wizard-steps" aria-label="Quote steps">
-        {[1, 2, 3, 4].map((n) => (
+        {[1, 2, 3].map((n) => (
           <li key={n} className={step === n ? 'active' : step > n ? 'done' : ''}>
             {n}
           </li>
@@ -124,72 +124,100 @@ export default function FreshCoat() {
 
       {step === 1 && (
         <section key="step-1" className="yacht-panel demo-enter">
-          <h2>1. Wall sizes</h2>
-          <p className="hint">Enter width × height in metres. Use quantity for matching faces.</p>
+          <h2>1. Surfaces</h2>
+          <p className="hint">Kind changes the measures. Quantity covers matching faces.</p>
           <div className="wall-editor-list">
-            {walls.map((w) => (
-              <div key={w.id} className="wall-editor-card">
-                <label className="field">
-                  Label
-                  <input
-                    value={w.label}
-                    onChange={(e) => updateWall(w.id, { label: e.target.value })}
-                    placeholder="e.g. Hall north"
-                  />
-                </label>
-                <div className="wall-dims">
-                  <label className="field">
-                    Width (m)
-                    <input
-                      type="number"
-                      min={0.5}
-                      max={20}
-                      step={0.1}
-                      value={w.widthM}
-                      onChange={(e) => updateWall(w.id, { widthM: Number(e.target.value) })}
-                    />
-                  </label>
-                  <label className="field">
-                    Height (m)
-                    <input
-                      type="number"
-                      min={0.5}
-                      max={6}
-                      step={0.1}
-                      value={w.heightM}
-                      onChange={(e) => updateWall(w.id, { heightM: Number(e.target.value) })}
-                    />
-                  </label>
-                  <label className="field">
-                    Qty
-                    <input
-                      type="number"
-                      min={1}
-                      max={12}
-                      value={w.qty}
-                      onChange={(e) => updateWall(w.id, { qty: Number(e.target.value) })}
-                    />
-                  </label>
+            {surfaces.map((s) => {
+              const meta = kindMeta(s.kind)
+              return (
+                <div key={s.id} className="wall-editor-card">
+                  <div className="wall-kind-row">
+                    <label className="field">
+                      Label
+                      <input
+                        value={s.label}
+                        onChange={(e) => updateSurface(s.id, { label: e.target.value })}
+                        placeholder="e.g. Lounge north"
+                      />
+                    </label>
+                    <label className="field">
+                      Kind
+                      <select
+                        value={s.kind}
+                        onChange={(e) => changeKind(s.id, e.target.value as IndoorKind)}
+                      >
+                        {INDOOR_KINDS.map((k) => (
+                          <option key={k.id} value={k.id}>
+                            {k.name}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </div>
+                  <div className="wall-dims">
+                    <label className="field">
+                      {meta.dimA}
+                      <input
+                        type="number"
+                        min={0.01}
+                        max={40}
+                        step={0.05}
+                        value={s.widthM}
+                        onChange={(e) => updateSurface(s.id, { widthM: Number(e.target.value) })}
+                      />
+                    </label>
+                    <label className="field">
+                      {meta.dimB}
+                      <input
+                        type="number"
+                        min={0.01}
+                        max={20}
+                        step={0.01}
+                        value={s.heightM}
+                        onChange={(e) => updateSurface(s.id, { heightM: Number(e.target.value) })}
+                      />
+                    </label>
+                    <label className="field">
+                      Qty
+                      <input
+                        type="number"
+                        min={1}
+                        max={20}
+                        value={s.qty}
+                        onChange={(e) => updateSurface(s.id, { qty: Number(e.target.value) })}
+                      />
+                    </label>
+                  </div>
+                  <div className="wall-editor-meta">
+                    <span>{paintedAreaM2(s)} m² painted</span>
+                    <button
+                      type="button"
+                      className="btn ghost"
+                      disabled={surfaces.length <= 1}
+                      onClick={() => removeSurface(s.id)}
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
-                <div className="wall-editor-meta">
-                  <span>{wallAreaM2(w)} m²</span>
-                  <button type="button" className="btn ghost" disabled={walls.length <= 1} onClick={() => removeWall(w.id)}>
-                    Remove
-                  </button>
-                </div>
-              </div>
+              )
+            })}
+          </div>
+          <div className="add-kind-row">
+            {INDOOR_KINDS.map((k) => (
+              <button
+                key={k.id}
+                type="button"
+                className="chip"
+                onClick={() => setSurfaces((prev) => [...prev, newIndoorSurface(k.id as IndoorKind)])}
+              >
+                {k.addLabel}
+              </button>
             ))}
           </div>
-          <button
-            type="button"
-            className="btn ghost"
-            onClick={() => setWalls((prev) => [...prev, newWall({ label: `Wall ${prev.length + 1}` })])}
-          >
-            + Add wall
-          </button>
           {estimate && (
             <p className="live-estimate">
-              Running area <strong>{estimate.totalAreaM2} m²</strong>
+              Running area <strong>{formatAreaLine(estimate)}</strong>
             </p>
           )}
           <div className="btn-row">
@@ -202,26 +230,11 @@ export default function FreshCoat() {
 
       {step === 2 && (
         <section key="step-2" className="yacht-panel demo-enter">
-          <h2>2. Indoor / outdoor &amp; paint</h2>
-          <div className="setting-toggle" role="group" aria-label="Job setting">
-            <button
-              type="button"
-              className={`chip${setting === 'indoor' ? ' selected' : ''}`}
-              onClick={() => setSetting('indoor')}
-            >
-              Indoor
-            </button>
-            <button
-              type="button"
-              className={`chip${setting === 'outdoor' ? ' selected' : ''}`}
-              onClick={() => setSetting('outdoor')}
-            >
-              Outdoor
-            </button>
-          </div>
+          <h2>2. Paint system</h2>
+          <p className="hint">Indoor finishes only — weathercoat and metal primer live on the exterior job.</p>
           <h3 className="subhead">Finish paint</h3>
           <div className="pkg-grid">
-            {PAINT_TYPES.map((p) => (
+            {INDOOR_PAINT_TYPES.map((p) => (
               <button
                 key={p.id}
                 type="button"
@@ -229,14 +242,16 @@ export default function FreshCoat() {
                 onClick={() => setPaintTypeId(p.id)}
               >
                 <strong>{p.name}</strong>
-                <span className="pkg-price">from ${p.materialPerM2}/m² · {p.finishCoats} coats</span>
+                <span className="pkg-price">
+                  from ${p.materialPerM2}/m² · {p.finishCoats} coats
+                </span>
                 <p>{p.blurb}</p>
               </button>
             ))}
           </div>
           <h3 className="subhead">Undercoat</h3>
           <div className="route-chips">
-            {UNDERCOATS.map((u) => (
+            {INDOOR_UNDERCOATS.map((u) => (
               <button
                 key={u.id}
                 type="button"
@@ -259,121 +274,54 @@ export default function FreshCoat() {
               Back
             </button>
             <button type="button" className="btn primary" onClick={() => setStep(3)}>
-              Next: Schedule
+              Next: Ballpark
             </button>
           </div>
         </section>
       )}
 
-      {step === 3 && (
+      {step === 3 && estimate && (
         <section key="step-3" className="yacht-panel demo-enter">
-          <h2>3. Preferred window</h2>
-          <div className="day-rail" role="listbox" aria-label="Available days">
-            {days.map((d) => {
-              const openCount = d.slots.filter((s) => s.status === 'open').length
-              const blocked = openCount === 0
-              return (
-                <button
-                  key={d.date}
-                  type="button"
-                  role="option"
-                  aria-selected={date === d.date}
-                  disabled={blocked}
-                  className={`day-pill${date === d.date ? ' on' : ''}${blocked ? ' blocked' : ''}`}
-                  onClick={() => {
-                    setDate(d.date)
-                    setTime(undefined)
-                  }}
-                >
-                  <span>{d.label}</span>
-                  <small>{blocked ? 'Full' : `${openCount} open`}</small>
-                </button>
-              )
-            })}
-          </div>
-          {selectedDay && (
-            <div className="time-rail">
-              {selectedDay.slots.map((slot) => (
-                <button
-                  key={slot.time}
-                  type="button"
-                  disabled={slot.status !== 'open'}
-                  className={`time-chip status-${slot.status}${time === slot.time ? ' on' : ''}`}
-                  title={slot.note}
-                  onClick={() => setTime(slot.time)}
-                >
-                  {slot.time}
-                </button>
-              ))}
-            </div>
-          )}
-          <label className="field">
-            Area
-            <select value={placeId} onChange={(e) => setPlaceId(e.target.value)}>
-              {GB_PLACES.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="field">
-            Notes for the painter
-            <textarea
-              rows={3}
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              placeholder="Colour codes, access, furniture move…"
-            />
-          </label>
-          <div className="btn-row">
-            <button type="button" className="btn ghost" onClick={() => setStep(2)}>
-              Back
-            </button>
-            <button type="button" className="btn primary" disabled={!canWhen} onClick={() => setStep(4)}>
-              Next: Review
-            </button>
-          </div>
-        </section>
-      )}
-
-      {step === 4 && estimate && (
-        <section key="step-4" className="yacht-panel demo-enter">
-          <h2>4. Automatic ballpark</h2>
+          <h2>3. Ballpark</h2>
           <div className="summary">
             <p>
-              <strong>Area:</strong> {estimate.totalAreaM2} m² ({setting})
+              <strong>Painted:</strong> {formatAreaLine(estimate)}
             </p>
             <p>
               <strong>System:</strong> {paintTypeById(paintTypeId)?.name}
               {undercoatId !== 'none' ? ` + ${undercoatById(undercoatId)?.name}` : ''}
             </p>
-            <p>
-              <strong>When:</strong> {date} @ {time} · {GB_PLACES.find((p) => p.id === placeId)?.name}
-            </p>
-            {notes && (
-              <p>
-                <strong>Notes:</strong> {notes}
-              </p>
-            )}
+            <ul className="quote-breakdown">
+              {estimate.lines.map((line) => (
+                <li key={line.wallId}>
+                  {line.label}: {line.areaM2} m²
+                </li>
+              ))}
+            </ul>
             <ul className="quote-breakdown">
               <li>Labour ${estimate.labour.toFixed(2)}</li>
               <li>Materials ${estimate.materials.toFixed(2)}</li>
               <li>Setup ${estimate.setupFee.toFixed(2)}</li>
               <li>Travel (Golden Bay) ${estimate.travelFee.toFixed(2)}</li>
-              {estimate.outdoorSurcharge > 0 && (
-                <li>Outdoor access ${estimate.outdoorSurcharge.toFixed(2)}</li>
-              )}
             </ul>
             <p className="estimate-bracket">Estimated cost {formatPaintBracket(estimate)}</p>
-            <p className="hint">Simulated ballpark for Golden Bay painters — final quote after site measure.</p>
+            <label className="field">
+              Notes for the painter
+              <textarea
+                rows={3}
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                placeholder="Colour codes, access, furniture move…"
+              />
+            </label>
+            <p className="hint">Impression only — simulated Golden Bay painter rates, not a confirmed quote.</p>
           </div>
           <div className="btn-row">
-            <button type="button" className="btn ghost" onClick={() => setStep(3)}>
+            <button type="button" className="btn ghost" onClick={() => setStep(2)}>
               Back
             </button>
-            <button type="button" className="btn primary" disabled={!canConfirm} onClick={() => setDone(true)}>
-              Lock quote (demo)
+            <button type="button" className="btn primary" onClick={() => setDone(true)}>
+              Save impression (demo)
             </button>
           </div>
         </section>

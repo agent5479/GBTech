@@ -58,8 +58,8 @@ export function YachtWizard() {
         <DemoPitchBar
           packageTier="essential"
           compareTo="/yacht/adventure"
-          compareLabel="Bay Adventure"
-          engineNote="Same sail packages, calendar, and water-only routes — different UI."
+          compareLabel="Map-first adventure day"
+          engineNote="Two jobs, not two skins — skippered bay sail vs map-first adventure day."
         />
       </div>
     )
@@ -69,16 +69,16 @@ export function YachtWizard() {
     <div className="yacht-page theme-coastal">
       <DemoChrome
         theme="Coastal Charter"
-        title="Coastal Charter"
+        title="Skippered bay sail"
         subtitle="Skippered Golden Bay sails — calm water, refined pacing. Classic step-by-step booking."
         imageId="coastal"
       />
-      <DemoPitchBar
-        packageTier="essential"
-        compareTo="/yacht/adventure"
-        compareLabel="Bay Adventure"
-        engineNote="Same sail packages, calendar, and water-only routes — different UI."
-      />
+        <DemoPitchBar
+          packageTier="essential"
+          compareTo="/yacht/adventure"
+          compareLabel="Map-first adventure day"
+          engineNote="Two jobs, not two skins — skippered bay sail vs map-first adventure day."
+        />
 
       <ol className="wizard-steps" aria-label="Booking steps">
         {[1, 2, 3, 4].map((n) => (

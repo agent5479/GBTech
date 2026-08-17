@@ -8,6 +8,7 @@ import BayFix from './pages/handyman/BayFix'
 import TradeBoard from './pages/handyman/TradeBoard'
 import CanopyCare from './pages/pruning/CanopyCare'
 import OrchardGrid from './pages/pruning/OrchardGrid'
+import EstimatesHub from './pages/painting/EstimatesHub'
 import FreshCoat from './pages/painting/FreshCoat'
 import PaintBoard from './pages/painting/PaintBoard'
 import './styles/demos.css'
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/handyman/tradeboard" element={<TradeBoard />} />
         <Route path="/pruning/canopy" element={<CanopyCare />} />
         <Route path="/pruning/orchard" element={<OrchardGrid />} />
+        <Route path="/painting" element={<EstimatesHub />} />
         <Route path="/painting/freshcoat" element={<FreshCoat />} />
         <Route path="/painting/paintboard" element={<PaintBoard />} />
         <Route path="*" element={<Navigate to="/" replace />} />
