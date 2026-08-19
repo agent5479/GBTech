@@ -828,6 +828,33 @@ p:last-child {
   color: rgba(242, 242, 242, 0.72);
 }
 
+.demo-card-studioflow {
+  border-color: rgba(196, 82, 74, 0.35);
+  background: linear-gradient(165deg, #f7ece8 0%, #eef2f6 100%);
+}
+
+.demo-card-studioflow .demo-card-kind {
+  color: #c4524a;
+}
+
+.demo-card-classboard {
+  border-color: rgba(40, 40, 40, 0.4);
+  background: linear-gradient(165deg, #1c2420 0%, #121614 100%);
+  color: #f2f2f2;
+}
+
+.demo-card-classboard .demo-card-kind {
+  color: #b6e34a;
+}
+
+.demo-card-classboard h3 {
+  color: #f2f2f2;
+}
+
+.demo-card-classboard p {
+  color: rgba(242, 242, 242, 0.72);
+}
+
 #packages .qualifier-note a {
   color: var(--accent-magenta);
   font-weight: 500;

@@ -15,6 +15,29 @@ const GROUPS: {
   }[]
 }[] = [
   {
+    heading: 'Fitness studio',
+    demos: [
+      {
+        to: '/fitness/studioflow',
+        title: 'Book a class',
+        kind: 'Studio Flow · member wizard',
+        look: 'Coral · slate',
+        blurb: 'Prepaid packs, remaining spots, and a calendar cap — classes fill without you on the phone.',
+        card: 'hub-card-studioflow',
+        imageId: 'studioflow',
+      },
+      {
+        to: '/fitness/classboard',
+        title: 'Run the timetable',
+        kind: 'Class Board · instructor',
+        look: 'Charcoal · lime',
+        blurb: 'Set the cap, tick exercises, see the roster. Same engine as Studio Flow — simulated Calendar and Firebase.',
+        card: 'hub-card-classboard',
+        imageId: 'classboard',
+      },
+    ],
+  },
+  {
     heading: 'Yacht charter',
     demos: [
       {
@@ -138,7 +161,7 @@ export default function Hub() {
         <p className="demo-badge">Marshall Solutions · simulated templates</p>
         <h1>Try a booking demo</h1>
         <p>
-          Fully simulated — no Google Calendar writes, no payments, no dispatch. Five Golden Bay verticals, each as
+          Fully simulated — no Google Calendar writes, no payments, no dispatch. Six Golden Bay verticals, each as
           two named jobs — a classic wizard and a different interface — not the same screen twice.
         </p>
         <p>

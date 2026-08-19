@@ -1,0 +1,203 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { DemoImageTiles } from '../../components/DemoHeroImage'
+import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
+import {
+  addExercise,
+  classTypeById,
+  getClassTypes,
+  getExercises,
+  getOccurrences,
+  setClassCap,
+  spotsLeft,
+  syncLabels,
+  toggleExercise,
+} from '../../shared/fitnessStudio'
+
+/**
+ * Class Board — instructor ops: schedule, cap, roster, exercise catalog.
+ */
+export default function ClassBoard() {
+  const [, setTick] = useState(0)
+  const refresh = () => setTick((n) => n + 1)
+
+  const classes = getClassTypes()
+  const occurrences = getOccurrences()
+  const exercises = getExercises()
+  const [selectedTypeId, setSelectedTypeId] = useState(classes[0]?.id ?? 'strength')
+  const [newExercise, setNewExercise] = useState('')
+  const [locked, setLocked] = useState(false)
+
+  const selected = classTypeById(selectedTypeId)
+  const typeOccs = occurrences.filter((o) => o.classTypeId === selectedTypeId)
+  const sync = syncLabels()
+
+  if (locked && selected) {
+    return (
+      <div className="classboard-page theme-classboard">
+        <div className="adventure-launch-ok demo-enter-success">
+          <p className="demo-badge">Simulated · not a live calendar</p>
+          <h1>Board saved</h1>
+          <p>
+            {selected.name} · cap {selected.cap} · {selected.exerciseIds.length} exercises
+          </p>
+          <p className="sync-chip">{sync.calendar}</p>
+          <p className="sync-chip">{sync.firebase}</p>
+          <DemoQuoteCta styleName="Class Board" />
+          <button type="button" className="btn ghost" onClick={() => setLocked(false)}>
+            Keep editing
+          </button>
+          <Link to="/" className="adventure-hub-link">
+            ← All demos
+          </Link>
+        </div>
+        <DemoPitchBar
+          packageTier="advanced"
+          compareTo="/fitness/studioflow"
+          compareLabel="Studio Flow"
+          engineNote="Same packs, caps, and calendar check — instructor board vs member wizard."
+        />
+      </div>
+    )
+  }
+
+  return (
+    <div className="classboard-page theme-classboard">
+      <header className="classboard-top">
+        <Link to="/" className="demo-back">
+          ← All demos
+        </Link>
+        <div>
+          <p className="demo-badge">Class Board · instructor</p>
+          <h1>Fill the room without watching it</h1>
+          <p className="demo-sub">Set the cap, tick the work, see who&apos;s coming. Calendar and Firebase are simulated.</p>
+        </div>
+        <span className="demo-theme-tag">Different UI · not a wizard</span>
+      </header>
+      <DemoImageTiles id="classboard" />
+      <DemoPitchBar
+        packageTier="advanced"
+        compareTo="/fitness/studioflow"
+        compareLabel="Studio Flow"
+        engineNote="Same packs, caps, and calendar check — instructor board vs member wizard."
+      />
+
+      <div className="classboard-deck demo-enter">
+        <aside className="classboard-schedule">
+          <h2>Today&apos;s board</h2>
+          <div className="class-type-tabs">
+            {classes.map((c) => (
+              <button
+                key={c.id}
+                type="button"
+                className={`chip${selectedTypeId === c.id ? ' selected' : ''}`}
+                onClick={() => setSelectedTypeId(c.id)}
+              >
+                {c.name}
+              </button>
+            ))}
+          </div>
+          {typeOccs.map((o) => {
+            const type = classTypeById(o.classTypeId)
+            if (!type) return null
+            const left = spotsLeft(o)
+            const fill = Math.min(100, Math.round((o.bookedCount / type.cap) * 100))
+            return (
+              <article key={o.id} className="class-fill-card">
+                <header>
+                  <strong>
+                    {o.time} · {o.dayLabel}
+                  </strong>
+                  <span>
+                    {o.bookedCount}/{type.cap}
+                  </span>
+                </header>
+                <div className="fill-bar" aria-hidden="true">
+                  <span style={{ width: `${fill}%` }} />
+                </div>
+                <p className="hint">{left === 0 ? 'Full — no more bookings' : `${left} spots left`}</p>
+                <p className="roster-line">
+                  Attendees: {o.roster.length ? o.roster.join(', ') : 'None yet'}
+                  {o.bookedCount > o.roster.length ? ` + ${o.bookedCount - o.roster.length} more` : ''}
+                </p>
+                <p className="sync-chip">Calendar event {o.calendarEventId}</p>
+              </article>
+            )
+          })}
+        </aside>
+
+        {selected && (
+          <aside className="classboard-side">
+            <section>
+              <h2>Class cap</h2>
+              <p className="hint">Up to 27. Smaller rooms sit lower. Booking checks this number on the calendar.</p>
+              <label className="field">
+                Max people
+                <input
+                  type="number"
+                  min={4}
+                  max={27}
+                  value={selected.cap}
+                  onChange={(e) => {
+                    setClassCap(selected.id, Number(e.target.value))
+                    refresh()
+                  }}
+                />
+              </label>
+            </section>
+
+            <section>
+              <h2>Exercises this class</h2>
+              <p className="hint">Tick the work for this template. Add a new movement to the studio list.</p>
+              <div className="exercise-checks">
+                {exercises.map((ex) => {
+                  const on = selected.exerciseIds.includes(ex.id)
+                  return (
+                    <label key={ex.id} className={`exercise-check${on ? ' on' : ''}`}>
+                      <input
+                        type="checkbox"
+                        checked={on}
+                        onChange={() => {
+                          toggleExercise(selected.id, ex.id)
+                          refresh()
+                        }}
+                      />
+                      {ex.name}
+                    </label>
+                  )
+                })}
+              </div>
+              <div className="add-exercise-row">
+                <input
+                  value={newExercise}
+                  onChange={(e) => setNewExercise(e.target.value)}
+                  placeholder="e.g. Farmer carry"
+                  aria-label="New exercise name"
+                />
+                <button
+                  type="button"
+                  className="btn ghost"
+                  onClick={() => {
+                    const added = addExercise(newExercise)
+                    if (added) {
+                      toggleExercise(selected.id, added.id)
+                      setNewExercise('')
+                      refresh()
+                    }
+                  }}
+                >
+                  + Add
+                </button>
+              </div>
+            </section>
+
+            <p className="sync-chip">{sync.firebase}</p>
+            <button type="button" className="btn primary launch-btn" onClick={() => setLocked(true)}>
+              Save board (demo)
+            </button>
+          </aside>
+        )}
+      </div>
+    </div>
+  )
+}

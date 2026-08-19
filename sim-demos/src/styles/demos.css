@@ -2228,6 +2228,31 @@ textarea {
   color: rgba(242, 242, 242, 0.75);
 }
 
+.hub-card-studioflow {
+  border-color: rgba(196, 82, 74, 0.3);
+  background: linear-gradient(165deg, #f7ece8, #eef2f6);
+}
+
+.hub-card-studioflow .hub-kind {
+  color: #c4524a;
+}
+
+.hub-card-classboard {
+  border-color: rgba(40, 40, 40, 0.4);
+  background: linear-gradient(165deg, #1c2420 0%, #121614 100%);
+  color: #f2f2f2;
+}
+
+.hub-card-classboard .hub-kind,
+.hub-card-classboard .hub-go {
+  color: #b6e34a;
+}
+
+.hub-card-classboard .hub-look,
+.hub-card-classboard > p {
+  color: rgba(242, 242, 242, 0.75);
+}
+
 /* Painting contractor demos */
 .painting-page,
 .paintboard-page {
@@ -2430,6 +2455,50 @@ textarea {
   font-weight: 700;
 }
 
+.area-meta {
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.area-meta small,
+.area-paint {
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+.add-surface-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.wall-board-kind-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.ballpark-export {
+  margin: 1rem 0 0.25rem;
+}
+
+.ballpark-export .btn-row {
+  margin-top: 0;
+}
+
+.ballpark-export-status {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
 .quote-breakdown {
   margin: 0.75rem 0;
   padding-left: 1.1rem;
@@ -2617,7 +2686,8 @@ textarea {
 
 .theme-bayhop .demo-pitch-bar,
 .theme-tradeboard .demo-pitch-bar,
-.theme-mohua .demo-pitch-bar {
+.theme-mohua .demo-pitch-bar,
+.theme-classboard .demo-pitch-bar {
   background: rgba(255, 255, 255, 0.06);
   border-bottom-color: rgba(255, 255, 255, 0.12);
 }
@@ -2675,7 +2745,8 @@ textarea {
 
 .theme-bayhop .demo-quote-cta,
 .theme-tradeboard .demo-quote-cta,
-.theme-mohua .demo-quote-cta {
+.theme-mohua .demo-quote-cta,
+.theme-classboard .demo-quote-cta {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.15);
 }
@@ -2768,6 +2839,262 @@ textarea {
   opacity: 0.9;
 }
 
+/* Fitness studio demos */
+.fitness-page,
+.classboard-page {
+  min-height: 100vh;
+}
+
+.theme-studioflow {
+  --accent: #c4524a;
+  --accent-soft: #e8b4ae;
+  background: linear-gradient(180deg, #f7ece8 0%, #eef2f6 100%);
+  color: #1c2428;
+}
+
+.theme-studioflow .btn.primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.theme-studioflow .pkg-card.selected,
+.theme-studioflow .class-occ-card.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(196, 82, 74, 0.25);
+}
+
+.class-occ-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  margin: 0.75rem 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .class-occ-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.class-occ-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  text-align: left;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+
+.class-occ-card:hover:not(:disabled) {
+  border-color: var(--accent, #c4524a);
+}
+
+.class-occ-card.is-full,
+.class-occ-card:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.spots-line {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent, #c4524a);
+}
+
+.class-occ-card.is-full .spots-line {
+  color: inherit;
+}
+
+.sync-chip {
+  margin: 0.35rem 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  opacity: 0.8;
+}
+
+.theme-classboard {
+  --accent: #b6e34a;
+  --demo-accent-ink: #121614;
+  background: #121614;
+  color: #f2f2f2;
+}
+
+.theme-classboard .btn.primary {
+  background: var(--accent);
+  color: var(--demo-accent-ink);
+}
+
+.theme-classboard .btn.ghost {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #f2f2f2;
+}
+
+.theme-classboard .chip {
+  background: #1c2420;
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #f2f2f2;
+}
+
+.theme-classboard .chip.selected {
+  background: var(--accent);
+  color: var(--demo-accent-ink);
+}
+
+.theme-classboard .field input,
+.theme-classboard .add-exercise-row input {
+  background: #1c2420;
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #f2f2f2;
+}
+
+.theme-classboard .hint {
+  opacity: 0.7;
+}
+
+.theme-classboard .adventure-launch-ok {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(182, 227, 74, 0.28);
+  color: #f2f2f2;
+}
+
+.classboard-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem 0.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.classboard-top h1 {
+  margin: 0.15rem 0;
+}
+
+.classboard-deck {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (min-width: 860px) {
+  .classboard-deck {
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: start;
+  }
+}
+
+.classboard-schedule,
+.classboard-side {
+  padding: 1.1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.classboard-schedule h2,
+.classboard-side h2 {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #b6e34a;
+}
+
+.classboard-side section + section {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.class-type-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.class-fill-card {
+  padding: 0.85rem 0.9rem;
+  margin-bottom: 0.65rem;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.class-fill-card header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+}
+
+.fill-bar {
+  height: 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.fill-bar span {
+  display: block;
+  height: 100%;
+  background: #b6e34a;
+}
+
+.roster-line {
+  margin: 0.4rem 0 0;
+  font-size: 0.82rem;
+  opacity: 0.85;
+}
+
+.exercise-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.exercise-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+}
+
+.exercise-check.on {
+  border-color: rgba(182, 227, 74, 0.45);
+  background: rgba(182, 227, 74, 0.12);
+}
+
+.add-exercise-row {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.add-exercise-row input {
+  flex: 1 1 10rem;
+  min-width: 0;
+  padding: 0.45rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
 @media (max-width: 640px) {
   .demo-pitch-bar {
     padding-left: 1rem;
@@ -2799,7 +3126,9 @@ textarea {
   .orchard-top,
   .orchard-deck,
   .paintboard-top,
-  .paintboard-deck {
+  .paintboard-deck,
+  .classboard-top,
+  .classboard-deck {
     padding-left: 1rem;
     padding-right: 1rem;
   }

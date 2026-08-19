@@ -11,8 +11,8 @@ export default function EstimatesHub() {
         <p className="demo-badge">Painting estimates · simulated</p>
         <h1>Estimates</h1>
         <p className="estimates-hub-intro">
-          Two tools for two jobs — indoor rooms versus weatherboards, corrugate, and roof. Not the same wall-area
-          quote with a different skin.
+          Two calculators for a rough sense of cost — indoor rooms, or weatherboards, corrugate, and roof iron.
+          Impression only. Not the same wall-area quote with a different skin.
         </p>
         <Link to="/" className="hub-back">
           ← All demos

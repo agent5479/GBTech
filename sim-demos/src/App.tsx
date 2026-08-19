@@ -11,6 +11,8 @@ import OrchardGrid from './pages/pruning/OrchardGrid'
 import EstimatesHub from './pages/painting/EstimatesHub'
 import FreshCoat from './pages/painting/FreshCoat'
 import PaintBoard from './pages/painting/PaintBoard'
+import StudioFlow from './pages/fitness/StudioFlow'
+import ClassBoard from './pages/fitness/ClassBoard'
 import './styles/demos.css'
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
@@ -31,6 +33,8 @@ export default function App() {
         <Route path="/painting" element={<EstimatesHub />} />
         <Route path="/painting/freshcoat" element={<FreshCoat />} />
         <Route path="/painting/paintboard" element={<PaintBoard />} />
+        <Route path="/fitness/studioflow" element={<StudioFlow />} />
+        <Route path="/fitness/classboard" element={<ClassBoard />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

@@ -29,6 +29,8 @@ const DEMOS = [
   'orchard',
   'freshcoat',
   'paintboard',
+  'studioflow',
+  'classboard',
 ]
 
 const CARD_WIDTHS = [480, 800, 1200]
