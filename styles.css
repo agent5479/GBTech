@@ -859,6 +859,33 @@ p:last-child {
   color: rgba(242, 242, 242, 0.72);
 }
 
+.demo-card-shoreride {
+  border-color: rgba(139, 90, 43, 0.4);
+  background: linear-gradient(165deg, #efe4d4 0%, #dce8e4 100%);
+}
+
+.demo-card-shoreride .demo-card-kind {
+  color: #8b5a2b;
+}
+
+.demo-card-yardboard {
+  border-color: rgba(42, 34, 28, 0.45);
+  background: linear-gradient(165deg, #2a221c 0%, #1a1512 100%);
+  color: #f2f2f2;
+}
+
+.demo-card-yardboard .demo-card-kind {
+  color: #d4b56a;
+}
+
+.demo-card-yardboard h3 {
+  color: #f2f2f2;
+}
+
+.demo-card-yardboard p {
+  color: rgba(242, 242, 242, 0.72);
+}
+
 #packages .qualifier-note a {
   color: var(--accent-magenta);
   font-weight: 500;

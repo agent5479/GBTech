@@ -13,6 +13,8 @@ export type DemoImageId =
   | 'paintboard'
   | 'studioflow'
   | 'classboard'
+  | 'shoreride'
+  | 'yardboard'
 
 const CARD_WIDTHS = [480, 800, 1200] as const
 const TILE_WIDTHS = [360, 720] as const
@@ -83,4 +85,6 @@ export const DEMO_META: Record<DemoImageId, { title: string; alt: string }> = {
   paintboard: { title: 'Paint Board', alt: 'Exterior weatherboards mid-paint job' },
   studioflow: { title: 'Studio Flow', alt: 'Small group fitness class in a bright gym' },
   classboard: { title: 'Class Board', alt: 'Instructor reviewing a class timetable on a board' },
+  shoreride: { title: 'Shore Ride', alt: 'Horses on a Golden Bay beach at low tide' },
+  yardboard: { title: 'Yard Board', alt: 'Tack and lead ropes in a timber stable yard' },
 }

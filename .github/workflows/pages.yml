@@ -66,7 +66,7 @@ jobs:
           mkdir -p ../sim
           cp -r dist/. ../sim/
           # SPA fallbacks for GitHub Pages deep links
-          for d in yacht/coastal yacht/adventure taxi/mohua taxi/bayhop handyman/bayfix handyman/tradeboard pruning/canopy pruning/orchard painting/freshcoat painting/paintboard fitness/studioflow fitness/classboard; do
+          for d in yacht/coastal yacht/adventure taxi/mohua taxi/bayhop handyman/bayfix handyman/tradeboard pruning/canopy pruning/orchard painting/freshcoat painting/paintboard fitness/studioflow fitness/classboard riding/shoreride riding/yardboard; do
             mkdir -p "../sim/$d"
             cp ../sim/index.html "../sim/$d/index.html"
           done

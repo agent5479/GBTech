@@ -31,6 +31,8 @@ const DEMOS = [
   'paintboard',
   'studioflow',
   'classboard',
+  'shoreride',
+  'yardboard',
 ]
 
 const CARD_WIDTHS = [480, 800, 1200]

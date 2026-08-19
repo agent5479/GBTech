@@ -2253,6 +2253,31 @@ textarea {
   color: rgba(242, 242, 242, 0.75);
 }
 
+.hub-card-shoreride {
+  border-color: rgba(139, 90, 43, 0.35);
+  background: linear-gradient(165deg, #efe4d4, #dce8e4);
+}
+
+.hub-card-shoreride .hub-kind {
+  color: #8b5a2b;
+}
+
+.hub-card-yardboard {
+  border-color: rgba(42, 34, 28, 0.45);
+  background: linear-gradient(165deg, #2a221c 0%, #1a1512 100%);
+  color: #f2f2f2;
+}
+
+.hub-card-yardboard .hub-kind,
+.hub-card-yardboard .hub-go {
+  color: #d4b56a;
+}
+
+.hub-card-yardboard .hub-look,
+.hub-card-yardboard > p {
+  color: rgba(242, 242, 242, 0.75);
+}
+
 /* Painting contractor demos */
 .painting-page,
 .paintboard-page {
@@ -2695,7 +2720,8 @@ textarea {
 .theme-bayhop .demo-pitch-bar,
 .theme-tradeboard .demo-pitch-bar,
 .theme-mohua .demo-pitch-bar,
-.theme-classboard .demo-pitch-bar {
+.theme-classboard .demo-pitch-bar,
+.theme-yardboard .demo-pitch-bar {
   background: rgba(255, 255, 255, 0.06);
   border-bottom-color: rgba(255, 255, 255, 0.12);
 }
@@ -2754,7 +2780,8 @@ textarea {
 .theme-bayhop .demo-quote-cta,
 .theme-tradeboard .demo-quote-cta,
 .theme-mohua .demo-quote-cta,
-.theme-classboard .demo-quote-cta {
+.theme-classboard .demo-quote-cta,
+.theme-yardboard .demo-quote-cta {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.15);
 }
@@ -3101,6 +3128,112 @@ textarea {
   padding: 0.45rem 0.6rem;
   border-radius: 8px;
   border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/* Horse riding demos */
+.riding-page,
+.yardboard-page {
+  min-height: 100vh;
+}
+
+.theme-shoreride {
+  --accent: #8b5a2b;
+  --accent-soft: #c4a574;
+  background: linear-gradient(180deg, #efe4d4 0%, #dce8e4 100%);
+  color: #2a221c;
+}
+
+.theme-shoreride .btn.primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.theme-shoreride .pkg-card.selected,
+.theme-shoreride .class-occ-card.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(139, 90, 43, 0.25);
+}
+
+.ride-window-card.is-caution .spots-line {
+  color: #8a5a12;
+}
+
+.ride-window-card.is-conflict .spots-line,
+.ride-window-card.is-unsuitable .spots-line {
+  color: inherit;
+}
+
+.theme-yardboard {
+  --accent: #d4b56a;
+  --demo-accent-ink: #1a1512;
+  background: #1a1512;
+  color: #f2f2f2;
+}
+
+.theme-yardboard .btn.primary {
+  background: var(--accent);
+  color: var(--demo-accent-ink);
+}
+
+.theme-yardboard .btn.ghost {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #f2f2f2;
+}
+
+.theme-yardboard .chip {
+  background: #2a221c;
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #f2f2f2;
+}
+
+.theme-yardboard .chip.selected {
+  background: var(--accent);
+  color: var(--demo-accent-ink);
+}
+
+.theme-yardboard .field input,
+.theme-yardboard .exercise-check input[type='number'] {
+  background: #2a221c;
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #f2f2f2;
+}
+
+.theme-yardboard .hint {
+  opacity: 0.7;
+}
+
+.theme-yardboard .adventure-launch-ok {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(212, 181, 106, 0.28);
+  color: #f2f2f2;
+}
+
+.theme-yardboard .exercise-check {
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.theme-yardboard .exercise-check input[type='number'] {
+  width: 3.2rem;
+  padding: 0.25rem 0.35rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.cal-kind-busy header span {
+  color: #e8a0a0;
+}
+
+.cal-kind-booking header span {
+  color: #d4b56a;
+}
+
+.cal-kind-stay header span {
+  color: #9ec9b8;
+}
+
+.cal-kind-open header span {
+  color: #b6c99e;
 }
 
 @media (max-width: 640px) {

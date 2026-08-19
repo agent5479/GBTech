@@ -38,6 +38,29 @@ const GROUPS: {
     ],
   },
   {
+    heading: 'Horse riding',
+    demos: [
+      {
+        to: '/riding/shoreride',
+        title: 'Book a beach ride',
+        kind: 'Shore Ride · guest wizard',
+        look: 'Dune · leather · sea',
+        blurb: 'Tide, sunrise, and horse rest days — Apps Script checks the linked calendar before a window can book.',
+        card: 'hub-card-shoreride',
+        imageId: 'shoreride',
+      },
+      {
+        to: '/riding/yardboard',
+        title: 'Run the yard',
+        kind: 'Yard Board · operator',
+        look: 'Timber · straw · brass',
+        blurb: 'Roster, farrier blocks, farmstay and horse-stay overnights on the same simulated calendar.',
+        card: 'hub-card-yardboard',
+        imageId: 'yardboard',
+      },
+    ],
+  },
+  {
     heading: 'Yacht charter',
     demos: [
       {
@@ -161,7 +184,7 @@ export default function Hub() {
         <p className="demo-badge">Marshall Solutions · simulated templates</p>
         <h1>Try a booking demo</h1>
         <p>
-          Fully simulated — no Google Calendar writes, no payments, no dispatch. Six Golden Bay verticals, each as
+          Fully simulated — no Google Calendar writes, no payments, no dispatch. Seven Golden Bay verticals, each as
           two named jobs — a classic wizard and a different interface — not the same screen twice.
         </p>
         <p>

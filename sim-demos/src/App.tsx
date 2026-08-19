@@ -13,6 +13,8 @@ import FreshCoat from './pages/painting/FreshCoat'
 import PaintBoard from './pages/painting/PaintBoard'
 import StudioFlow from './pages/fitness/StudioFlow'
 import ClassBoard from './pages/fitness/ClassBoard'
+import ShoreRide from './pages/riding/ShoreRide'
+import YardBoard from './pages/riding/YardBoard'
 import './styles/demos.css'
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
@@ -35,6 +37,8 @@ export default function App() {
         <Route path="/painting/paintboard" element={<PaintBoard />} />
         <Route path="/fitness/studioflow" element={<StudioFlow />} />
         <Route path="/fitness/classboard" element={<ClassBoard />} />
+        <Route path="/riding/shoreride" element={<ShoreRide />} />
+        <Route path="/riding/yardboard" element={<YardBoard />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
