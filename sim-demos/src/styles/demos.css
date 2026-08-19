@@ -2413,15 +2413,23 @@ textarea {
   margin: 2rem 0 0;
 }
 
-.hub-group > h2 {
-  margin: 0 0 0.75rem;
-  font-size: 0.95rem;
-  letter-spacing: 0.06em;
+.hub-group + .hub-group {
+  margin-top: 1.75rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.hub-theme {
+  margin: 0 0 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: #4b0d1c;
 }
 
 .hub-group .hub-grid {
-  margin-top: 0.75rem;
+  margin-top: 0.55rem;
 }
 
 .estimates-hub {

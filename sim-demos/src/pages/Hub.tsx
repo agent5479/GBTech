@@ -175,7 +175,7 @@ export default function Hub() {
       </header>
       {GROUPS.map((group) => (
         <section key={group.heading} className="hub-group">
-          <h2>{group.heading}</h2>
+          <h2 className="hub-theme">{group.heading}</h2>
           <div className="hub-grid">
             {group.demos.map((d) => (
               <Link key={d.to} to={d.to} className={`hub-card ${d.card}`}>
