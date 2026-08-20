@@ -48,7 +48,10 @@ jobs:
           grep -q 'Sitemap: https://agent5479.github.io/GBTech/sitemap.xml' robots.txt
           grep -q 'Disallow: /sim/' robots.txt
           grep -q 'Disallow: /sim-demos/' robots.txt
+          grep -q 'Disallow: /demo/' robots.txt
           grep -q 'Disallow: /staff-demo/' robots.txt
+          grep -q 'Disallow: /booking-demo/' robots.txt
+          grep -q 'Disallow: /staff-demo-app/' robots.txt
           grep -q 'Allow: /' robots.txt
 
       - name: Setup Node
@@ -71,6 +74,38 @@ jobs:
             cp ../sim/index.html "../sim/$d/index.html"
           done
           cp ../sim/index.html ../sim/404.html
+
+      - name: Build Advanced stack showcase (public)
+        working-directory: booking-demo
+        env:
+          VITE_SHOWCASE_MODE: 'true'
+          VITE_SITE_URL: https://agent5479.github.io/GBTech/demo
+          VITE_FORM_ENDPOINT: https://example.com/showcase
+          VITE_CALENDAR_ID: showcase@group.calendar.google.com
+        run: |
+          npm ci
+          npm run build:static
+          mkdir -p ../demo
+          cp -r dist/. ../demo/
+          for d in about rentals rentals/book contact; do
+            mkdir -p "../demo/$d"
+            cp ../demo/index.html "../demo/$d/index.html"
+          done
+
+      - name: Build Advanced stack showcase (staff)
+        working-directory: staff-demo-app
+        env:
+          VITE_SHOWCASE_MODE: 'true'
+        run: |
+          npm ci
+          npm run build
+          rm -rf ../staff-demo
+          mkdir -p ../staff-demo
+          cp -r dist/. ../staff-demo/
+          for d in dashboard imports/bookings renters login; do
+            mkdir -p "../staff-demo/$d"
+            cp ../staff-demo/index.html "../staff-demo/$d/index.html"
+          done
 
       - name: Regenerate sitemap from static routes
         run: python3 .github/scripts/generate-sitemap.py

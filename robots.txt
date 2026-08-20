@@ -14,9 +14,13 @@ Allow: /profile.png
 Disallow: /sim/
 Disallow: /sim-demos/
 
+# Advanced stack showcases (simulated; built from booking-demo + staff-demo-app)
+Disallow: /demo/
+Disallow: /staff-demo/
+
 # Source / private apps (not part of the public marketing site)
 Disallow: /booking-demo/
-Disallow: /staff-demo/
+Disallow: /staff-demo-app/
 Disallow: /demoplan/
 Disallow: /.github/
 
@@ -24,8 +28,10 @@ User-agent: Googlebot
 Allow: /
 Disallow: /sim/
 Disallow: /sim-demos/
-Disallow: /booking-demo/
+Disallow: /demo/
 Disallow: /staff-demo/
+Disallow: /booking-demo/
+Disallow: /staff-demo-app/
 Disallow: /demoplan/
 Disallow: /.github/
 
@@ -33,8 +39,10 @@ User-agent: Bingbot
 Allow: /
 Disallow: /sim/
 Disallow: /sim-demos/
-Disallow: /booking-demo/
+Disallow: /demo/
 Disallow: /staff-demo/
+Disallow: /booking-demo/
+Disallow: /staff-demo-app/
 Disallow: /demoplan/
 Disallow: /.github/
 
