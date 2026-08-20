@@ -1516,6 +1516,19 @@ body.marshall-page .comparison-table tbody th {
   margin-inline: auto;
 }
 
+.promo-thumb.promo-lead {
+  display: block;
+  width: 100%;
+  max-width: 48rem;
+  aspect-ratio: auto;
+  margin: 0.75rem auto 1.25rem;
+}
+
+.promo-thumb.promo-lead img {
+  height: auto;
+  object-fit: contain;
+}
+
 .promo-thumb.promo-banner img {
   height: auto;
   object-fit: contain;
