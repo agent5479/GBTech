@@ -1307,6 +1307,56 @@ body.gbtech-page .qualifier-note a:hover {
   border-bottom-color: var(--accent);
 }
 
+body.gbtech-page .marshall-feature {
+  display: block;
+  margin-top: 1.25rem;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-subtle);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.gbtech-page .marshall-feature:hover,
+body.gbtech-page .marshall-feature:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px var(--accent-glow);
+  outline: none;
+}
+
+body.gbtech-page .marshall-feature-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 420;
+  object-fit: cover;
+}
+
+body.gbtech-page .marshall-feature-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem 1.15rem 1.15rem;
+}
+
+body.gbtech-page .marshall-feature-title {
+  font-weight: 700;
+  color: var(--accent-magenta);
+}
+
+body.gbtech-page .panel a:not(.cta-button):not(.demo-card):not(.marshall-feature) {
+  color: var(--accent-magenta);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  font-weight: 500;
+}
+
+body.gbtech-page .panel a:not(.cta-button):not(.demo-card):not(.marshall-feature):hover {
+  border-bottom-color: var(--accent);
+}
+
 body.marshall-page .comparison-table-wrap {
   overflow-x: auto;
   margin: 1.25rem 0 1.5rem;
