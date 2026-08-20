@@ -1818,3 +1818,56 @@ body.marshall-page .comparison-table tbody th {
     font-size: 0.8rem;
   }
 }
+
+/* Service / case / tool entity pages */
+.breadcrumb {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.breadcrumb a {
+  color: var(--accent-magenta-mid);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-sep {
+  margin: 0 0.35rem;
+  opacity: 0.6;
+}
+
+.cost-compare-controls {
+  display: grid;
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.cost-compare-controls label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.cost-compare-controls input[type="number"],
+.cost-compare-controls select {
+  max-width: 12rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  color: var(--text);
+  background: var(--panel-bg);
+}
+
+.cost-compare-results {
+  margin-top: 1rem;
+}
+
+.cost-compare-results .package-price {
+  margin-bottom: 0.35rem;
+}

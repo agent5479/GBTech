@@ -30,10 +30,28 @@ jobs:
           test -f marshall-solutions.html
           test -f robots.txt
           test -f styles.css
+          test -f services/it-support.html
+          test -f services/backup-disaster-recovery.html
+          test -f services/servers-networks.html
+          test -f services/cloud-migration.html
+          test -f services/essential-website.html
+          test -f services/booking-portal.html
+          test -f services/wix-migration.html
+          test -f case-studies/beemarshall.html
+          test -f case-studies/home-care-ops.html
+          test -f tools/hosting-cost-compare.html
+          test -f demoplan/local-seo-entity-checklist.md
 
       - name: Verify SEO meta tags on each page
         run: |
-          for page in index.html marshall-solutions.html; do
+          pages="index.html marshall-solutions.html
+            services/it-support.html services/backup-disaster-recovery.html
+            services/servers-networks.html services/cloud-migration.html
+            services/essential-website.html services/booking-portal.html
+            services/wix-migration.html
+            case-studies/beemarshall.html case-studies/home-care-ops.html
+            tools/hosting-cost-compare.html"
+          for page in $pages; do
             grep -q '<title>' "$page"
             grep -q 'name="description"' "$page"
             grep -q 'name="robots"' "$page"
@@ -46,6 +64,9 @@ jobs:
       - name: Verify robots.txt allows marketing and blocks demos
         run: |
           grep -q 'Sitemap: https://agent5479.github.io/GBTech/sitemap.xml' robots.txt
+          grep -q 'Allow: /services/' robots.txt
+          grep -q 'Allow: /case-studies/' robots.txt
+          grep -q 'Allow: /tools/' robots.txt
           grep -q 'Disallow: /sim/' robots.txt
           grep -q 'Disallow: /sim-demos/' robots.txt
           grep -q 'Disallow: /demo/' robots.txt

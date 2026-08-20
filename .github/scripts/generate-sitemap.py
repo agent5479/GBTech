@@ -14,6 +14,16 @@ BASE_URL = "https://agent5479.github.io/GBTech"
 ROUTES = [
     ("index.html", "", "1.0"),
     ("marshall-solutions.html", "marshall-solutions.html", "0.9"),
+    ("services/it-support.html", "services/it-support.html", "0.8"),
+    ("services/backup-disaster-recovery.html", "services/backup-disaster-recovery.html", "0.8"),
+    ("services/servers-networks.html", "services/servers-networks.html", "0.8"),
+    ("services/cloud-migration.html", "services/cloud-migration.html", "0.8"),
+    ("services/essential-website.html", "services/essential-website.html", "0.8"),
+    ("services/booking-portal.html", "services/booking-portal.html", "0.8"),
+    ("services/wix-migration.html", "services/wix-migration.html", "0.8"),
+    ("case-studies/beemarshall.html", "case-studies/beemarshall.html", "0.7"),
+    ("case-studies/home-care-ops.html", "case-studies/home-care-ops.html", "0.7"),
+    ("tools/hosting-cost-compare.html", "tools/hosting-cost-compare.html", "0.7"),
 ]
 
 urlset = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")

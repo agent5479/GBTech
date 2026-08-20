@@ -46,56 +46,121 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "@id": "https://agent5479.github.io/GBTech/marshall-solutions.html#service",
-  "name": "Marshall Solutions — Websites, Booking Portals & Web Apps",
-  "alternateName": ["Marshall Solutions", "Essential Site", "Advanced Booking Portal"],
-  "description": "Custom websites and automated booking portals for Golden Bay, Tākaka, Nelson and Tasman businesses — Wix/Squarespace migration, local SEO, free hosting, and self-management training so you own the system.",
-  "url": "https://agent5479.github.io/GBTech/marshall-solutions.html",
-  "image": "https://agent5479.github.io/GBTech/img/marshallAIsolutions/generalpitch.jpg",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Golden Bay Technologies",
-    "alternateName": "GBTech",
-    "url": "https://agent5479.github.io/GBTech/",
-    "telephone": "+64278142222",
-    "email": "warwick.marshall@gmail.com",
-    "founder": {"@type": "Person", "name": "Warwick Marshall"}
-  },
-  "areaServed": [
-    {"@type": "Place", "name": "Golden Bay"},
-    {"@type": "Place", "name": "Tākaka"},
-    {"@type": "AdministrativeArea", "name": "Nelson"},
-    {"@type": "AdministrativeArea", "name": "Tasman"},
-    {"@type": "Country", "name": "New Zealand"}
-  ],
-  "serviceType": [
-    "Custom React website",
-    "SEO and contact website",
-    "Custom booking portal",
-    "Google Calendar booking system",
-    "Operational web app",
-    "Client database booking portal",
-    "Wix and Squarespace website migration",
-    "GitHub secrets and Firebase setup",
-    "Google Apps Script",
-    "SEO and DNS configuration",
-    "Cursor self-management coaching"
-  ],
-  "offers": [
+  "@graph": [
     {
-      "@type": "Offer",
-      "name": "Essential Site",
-      "price": "351",
-      "priceCurrency": "NZD",
-      "description": "Custom website with phone and contact details, extra pages, brand, legal and privacy, local search listings, and free hosting included."
+      "@type": "Service",
+      "@id": "https://agent5479.github.io/GBTech/marshall-solutions.html#service",
+      "name": "Marshall Solutions — Websites, Booking Portals & Web Apps",
+      "alternateName": ["Marshall Solutions", "Essential Site", "Advanced Booking Portal"],
+      "description": "Custom websites and automated booking portals for Golden Bay, Tākaka, Nelson and Tasman businesses — Wix/Squarespace migration, Google Business Profile ready local SEO, free hosting, and self-management training so you own the system.",
+      "url": "https://agent5479.github.io/GBTech/marshall-solutions.html",
+      "image": "https://agent5479.github.io/GBTech/img/marshallAIsolutions/generalpitch.jpg",
+      "provider": {"@id": "https://agent5479.github.io/GBTech/#business"},
+      "brand": {
+        "@type": "Brand",
+        "name": "Marshall Solutions"
+      },
+      "areaServed": [
+        {"@type": "Place", "name": "Golden Bay"},
+        {"@type": "Place", "name": "Tākaka"},
+        {"@type": "AdministrativeArea", "name": "Nelson"},
+        {"@type": "AdministrativeArea", "name": "Tasman"},
+        {"@type": "Country", "name": "New Zealand"}
+      ],
+      "serviceType": [
+        "Custom React website",
+        "SEO and contact website",
+        "Custom booking portal",
+        "Google Calendar booking system",
+        "Operational web app",
+        "Wix and Squarespace website migration",
+        "Google Business Profile alignment",
+        "SEO and DNS configuration"
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Essential Site",
+          "price": "351",
+          "priceCurrency": "NZD",
+          "url": "https://agent5479.github.io/GBTech/services/essential-website.html",
+          "description": "Custom website with phone and contact details, extra pages, brand, legal and privacy, local search listings, Google Business Profile ready, and free hosting included."
+        },
+        {
+          "@type": "Offer",
+          "name": "Advanced Booking Portal",
+          "price": "702",
+          "priceCurrency": "NZD",
+          "url": "https://agent5479.github.io/GBTech/services/booking-portal.html",
+          "description": "Automated booking portal with Google Calendar sync, client accounts, class caps, and membership options. Free hosting included."
+        }
+      ]
     },
     {
-      "@type": "Offer",
+      "@type": ["LocalBusiness", "ProfessionalService"],
+      "@id": "https://agent5479.github.io/GBTech/#business",
+      "name": "Golden Bay Technologies",
+      "alternateName": ["GBTech", "Marshall Solutions"],
+      "url": "https://agent5479.github.io/GBTech/",
+      "telephone": "+64278142222",
+      "email": "warwick.marshall@gmail.com",
+      "sameAs": ["https://github.com/agent5479"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tākaka",
+        "addressRegion": "Tasman",
+        "addressCountry": "NZ"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -40.8528,
+        "longitude": 172.8061
+      },
+      "founder": {"@id": "https://agent5479.github.io/GBTech/#person"}
+    },
+    {
+      "@type": "Person",
+      "@id": "https://agent5479.github.io/GBTech/#person",
+      "name": "Warwick Marshall",
+      "jobTitle": "IT consultant",
+      "worksFor": {"@id": "https://agent5479.github.io/GBTech/#business"}
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://agent5479.github.io/GBTech/marshall-solutions.html#booking-stack",
+      "name": "Marshall Solutions Booking Stack",
+      "alternateName": "Advanced Booking Portal",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Custom Google Calendar–synced booking portal for local service businesses: client accounts, class caps, memberships, and staff back-office — owned by the client with free hosting.",
+      "url": "https://agent5479.github.io/GBTech/services/booking-portal.html",
+      "offers": {
+        "@type": "Offer",
+        "price": "702",
+        "priceCurrency": "NZD"
+      },
+      "provider": {"@id": "https://agent5479.github.io/GBTech/#business"}
+    },
+    {
+      "@type": "Service",
+      "@id": "https://agent5479.github.io/GBTech/services/essential-website.html#service",
+      "name": "Essential Business Site",
+      "url": "https://agent5479.github.io/GBTech/services/essential-website.html",
+      "provider": {"@id": "https://agent5479.github.io/GBTech/#business"}
+    },
+    {
+      "@type": "Service",
+      "@id": "https://agent5479.github.io/GBTech/services/booking-portal.html#service",
       "name": "Advanced Booking Portal",
-      "price": "702",
-      "priceCurrency": "NZD",
-      "description": "Automated booking portal with Google Calendar sync, client accounts, class caps, and membership options. Free hosting included."
+      "url": "https://agent5479.github.io/GBTech/services/booking-portal.html",
+      "provider": {"@id": "https://agent5479.github.io/GBTech/#business"}
+    },
+    {
+      "@type": "Service",
+      "@id": "https://agent5479.github.io/GBTech/services/wix-migration.html#service",
+      "name": "Wix and Squarespace migration",
+      "url": "https://agent5479.github.io/GBTech/services/wix-migration.html",
+      "provider": {"@id": "https://agent5479.github.io/GBTech/#business"}
     }
   ]
 }
@@ -151,20 +216,23 @@
         <div class="pricing-tier package-tier" id="essential">
           <h3>Essential Business Site</h3>
           <p class="package-price">$351</p>
-          <p class="pricing-tier-lead">Perfect for established businesses needing a fast, professional online presence that gets found on Google.</p>
+          <p class="pricing-tier-lead">Perfect for established businesses needing a fast, professional online presence that gets found on Google — Google Business Profile ready.</p>
           <ul>
             <li><strong>Custom Design</strong> — Mobile-ready, lightning-fast site tailored to your brand (or upgraded from your old Wix/Squarespace layout)</li>
             <li><strong>Local Search Ready</strong> — Fully configured for Google Search, Bing, and Google Business Profile so local clients can find you fast</li>
             <li><strong>Click-to-Connect</strong> — One-tap phone calling, direct email paths, and customer contact forms</li>
             <li><strong>Zero Hosting Costs</strong> — Free permanent hosting included (standard yearly domain fee applies)</li>
           </ul>
-          <p class="tier-cta"><a href="mailto:warwick.marshall@gmail.com?subject=Essential%20Site%20%E2%80%94%20%24351" class="cta-button secondary">Enquire — Essential $351</a></p>
+          <p class="tier-cta">
+            <a href="services/essential-website.html" class="cta-button secondary">Essential details →</a>
+            <a href="mailto:warwick.marshall@gmail.com?subject=Essential%20Site%20%E2%80%94%20%24351" class="cta-button secondary">Enquire — $351</a>
+          </p>
         </div>
         <div class="pricing-tier package-tier package-tier-featured" id="advanced">
           <p class="tier-badge">Most popular for local service businesses</p>
           <h3>Advanced Booking Portal</h3>
           <p class="package-price">$702</p>
-          <p class="pricing-tier-lead">For service providers, tutors, and class instructors who want hands-free scheduling and automatic payments.</p>
+          <p class="pricing-tier-lead">For service providers, tutors, and class instructors who want Google Calendar booking and automatic spot caps — without Calendly rent.</p>
           <ul>
             <li><strong>Everything in Essential</strong>, plus:</li>
             <li><strong>Automated Calendar Sync</strong> — Bookings link directly to your existing Google Calendar so your schedule stays up-to-date instantly</li>
@@ -172,7 +240,10 @@
             <li><strong>Flexible Membership Options</strong> — Support for casual bookings, 10-class packs, or recurring weekly passes</li>
             <li><strong>Direct Handover</strong> — All admin tools configured inside your private account for total control</li>
           </ul>
-          <p class="tier-cta"><a href="mailto:warwick.marshall@gmail.com?subject=Advanced%20Booking%20Portal%20%E2%80%94%20%24702" class="cta-button primary">Enquire — Advanced $702</a></p>
+          <p class="tier-cta">
+            <a href="services/booking-portal.html" class="cta-button primary">Booking portal details →</a>
+            <a href="mailto:warwick.marshall@gmail.com?subject=Advanced%20Booking%20Portal%20%E2%80%94%20%24702" class="cta-button secondary">Enquire — $702</a>
+          </p>
           <p class="qualifier-note"><a href="#live-demo">Try the live stack demo ↓</a></p>
         </div>
       </div>
@@ -182,14 +253,16 @@
           <li><strong>Domain name</strong> — Standard yearly registrar fee (not included in package price). We connect it for you.</li>
           <li><strong>Self-Management Training</strong> — Step-by-step guidance so you can make simple text and photo edits yourself after handover. <a href="mailto:warwick.marshall@gmail.com?subject=Self-Management%20Training">Enquire</a></li>
           <li><strong>Extended Development</strong> — feature additions beyond the base packages at <strong>$117/hr</strong></li>
+          <li><strong>Leave Wix / Squarespace</strong> — <a href="services/wix-migration.html">migration to a site you own</a> · <a href="tools/hosting-cost-compare.html">compare 1–3 year costs</a></li>
         </ul>
       </div>
-      <p class="qualifier-note"><a href="#how-we-work">Why choose a custom site ↓</a> · <a href="#demos">Try live demos ↓</a> · <a href="#custom-apps">See operational app examples ↓</a></p>
+      <p class="qualifier-note"><a href="#how-we-work">Why choose a custom site ↓</a> · <a href="#demos">Try live demos ↓</a> · <a href="#custom-apps">See operational app examples ↓</a> · <a href="demoplan/local-seo-entity-checklist.md">Local SEO checklist for builds</a></p>
     </section>
 
     <section class="panel" id="how-we-work">
       <p class="section-role">Why choose us</p>
       <h2>Why Choose a Custom Site?</h2>
+      <p>Every Marshall Solutions build is set up for local discovery — dedicated service pages, Google Business Profile alignment, and structured data. See our <a href="demoplan/local-seo-entity-checklist.md">local SEO entity checklist</a> for what ships with each client site.</p>
       <div class="comparison-table-wrap">
         <table class="comparison-table">
           <caption>Comparison of website builder subscriptions versus Marshall Solutions owned builds</caption>
@@ -536,10 +609,10 @@
         </button>
       </div>
       <div class="case-study">
-        <p><strong>Hive Management App</strong> — A mobile hive-management platform for a local apiarist with GPS hive clusters, reminders, scheduling, task allocation, and navigation between sites. Live staff app: <a href="https://agent5479.github.io/LarsBees/beemarshall-full.html" target="_blank" rel="noopener noreferrer">BeeMarshall</a>.</p>
+        <p><strong><a href="case-studies/beemarshall.html">Hive Management App (BeeMarshall)</a></strong> — A mobile hive-management platform for a local apiarist with GPS hive clusters, reminders, scheduling, task allocation, and navigation between sites. Live staff app: <a href="https://agent5479.github.io/LarsBees/beemarshall-full.html" target="_blank" rel="noopener noreferrer">BeeMarshall</a>.</p>
       </div>
       <div class="case-study">
-        <p><strong>Home-Care Operations System</strong> — A customised platform for an independent care team managing multiple elderly and special-needs clients, staff coordination, recurring care tasks, and mobile workflow management.</p>
+        <p><strong><a href="case-studies/home-care-ops.html">Home-Care Operations System</a></strong> — A customised platform for an independent care team managing multiple elderly and special-needs clients, staff coordination, recurring care tasks, and mobile workflow management.</p>
       </div>
       <div class="case-study">
         <p><strong>Business Systems &amp; POS Solutions</strong> — Previous larger-scale work includes SQL workflow systems, customised database front-ends, and cloud-integrated Point of Sale software.</p>

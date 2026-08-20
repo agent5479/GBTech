@@ -46,52 +46,109 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "ProfessionalService"],
-  "@id": "https://agent5479.github.io/GBTech/#business",
-  "name": "Golden Bay Technologies",
-  "alternateName": ["GBTech", "GBTech Nelson", "Golden Bay Tech"],
-  "description": "IT support and business systems infrastructure for Nelson, Tasman and Golden Bay: troubleshooting, servers and networks, backups, and system upgrades for small and medium businesses.",
-  "url": "https://agent5479.github.io/GBTech/",
-  "telephone": "+64278142222",
-  "email": "warwick.marshall@gmail.com",
-  "image": "https://agent5479.github.io/GBTech/profile.png",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Tākaka",
-    "addressRegion": "Nelson/Tasman",
-    "addressCountry": "NZ"
-  },
-  "areaServed": [
-    {"@type": "AdministrativeArea", "name": "Nelson"},
-    {"@type": "AdministrativeArea", "name": "Tasman"},
-    {"@type": "Place", "name": "Golden Bay"},
-    {"@type": "Country", "name": "New Zealand"}
-  ],
-  "knowsAbout": [
-    "IT support Nelson",
-    "IT support Tasman",
-    "IT support Golden Bay",
-    "data backup",
-    "disaster recovery",
-    "server and network setup",
-    "small business IT"
-  ],
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "GBTech services",
-    "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Day-to-day IT support and device setup"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Business IT, servers and network setup"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Data backup, recovery and system upgrades"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Marshall Solutions custom websites and booking portals", "url": "https://agent5479.github.io/GBTech/marshall-solutions.html"}}
-    ]
-  },
-  "founder": {
-    "@type": "Person",
-    "name": "Warwick Marshall",
-    "jobTitle": "IT consultant"
-  },
-  "priceRange": "$117–$127/hr · project quotes · retainers"
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "ProfessionalService"],
+      "@id": "https://agent5479.github.io/GBTech/#business",
+      "name": "Golden Bay Technologies",
+      "alternateName": ["GBTech", "GBTech Nelson", "Golden Bay Tech"],
+      "description": "IT support and business systems infrastructure for Nelson, Tasman and Golden Bay: troubleshooting, servers and networks, backups, and system upgrades for small and medium businesses. Same-day remote fixes, no ticket queue.",
+      "url": "https://agent5479.github.io/GBTech/",
+      "telephone": "+64278142222",
+      "email": "warwick.marshall@gmail.com",
+      "image": "https://agent5479.github.io/GBTech/profile.png",
+      "sameAs": ["https://github.com/agent5479"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tākaka",
+        "addressRegion": "Tasman",
+        "addressCountry": "NZ"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -40.8528,
+        "longitude": 172.8061
+      },
+      "areaServed": [
+        {"@type": "AdministrativeArea", "name": "Nelson"},
+        {"@type": "AdministrativeArea", "name": "Tasman"},
+        {"@type": "Place", "name": "Golden Bay"},
+        {"@type": "Place", "name": "Tākaka"},
+        {"@type": "Country", "name": "New Zealand"}
+      ],
+      "knowsAbout": [
+        "IT support Nelson",
+        "IT support Tasman",
+        "IT support Golden Bay",
+        "emergency data backup",
+        "disaster recovery",
+        "server and network setup",
+        "small business IT"
+      ],
+      "founder": {"@id": "https://agent5479.github.io/GBTech/#person"},
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "GBTech services",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@id": "https://agent5479.github.io/GBTech/services/it-support.html#service"}},
+          {"@type": "Offer", "itemOffered": {"@id": "https://agent5479.github.io/GBTech/services/servers-networks.html#service"}},
+          {"@type": "Offer", "itemOffered": {"@id": "https://agent5479.github.io/GBTech/services/backup-disaster-recovery.html#service"}},
+          {"@type": "Offer", "itemOffered": {"@id": "https://agent5479.github.io/GBTech/services/cloud-migration.html#service"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Marshall Solutions custom websites and booking portals", "url": "https://agent5479.github.io/GBTech/marshall-solutions.html"}}
+        ]
+      },
+      "priceRange": "$117–$127/hr · project quotes · retainers"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://agent5479.github.io/GBTech/#person",
+      "name": "Warwick Marshall",
+      "jobTitle": "IT consultant",
+      "worksFor": {"@id": "https://agent5479.github.io/GBTech/#business"},
+      "url": "https://agent5479.github.io/GBTech/",
+      "email": "warwick.marshall@gmail.com",
+      "telephone": "+64278142222",
+      "sameAs": ["https://github.com/agent5479"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tākaka",
+        "addressRegion": "Tasman",
+        "addressCountry": "NZ"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://agent5479.github.io/GBTech/services/it-support.html#service",
+      "name": "IT support Nelson, Tasman & Golden Bay",
+      "url": "https://agent5479.github.io/GBTech/services/it-support.html",
+      "provider": {"@id": "https://agent5479.github.io/GBTech/#business"},
+      "areaServed": ["Nelson", "Tasman", "Golden Bay", "New Zealand"]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://agent5479.github.io/GBTech/services/servers-networks.html#service",
+      "name": "Business IT, servers and office networks",
+      "url": "https://agent5479.github.io/GBTech/services/servers-networks.html",
+      "provider": {"@id": "https://agent5479.github.io/GBTech/#business"},
+      "areaServed": ["Nelson", "Tasman", "Golden Bay", "New Zealand"]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://agent5479.github.io/GBTech/services/backup-disaster-recovery.html#service",
+      "name": "Data backup and emergency disaster recovery",
+      "url": "https://agent5479.github.io/GBTech/services/backup-disaster-recovery.html",
+      "provider": {"@id": "https://agent5479.github.io/GBTech/#business"},
+      "areaServed": ["Nelson", "Tasman", "Golden Bay", "New Zealand"]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://agent5479.github.io/GBTech/services/cloud-migration.html#service",
+      "name": "Cloud and data migration",
+      "url": "https://agent5479.github.io/GBTech/services/cloud-migration.html",
+      "provider": {"@id": "https://agent5479.github.io/GBTech/#business"},
+      "areaServed": ["Nelson", "Tasman", "Golden Bay", "New Zealand"]
+    }
+  ]
 }
 </script>
 
@@ -126,7 +183,7 @@
       <div class="hero-text">
         <p class="hero-brand">GBTech · Golden Bay Technologies</p>
         <h1>Reliable IT Support &amp; Business Systems Infrastructure</h1>
-        <p class="hero-subtitle">From day-to-day troubleshooting to server management and disaster recovery. Fast, direct, local IT solutions for Nelson, Tasman, and Golden Bay businesses.</p>
+        <p class="hero-subtitle">From day-to-day troubleshooting to server management and emergency disaster recovery. Same-day remote fixes, direct contact, and local IT for Nelson, Tasman, and Golden Bay businesses.</p>
         <p class="subheadline">$117–$127/hr · project quotes · retainers</p>
         <p class="hero-local-trust">Warwick Marshall · Tākaka, Golden Bay · Nelson/Tasman based, available remotely across NZ</p>
         <div class="cta-container">
@@ -139,28 +196,28 @@
     <section class="panel" id="services">
       <p class="section-role">Core services</p>
       <h2>What I Do</h2>
-      <p>Trusted local IT for Nelson, Tasman, and Golden Bay businesses — from a broken workstation to office networks, backups, and upgrades. We find the real fault, recover cleanly, and stay in direct contact.</p>
+      <p>Trusted local IT for Nelson, Tasman, and Golden Bay businesses — from a broken workstation to office networks, backups, and upgrades. Same-day remote fixes, emergency recovery when systems are down, and direct contact with no ticket queue.</p>
       <div class="demo-grid">
-        <div class="demo-card demo-card-static">
+        <a class="demo-card" href="services/servers-networks.html">
           <span class="demo-card-kind">Networks &amp; hardware</span>
           <h3>Business IT &amp; Network Setup</h3>
           <p>Hardware, office networks, and servers engineered for uptime and security.</p>
-        </div>
-        <div class="demo-card demo-card-static">
+        </a>
+        <a class="demo-card" href="services/backup-disaster-recovery.html">
           <span class="demo-card-kind">Backups</span>
           <h3>Data Backup &amp; Emergency Recovery</h3>
-          <p>Automated backup strategies so your critical business files and systems are never lost.</p>
-        </div>
-        <div class="demo-card demo-card-static">
-          <span class="demo-card-kind">Upgrades</span>
-          <h3>System Upgrades &amp; Automation</h3>
-          <p>Modernize old software, eliminate repetitive manual tasks, and connect disconnected tools.</p>
-        </div>
-        <div class="demo-card demo-card-static">
+          <p>Automated backups and clean restoration when files or systems are at risk.</p>
+        </a>
+        <a class="demo-card" href="services/it-support.html">
+          <span class="demo-card-kind">Support</span>
+          <h3>Day-to-day IT Support</h3>
+          <p>Troubleshooting and device setup — most routine fixes same-day remotely.</p>
+        </a>
+        <a class="demo-card" href="services/cloud-migration.html">
           <span class="demo-card-kind">Migration</span>
           <h3>Seamless Cloud &amp; Data Migration</h3>
-          <p>Move emails, databases, and server files safely without losing business data or operational time.</p>
-        </div>
+          <p>Move emails, databases, and server files safely without losing business data.</p>
+        </a>
       </div>
       <p class="qualifier-note"><a href="#work">See how work is grouped ↓</a> · <a href="#pricing">View pricing ↓</a></p>
     </section>
@@ -172,18 +229,18 @@
       <div class="task-group task-group-general">
         <h3><span class="task-label">Routine</span> Ongoing systems maintenance &amp; user support</h3>
         <ul>
-          <li>End-user support and troubleshooting</li>
+          <li>End-user support and troubleshooting — <a href="services/it-support.html">IT support</a></li>
           <li>Workstation and device setup</li>
-          <li>General IT helpdesk-style work</li>
+          <li>Same-day remote fixes; direct contact, no ticket queue</li>
         </ul>
       </div>
       <div class="task-group task-group-specialist">
         <h3><span class="task-label">Specialty</span> Servers, networks &amp; infrastructure</h3>
         <ul>
-          <li>Server and office network management</li>
+          <li><a href="services/servers-networks.html">Server and office network management</a></li>
           <li>Custom software and automation</li>
-          <li>System upgrades and data migration</li>
-          <li>Backups, recovery, and network troubleshooting</li>
+          <li><a href="services/cloud-migration.html">System upgrades and data migration</a></li>
+          <li><a href="services/backup-disaster-recovery.html">Backups, emergency recovery</a>, and network troubleshooting</li>
         </ul>
       </div>
     </section>
@@ -257,10 +314,11 @@
       <h2>Why GBTech?</h2>
       <ul class="benefit-list">
         <li>Fixes that hold — we treat the real problem, not just the symptom</li>
-        <li>Coverage from workstations to servers, networks, and backups</li>
-        <li>Locally built in Golden Bay — direct contact, no ticket queue</li>
+        <li>Coverage from workstations to servers, networks, and emergency recovery</li>
+        <li>Locally built in Tākaka, Golden Bay — direct contact, no ticket queue</li>
+        <li>Most routine fixes resolved same-day remotely</li>
         <li>Hourly, project, or retainer — priced to the job, not a fixed menu</li>
-        <li>IT support and custom software from one provider</li>
+        <li>IT support and custom software from one provider — <a href="marshall-solutions.html">Marshall Solutions</a> for websites</li>
         <li>Nelson/Tasman based, available remotely across NZ</li>
       </ul>
     </section>

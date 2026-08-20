@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Ownership Cost Calculator NZD | Marshall Solutions</title>
+<meta name="description" content="Compare Wix/Squarespace + Calendly monthly stack vs Marshall Solutions Essential ($351) or Advanced ($702) over 1–3 years. First-party NZD ownership calculator — no monthly hosting.">
+<meta name="author" content="Warwick Marshall, Marshall Solutions">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<link rel="canonical" href="https://agent5479.github.io/GBTech/tools/hosting-cost-compare.html">
+<meta name="theme-color" content="#4B0D1C">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="../img/jelly192.png">
+<meta property="og:title" content="Website Ownership Cost Calculator NZD | Marshall Solutions">
+<meta property="og:description" content="Wix/Squarespace stack vs Essential $351 or Advanced $702 over 1–3 years — NZD.">
+<meta property="og:url" content="https://agent5479.github.io/GBTech/tools/hosting-cost-compare.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://agent5479.github.io/GBTech/img/marshallAIsolutions/nonsubpitch.jpg">
+<meta property="og:locale" content="en_NZ">
+<meta property="og:site_name" content="Marshall Solutions">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Website Ownership Cost Calculator NZD">
+<meta name="twitter:description" content="Wix/Squarespace stack vs Essential $351 or Advanced $702 over 1–3 years — NZD.">
+<meta name="twitter:image" content="https://agent5479.github.io/GBTech/img/marshallAIsolutions/nonsubpitch.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://agent5479.github.io/GBTech/tools/hosting-cost-compare.html#app",
+  "name": "Marshall Solutions hosting cost compare",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "Interactive NZD calculator comparing typical Wix/Squarespace and Calendly monthly costs against one-time Marshall Solutions Essential ($351) and Advanced ($702) packages over 1–3 years.",
+  "url": "https://agent5479.github.io/GBTech/tools/hosting-cost-compare.html",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "NZD"},
+  "provider": {"@id": "https://agent5479.github.io/GBTech/#business"}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body class="marshall-page">
+  <div class="scanline" aria-hidden="true"></div>
+  <main class="grid">
+    <nav class="page-nav" aria-label="Page navigation">
+      <div class="page-nav-row">
+        <a href="../marshall-solutions.html" class="page-nav-back">← Marshall Solutions</a>
+        <span class="page-nav-brand"><strong>Tool</strong> · Cost compare</span>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-text">
+        <p class="breadcrumb"><a href="../marshall-solutions.html">Marshall Solutions</a><span class="breadcrumb-sep">/</span><span>Cost compare</span></p>
+        <p class="hero-brand">First-party calculator · NZD</p>
+        <h1>Website Ownership Cost Compare</h1>
+        <p class="hero-subtitle">Estimate what a typical builder + scheduler stack costs over 1–3 years versus a one-time Marshall Solutions Essential or Advanced build with free hosting.</p>
+      </div>
+    </header>
+
+    <section class="panel">
+      <p class="section-role">Adjust assumptions</p>
+      <h2>Monthly stack vs one-time build</h2>
+      <form class="cost-compare-controls" id="cost-form" aria-describedby="cost-method">
+        <label>
+          Builder site (Wix / Squarespace) NZD / month
+          <input type="number" id="builder-mo" name="builder" min="0" step="1" value="65">
+        </label>
+        <label>
+          Scheduler (e.g. Calendly) NZD / month
+          <input type="number" id="scheduler-mo" name="scheduler" min="0" step="1" value="35">
+        </label>
+        <label>
+          Form / CRM extras NZD / month
+          <input type="number" id="extras-mo" name="extras" min="0" step="1" value="0">
+        </label>
+        <label>
+          Domain fee NZD / year (both paths)
+          <input type="number" id="domain-yr" name="domain" min="0" step="1" value="25">
+        </label>
+        <label>
+          Horizon
+          <select id="years" name="years">
+            <option value="1">1 year</option>
+            <option value="2">2 years</option>
+            <option value="3" selected>3 years</option>
+          </select>
+        </label>
+      </form>
+      <p id="cost-method" class="qualifier-note">Defaults match common public list prices cited on our packages page ($65+/mo builder, $35+/mo scheduler). Edit to match your invoices. Marshall one-time: Essential $351, Advanced $702. Hosting after handover: $0/mo.</p>
+    </section>
+
+    <section class="panel cost-compare-results" aria-live="polite">
+      <p class="section-role">Results</p>
+      <h2>Total cost over <span id="years-label">3</span> year(s)</h2>
+      <div class="pricing-options">
+        <div class="pricing-tier">
+          <h3>Subscription stack</h3>
+          <p class="package-price" id="stack-total">—</p>
+          <p class="pricing-tier-lead" id="stack-detail">Monthly tools × months + domain years</p>
+        </div>
+        <div class="pricing-tier">
+          <h3>Marshall Essential</h3>
+          <p class="package-price" id="essential-total">—</p>
+          <p class="pricing-tier-lead">$351 once + domain years · $0 hosting</p>
+          <p class="tier-cta"><a href="../services/essential-website.html" class="cta-button secondary">Essential details</a></p>
+        </div>
+        <div class="pricing-tier package-tier-featured">
+          <p class="tier-badge">Includes Google Calendar booking</p>
+          <h3>Marshall Advanced</h3>
+          <p class="package-price" id="advanced-total">—</p>
+          <p class="pricing-tier-lead">$702 once + domain years · replaces scheduler rent</p>
+          <p class="tier-cta"><a href="../services/booking-portal.html" class="cta-button primary">Booking portal details</a></p>
+        </div>
+      </div>
+      <p class="qualifier-note" id="savings-note"></p>
+    </section>
+
+    <section class="panel" id="contact">
+      <h2>Ready to own the site?</h2>
+      <div class="cta-container">
+        <a href="mailto:warwick.marshall@gmail.com?subject=Marshall%20Solutions%20%E2%80%94%20ownership%20cost%20enquiry" class="cta-button primary">Email Warwick</a>
+        <a href="../services/wix-migration.html" class="cta-button secondary">Wix / Squarespace migration</a>
+      </div>
+    </section>
+
+    <footer class="system-footer">
+      <span class="footer-label">Marshall Solutions</span>
+      <a href="../index.html" class="footer-link">GBTech</a>
+      <span class="footer-sep">|</span>
+      <a href="mailto:warwick.marshall@gmail.com" class="footer-link">warwick.marshall@gmail.com</a>
+      <span class="footer-sep">|</span>
+      <a href="tel:+64278142222" class="footer-link">027 814 2222</a>
+    </footer>
+  </main>
+  <script>
+    (function () {
+      var ESSENTIAL = 351;
+      var ADVANCED = 702;
+      var form = document.getElementById('cost-form');
+      var nzd = new Intl.NumberFormat('en-NZ', { style: 'currency', currency: 'NZD', maximumFractionDigits: 0 });
+
+      function num(id) {
+        var v = parseFloat(document.getElementById(id).value);
+        return isFinite(v) && v >= 0 ? v : 0;
+      }
+
+      function recalc() {
+        var years = num('years') || 3;
+        var months = years * 12;
+        var stackMonthly = num('builder-mo') + num('scheduler-mo') + num('extras-mo');
+        var domain = num('domain-yr') * years;
+        var stack = stackMonthly * months + domain;
+        var essential = ESSENTIAL + domain;
+        var advanced = ADVANCED + domain;
+
+        document.getElementById('years-label').textContent = String(years);
+        document.getElementById('stack-total').textContent = nzd.format(stack);
+        document.getElementById('stack-detail').textContent =
+          nzd.format(stackMonthly) + '/mo × ' + months + ' mo + domain';
+        document.getElementById('essential-total').textContent = nzd.format(essential);
+        document.getElementById('advanced-total').textContent = nzd.format(advanced);
+
+        var vsEssential = stack - essential;
+        var vsAdvanced = stack - advanced;
+        var note = document.getElementById('savings-note');
+        if (vsAdvanced > 0) {
+          note.textContent = 'Over ' + years + ' year(s), Advanced is about ' + nzd.format(vsAdvanced) +
+            ' less than this subscription stack (and includes booking). Essential saves about ' +
+            nzd.format(vsEssential) + ' if you do not need booking automation.';
+        } else if (vsEssential > 0) {
+          note.textContent = 'Over ' + years + ' year(s), Essential is about ' + nzd.format(vsEssential) +
+            ' less than this subscription stack at current assumptions.';
+        } else {
+          note.textContent = 'At these monthly rates the stack is cheaper over ' + years +
+            ' year(s) — raise the horizon or check real invoices; ownership still removes lock-in.';
+        }
+      }
+
+      form.addEventListener('input', recalc);
+      form.addEventListener('change', recalc);
+      recalc();
+    })();
+  </script>
+</body>
+</html>
