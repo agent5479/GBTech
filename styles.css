@@ -1501,6 +1501,17 @@ body.marshall-page .comparison-table tbody th {
   display: block;
 }
 
+.promo-thumb.promo-banner {
+  grid-column: 1 / -1;
+  aspect-ratio: auto;
+  max-width: 36rem;
+}
+
+.promo-thumb.promo-banner img {
+  height: auto;
+  object-fit: contain;
+}
+
 .promo-thumb:hover,
 .promo-thumb:focus-visible {
   border-color: var(--accent);
