@@ -1078,6 +1078,22 @@ p:last-child {
 }
 
 /* GBTech home + Marshall Solutions — polished page layout */
+body.gbtech-page .hero {
+  display: grid;
+  grid-template-columns: minmax(10rem, 16rem) minmax(0, 1fr);
+  gap: 1.5rem 2rem;
+  align-items: start;
+}
+
+body.gbtech-page .hero .image-block {
+  margin: 0;
+  max-width: 16rem;
+}
+
+body.gbtech-page .hero .image-block + .hero-text {
+  margin-top: 0;
+}
+
 body.gbtech-page .hero-brand,
 body.marshall-page .hero-brand {
   color: var(--accent-magenta);
@@ -1678,6 +1694,15 @@ body.marshall-page .comparison-table tbody th {
 
   .hero-text {
     min-width: 0;
+  }
+
+  body.gbtech-page .hero {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  body.gbtech-page .hero .image-block {
+    max-width: 12rem;
   }
 
   .cta-container {
