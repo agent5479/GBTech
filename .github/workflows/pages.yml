@@ -69,7 +69,7 @@ jobs:
           mkdir -p ../sim
           cp -r dist/. ../sim/
           # SPA fallbacks for GitHub Pages deep links
-          for d in yacht/coastal yacht/adventure taxi/mohua taxi/bayhop handyman/bayfix handyman/tradeboard pruning/canopy pruning/orchard painting/freshcoat painting/paintboard fitness/studioflow fitness/classboard riding/shoreride riding/yardboard; do
+          for d in yacht/coastal yacht/adventure taxi/mohua taxi/bayhop handyman/bayfix handyman/tradeboard pruning/canopy pruning/orchard painting painting/freshcoat painting/paintboard fitness/studioflow fitness/classboard riding/shoreride riding/yardboard; do
             mkdir -p "../sim/$d"
             cp ../sim/index.html "../sim/$d/index.html"
           done
@@ -84,6 +84,7 @@ jobs:
           VITE_CALENDAR_ID: showcase@group.calendar.google.com
         run: |
           npm ci
+          npx playwright install --with-deps chromium
           npm run build:static
           mkdir -p ../demo
           cp -r dist/. ../demo/
@@ -109,6 +110,12 @@ jobs:
 
       - name: Regenerate sitemap from static routes
         run: python3 .github/scripts/generate-sitemap.py
+
+      - name: Verify built demo bundles
+        run: |
+          test -f sim/index.html
+          test -f demo/index.html
+          test -f staff-demo/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
