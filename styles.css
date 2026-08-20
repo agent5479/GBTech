@@ -612,7 +612,9 @@ p:last-child {
 
 .demo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 22rem));
+  justify-content: center;
+  justify-items: stretch;
   gap: 1rem;
   margin: 1.25rem 0 1.5rem;
 }
@@ -1325,7 +1327,7 @@ body.gbtech-page .qualifier-note a:hover {
 
 body.gbtech-page .marshall-feature {
   display: block;
-  margin-top: 1.25rem;
+  margin: 1.25rem auto 0;
   overflow: hidden;
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
@@ -1462,7 +1464,9 @@ body.marshall-page .comparison-table tbody th {
 }
 
 .image-block {
-  margin: 1.5rem 0 0;
+  margin: 1.5rem auto 0;
+  display: flex;
+  justify-content: center;
 }
 
 .image-block:first-child {
@@ -1475,9 +1479,11 @@ body.marshall-page .comparison-table tbody th {
 
 .promo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(132px, 160px));
+  justify-content: center;
+  justify-items: center;
   gap: 0.35rem;
-  margin: 1rem 0 1.25rem;
+  margin: 1rem auto 1.25rem;
 }
 
 .promo-thumb {
@@ -1504,7 +1510,10 @@ body.marshall-page .comparison-table tbody th {
 .promo-thumb.promo-banner {
   grid-column: 1 / -1;
   aspect-ratio: auto;
+  width: 100%;
   max-width: 36rem;
+  justify-self: center;
+  margin-inline: auto;
 }
 
 .promo-thumb.promo-banner img {
@@ -1709,11 +1718,12 @@ body.marshall-page .comparison-table tbody th {
 
   body.gbtech-page .hero {
     grid-template-columns: 1fr;
-    justify-items: start;
+    justify-items: center;
   }
 
   body.gbtech-page .hero .image-block {
     max-width: 12rem;
+    margin-inline: auto;
   }
 
   .cta-container {
