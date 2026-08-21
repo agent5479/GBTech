@@ -1,4 +1,4 @@
-/* GBTech + Marshall Solutions — warm light theme, burgundy & golden orange branding */
+/* GBTech — warm light theme, burgundy & golden orange branding */
 
 :root {
   --bg: #FAF6F2;
@@ -1079,7 +1079,7 @@ p:last-child {
   border-bottom-color: var(--accent);
 }
 
-/* GBTech home + Marshall Solutions — polished page layout */
+/* GBTech home + package pages — polished page layout */
 body.gbtech-page .hero {
   display: grid;
   grid-template-columns: minmax(10rem, 16rem) minmax(0, 1fr);
@@ -1094,6 +1094,36 @@ body.gbtech-page .hero .image-block {
 
 body.gbtech-page .hero .image-block + .hero-text {
   margin-top: 0;
+}
+
+/* Spectrum homepage — full-bleed banner plane + copy below (no overlay) */
+body.gbtech-page .hero.hero-spectrum {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body.gbtech-page .hero-banner-plane {
+  margin: 0;
+  width: 100%;
+  line-height: 0;
+}
+
+body.gbtech-page .hero-banner-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(42vh, 28rem);
+  object-fit: cover;
+  object-position: center;
+  border: 0;
+  border-radius: 0;
+}
+
+body.gbtech-page .hero.hero-spectrum .hero-text {
+  padding: 1.75rem 2rem 2.25rem;
 }
 
 body.gbtech-page .hero-brand,
@@ -1737,6 +1767,18 @@ body.marshall-page .comparison-table tbody th {
   body.gbtech-page .hero .image-block {
     max-width: 12rem;
     margin-inline: auto;
+  }
+
+  body.gbtech-page .hero.hero-spectrum {
+    justify-items: stretch;
+  }
+
+  body.gbtech-page .hero.hero-spectrum .hero-text {
+    padding: 1.35rem 1.25rem 1.75rem;
+  }
+
+  body.gbtech-page .hero-banner-img {
+    max-height: min(36vh, 16rem);
   }
 
   .cta-container {

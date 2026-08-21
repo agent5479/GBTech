@@ -1,4 +1,4 @@
-# Marshall Solutions — Advanced Stack Demo
+# GBTech — Advanced Stack Demo
 
 This folder is the **public booking site** deployed to `https://gbtech.co.nz/demo/`.
 The staff CRM source lives in [`../staff-demo-app/`](../staff-demo-app/) and deploys to `/staff-demo/`.

@@ -10,7 +10,7 @@ export function ShowcaseBanner() {
 
 export function ShowcaseStaffPitchBar() {
   return (
-    <aside className="showcase-pitch-bar border-bottom bg-light px-3 py-2 small" aria-label="Marshall Solutions showcase links">
+    <aside className="showcase-pitch-bar border-bottom bg-light px-3 py-2 small" aria-label="GBTech showcase links">
       <div className="d-flex flex-wrap align-items-center gap-2">
         <span className="text-muted fw-semibold">Staff demo ≈</span>
         <a className="fw-bold text-primary text-decoration-none" href={MARSHALL_ADVANCED_URL}>
@@ -20,7 +20,7 @@ export function ShowcaseStaffPitchBar() {
           Try public booking site →
         </a>
         <a className="fw-semibold ms-auto" href={MARSHALL_ADVANCED_URL}>
-          Marshall Solutions packages
+          GBTech packages
         </a>
       </div>
     </aside>

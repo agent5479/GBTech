@@ -3,7 +3,7 @@ import { CONTACT_EMAILS, SITE_NAME } from '../siteConfig';
 export const rentalsContent = {
   seo: {
     title: `Facility Rentals | ${SITE_NAME}`,
-    description: 'Rent community spaces and equipment — book online in the Marshall Solutions Advanced package demo.',
+    description: 'Rent community spaces and equipment — book online in the GBTech Advanced package demo.',
   },
   hero: {
     title: 'Facility rentals',

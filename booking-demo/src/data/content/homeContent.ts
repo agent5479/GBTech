@@ -10,7 +10,7 @@ export const homeContent = {
     title: SITE_NAME,
     subtitle: SITE_TAGLINE,
     intro:
-      'A demonstration website for Marshall Solutions Advanced package — custom site plus self-service facility booking and a staff back office.',
+      'A demonstration website for the GBTech Advanced package — custom site plus self-service facility booking and a staff back office.',
   },
   aboutTeaser: {
     heading: 'Spaces for your group',

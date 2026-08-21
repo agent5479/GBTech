@@ -18,7 +18,7 @@ export function formatBallparkText(estimate: PaintEstimate): string {
       : (undercoatById(estimate.undercoatId)?.name ?? estimate.undercoatId)
 
   const lines = [
-    'Marshall Solutions — Ballpark estimate (demo)',
+    'GBTech — Ballpark estimate (demo)',
     '(Impression only — not a confirmed quote or booking.)',
     '',
     ballparkTitle(estimate.setting),
@@ -53,7 +53,7 @@ export function formatBallparkText(estimate: PaintEstimate): string {
     `Estimated cost: ${formatPaintBracket(estimate)}`,
     '',
     'A painter confirms the real number on site.',
-    'Simulated demo — Marshall Solutions',
+    'Simulated demo — GBTech',
   )
 
   return lines.join('\n')

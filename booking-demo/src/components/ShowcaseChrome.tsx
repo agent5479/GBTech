@@ -11,7 +11,7 @@ export function ShowcaseBanner() {
 
 export function ShowcasePitchBar() {
   return (
-    <aside className="showcase-pitch-bar" aria-label="Marshall Solutions showcase links">
+    <aside className="showcase-pitch-bar" aria-label="GBTech showcase links">
       <div className="showcase-pitch-bar__inner">
         <span className="showcase-pitch-kicker">This demo ≈</span>
         <a className="showcase-pitch-package" href={MARSHALL_ADVANCED_URL}>
@@ -24,7 +24,7 @@ export function ShowcasePitchBar() {
           Public booking wizard
         </Link>
         <a className="showcase-pitch-back" href={MARSHALL_ADVANCED_URL}>
-          Marshall Solutions packages
+          GBTech packages
         </a>
       </div>
     </aside>
@@ -33,7 +33,7 @@ export function ShowcasePitchBar() {
 
 export function ShowcaseStaffPitchBar() {
   return (
-    <aside className="showcase-pitch-bar" aria-label="Marshall Solutions showcase links">
+    <aside className="showcase-pitch-bar" aria-label="GBTech showcase links">
       <div className="showcase-pitch-bar__inner">
         <span className="showcase-pitch-kicker">Staff demo ≈</span>
         <a className="showcase-pitch-package" href={MARSHALL_ADVANCED_URL}>
@@ -43,7 +43,7 @@ export function ShowcaseStaffPitchBar() {
           Try public booking site →
         </a>
         <a className="showcase-pitch-back" href={MARSHALL_ADVANCED_URL}>
-          Marshall Solutions packages
+          GBTech packages
         </a>
       </div>
     </aside>

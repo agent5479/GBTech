@@ -16,7 +16,7 @@ export async function exportBallparkPdf(estimate: PaintEstimate): Promise<void> 
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(14)
   doc.setTextColor(75, 13, 28)
-  doc.text('Marshall Solutions', pageW - margin, y, { align: 'right' })
+  doc.text('GBTech', pageW - margin, y, { align: 'right' })
   doc.setFont('helvetica', 'normal')
   doc.setFontSize(9)
   doc.setTextColor(58, 58, 58)
@@ -119,5 +119,5 @@ export async function exportBallparkPdf(estimate: PaintEstimate): Promise<void> 
   doc.text(disclaimer, margin, y)
 
   const stamp = new Date().toISOString().slice(0, 10)
-  doc.save(`Marshall-Ballpark-${estimate.setting}-${stamp}.pdf`)
+  doc.save(`GBTech-Ballpark-${estimate.setting}-${stamp}.pdf`)
 }

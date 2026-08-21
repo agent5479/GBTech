@@ -15,7 +15,7 @@ type HistoryPeriod = {
 export const aboutContent = {
   seo: {
     title: `About | ${SITE_NAME}`,
-    description: 'About the Community Venue Demo — a Marshall Solutions Advanced package showcase.',
+    description: 'About the Community Venue Demo — a GBTech Advanced package showcase.',
   },
   hero: {
     title: `About ${SITE_NAME}`,
@@ -38,7 +38,7 @@ export const aboutContent = {
   ] as ScopeItem[],
   vision: {
     heading: 'What this demo shows',
-    body: 'Marshall Solutions builds custom websites with optional automated booking for Tasman and Golden Bay service businesses — yoga studios, venues, tutors, and community groups.',
+    body: 'GBTech builds custom websites with optional automated booking for Tasman and Golden Bay service businesses — yoga studios, venues, tutors, and community groups.',
   },
   need: {
     heading: 'Who it is for',

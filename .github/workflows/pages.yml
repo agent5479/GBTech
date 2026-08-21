@@ -31,6 +31,8 @@ jobs:
           test -f robots.txt
           test -f styles.css
           test -f services/it-support.html
+          test -f services/cyber-security.html
+          test -f services/automation-ai.html
           test -f services/backup-disaster-recovery.html
           test -f services/servers-networks.html
           test -f services/cloud-migration.html
@@ -48,7 +50,8 @@ jobs:
       - name: Verify SEO meta tags on each page
         run: |
           pages="index.html
-            services/it-support.html services/backup-disaster-recovery.html
+            services/it-support.html services/cyber-security.html services/automation-ai.html
+            services/backup-disaster-recovery.html
             services/servers-networks.html services/cloud-migration.html
             services/essential-website.html services/booking-portal.html
             services/wix-migration.html

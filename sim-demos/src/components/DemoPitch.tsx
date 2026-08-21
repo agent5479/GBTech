@@ -6,7 +6,7 @@ const MARSHALL = '/#packages'
 const QUOTE = `${MARSHALL}#packages`
 
 interface PitchBarProps {
-  /** Which Marshall package this demo style maps to. */
+  /** Which GBTech package this demo style maps to. */
   packageTier: PackageTier
   /** Path to the sibling UI that shares the same booking engine. */
   compareTo: string
@@ -44,7 +44,7 @@ interface QuoteCtaProps {
   styleName: string
 }
 
-/** End-of-demo conversion CTA — links back to Marshall packages. */
+/** End-of-demo conversion CTA — links back to GBTech packages. */
 export function DemoQuoteCta({ styleName }: QuoteCtaProps) {
   return (
     <div className="demo-quote-cta">

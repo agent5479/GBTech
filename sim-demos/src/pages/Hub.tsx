@@ -181,7 +181,7 @@ export default function Hub() {
   return (
     <div className="hub">
       <header className="hub-hero demo-enter">
-        <p className="demo-badge">Marshall Solutions · simulated templates</p>
+        <p className="demo-badge">GBTech · simulated templates</p>
         <h1>Try a booking demo</h1>
         <p>
           Fully simulated — no Google Calendar writes, no payments, no dispatch. Seven Golden Bay verticals, each as
@@ -193,7 +193,7 @@ export default function Hub() {
           </Link>
         </p>
         <a className="hub-back" href="/#demos">
-          ← Back to Marshall Solutions
+          ← Back to GBTech
         </a>
       </header>
       {GROUPS.map((group) => (

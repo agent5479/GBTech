@@ -4,7 +4,6 @@
 User-agent: *
 Allow: /
 Allow: /index.html
-Allow: /marshall-solutions.html
 Allow: /services/
 Allow: /case-studies/
 Allow: /tools/
@@ -13,7 +12,6 @@ Allow: /site.webmanifest
 Allow: /img/
 Allow: /profile.png
 Allow: /BingSiteAuth.xml
-Allow: /demoplan/local-seo-entity-checklist.md
 
 # Simulated booking demos (noindex; thin/demo content)
 Disallow: /sim/
@@ -29,9 +27,11 @@ Disallow: /staff-demo-app/
 Disallow: /demoplan/
 Disallow: /.github/
 
+# Legacy package stub (noindex redirect) — do not promote in crawl hints
+Disallow: /marshall-solutions.html
+
 User-agent: Googlebot
 Allow: /
-Allow: /demoplan/local-seo-entity-checklist.md
 Disallow: /sim/
 Disallow: /sim-demos/
 Disallow: /demo/
@@ -40,10 +40,10 @@ Disallow: /booking-demo/
 Disallow: /staff-demo-app/
 Disallow: /demoplan/
 Disallow: /.github/
+Disallow: /marshall-solutions.html
 
 User-agent: Bingbot
 Allow: /
-Allow: /demoplan/local-seo-entity-checklist.md
 Disallow: /sim/
 Disallow: /sim-demos/
 Disallow: /demo/
@@ -52,5 +52,6 @@ Disallow: /booking-demo/
 Disallow: /staff-demo-app/
 Disallow: /demoplan/
 Disallow: /.github/
+Disallow: /marshall-solutions.html
 
 Sitemap: https://gbtech.co.nz/sitemap.xml
