@@ -4,17 +4,17 @@
   "description": "IT support, networks, cyber security, and owned websites for Tākaka and Golden Bay, NZ.",
   "start_url": "./",
   "display": "browser",
-  "background_color": "#141210",
-  "theme_color": "#4B0D1C",
+  "background_color": "#0B1A0F",
+  "theme_color": "#0B1A0F",
   "icons": [
     {
-      "src": "img/jelly192.png",
+      "src": "img/icon192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "img/jelly512.png",
+      "src": "img/icon512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"

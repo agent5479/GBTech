@@ -46,6 +46,18 @@ jobs:
           test -f CNAME
           grep -q 'gbtech.co.nz' CNAME
           test -f demoplan/local-seo-entity-checklist.md
+          test -f favicon.ico
+          test -f img/favicon.png
+          test -f img/icon16.png
+          test -f img/icon32.png
+          test -f img/icon48.png
+          test -f img/icon180.png
+          test -f img/icon192.png
+          test -f img/icon512.png
+          test -f site.webmanifest
+          grep -q 'img/icon192.png' site.webmanifest
+          ! grep -q 'jelly' index.html site.webmanifest
+          ! grep -rq 'jelly' services case-studies tools --include='*.html'
 
       - name: Verify SEO meta tags on each page
         run: |

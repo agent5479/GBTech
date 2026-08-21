@@ -9,8 +9,8 @@ Allow: /case-studies/
 Allow: /tools/
 Allow: /styles.css
 Allow: /site.webmanifest
+Allow: /favicon.ico
 Allow: /img/
-Allow: /profile.png
 Allow: /BingSiteAuth.xml
 
 # Simulated booking demos (noindex; thin/demo content)
@@ -32,6 +32,8 @@ Disallow: /marshall-solutions.html
 
 User-agent: Googlebot
 Allow: /
+Allow: /favicon.ico
+Allow: /img/
 Disallow: /sim/
 Disallow: /sim-demos/
 Disallow: /demo/
@@ -44,6 +46,8 @@ Disallow: /marshall-solutions.html
 
 User-agent: Bingbot
 Allow: /
+Allow: /favicon.ico
+Allow: /img/
 Disallow: /sim/
 Disallow: /sim-demos/
 Disallow: /demo/

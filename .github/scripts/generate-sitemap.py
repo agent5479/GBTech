@@ -38,7 +38,7 @@ for filename, path, priority in ROUTES:
     loc = f"{BASE_URL}/{path}" if path else f"{BASE_URL}/"
     ET.SubElement(url, "loc").text = loc
     ET.SubElement(url, "lastmod").text = mtime
-    ET.SubElement(url, "changefreq").text = "monthly"
+    ET.SubElement(url, "changefreq").text = "weekly" if path == "" else "monthly"
     ET.SubElement(url, "priority").text = priority
 
 tree = ET.ElementTree(urlset)
