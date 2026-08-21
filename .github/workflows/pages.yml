@@ -47,7 +47,7 @@ jobs:
 
       - name: Verify SEO meta tags on each page
         run: |
-          pages="index.html marshall-solutions.html
+          pages="index.html
             services/it-support.html services/backup-disaster-recovery.html
             services/servers-networks.html services/cloud-migration.html
             services/essential-website.html services/booking-portal.html
@@ -63,6 +63,11 @@ jobs:
             grep -q 'twitter:card' "$page"
             grep -q 'application/ld+json' "$page"
           done
+          # Legacy URL stub (noindex redirect to homepage packages)
+          test -f marshall-solutions.html
+          grep -q 'noindex' marshall-solutions.html
+          grep -q 'rel="canonical"' marshall-solutions.html
+          grep -q '#packages' marshall-solutions.html
 
       - name: Verify robots.txt allows marketing and blocks demos
         run: |

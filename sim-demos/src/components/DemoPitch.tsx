@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export type PackageTier = 'essential' | 'advanced'
 
-const MARSHALL = '/marshall-solutions.html'
+const MARSHALL = '/#packages'
 const QUOTE = `${MARSHALL}#packages`
 
 interface PitchBarProps {

@@ -13,7 +13,6 @@ BASE_URL = "https://gbtech.co.nz"
 # (source file for lastmod, public path, priority)
 ROUTES = [
     ("index.html", "", "1.0"),
-    ("marshall-solutions.html", "marshall-solutions.html", "0.9"),
     ("services/it-support.html", "services/it-support.html", "0.8"),
     ("services/backup-disaster-recovery.html", "services/backup-disaster-recovery.html", "0.8"),
     ("services/servers-networks.html", "services/servers-networks.html", "0.8"),

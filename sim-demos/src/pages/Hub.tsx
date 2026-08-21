@@ -192,7 +192,7 @@ export default function Hub() {
             Painting estimates hub →
           </Link>
         </p>
-        <a className="hub-back" href="/marshall-solutions.html#demos">
+        <a className="hub-back" href="/#demos">
           ← Back to Marshall Solutions
         </a>
       </header>
