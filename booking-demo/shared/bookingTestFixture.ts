@@ -3,14 +3,14 @@
 export const SAMPLE_BOOKING_API_PAYLOAD = {
   action: 'book',
   booking_type: 'kitchen_half_day',
-  location: 'The Kitchen',
+  location: 'Prep Kitchen',
   category: 'facility',
   slot_start: '2026-07-15T09:00:00',
   name: 'Jane Smith',
   phone: '027 123 4567',
   email: 'jane@example.com',
-  organisation: 'Takaka Craft Group',
-  message: 'Pizza oven session for workshop',
+  organisation: 'Sample Craft Group',
+  message: 'Prep kitchen session for workshop',
   website: '',
 } as const;
 
@@ -19,7 +19,7 @@ export const SAMPLE_EXTENDED_DETAILS_INPUT = {
   cleaningFeeAck: true,
   depositAck: false,
   equipmentDeposit: false,
-  addonNotes: 'Need access to pizza oven',
+  addonNotes: 'Need access to oven',
   bookingType: 'kitchen_half_day' as const,
   durationPackage: 'half_day' as const,
   priceLabel: '$40',
@@ -34,20 +34,20 @@ export const SAMPLE_EXTENDED_JSON_PARSED = {
   cleaningFeeAck: true,
   equipmentDeposit: false,
   depositAck: false,
-  addonNotes: 'Need access to pizza oven',
+  addonNotes: 'Need access to oven',
 };
 
 export const SAMPLE_EQUIPMENT_API_PAYLOAD = {
   action: 'book',
   booking_type: 'equipment_hourly',
-  location: 'Fruit processing equipment',
+  location: 'Portable AV kit',
   category: 'equipment',
   slot_start: '2026-08-01T10:00:00',
   name: 'Maria Garcia',
   phone: '021 234 5678',
   email: 'maria@example.com',
-  organisation: 'Community Kitchen Collective',
-  message: 'Apple press hire',
+  organisation: 'Community Collective',
+  message: 'AV kit hire',
   website: '',
 };
 
@@ -75,7 +75,7 @@ export const SAMPLE_PENDING_BOOKING = {
   appointmentStart: '2026-07-15T09:00:00+12:00',
   appointmentEnd: '2026-07-15T13:00:00+12:00',
   calendarEventId: 'evt_test_123',
-  location: 'The Kitchen',
+  location: 'Prep Kitchen',
   category: 'facility',
   extendedJson: JSON.stringify(SAMPLE_EXTENDED_JSON_PARSED),
 };

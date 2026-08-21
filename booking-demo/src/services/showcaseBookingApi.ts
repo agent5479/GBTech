@@ -1,46 +1,21 @@
-import type { AvailabilityResult, BookingSlot } from '../data/bookingConfig';
+import type { AvailabilityResult } from '../data/bookingConfig';
 import { appendShowcasePendingBooking } from '@shared/showcaseStorage';
-
-function buildSlots(date: string): BookingSlot[] {
-  const base = new Date(`${date}T09:00:00`);
-  const slots: BookingSlot[] = [];
-  for (let hour = 9; hour <= 15; hour += 2) {
-    const start = new Date(base);
-    start.setHours(hour, 0, 0, 0);
-    const end = new Date(start);
-    end.setHours(hour + 2, 0, 0, 0);
-    const label = start.toLocaleString('en-NZ', {
-      weekday: 'short',
-      day: 'numeric',
-      month: 'short',
-      hour: 'numeric',
-      minute: '2-digit',
-    });
-    slots.push({
-      start: start.toISOString(),
-      end: end.toISOString(),
-      label,
-    });
-  }
-  return slots;
-}
+import { buildShowcaseAvailability } from './showcaseAvailability';
 
 export async function fetchShowcaseAvailability(
-  _date: string,
-  _bookingType: string,
-  _location: string,
-  _category: string
+  date: string,
+  bookingType: string,
+  facilityId: string
 ): Promise<AvailabilityResult> {
-  await new Promise((r) => setTimeout(r, 300));
-  return {
-    success: true,
-    slots: buildSlots(_date),
-    booking_window: {
-      start_label: '9:00 am',
-      last_start_label: '3:00 pm',
-      season: 'Showcase demo',
-    },
-  };
+  await new Promise((r) => setTimeout(r, 280));
+  const result = buildShowcaseAvailability(date, bookingType, facilityId);
+  if (result.success && !result.slots?.length) {
+    return {
+      ...result,
+      message: result.message || 'No slots available on this date. Try another day.',
+    };
+  }
+  return result;
 }
 
 export interface ShowcaseSubmitPayload {
@@ -57,7 +32,9 @@ export interface ShowcaseSubmitPayload {
   extended_json?: string;
 }
 
-export async function submitShowcaseBooking(payload: ShowcaseSubmitPayload): Promise<{ success: boolean; message?: string }> {
+export async function submitShowcaseBooking(
+  payload: ShowcaseSubmitPayload
+): Promise<{ success: boolean; message?: string }> {
   await new Promise((r) => setTimeout(r, 400));
   appendShowcasePendingBooking({
     name: payload.name,
@@ -72,5 +49,8 @@ export async function submitShowcaseBooking(payload: ShowcaseSubmitPayload): Pro
     category: payload.category,
     extendedJson: payload.extended_json,
   });
-  return { success: true, message: 'Booking recorded in showcase demo. Open the staff app to import it.' };
+  return {
+    success: true,
+    message: 'Booking recorded in showcase demo. Open the staff app to import it.',
+  };
 }

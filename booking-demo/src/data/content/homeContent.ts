@@ -2,20 +2,20 @@ import { SITE_NAME, SITE_TAGLINE } from '../siteConfig';
 
 export const homeContent = {
   seo: {
-    title: `${SITE_NAME} | Golden Bay`,
+    title: `${SITE_NAME} | GBTech Advanced demo`,
     description:
-      'Community venue hire in Golden Bay — book workshop spaces, kitchen, and meeting rooms online.',
+      'Harbour Hall Demo — try a sample venue website with self-service room booking for GBTech’s Advanced package.',
   },
   hero: {
     title: SITE_NAME,
     subtitle: SITE_TAGLINE,
     intro:
-      'A demonstration website for the GBTech Advanced package — custom site plus self-service facility booking and a staff back office.',
+      'A fictional venue website for the GBTech Advanced package — custom site plus self-service facility booking and a staff back office.',
   },
   aboutTeaser: {
     heading: 'Spaces for your group',
-    body: 'Rent flexible community spaces by the hour or day. Book online, pay arrangements with staff, and keep your calendar in sync — all in a site you own outright.',
-    image: '/images/home/02-SLC_gardens_02.png',
+    body: 'Rent flexible hire rooms by the hour or day. Book online, arrange payment with staff, and keep your calendar in sync — all in a site you own outright.',
+    image: '/images/rentals/01-Workshop_space.jpg',
     links: [
       { label: 'Facility rentals', to: '/rentals' },
       { label: 'Book online', to: '/rentals/book' },

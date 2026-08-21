@@ -3,13 +3,13 @@ import SiteLayout from '../components/SiteLayout';
 import ContentHero from '../components/content/ContentHero';
 import ProseSection from '../components/content/ProseSection';
 import PricingTable from '../components/content/PricingTable';
-import AnchorSection from '../components/content/AnchorSection';
 import ImageFigure from '../components/content/ImageFigure';
 import BookingsCalendarEmbed from '../components/BookingsCalendarEmbed';
 import { rentalsContent } from '../data/content/rentalsContent';
+import { IS_SHOWCASE_MODE } from '@shared/showcaseMode';
 
 export default function RentalsPage() {
-  const { seo, hero, facilities, equipment, bookingCta, allotment } = rentalsContent;
+  const { seo, hero, facilities, equipment, bookingCta } = rentalsContent;
 
   return (
     <SiteLayout
@@ -23,7 +23,7 @@ export default function RentalsPage() {
       <ProseSection heading={facilities.heading}>
         <p>{facilities.intro}</p>
         {facilities.image && (
-          <ImageFigure src={facilities.image} alt="Workshop space at the SLC" />
+          <ImageFigure src={facilities.image} alt="Sample workshop hire space" />
         )}
         {facilities.spaces.map((space) => (
           <div key={space.name} className="facility-block">
@@ -45,7 +45,9 @@ export default function RentalsPage() {
             item.image ? (
               <ImageFigure key={item.name} src={item.image} alt={item.name} caption={item.name} />
             ) : (
-              <p key={item.name}><strong>{item.name}</strong></p>
+              <p key={item.name}>
+                <strong>{item.name}</strong>
+              </p>
             )
           )}
         </div>
@@ -68,12 +70,11 @@ export default function RentalsPage() {
         </Link>
       </section>
 
-      <AnchorSection id={allotment.id} heading={allotment.heading}>
-        <p>{allotment.body}</p>
-        <Link to={allotment.cta.to} className="btn-secondary">
-          {allotment.cta.label}
-        </Link>
-      </AnchorSection>
+      {!IS_SHOWCASE_MODE && (
+        <p className="rentals-footnote">
+          For other hire enquiries, use the <Link to="/contact">contact form</Link>.
+        </p>
+      )}
     </SiteLayout>
   );
 }

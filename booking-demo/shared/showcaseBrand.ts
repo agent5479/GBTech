@@ -1,11 +1,11 @@
-export const SHOWCASE_SITE_NAME = 'Community Venue Demo';
-export const SHOWCASE_SITE_SHORT_NAME = 'Venue Demo';
-export const SHOWCASE_TAGLINE = 'Facility hire for Golden Bay community groups';
-export const SHOWCASE_LOCATION = 'Golden Bay, New Zealand';
-export const SHOWCASE_ADDRESS = 'Demo Community Centre, Golden Bay';
-export const SHOWCASE_ADDRESS_LINES = ['Demo Community Centre', 'Golden Bay', 'New Zealand'];
+export const SHOWCASE_SITE_NAME = 'Harbour Hall Demo';
+export const SHOWCASE_SITE_SHORT_NAME = 'Harbour Hall';
+export const SHOWCASE_TAGLINE = 'Sample venue hire for service businesses';
+export const SHOWCASE_LOCATION = 'Sample Bay, New Zealand';
+export const SHOWCASE_ADDRESS = '100 Example Road, Sample Bay';
+export const SHOWCASE_ADDRESS_LINES = ['100 Example Road', 'Sample Bay', 'New Zealand'];
 
-export const SHOWCASE_STAFF_APP_NAME = 'Venue Staff Demo';
+export const SHOWCASE_STAFF_APP_NAME = 'Harbour Hall Staff Demo';
 export const SHOWCASE_STAFF_TAGLINE = 'Import bookings and manage renters';
 
 export const MARSHALL_SOLUTIONS_URL = '/#packages';

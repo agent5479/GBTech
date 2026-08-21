@@ -3,12 +3,12 @@ import { CONTACT_EMAILS, SITE_NAME } from '../siteConfig';
 export const rentalsContent = {
   seo: {
     title: `Facility Rentals | ${SITE_NAME}`,
-    description: 'Rent community spaces and equipment — book online in the GBTech Advanced package demo.',
+    description: 'Rent sample workshop, kitchen, and seminar spaces — book online in the GBTech Advanced package demo.',
   },
   hero: {
     title: 'Facility rentals',
     intro:
-      'Hire workshop space, a commercial kitchen, or a meeting room by the hour or day. This demo uses sample rates — your live site would reflect your own pricing.',
+      'Hire a creative workshop, prep kitchen, or seminar room by the hour or day. Rates below are sample figures for this demo — a live site would use your own pricing.',
   },
   facilities: {
     heading: 'Bookable spaces',
@@ -16,7 +16,7 @@ export const rentalsContent = {
     image: '/images/rentals/01-Workshop_space.jpg',
     spaces: [
       {
-        name: 'The Makerspace',
+        name: 'Creative Workshop',
         rates: [
           { label: 'Hourly hire', price: '$10' },
           { label: 'Half day (4 hours)', price: '$35' },
@@ -24,7 +24,7 @@ export const rentalsContent = {
         ],
       },
       {
-        name: 'The Kitchen',
+        name: 'Prep Kitchen',
         rates: [
           { label: 'Hourly hire', price: '$12' },
           { label: 'Half day (4 hours)', price: '$40' },
@@ -32,10 +32,11 @@ export const rentalsContent = {
         ],
       },
       {
-        name: 'Meeting Room',
+        name: 'Seminar Room',
         rates: [
           { label: 'Hourly hire', price: '$8' },
           { label: 'Half day (4 hours)', price: '$30' },
+          { label: 'Full day (8+ hours)', price: '$50' },
         ],
       },
     ],
@@ -45,22 +46,16 @@ export const rentalsContent = {
     ],
   },
   equipment: {
-    heading: 'Shared equipment',
-    intro: 'Hourly equipment hire with deposit acknowledgement in the booking form.',
-    items: [{ name: 'Shared equipment', image: undefined as string | undefined }],
+    heading: 'Portable AV kit',
+    intro: 'Hourly AV kit hire with deposit acknowledgement in the booking form.',
+    items: [{ name: 'Portable AV kit', image: undefined as string | undefined }],
     rates: [{ label: 'Hourly hire', price: '$20 + deposit' }],
     contact: CONTACT_EMAILS.general,
   },
   bookingCta: {
-    heading: 'Venue availability',
-    intro: 'Check sample availability, then complete the booking wizard.',
+    heading: 'Sample venue availability',
+    intro: 'Check the demo calendar, then complete the booking wizard.',
     label: 'Book a facility online',
     to: '/rentals/book',
-  },
-  allotment: {
-    id: 'allotmentRental',
-    heading: 'Allotment rental',
-    body: 'Allotment enquiries are handled via the contact form in this demo.',
-    cta: { label: 'Contact us', to: '/contact' },
   },
 };

@@ -66,18 +66,18 @@ describe('booking pipeline — Hub extended JSON', () => {
       categoryLabel: categoryLabelForId('facility'),
       slotLabel: 'Tue 15 Jul 2026, 9:00 am',
       slotEndLabel: '1:00 pm',
-      locationLabel: 'The Kitchen',
+      locationLabel: 'Prep Kitchen',
       name: 'Jane Smith',
       phone: '027 123 4567',
       email: 'jane@example.com',
-      organisation: 'Takaka Craft Group',
-      message: 'Pizza oven session',
+      organisation: 'Sample Craft Group',
+      message: 'Prep kitchen session',
       extendedJson: json,
     });
 
-    expect(summary).toContain('The Kitchen');
+    expect(summary).toContain('Prep Kitchen');
     expect(summary).toContain('$40');
-    expect(summary).toContain('Firewood requested');
+    expect(summary).toContain('Supplies pack requested');
     expect(summary).toContain('Jane Smith');
   });
 
@@ -87,7 +87,7 @@ describe('booking pipeline — Hub extended JSON', () => {
       categoryLabel: categoryLabelForId('equipment'),
       slotLabel: 'Sat 1 Aug 2026, 10:00 am',
       slotEndLabel: '11:00 am',
-      locationLabel: 'Fruit processing equipment',
+      locationLabel: 'Portable AV kit',
       phone: '021 234 5678',
       organisation: 'Community Kitchen Collective',
       extendedJson: JSON.stringify(SAMPLE_EQUIPMENT_EXTENDED_JSON),

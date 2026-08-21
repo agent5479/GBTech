@@ -7,6 +7,7 @@ import {
   getCalendarPublicUrl,
   isCalendarConfigured,
 } from '../data/calendarConfig';
+import ShowcaseDemoCalendar from './ShowcaseDemoCalendar';
 
 interface BookingsCalendarEmbedProps {
   heading?: string;
@@ -16,7 +17,7 @@ interface BookingsCalendarEmbedProps {
 
 export default function BookingsCalendarEmbed({
   heading = 'Bookings Calendar',
-  intro = 'See which times are already booked across our hire venues. Switch between week and month views using the calendar tabs.',
+  intro = 'See which times are already booked across hire venues. Switch between week and month views using the calendar tabs.',
   defaultMode = 'WEEK',
 }: BookingsCalendarEmbedProps) {
   const [mode, setMode] = useState<CalendarEmbedMode>(defaultMode);
@@ -27,13 +28,17 @@ export default function BookingsCalendarEmbed({
       <h2 id="bookings-calendar-heading">{heading}</h2>
       {IS_SHOWCASE_MODE ? (
         <p className="bookings-calendar-section__intro">
-          Showcase mode — sample availability is shown in the booking wizard below. No live calendar is connected.
+          This is a <strong>sample availability calendar</strong> for the demo. Grey cells are
+          fictional existing bookings; green cells are free. The booking wizard below uses the same
+          sample data — pick a free day to see matching time slots.
         </p>
       ) : (
         intro && <p className="bookings-calendar-section__intro">{intro}</p>
       )}
 
-      {configured ? (
+      {IS_SHOWCASE_MODE ? (
+        <ShowcaseDemoCalendar />
+      ) : configured ? (
         <>
           <div className="bookings-calendar__toolbar" role="group" aria-label="Calendar view">
             <button
@@ -56,7 +61,7 @@ export default function BookingsCalendarEmbed({
 
           <div className="bookings-calendar">
             <iframe
-              title="Hub facility hire bookings calendar"
+              title="Facility hire bookings calendar"
               src={getCalendarEmbedUrl(mode)}
               loading="lazy"
             />

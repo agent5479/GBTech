@@ -5,6 +5,11 @@ The staff CRM source lives in [`../staff-demo-app/`](../staff-demo-app/) and dep
 
 Full technical reference: [`../demoplan/booking-platform-replication-guide.md`](../demoplan/booking-platform-replication-guide.md).
 
+## Showcase framing
+
+Public pages use fictional **Harbour Hall Demo** branding (sample rooms and address) so the demo is clearly not a live client venue.
+The book page includes a walkthrough, a working sample availability calendar, and a booking wizard that stores pending bookings in browser `localStorage` for the staff demo.
+
 ## 0. Showcase mode (default public deploy)
 
 GitHub Pages builds both apps with `VITE_SHOWCASE_MODE=true`. No Google or Firebase secrets are required.

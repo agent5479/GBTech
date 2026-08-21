@@ -3,7 +3,7 @@ import { MARSHALL_ADVANCED_URL, PUBLIC_DEMO_BOOK_URL } from '@shared/showcaseBra
 export function ShowcaseBanner() {
   return (
     <div className="showcase-banner text-center py-2 px-3 small fw-semibold" role="note">
-      Advanced package staff demo · Sample data only · No live Firebase connection
+      GBTech demo · Harbour Hall staff view · Sample data only · No live Firebase
     </div>
   );
 }

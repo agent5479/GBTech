@@ -1,12 +1,19 @@
 import { useState, type FormEvent } from 'react';
 import { FORM_ENDPOINT } from '../data/formConfig';
+import { IS_SHOWCASE_MODE } from '@shared/showcaseMode';
 
-const ENQUIRY_TOPICS = [
-  { value: 'general', label: 'General enquiry' },
-  { value: 'allotment', label: 'Allotment interest' },
-  { value: 'equipment', label: 'Equipment hire question' },
-  { value: 'other', label: 'Other' },
-];
+const ENQUIRY_TOPICS = IS_SHOWCASE_MODE
+  ? [
+      { value: 'general', label: 'General enquiry' },
+      { value: 'equipment', label: 'Equipment hire question' },
+      { value: 'other', label: 'Other' },
+    ]
+  : [
+      { value: 'general', label: 'General enquiry' },
+      { value: 'allotment', label: 'Allotment interest' },
+      { value: 'equipment', label: 'Equipment hire question' },
+      { value: 'other', label: 'Other' },
+    ];
 
 export default function ContactForm() {
   const [name, setName] = useState('');

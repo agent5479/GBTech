@@ -20,16 +20,16 @@ const SITE_ADDRESS = "24 Waitapu Road, Tākaka 7110";
 
 /** Keep in sync with shared/bookingServiceTypes.ts */
 const BOOKING_TYPES = {
-  makerspace_hourly: { label: "Makerspace — hourly", sessionMinutes: 60, calendarBlockMinutes: 60, priceLabel: "$10", facilityPrefix: "MAKERSPACE" },
-  makerspace_half_day: { label: "Makerspace — half day (4 hours)", sessionMinutes: 240, calendarBlockMinutes: 240, priceLabel: "$35", facilityPrefix: "MAKERSPACE" },
-  makerspace_full_day: { label: "Makerspace — full day", sessionMinutes: 480, calendarBlockMinutes: 480, priceLabel: "$55", facilityPrefix: "MAKERSPACE" },
+  workshop_hourly: { label: "Workshop — hourly", sessionMinutes: 60, calendarBlockMinutes: 60, priceLabel: "$10", facilityPrefix: "WORKSHOP" },
+  workshop_half_day: { label: "Workshop — half day (4 hours)", sessionMinutes: 240, calendarBlockMinutes: 240, priceLabel: "$35", facilityPrefix: "WORKSHOP" },
+  workshop_full_day: { label: "Workshop — full day", sessionMinutes: 480, calendarBlockMinutes: 480, priceLabel: "$55", facilityPrefix: "WORKSHOP" },
   kitchen_hourly: { label: "Kitchen — hourly", sessionMinutes: 60, calendarBlockMinutes: 60, priceLabel: "$12", facilityPrefix: "KITCHEN" },
   kitchen_half_day: { label: "Kitchen — half day (4 hours)", sessionMinutes: 240, calendarBlockMinutes: 240, priceLabel: "$40", facilityPrefix: "KITCHEN" },
   kitchen_full_day: { label: "Kitchen — full day", sessionMinutes: 480, calendarBlockMinutes: 480, priceLabel: "$70", facilityPrefix: "KITCHEN" },
-  earth_building_hourly: { label: "Earth Building — hourly", sessionMinutes: 60, calendarBlockMinutes: 60, priceLabel: "TBD", facilityPrefix: "EARTH BUILDING" },
-  earth_building_half_day: { label: "Earth Building — half day (4 hours)", sessionMinutes: 240, calendarBlockMinutes: 240, priceLabel: "TBD", facilityPrefix: "EARTH BUILDING" },
-  earth_building_full_day: { label: "Earth Building — full day", sessionMinutes: 480, calendarBlockMinutes: 480, priceLabel: "TBD", facilityPrefix: "EARTH BUILDING" },
-  equipment_hourly: { label: "Equipment — hourly", sessionMinutes: 60, calendarBlockMinutes: 60, priceLabel: "$20 + $50 deposit", facilityPrefix: "EQUIPMENT" }
+  seminar_hourly: { label: "Seminar Room — hourly", sessionMinutes: 60, calendarBlockMinutes: 60, priceLabel: "$8", facilityPrefix: "SEMINAR" },
+  seminar_half_day: { label: "Seminar Room — half day (4 hours)", sessionMinutes: 240, calendarBlockMinutes: 240, priceLabel: "$30", facilityPrefix: "SEMINAR" },
+  seminar_full_day: { label: "Seminar Room — full day", sessionMinutes: 480, calendarBlockMinutes: 480, priceLabel: "$50", facilityPrefix: "SEMINAR" },
+  equipment_hourly: { label: "AV kit — hourly", sessionMinutes: 60, calendarBlockMinutes: 60, priceLabel: "$20 + $50 deposit", facilityPrefix: "EQUIPMENT" }
 };
 
 const SLOT_INTERVAL_MINUTES = 60;
@@ -46,10 +46,10 @@ const CATEGORIES = {
 
 /** Keep in sync with src/data/bookingFacilities.ts */
 const LOCATIONS = {
-  "The Makerspace": { lat: -40.856, lng: 172.805, category: "facility", facilityPrefix: "MAKERSPACE" },
-  "The Kitchen": { lat: -40.856, lng: 172.805, category: "facility", facilityPrefix: "KITCHEN" },
-  "Earth Building": { lat: -40.856, lng: 172.805, category: "facility", facilityPrefix: "EARTH BUILDING" },
-  "Fruit processing equipment": { lat: -40.856, lng: 172.805, category: "equipment", facilityPrefix: "EQUIPMENT" }
+  "Creative Workshop": { lat: -40.856, lng: 172.805, category: "facility", facilityPrefix: "WORKSHOP" },
+  "Prep Kitchen": { lat: -40.856, lng: 172.805, category: "facility", facilityPrefix: "KITCHEN" },
+  "Seminar Room": { lat: -40.856, lng: 172.805, category: "facility", facilityPrefix: "SEMINAR" },
+  "Portable AV kit": { lat: -40.856, lng: 172.805, category: "equipment", facilityPrefix: "EQUIPMENT" }
 };
 
 const STAFF_PROCESSED_COL = 15;
@@ -303,7 +303,7 @@ function resolveBookingType(data) {
 }
 
 function getBookingDurations(bookingType) {
-  const config = BOOKING_TYPES[bookingType] || BOOKING_TYPES.makerspace_hourly;
+  const config = BOOKING_TYPES[bookingType] || BOOKING_TYPES.workshop_hourly;
   return {
     sessionMinutes: config.sessionMinutes,
     calendarBlockMinutes: config.calendarBlockMinutes,

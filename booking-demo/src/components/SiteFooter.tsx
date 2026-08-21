@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { IS_SHOWCASE_MODE } from '@shared/showcaseMode';
 import {
   CONTACT_EMAILS,
   NAV_GROUPS,
@@ -43,9 +44,13 @@ export default function SiteFooter() {
           </address>
           <div className="site-footer__emails">
             <a href={`mailto:${CONTACT_EMAILS.general}`}>{CONTACT_EMAILS.general}</a>
-            <a href={`mailto:${CONTACT_EMAILS.events}`}>{CONTACT_EMAILS.events}</a>
-            <a href={`mailto:${CONTACT_EMAILS.manager}`}>{CONTACT_EMAILS.manager}</a>
-            <a href={`mailto:${CONTACT_EMAILS.trust}`}>{CONTACT_EMAILS.trust}</a>
+            {!IS_SHOWCASE_MODE && (
+              <>
+                <a href={`mailto:${CONTACT_EMAILS.events}`}>{CONTACT_EMAILS.events}</a>
+                <a href={`mailto:${CONTACT_EMAILS.manager}`}>{CONTACT_EMAILS.manager}</a>
+                <a href={`mailto:${CONTACT_EMAILS.trust}`}>{CONTACT_EMAILS.trust}</a>
+              </>
+            )}
           </div>
           <SocialLinks />
         </div>
@@ -68,12 +73,10 @@ export default function SiteFooter() {
         <div className="site-footer__newsletter">
           <p className="site-footer__newsletter-heading">Newsletter</p>
           <p>
-            Sign up to stay in touch with special events, announcements, and goings on at the
-            Mohua Facility Hub.
+            Sign up to stay in touch with special events and announcements at {SITE_NAME}.
           </p>
           <p className="site-footer__newsletter-note">
-            Newsletter signup will be connected here when the mailing list is migrated from the
-            current site.
+            Newsletter signup is a placeholder in this demo.
           </p>
         </div>
       </div>

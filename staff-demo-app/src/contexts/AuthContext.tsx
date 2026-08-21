@@ -130,8 +130,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = useCallback(async (email: string, password: string) => {
     if (IS_SHOWCASE_MODE) {
       const user = buildOfflineDevUser('Demo Staff', 'admin', SHOWCASE_TENANT_ID);
-      user.tenantName = 'Community Venue Demo';
-      user.availableTenants = [{ tenantId: SHOWCASE_TENANT_ID, tenantName: 'Community Venue Demo', role: 'admin' }];
+      user.tenantName = 'Harbour Hall Demo';
+      user.availableTenants = [{ tenantId: SHOWCASE_TENANT_ID, tenantName: 'Harbour Hall Demo', role: 'admin' }];
       persistSession(user);
       return { success: true, message: 'Welcome to the venue staff demo!' };
     }

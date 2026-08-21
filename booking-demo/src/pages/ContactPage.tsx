@@ -6,6 +6,7 @@ import ExternalLink from '../components/content/ExternalLink';
 import ContactForm from './ContactForm';
 import { contactContent } from '../data/content/contactContent';
 import { SOCIAL_LINKS } from '../data/siteConfig';
+import { IS_SHOWCASE_MODE } from '@shared/showcaseMode';
 
 export default function ContactPage() {
   const { seo, hero, emails, socialNote, region, visit } = contactContent;
@@ -52,7 +53,11 @@ export default function ContactPage() {
 
       <section className="form-panel">
         <h2>Send an enquiry</h2>
-        <p>Allotment interest, equipment questions, or anything not covered by the online booking form.</p>
+        <p>
+          {IS_SHOWCASE_MODE
+            ? 'Questions about the demo or hire flow — showcase only, messages are not delivered.'
+            : 'Allotment interest, equipment questions, or anything not covered by the online booking form.'}
+        </p>
         <ContactForm />
       </section>
     </SiteLayout>

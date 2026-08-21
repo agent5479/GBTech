@@ -5,6 +5,12 @@ import {
   type BookingServiceType,
 } from './bookingServiceTypes';
 import { BOOKING_CATEGORIES, type BookingCategoryId } from './bookingCategories';
+import { IS_SHOWCASE_MODE } from './showcaseMode';
+import { SHOWCASE_ADDRESS } from './showcaseBrand';
+
+const CONFIRMATION_ADDRESS = IS_SHOWCASE_MODE
+  ? SHOWCASE_ADDRESS
+  : '24 Waitapu Road, Tākaka 7110';
 
 export interface BookingSubmissionSummaryInput {
   bookingType: BookingServiceType;
@@ -52,7 +58,7 @@ export function formatBookingSubmissionSummary(input: BookingSubmissionSummaryIn
   const extended = parseExtendedJson(input.extendedJson);
   const addonLines: (string | null)[] = [];
   if (extended) {
-    if (extended.firewood) addonLines.push('- Firewood requested');
+    if (extended.firewood) addonLines.push('- Supplies pack requested');
     if (extended.cleaningFeeAck) addonLines.push('- Cleaning fee acknowledged');
     if (extended.depositAck || extended.equipmentDeposit) addonLines.push('- Equipment deposit acknowledged');
     if (typeof extended.addonNotes === 'string' && extended.addonNotes.trim()) {
@@ -66,7 +72,7 @@ export function formatBookingSubmissionSummary(input: BookingSubmissionSummaryIn
       line('Package', `${service.label} (${service.priceLabel})`),
       line('Category', input.categoryLabel),
       line('When', when),
-      line('Address', '24 Waitapu Road, Tākaka 7110'),
+      line('Address', CONFIRMATION_ADDRESS),
     ]),
     section('Your details', [
       line('Name', input.name),

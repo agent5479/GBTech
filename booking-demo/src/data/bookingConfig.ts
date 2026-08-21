@@ -7,10 +7,10 @@ export const DURATION_LABELS = {
 } as const;
 
 export const BOOKING_POLICY =
-  'Bookings are held on the Hub facility calendar. Payment is arranged with staff — online payment is not processed through this form.';
+  'Bookings are held on the venue facility calendar. Payment is arranged with staff — online payment is not processed through this form.';
 
 export const BOOKING_PREP =
-  'Please arrive on time. Additional fees may apply for firewood or cleaning as noted on the rentals page.';
+  'Please arrive on time. Additional fees may apply for supplies or cleaning as noted on the rentals page.';
 
 export interface BookingSlot {
   start: string;

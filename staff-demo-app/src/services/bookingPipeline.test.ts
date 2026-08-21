@@ -8,14 +8,14 @@ const samplePending: PendingBooking = {
   name: 'Jane Smith',
   phone: '027 123 4567',
   email: 'jane@example.com',
-  organisation: 'Takaka Craft Group',
+  organisation: 'Sample Craft Group',
   facilityType: 'Kitchen — half day (4 hours)',
   addons: 'Cleaning fee ack',
-  message: 'Pizza oven session',
+  message: 'Prep kitchen session',
   appointmentStart: '2026-07-15T09:00:00+12:00',
   appointmentEnd: '2026-07-15T13:00:00+12:00',
   calendarEventId: 'evt_test_123',
-  location: 'The Kitchen',
+  location: 'Prep Kitchen',
   category: 'facility',
   extendedJson: JSON.stringify({
     v: 1,
@@ -47,7 +47,7 @@ describe('staff booking import — Hub rental plan', () => {
     expect(plan).toBeTruthy();
     expect(plan!.renter.phone).toBe(samplePending.phone);
     expect(plan!.renter.organisation).toBe(samplePending.organisation);
-    expect(plan!.rental.facility).toBe('The Kitchen');
+    expect(plan!.rental.facility).toBe('Prep Kitchen');
     expect(plan!.rental.paymentStatus).toBe('unpaid');
     expect(plan!.renterIsNew).toBe(true);
   });
@@ -57,7 +57,7 @@ describe('staff booking import — Hub rental plan', () => {
     data.rentals.push({
       id: 'rental_existing',
       renterId: 'renter_1',
-      facility: 'The Kitchen',
+      facility: 'Prep Kitchen',
       calendarEventId: samplePending.calendarEventId,
     });
     expect(planRentalImport(samplePending, data)).toBeNull();

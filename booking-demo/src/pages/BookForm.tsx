@@ -81,7 +81,7 @@ export default function BookForm() {
     async function loadSlots() {
       try {
         const data = IS_SHOWCASE_MODE
-          ? await fetchShowcaseAvailability(selectedDate, serviceType!, facility!.label, facility!.category)
+          ? await fetchShowcaseAvailability(selectedDate, serviceType!, facility!.id)
           : ((await (
               await fetch(FORM_ENDPOINT, {
                 method: 'POST',
@@ -362,7 +362,7 @@ export default function BookForm() {
               checked={extended.firewood}
               onChange={(e) => setExtended((s) => ({ ...s, firewood: e.target.checked }))}
             />
-            Request firewood (additional fee applies)
+            Request supplies pack (additional fee applies)
           </label>
           <label className="checkbox-field">
             <input
