@@ -40,6 +40,7 @@ jobs:
           test -f case-studies/beemarshall.html
           test -f case-studies/home-care-ops.html
           test -f tools/hosting-cost-compare.html
+          test -f BingSiteAuth.xml
           test -f demoplan/local-seo-entity-checklist.md
 
       - name: Verify SEO meta tags on each page

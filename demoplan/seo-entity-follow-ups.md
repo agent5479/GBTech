@@ -1,41 +1,51 @@
 # SEO entity enrichment — follow-ups for future review
 
-Deferred items after the domain-deferred SEO entity work (committed on `main`). Review when ready for brand/domain or off-site growth work.
+Deferred items after domain-deferred SEO entity work and **GBTech brand unity** (Marshall Solutions = websites/booking service line under Golden Bay Technologies).
 
-## Domain & canonical cutover
+Primary public entity: **Golden Bay Technologies (GBTech)**. Do not treat Marshall Solutions as a second LocalBusiness or separate GBP.
 
-- [ ] Register / choose custom domain(s) for GBTech and/or Marshall Solutions
-- [ ] Configure GitHub Pages custom domain + enforce HTTPS
-- [ ] Sweep absolute URLs: hub/service/case/tool canonicals, OG/Twitter images, JSON-LD `@id` / `url`
-- [ ] Update `BASE_URL` in [`.github/scripts/generate-sitemap.py`](../.github/scripts/generate-sitemap.py)
-- [ ] Update sitemap URL and assertions in [`robots.txt`](../robots.txt) and [`.github/workflows/pages.yml`](../.github/workflows/pages.yml)
-- [ ] Redirect or keep `.github.io/GBTech` as secondary (avoid duplicate indexing)
+## Domain cutover (when hostname is secured)
+
+Leave absolute URLs on `https://agent5479.github.io/GBTech` until the new origin is live.
+
+- [ ] Register primary domain for GBTech (e.g. `gbtech.nz`) — one site origin, not a separate Marshall domain
+- [ ] GitHub Pages: custom domain + enforce HTTPS; add `CNAME` if required
+- [ ] Set `BASE_URL` in [`.github/scripts/generate-sitemap.py`](../.github/scripts/generate-sitemap.py)
+- [ ] Update Sitemap line + header in [`robots.txt`](../robots.txt)
+- [ ] Sweep absolute URLs: canonical, OG/Twitter `url`/`image`, JSON-LD `@id` / `url` / `image` on hubs, `services/`, `case-studies/`, `tools/`
+- [ ] Update sitemap URL assertions in [`.github/workflows/pages.yml`](../.github/workflows/pages.yml)
+- [ ] Update demo `VITE_SITE_URL` in pages workflow if showcase URLs should follow the new origin
+- [ ] Prefer apex (or www) as sole canonical; keep `.github.io/GBTech` redirect-only or noindex secondary
+- [ ] Search Console + Bing ownership; submit new sitemap
+- [ ] Point GBP website URL at the new origin
 
 ## Entity & GBP (own brand)
 
-- [ ] Create or claim Google Business Profile for Golden Bay Technologies / Marshall Solutions if not already live
-- [ ] Add real GBP (and other social) URLs to JSON-LD `sameAs` — do not invent links
+- [ ] Create or claim **one** Google Business Profile: **Golden Bay Technologies** (not a separate Marshall GBP)
+- [ ] Categories/services: IT support primary; websites/booking as GBP services matching Marshall Solutions packages
+- [ ] Add GBP (and other real social) URLs to JSON-LD `sameAs` — do not invent links
 - [ ] Optional on-site “Also find us” block once profile URLs exist
-- [ ] Align GBP categories, services, hours, and NAP with hub + service pages
+- [ ] Align GBP hours, phone, email, Tākaka/Tasman NAP with site footers and schema
 
 ## Brand demand (off-site)
 
-- [ ] Grow branded search (people searching “GBTech” / “Marshall Solutions”) via short case videos, local community, email to past clients
-- [ ] Diversify channels so revenue is not 100% organic search-dependent (YouTube, social, newsletter)
-- [ ] Keep entity naming consistent across GBP, signatures, schema (`Golden Bay Technologies`, `GBTech`, `Marshall Solutions`)
+- [ ] Grow branded search for **GBTech** / **Golden Bay Technologies** (Marshall Solutions only as package name in ads/copy)
+- [ ] Diversify channels: YouTube, local community, email to past clients
+- [ ] Keep naming consistent: legal/Maps/schema = Golden Bay Technologies; package line = Marshall Solutions
 
 ## Content & measurement
 
-- [ ] Add further informationally additive assets only when unique (more case studies with numbers, tools) — no generic how-to blog
-- [ ] After domain cutover: Search Console + Bing ownership, submit new sitemap, verify GBP website URL
-- [ ] Spot-check that `/sim/`, `/demo/`, staff apps remain Disallowed and out of sitemap
+- [ ] Further informationally additive assets only when unique — no generic how-to blog
+- [ ] After domain cutover: verify indexing of service/case/tool URLs; demos stay Disallowed
+- [ ] Spot-check competitor-free differentiation (diagnostics, recovery, owned sites/booking, direct contact)
 
 ## Client deliveries
 
-- [ ] Use [local-seo-entity-checklist.md](local-seo-entity-checklist.md) on each Marshall Solutions build
-- [ ] Treat custom domain as a scheduled client step after NAP/schema/service URLs ship
+- [ ] Use [local-seo-entity-checklist.md](local-seo-entity-checklist.md) on each client build
+- [ ] Custom domain remains a scheduled client step after NAP/schema/service URLs ship
 
 ## Explicitly still out of scope unless revisited
 
 - Indexing demo SPAs (`/sim/`, `/demo/`)
 - AI-generated generic article library
+- Naming local competitors on marketing pages

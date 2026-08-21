@@ -12,6 +12,7 @@ Allow: /styles.css
 Allow: /site.webmanifest
 Allow: /img/
 Allow: /profile.png
+Allow: /BingSiteAuth.xml
 Allow: /demoplan/local-seo-entity-checklist.md
 
 # Simulated booking demos (noindex; thin/demo content)
