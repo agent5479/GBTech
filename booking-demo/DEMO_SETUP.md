@@ -1,7 +1,7 @@
 # Marshall Solutions — Advanced Stack Demo
 
-This folder is the **public booking site** deployed to `https://agent5479.github.io/GBTech/demo/`.
-The staff CRM source lives in [`../staff-demo-app/`](../staff-demo-app/) and deploys to `/GBTech/staff-demo/`.
+This folder is the **public booking site** deployed to `https://gbtech.co.nz/demo/`.
+The staff CRM source lives in [`../staff-demo-app/`](../staff-demo-app/) and deploys to `/staff-demo/`.
 
 Full technical reference: [`../demoplan/booking-platform-replication-guide.md`](../demoplan/booking-platform-replication-guide.md).
 
@@ -11,8 +11,8 @@ GitHub Pages builds both apps with `VITE_SHOWCASE_MODE=true`. No Google or Fireb
 
 **Visitor flow:**
 
-1. Open [`/GBTech/demo/rentals/book`](https://agent5479.github.io/GBTech/demo/rentals/book) and complete a simulated booking.
-2. Open [`/GBTech/staff-demo/`](https://agent5479.github.io/GBTech/staff-demo/) and click **Enter staff demo**.
+1. Open [`/demo/rentals/book`](https://gbtech.co.nz/demo/rentals/book) and complete a simulated booking.
+2. Open [`/staff-demo/`](https://gbtech.co.nz/staff-demo/) and click **Enter staff demo**.
 3. Go to **Import Bookings** — your booking appears in the queue (via shared browser `localStorage`).
 
 Local development:
@@ -52,7 +52,7 @@ Set `VITE_SHOWCASE_MODE=false` and configure `.env.local` with live endpoints.
 |--------|---------|---------|
 | `DEMO_VITE_FORM_ENDPOINT` | booking-demo | Apps Script `/exec` URL |
 | `DEMO_VITE_CALENDAR_ID` | booking-demo | Calendar ID |
-| `DEMO_VITE_SITE_URL` | booking-demo | `https://agent5479.github.io/GBTech/demo` |
+| `DEMO_VITE_SITE_URL` | booking-demo | `https://gbtech.co.nz/demo` |
 | `DEMO_VITE_BOOKING_API_URL` | staff-demo-app | Same `/exec` URL |
 | `DEMO_VITE_BOOKING_IMPORT_KEY` | staff-demo-app | `TRAINER_IMPORT_KEY` |
 | `DEMO_VITE_FIREBASE_*` | staff-demo-app | Firebase web config |
@@ -66,4 +66,4 @@ cd booking-demo && npm run test:booking && VITE_SHOWCASE_MODE=true npm run build
 cd ../staff-demo-app && npm run test:booking && VITE_SHOWCASE_MODE=true npm run build
 ```
 
-Then open `/GBTech/demo/rentals/book`, complete a test booking, and import it in the staff demo.
+Then open `/demo/rentals/book`, complete a test booking, and import it in the staff demo.

@@ -9,7 +9,7 @@ export default defineConfig({
       '@shared': path.resolve(__dirname, './shared'),
     },
   },
-  base: '/GBTech/demo/',
+  base: '/demo/',
   build: {
     outDir: 'dist',
     emptyOutDir: true,

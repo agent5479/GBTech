@@ -1,4 +1,4 @@
-# Golden Bay Technologies — https://agent5479.github.io/GBTech/
+# Golden Bay Technologies — https://gbtech.co.nz/
 # Index marketing pages only; keep demos, source, and private apps out of search.
 
 User-agent: *
@@ -53,4 +53,4 @@ Disallow: /staff-demo-app/
 Disallow: /demoplan/
 Disallow: /.github/
 
-Sitemap: https://agent5479.github.io/GBTech/sitemap.xml
+Sitemap: https://gbtech.co.nz/sitemap.xml

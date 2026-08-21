@@ -1,23 +1,16 @@
 # SEO entity enrichment — follow-ups for future review
 
-Deferred items after domain-deferred SEO entity work and **GBTech brand unity** (Marshall Solutions = websites/booking service line under Golden Bay Technologies).
+Primary public entity: **Golden Bay Technologies (GBTech)** at **https://gbtech.co.nz**. Marshall Solutions = websites/booking service line (not a second LocalBusiness).
 
-Primary public entity: **Golden Bay Technologies (GBTech)**. Do not treat Marshall Solutions as a second LocalBusiness or separate GBP.
+## Domain cutover
 
-## Domain cutover (when hostname is secured)
-
-Leave absolute URLs on `https://agent5479.github.io/GBTech` until the new origin is live.
-
-- [ ] Register primary domain for GBTech (e.g. `gbtech.nz`) — one site origin, not a separate Marshall domain
-- [ ] GitHub Pages: custom domain + enforce HTTPS; add `CNAME` if required
-- [ ] Set `BASE_URL` in [`.github/scripts/generate-sitemap.py`](../.github/scripts/generate-sitemap.py)
-- [ ] Update Sitemap line + header in [`robots.txt`](../robots.txt)
-- [ ] Sweep absolute URLs: canonical, OG/Twitter `url`/`image`, JSON-LD `@id` / `url` / `image` on hubs, `services/`, `case-studies/`, `tools/`
-- [ ] Update sitemap URL assertions in [`.github/workflows/pages.yml`](../.github/workflows/pages.yml)
-- [ ] Update demo `VITE_SITE_URL` in pages workflow if showcase URLs should follow the new origin
-- [ ] Prefer apex (or www) as sole canonical; keep `.github.io/GBTech` redirect-only or noindex secondary
-- [ ] Search Console + Bing ownership; submit new sitemap
-- [ ] Point GBP website URL at the new origin
+- [x] Primary domain: `gbtech.co.nz` (CNAME + SEO sweep to apex)
+- [x] `BASE_URL` / sitemap / robots / CI / absolute canonicals & JSON-LD / demo `VITE_SITE_URL`
+- [ ] Confirm GitHub Pages “Enforce HTTPS” stays on after DNS settles
+- [ ] Prefer apex as sole canonical; ensure `.github.io/GBTech` redirects to `gbtech.co.nz` (GitHub Pages usually does this when custom domain is set)
+- [ ] Search Console + Bing ownership on `gbtech.co.nz`; submit `https://gbtech.co.nz/sitemap.xml`
+- [ ] Re-verify Bing with auth file at `https://gbtech.co.nz/BingSiteAuth.xml` if needed after domain change
+- [ ] Point GBP website URL at `https://gbtech.co.nz/`
 
 ## Entity & GBP (own brand)
 
@@ -36,13 +29,12 @@ Leave absolute URLs on `https://agent5479.github.io/GBTech` until the new origin
 ## Content & measurement
 
 - [ ] Further informationally additive assets only when unique — no generic how-to blog
-- [ ] After domain cutover: verify indexing of service/case/tool URLs; demos stay Disallowed
+- [ ] Verify indexing of service/case/tool URLs on `gbtech.co.nz`; demos stay Disallowed
 - [ ] Spot-check competitor-free differentiation (diagnostics, recovery, owned sites/booking, direct contact)
 
 ## Client deliveries
 
 - [ ] Use [local-seo-entity-checklist.md](local-seo-entity-checklist.md) on each client build
-- [ ] Custom domain remains a scheduled client step after NAP/schema/service URLs ship
 
 ## Explicitly still out of scope unless revisited
 

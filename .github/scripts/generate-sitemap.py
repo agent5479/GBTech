@@ -8,7 +8,7 @@ import os
 from datetime import date
 from xml.etree import ElementTree as ET
 
-BASE_URL = "https://agent5479.github.io/GBTech"
+BASE_URL = "https://gbtech.co.nz"
 
 # (source file for lastmod, public path, priority)
 ROUTES = [

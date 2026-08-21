@@ -41,6 +41,8 @@ jobs:
           test -f case-studies/home-care-ops.html
           test -f tools/hosting-cost-compare.html
           test -f BingSiteAuth.xml
+          test -f CNAME
+          grep -q 'gbtech.co.nz' CNAME
           test -f demoplan/local-seo-entity-checklist.md
 
       - name: Verify SEO meta tags on each page
@@ -64,7 +66,7 @@ jobs:
 
       - name: Verify robots.txt allows marketing and blocks demos
         run: |
-          grep -q 'Sitemap: https://agent5479.github.io/GBTech/sitemap.xml' robots.txt
+          grep -q 'Sitemap: https://gbtech.co.nz/sitemap.xml' robots.txt
           grep -q 'Allow: /services/' robots.txt
           grep -q 'Allow: /case-studies/' robots.txt
           grep -q 'Allow: /tools/' robots.txt
@@ -101,7 +103,7 @@ jobs:
         working-directory: booking-demo
         env:
           VITE_SHOWCASE_MODE: 'true'
-          VITE_SITE_URL: https://agent5479.github.io/GBTech/demo
+          VITE_SITE_URL: https://gbtech.co.nz/demo
           VITE_FORM_ENDPOINT: https://example.com/showcase
           VITE_CALENDAR_ID: showcase@group.calendar.google.com
         run: |

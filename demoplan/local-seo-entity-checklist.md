@@ -4,7 +4,7 @@ Operational checklist for local business sites built by **Golden Bay Technologie
 
 Pair with [booking-platform-replication-guide.md](booking-platform-replication-guide.md) §7 (robots, sitemap, static prerender) and [seo-entity-follow-ups.md](seo-entity-follow-ups.md) for GBTech’s own domain/GBP cutover.
 
-**Custom domain cutover is a later client step** — ship correct NAP, service URLs, and schema first; swap `BASE_URL` / canonicals when DNS is ready.
+**Custom domain:** marketing site origin is `https://gbtech.co.nz` (see [seo-entity-follow-ups.md](seo-entity-follow-ups.md)). Client builds should use their own apex the same way.
 
 ## Google Business Profile alignment
 
