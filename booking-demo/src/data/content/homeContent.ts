@@ -15,7 +15,7 @@ export const homeContent = {
   aboutTeaser: {
     heading: 'Spaces for your group',
     body: 'Rent flexible hire rooms by the hour or day. Book online, arrange payment with staff, and keep your calendar in sync — all in a site you own outright.',
-    image: '/images/rentals/01-Workshop_space.jpg',
+    image: '/images/rentals/01-Workshop_space.webp',
     links: [
       { label: 'Facility rentals', to: '/rentals' },
       { label: 'Book online', to: '/rentals/book' },

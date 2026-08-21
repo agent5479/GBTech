@@ -1,3 +1,5 @@
+import { assetUrl } from '../../shared/assetUrl';
+
 interface ContentHeroProps {
   label?: string;
   title: string;
@@ -22,7 +24,7 @@ export default function ContentHero({ label, title, intro, image, children }: Co
       </div>
       {image && (
         <div className="page-hero__media">
-          <img src={image} alt="" loading="eager" />
+          <img src={assetUrl(image)} alt="" loading="eager" />
         </div>
       )}
     </section>

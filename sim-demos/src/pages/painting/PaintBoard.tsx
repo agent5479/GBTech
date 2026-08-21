@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { BallparkExportActions } from '../../components/BallparkExportActions'
-import { DemoImageTiles } from '../../components/DemoHeroImage'
+import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import {
   EXTERIOR_SURFACE_KINDS,
@@ -120,7 +120,7 @@ export default function PaintBoard() {
         </div>
         <span className="demo-theme-tag">Exterior</span>
       </header>
-      <DemoImageTiles id="paintboard" />
+      <div className="demo-hero-photo"><DemoCardImage id="paintboard" className="demo-hero-photo__img" /></div>
       <DemoPitchBar
         packageTier="advanced"
         compareTo="/painting/freshcoat"

@@ -321,19 +321,6 @@ textarea {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
 
-.hub-hero-banner {
-  line-height: 0;
-}
-
-.hub-hero-banner img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: min(34vh, 16rem);
-  object-fit: cover;
-  object-position: center;
-}
-
 .hub-hero-copy {
   padding: 1.35rem 1.35rem 1.5rem;
 }
@@ -428,6 +415,31 @@ textarea {
 .hub-card .hub-go {
   display: inline-block;
   margin-bottom: 1.25rem;
+}
+
+.demo-hero-photo {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem 1rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  line-height: 0;
+}
+
+.demo-hero-photo picture {
+  display: block;
+  width: 100%;
+}
+
+.demo-hero-photo__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(42vh, 22rem);
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
 }
 
 .demo-image-tiles {

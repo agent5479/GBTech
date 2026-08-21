@@ -1,4 +1,5 @@
 import type { SiteImage } from '../../data/content/imageManifest';
+import { assetUrl } from '../../shared/assetUrl';
 
 interface ImageGalleryProps {
   images: SiteImage[] | { src: string; alt: string }[];
@@ -11,7 +12,7 @@ export default function ImageGallery({ images, columns = 3 }: ImageGalleryProps)
     <div className={`image-grid image-grid--${columns}`}>
       {images.map((img) => (
         <figure key={img.src} className="image-grid__item">
-          <img src={img.src} alt={img.alt} loading="lazy" />
+          <img src={assetUrl(img.src)} alt={img.alt} loading="lazy" />
         </figure>
       ))}
     </div>

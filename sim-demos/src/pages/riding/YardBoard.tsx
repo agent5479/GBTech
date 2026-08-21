@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { DemoImageTiles } from '../../components/DemoHeroImage'
+import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import {
   STAYS,
@@ -79,7 +79,7 @@ export default function YardBoard() {
         </div>
         <span className="demo-theme-tag">Different UI · not a wizard</span>
       </header>
-      <DemoImageTiles id="yardboard" />
+      <div className="demo-hero-photo"><DemoCardImage id="yardboard" className="demo-hero-photo__img" /></div>
       <DemoPitchBar
         packageTier="advanced"
         compareTo="/riding/shoreride"

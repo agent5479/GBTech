@@ -1,3 +1,5 @@
+import { assetUrl } from '../../shared/assetUrl';
+
 interface ImageFigureProps {
   src: string;
   alt: string;
@@ -7,7 +9,7 @@ interface ImageFigureProps {
 export default function ImageFigure({ src, alt, caption }: ImageFigureProps) {
   return (
     <figure className="image-figure">
-      <img src={src} alt={alt} loading="lazy" />
+      <img src={assetUrl(src)} alt={alt} loading="lazy" />
       {caption && <figcaption>{caption}</figcaption>}
     </figure>
   );

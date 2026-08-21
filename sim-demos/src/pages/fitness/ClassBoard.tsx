@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { DemoImageTiles } from '../../components/DemoHeroImage'
+import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import {
   addExercise,
@@ -74,7 +74,7 @@ export default function ClassBoard() {
         </div>
         <span className="demo-theme-tag">Different UI · not a wizard</span>
       </header>
-      <DemoImageTiles id="classboard" />
+      <div className="demo-hero-photo"><DemoCardImage id="classboard" className="demo-hero-photo__img" /></div>
       <DemoPitchBar
         packageTier="advanced"
         compareTo="/fitness/studioflow"

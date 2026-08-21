@@ -968,20 +968,8 @@ main,
   padding: 0;
 }
 
-.page-hero--demo .page-hero__banner {
-  display: block;
-  width: 100%;
-  line-height: 0;
-  border-bottom: 1px solid rgba(75, 13, 28, 0.15);
-}
-
-.page-hero--demo .page-hero__banner img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: min(36vh, 18rem);
-  object-fit: cover;
-  object-position: center;
+.page-hero--demo.page-hero--image .page-hero__media img {
+  max-height: min(42vh, 22rem);
 }
 
 .page-hero--demo .page-hero-inner {

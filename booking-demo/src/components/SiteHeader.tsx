@@ -7,6 +7,7 @@ import {
   SITE_SHORT_NAME,
   SOCIAL_LINKS,
 } from '../data/siteConfig';
+import { assetUrl } from '../shared/assetUrl';
 
 function SocialLinks({ className }: { className?: string }) {
   return (
@@ -92,7 +93,7 @@ export default function SiteHeader() {
     >
       <div className="site-header__inner">
         <Link to="/" className="site-logo" onClick={close}>
-          <img src="/images/logo.png" alt={SITE_NAME} className="site-logo__img" />
+          <img src={assetUrl('/images/logo.png')} alt={SITE_NAME} className="site-logo__img" />
           <span className="site-logo__text">{SITE_SHORT_NAME}</span>
         </Link>
 

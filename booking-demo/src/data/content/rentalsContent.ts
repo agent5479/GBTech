@@ -13,7 +13,7 @@ export const rentalsContent = {
   facilities: {
     heading: 'Bookable spaces',
     intro: 'Choose a space below, then use the online booking wizard to pick a time.',
-    image: '/images/rentals/01-Workshop_space.jpg',
+    image: '/images/rentals/01-Workshop_space.webp',
     spaces: [
       {
         name: 'Creative Workshop',

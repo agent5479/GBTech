@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MapRoute } from '../../components/MapRoute'
-import { DemoImageTiles } from '../../components/DemoHeroImage'
+import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import { buildYachtCalendar } from '../../shared/calendarMock'
 import { forecastForDate } from '../../shared/weatherMock'
@@ -70,7 +70,7 @@ export default function BayAdventure() {
         </div>
         <span className="demo-theme-tag">Different UI · not a recolour</span>
       </header>
-      <DemoImageTiles id="adventure" />
+      <div className="demo-hero-photo"><DemoCardImage id="adventure" className="demo-hero-photo__img" /></div>
         <DemoPitchBar
           packageTier="advanced"
           compareTo="/yacht/coastal"

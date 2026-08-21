@@ -10,7 +10,7 @@ import {
 } from '../../shared/fareEstimate'
 import { roadDistanceKm, roadPathBetween } from '../../shared/taxiRoutes'
 import type { LatLng } from '../../shared/sailingRoutes'
-import { DemoImageTiles } from '../../components/DemoHeroImage'
+import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 
 const SLOTS = ['ASAP', '16:00', '17:00', '18:00', '19:30', '21:00']
@@ -120,7 +120,7 @@ export default function BayHop() {
           <li className={phase === 'book' ? 'on' : ''}>3 Book</li>
         </ol>
       </header>
-      <DemoImageTiles id="bayhop" />
+      <div className="demo-hero-photo"><DemoCardImage id="bayhop" className="demo-hero-photo__img" /></div>
         <DemoPitchBar
           packageTier="advanced"
           compareTo="/taxi/mohua"

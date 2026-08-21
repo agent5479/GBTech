@@ -49,7 +49,13 @@ interface TilesProps {
   alt?: string
 }
 
-/** Row of square crops from the primary photo — replaces wide banners. */
+interface CardProps {
+  id: DemoImageId
+  alt?: string
+  className?: string
+}
+
+/** @deprecated Tile mosaic crops often look empty — prefer DemoCardImage. */
 export function DemoImageTiles({ id, alt }: TilesProps) {
   const [tiles] = useState(() => shuffleTiles(demoTileList(id)))
   const label = alt ?? DEMO_META[id].alt
@@ -68,17 +74,7 @@ export function DemoImageTiles({ id, alt }: TilesProps) {
   )
 }
 
-/** @deprecated Prefer DemoImageTiles — kept so existing imports keep working. */
-export function DemoHeroImage(props: TilesProps) {
-  return <DemoImageTiles {...props} />
-}
-
-interface CardProps {
-  id: DemoImageId
-  alt?: string
-  className?: string
-}
-
+/** Full-bleed landscape hero from the industry primary (no weird square crops). */
 export function DemoCardImage({ id, alt, className }: CardProps) {
   const card = demoCardSources(id)
   return (
@@ -88,4 +84,9 @@ export function DemoCardImage({ id, alt, className }: CardProps) {
       className={className ?? 'hub-card-image'}
     />
   )
+}
+
+/** @deprecated Prefer DemoCardImage. */
+export function DemoHeroImage(props: CardProps) {
+  return <DemoCardImage {...props} className={props.className ?? 'demo-hero-photo__img'} />
 }

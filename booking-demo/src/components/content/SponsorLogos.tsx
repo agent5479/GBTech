@@ -1,3 +1,5 @@
+import { assetUrl } from '../../shared/assetUrl';
+
 interface Sponsor {
   name: string;
   image?: string;
@@ -17,7 +19,7 @@ export default function SponsorLogos({ sponsors, heading }: SponsorLogosProps) {
       <div className="sponsor-row__grid">
         {visible.map((sponsor) => (
           <figure key={sponsor.name} className="sponsor-row__item">
-            <img src={sponsor.image} alt={sponsor.name} loading="lazy" />
+            <img src={assetUrl(sponsor.image!)} alt={sponsor.name} loading="lazy" />
           </figure>
         ))}
       </div>

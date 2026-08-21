@@ -14,10 +14,6 @@ export const imageManifest = {
         "alt": "home image 1"
       },
       {
-        "src": "/images/home/01-SLC_gardens_02.png_quot_",
-        "alt": "home image 2"
-      },
-      {
         "src": "/images/home/02-SLC_gardens_02.png",
         "alt": "home image 3"
       },
@@ -210,11 +206,11 @@ export const imageManifest = {
         "alt": "home image 50"
       },
       {
-        "src": "/images/home/50-Planetary_Services_Logo",
+        "src": "/images/home/50-Planetary_Services_Logo.webp",
         "alt": "home image 51"
       },
       {
-        "src": "/images/home/51-Planetary_Services_Logo",
+        "src": "/images/home/51-Planetary_Services_Logo.webp",
         "alt": "home image 52"
       },
       {
@@ -241,22 +237,6 @@ export const imageManifest = {
         "src": "/images/home/57-Top_of_the_South_Logo.png",
         "alt": "home image 58"
       },
-      {
-        "src": "/images/home/58-1759124179740",
-        "alt": "home image 59"
-      },
-      {
-        "src": "/images/home/59-site.css",
-        "alt": "home image 60"
-      },
-      {
-        "src": "/images/home/60-static.css",
-        "alt": "home image 61"
-      },
-      {
-        "src": "/images/home/61-site-bundle.81624e0f7f7f25a4ec8743ea63cda189.js",
-        "alt": "home image 62"
-      }
     ],
     "events": [
       {
@@ -272,11 +252,11 @@ export const imageManifest = {
         "alt": "events image 3"
       },
       {
-        "src": "/images/events/03-collecting_potatoes",
+        "src": "/images/events/03-collecting_potatoes.webp",
         "alt": "events image 4"
       },
       {
-        "src": "/images/events/04-collecting_potatoes",
+        "src": "/images/events/04-collecting_potatoes.webp",
         "alt": "events image 5"
       },
       {
@@ -351,22 +331,6 @@ export const imageManifest = {
         "src": "/images/events/22-20250322_174432_Original.jpeg",
         "alt": "events image 23"
       },
-      {
-        "src": "/images/events/23-1759124179740",
-        "alt": "events image 24"
-      },
-      {
-        "src": "/images/events/24-site.css",
-        "alt": "events image 25"
-      },
-      {
-        "src": "/images/events/25-static.css",
-        "alt": "events image 26"
-      },
-      {
-        "src": "/images/events/26-site-bundle.81624e0f7f7f25a4ec8743ea63cda189.js",
-        "alt": "events image 27"
-      }
     ],
     "courses": [
       {
@@ -525,22 +489,6 @@ export const imageManifest = {
         "src": "/images/courses/38-Organic_Groiwng.jpg",
         "alt": "courses image 39"
       },
-      {
-        "src": "/images/courses/39-1759124179740",
-        "alt": "courses image 40"
-      },
-      {
-        "src": "/images/courses/40-site.css",
-        "alt": "courses image 41"
-      },
-      {
-        "src": "/images/courses/41-static.css",
-        "alt": "courses image 42"
-      },
-      {
-        "src": "/images/courses/42-site-bundle.81624e0f7f7f25a4ec8743ea63cda189.js",
-        "alt": "courses image 43"
-      }
     ],
     "education": [
       {
@@ -563,22 +511,6 @@ export const imageManifest = {
         "src": "/images/education/04-NB_making_bricks.jpeg",
         "alt": "education image 5"
       },
-      {
-        "src": "/images/education/05-1759124179740",
-        "alt": "education image 6"
-      },
-      {
-        "src": "/images/education/06-site.css",
-        "alt": "education image 7"
-      },
-      {
-        "src": "/images/education/07-static.css",
-        "alt": "education image 8"
-      },
-      {
-        "src": "/images/education/08-site-bundle.81624e0f7f7f25a4ec8743ea63cda189.js",
-        "alt": "education image 9"
-      }
     ],
     "rentals": [
       {
@@ -586,11 +518,11 @@ export const imageManifest = {
         "alt": "rentals image 1"
       },
       {
-        "src": "/images/rentals/01-Workshop_space",
+        "src": "/images/rentals/01-Workshop_space.webp",
         "alt": "rentals image 2"
       },
       {
-        "src": "/images/rentals/02-Workshop_space",
+        "src": "/images/rentals/02-Workshop_space.webp",
         "alt": "rentals image 3"
       },
       {
@@ -602,11 +534,11 @@ export const imageManifest = {
         "alt": "rentals image 5"
       },
       {
-        "src": "/images/rentals/05-Apple_crusher_image",
+        "src": "/images/rentals/05-Apple_crusher_image.webp",
         "alt": "rentals image 6"
       },
       {
-        "src": "/images/rentals/06-Apple_crusher_image",
+        "src": "/images/rentals/06-Apple_crusher_image.webp",
         "alt": "rentals image 7"
       },
       {
@@ -633,22 +565,6 @@ export const imageManifest = {
         "src": "/images/rentals/12-5.png",
         "alt": "rentals image 13"
       },
-      {
-        "src": "/images/rentals/13-1759124179740",
-        "alt": "rentals image 14"
-      },
-      {
-        "src": "/images/rentals/14-site.css",
-        "alt": "rentals image 15"
-      },
-      {
-        "src": "/images/rentals/15-static.css",
-        "alt": "rentals image 16"
-      },
-      {
-        "src": "/images/rentals/16-site-bundle.81624e0f7f7f25a4ec8743ea63cda189.js",
-        "alt": "rentals image 17"
-      }
     ],
     "compost": [
       {
@@ -656,19 +572,19 @@ export const imageManifest = {
         "alt": "compost image 1"
       },
       {
-        "src": "/images/compost/01-Compost_bin_location_at_the_i-site",
+        "src": "/images/compost/01-Compost_bin_location_at_the_i-site.webp",
         "alt": "compost image 2"
       },
       {
-        "src": "/images/compost/02-Compost_bin_location_at_the_i-site",
+        "src": "/images/compost/02-Compost_bin_location_at_the_i-site.webp",
         "alt": "compost image 3"
       },
       {
-        "src": "/images/compost/03-Compost_bin_location_at_the_SLC",
+        "src": "/images/compost/03-Compost_bin_location_at_the_SLC.webp",
         "alt": "compost image 4"
       },
       {
-        "src": "/images/compost/04-Compost_bin_location_at_the_SLC",
+        "src": "/images/compost/04-Compost_bin_location_at_the_SLC.webp",
         "alt": "compost image 5"
       },
       {
@@ -688,27 +604,27 @@ export const imageManifest = {
         "alt": "compost image 9"
       },
       {
-        "src": "/images/compost/09-Parakai_drop_off_map",
+        "src": "/images/compost/09-Parakai_drop_off_map.webp",
         "alt": "compost image 10"
       },
       {
-        "src": "/images/compost/10-Parakai_drop_off_map",
+        "src": "/images/compost/10-Parakai_drop_off_map.webp",
         "alt": "compost image 11"
       },
       {
-        "src": "/images/compost/11-Parakai_drop_off_map",
+        "src": "/images/compost/11-Parakai_drop_off_map.webp",
         "alt": "compost image 12"
       },
       {
-        "src": "/images/compost/12-Parakai_drop_off_map",
+        "src": "/images/compost/12-Parakai_drop_off_map.webp",
         "alt": "compost image 13"
       },
       {
-        "src": "/images/compost/13-Compost_Photo",
+        "src": "/images/compost/13-Compost_Photo.webp",
         "alt": "compost image 14"
       },
       {
-        "src": "/images/compost/14-Compost_Photo",
+        "src": "/images/compost/14-Compost_Photo.webp",
         "alt": "compost image 15"
       },
       {
@@ -720,19 +636,19 @@ export const imageManifest = {
         "alt": "compost image 17"
       },
       {
-        "src": "/images/compost/17-Compost_Photo",
+        "src": "/images/compost/17-Compost_Photo.webp",
         "alt": "compost image 18"
       },
       {
-        "src": "/images/compost/18-Compost_Photo",
+        "src": "/images/compost/18-Compost_Photo.webp",
         "alt": "compost image 19"
       },
       {
-        "src": "/images/compost/19-Compost_Photo",
+        "src": "/images/compost/19-Compost_Photo.webp",
         "alt": "compost image 20"
       },
       {
-        "src": "/images/compost/20-Compost_Photo",
+        "src": "/images/compost/20-Compost_Photo.webp",
         "alt": "compost image 21"
       },
       {
@@ -759,22 +675,6 @@ export const imageManifest = {
         "src": "/images/compost/26-Logo_Helping_Hands.png",
         "alt": "compost image 27"
       },
-      {
-        "src": "/images/compost/27-1759124179740",
-        "alt": "compost image 28"
-      },
-      {
-        "src": "/images/compost/28-site.css",
-        "alt": "compost image 29"
-      },
-      {
-        "src": "/images/compost/29-static.css",
-        "alt": "compost image 30"
-      },
-      {
-        "src": "/images/compost/30-site-bundle.81624e0f7f7f25a4ec8743ea63cda189.js",
-        "alt": "compost image 31"
-      }
     ],
     "kaiResilience": [
       {
@@ -869,32 +769,12 @@ export const imageManifest = {
         "src": "/images/kai-resilience/22-Logo_Trash_Palace.png",
         "alt": "kaiResilience image 23"
       },
-      {
-        "src": "/images/kai-resilience/23-1759124179740",
-        "alt": "kaiResilience image 24"
-      },
-      {
-        "src": "/images/kai-resilience/24-site.css",
-        "alt": "kaiResilience image 25"
-      },
-      {
-        "src": "/images/kai-resilience/25-static.css",
-        "alt": "kaiResilience image 26"
-      },
-      {
-        "src": "/images/kai-resilience/26-site-bundle.81624e0f7f7f25a4ec8743ea63cda189.js",
-        "alt": "kaiResilience image 27"
-      }
     ],
     "volunteering": [],
     "team": [
       {
         "src": "/images/team/00-favicon.ico",
         "alt": "team image 1"
-      },
-      {
-        "src": "/images/team/01-SLC_gardens_02.png_quot_",
-        "alt": "team image 2"
       },
       {
         "src": "/images/team/02-SLC_gardens_02.png",
@@ -976,22 +856,6 @@ export const imageManifest = {
         "src": "/images/team/21-Murray_2.jpg",
         "alt": "team image 22"
       },
-      {
-        "src": "/images/team/22-1759124179740",
-        "alt": "team image 23"
-      },
-      {
-        "src": "/images/team/23-site.css",
-        "alt": "team image 24"
-      },
-      {
-        "src": "/images/team/24-static.css",
-        "alt": "team image 25"
-      },
-      {
-        "src": "/images/team/25-site-bundle.81624e0f7f7f25a4ec8743ea63cda189.js",
-        "alt": "team image 26"
-      }
     ],
     "about": [
       {
@@ -1023,19 +887,19 @@ export const imageManifest = {
         "alt": "about image 7"
       },
       {
-        "src": "/images/about/07-SLC_info_picture",
+        "src": "/images/about/07-SLC_info_picture.webp",
         "alt": "about image 8"
       },
       {
-        "src": "/images/about/08-SLC_info_picture",
+        "src": "/images/about/08-SLC_info_picture.webp",
         "alt": "about image 9"
       },
       {
-        "src": "/images/about/09-SLC_info",
+        "src": "/images/about/09-SLC_info.webp",
         "alt": "about image 10"
       },
       {
-        "src": "/images/about/10-SLC_info",
+        "src": "/images/about/10-SLC_info.webp",
         "alt": "about image 11"
       },
       {
@@ -1078,22 +942,6 @@ export const imageManifest = {
         "src": "/images/about/20-Short_Course_1_.png",
         "alt": "about image 21"
       },
-      {
-        "src": "/images/about/21-1759124179740",
-        "alt": "about image 22"
-      },
-      {
-        "src": "/images/about/22-site.css",
-        "alt": "about image 23"
-      },
-      {
-        "src": "/images/about/23-static.css",
-        "alt": "about image 24"
-      },
-      {
-        "src": "/images/about/24-site-bundle.81624e0f7f7f25a4ec8743ea63cda189.js",
-        "alt": "about image 25"
-      }
     ],
     "contact": [
       {
@@ -1108,22 +956,6 @@ export const imageManifest = {
         "src": "/images/contact/02-picking_food_garden.jpg",
         "alt": "contact image 3"
       },
-      {
-        "src": "/images/contact/03-1759124179740",
-        "alt": "contact image 4"
-      },
-      {
-        "src": "/images/contact/04-site.css",
-        "alt": "contact image 5"
-      },
-      {
-        "src": "/images/contact/05-static.css",
-        "alt": "contact image 6"
-      },
-      {
-        "src": "/images/contact/06-site-bundle.81624e0f7f7f25a4ec8743ea63cda189.js",
-        "alt": "contact image 7"
-      }
     ]
   },
   "sponsors": {}

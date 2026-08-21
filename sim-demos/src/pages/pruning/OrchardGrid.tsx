@@ -8,7 +8,7 @@ import {
   estimatePruning,
   formatPruningBracket,
 } from '../../shared/pruningTrees'
-import { DemoImageTiles } from '../../components/DemoHeroImage'
+import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 
 /**
@@ -82,7 +82,7 @@ export default function OrchardGrid() {
         </div>
         <span className="demo-theme-tag">Different UI · not a catalog</span>
       </header>
-      <DemoImageTiles id="orchard" />
+      <div className="demo-hero-photo"><DemoCardImage id="orchard" className="demo-hero-photo__img" /></div>
         <DemoPitchBar
           packageTier="advanced"
           compareTo="/pruning/canopy"

@@ -1,3 +1,5 @@
+import { assetUrl } from '../../shared/assetUrl';
+
 interface TeamMemberCardProps {
   name: string;
   role: string;
@@ -10,7 +12,7 @@ export default function TeamMemberCard({ name, role, bio, image }: TeamMemberCar
     <article className="team-card">
       {image && (
         <div className="team-card__photo">
-          <img src={image} alt={name} loading="lazy" />
+          <img src={assetUrl(image)} alt={name} loading="lazy" />
         </div>
       )}
       <div className="team-card__body">

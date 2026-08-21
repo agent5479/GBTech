@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { assetUrl } from '../../shared/assetUrl';
 
 interface TeaserCardProps {
   heading: string;
@@ -13,7 +14,7 @@ export default function TeaserCard({ heading, body, image, link, links }: Teaser
     <article className="teaser-card">
       {image && (
         <div className="teaser-card__media">
-          <img src={image} alt="" loading="lazy" />
+          <img src={assetUrl(image)} alt="" loading="lazy" />
         </div>
       )}
       <div className="teaser-card__body">

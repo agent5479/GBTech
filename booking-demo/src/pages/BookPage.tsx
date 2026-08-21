@@ -4,6 +4,10 @@ import BookingsCalendarEmbed from '../components/BookingsCalendarEmbed';
 import { DemoBookingGuide } from '../components/ShowcaseChrome';
 import BookForm from './BookForm';
 import { IS_SHOWCASE_MODE } from '@shared/showcaseMode';
+import { curatedImages } from '../data/content/curatedImages';
+import { assetUrl } from '../shared/assetUrl';
+
+const WORKSHOP = curatedImages.rentals.workshop ?? '/images/rentals/01-Workshop_space.webp';
 
 export default function BookPage() {
   return (
@@ -13,16 +17,7 @@ export default function BookPage() {
       path="/rentals/book"
       bodyClass="page-book"
       hero={
-        <section className="page-hero page-hero--demo">
-          <div className="page-hero__banner">
-            <img
-              src={`${import.meta.env.BASE_URL}images/gbtech-banner-light.jpg`}
-              alt="GBTech — Golden Bay Technology: IT support and digital solutions"
-              width="1600"
-              height="500"
-              fetchPriority="high"
-            />
-          </div>
+        <section className="page-hero page-hero--demo page-hero--image">
           <div className="page-hero-inner">
             <p className="section-label">GBTech · Advanced package demo</p>
             <h1>Potential booking system</h1>
@@ -34,6 +29,15 @@ export default function BookPage() {
             <Link to="/about" className="text-link">
               About this demo
             </Link>
+          </div>
+          <div className="page-hero__media">
+            <img
+              src={assetUrl(WORKSHOP)}
+              alt="Sample workshop hire space"
+              width="800"
+              height="600"
+              fetchPriority="high"
+            />
           </div>
         </section>
       }

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { DemoImageTiles } from './DemoHeroImage'
+import { DemoCardImage } from './DemoHeroImage'
 import { GbtechDemoNav } from './GbtechDemoNav'
 import type { DemoImageId } from '../shared/demoAssets'
 
@@ -38,7 +38,9 @@ export function DemoChrome({
         </div>
         <span className="demo-theme-tag">{theme}</span>
       </header>
-      <DemoImageTiles id={imageId} alt={heroAlt} />
+      <div className="demo-hero-photo">
+        <DemoCardImage id={imageId} alt={heroAlt} className="demo-hero-photo__img" />
+      </div>
     </>
   )
 }

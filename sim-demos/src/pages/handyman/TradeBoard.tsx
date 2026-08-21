@@ -9,7 +9,7 @@ import {
   formatHandymanBracket,
   jobById,
 } from '../../shared/handymanJobs'
-import { DemoImageTiles } from '../../components/DemoHeroImage'
+import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 
 /**
@@ -74,7 +74,7 @@ export default function TradeBoard() {
         </div>
         <span className="demo-theme-tag">Different UI · not a wizard</span>
       </header>
-      <DemoImageTiles id="tradeboard" />
+      <div className="demo-hero-photo"><DemoCardImage id="tradeboard" className="demo-hero-photo__img" /></div>
         <DemoPitchBar
           packageTier="advanced"
           compareTo="/handyman/bayfix"
