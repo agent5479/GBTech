@@ -726,6 +726,42 @@ p:last-child {
   color: var(--text-muted);
 }
 
+/* Service spectrum — purpose icons */
+.spectrum-card {
+  padding-top: 0.35rem;
+}
+
+.spectrum-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin: 1.15rem 1.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  color: var(--accent);
+  background: linear-gradient(145deg, rgba(211, 153, 60, 0.14), rgba(75, 13, 28, 0.06));
+  border: 1px solid rgba(211, 153, 60, 0.35);
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.spectrum-icon svg {
+  width: 1.7rem;
+  height: 1.7rem;
+  display: block;
+}
+
+.spectrum-card:hover .spectrum-icon {
+  color: var(--accent-magenta);
+  border-color: var(--accent);
+  background: linear-gradient(145deg, rgba(211, 153, 60, 0.22), rgba(75, 13, 28, 0.1));
+  transform: translateY(-1px);
+}
+
+.spectrum-card .demo-card-kind {
+  margin-top: 0.15rem;
+}
+
 .demo-card-coastal {
   border-color: rgba(11, 31, 51, 0.22);
   background: linear-gradient(165deg, #f7f3ea 0%, var(--bg-subtle) 100%);
