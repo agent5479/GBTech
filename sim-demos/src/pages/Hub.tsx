@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { DemoCardImage } from '../components/DemoHeroImage'
+import { GbtechDemoNav } from '../components/GbtechDemoNav'
 import type { DemoImageId } from '../shared/demoAssets'
 
 const GROUPS: {
@@ -178,23 +179,36 @@ const GROUPS: {
 ]
 
 export default function Hub() {
+  const bannerSrc = `${import.meta.env.BASE_URL}images/gbtech-banner-light.jpg`
   return (
     <div className="hub">
+      <GbtechDemoNav />
       <header className="hub-hero demo-enter">
-        <p className="demo-badge">GBTech · simulated templates</p>
-        <h1>Try a booking demo</h1>
-        <p>
-          Fully simulated — no Google Calendar writes, no payments, no dispatch. Seven Golden Bay verticals, each as
-          two named jobs — a classic wizard and a different interface — not the same screen twice.
-        </p>
-        <p>
-          <Link className="hub-back" to="/painting">
-            Painting estimates hub →
-          </Link>
-        </p>
-        <a className="hub-back" href="/#demos">
-          ← Back to GBTech
-        </a>
+        <div className="hub-hero-banner">
+          <img
+            src={bannerSrc}
+            alt="GBTech — Golden Bay Technology: IT support and digital solutions"
+            width={1600}
+            height={500}
+            fetchPriority="high"
+          />
+        </div>
+        <div className="hub-hero-copy">
+          <p className="demo-badge">GBTech · simulated templates</p>
+          <h1>Try a booking demo</h1>
+          <p>
+            Fully simulated — no Google Calendar writes, no payments, no dispatch. Seven Golden Bay verticals, each as
+            two named jobs — a classic wizard and a different interface — not the same screen twice.
+          </p>
+          <p>
+            <Link className="hub-back" to="/painting">
+              Painting estimates hub →
+            </Link>
+          </p>
+          <a className="hub-back" href="/#demos">
+            ← Back to GBTech
+          </a>
+        </div>
       </header>
       {GROUPS.map((group) => (
         <section key={group.heading} className="hub-group">

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { DemoImageTiles } from './DemoHeroImage'
+import { GbtechDemoNav } from './GbtechDemoNav'
 import type { DemoImageId } from '../shared/demoAssets'
 
 interface Props {
@@ -25,6 +26,7 @@ export function DemoChrome({
 }: Props) {
   return (
     <>
+      <GbtechDemoNav />
       <header className="demo-chrome">
         <Link to={backTo} className="demo-back">
           {backLabel}

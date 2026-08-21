@@ -27,9 +27,11 @@ export default function SiteLayout({
   return (
     <>
       <Seo title={title} description={description} path={path} bodyClass={bodyClass} />
-      {IS_SHOWCASE_MODE && <ShowcaseBanner />}
-      <SiteHeader />
-      {IS_SHOWCASE_MODE && <ShowcasePitchBar />}
+      <div className={`site-chrome-sticky${IS_SHOWCASE_MODE ? ' site-chrome-sticky--showcase' : ''}`}>
+        {IS_SHOWCASE_MODE && <ShowcaseBanner />}
+        <SiteHeader />
+        {IS_SHOWCASE_MODE && <ShowcasePitchBar />}
+      </div>
       {hero}
       <main className={mainClassName}>{children}</main>
       <SiteFooter />

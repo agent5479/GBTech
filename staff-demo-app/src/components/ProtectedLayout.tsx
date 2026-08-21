@@ -25,9 +25,11 @@ export function ProtectedLayout() {
 
   return (
     <TenantDataProvider>
-      {IS_SHOWCASE_MODE && <ShowcaseBanner />}
-      <AppNavbar />
-      {IS_SHOWCASE_MODE && <ShowcaseStaffPitchBar />}
+      <div className={`staff-chrome-sticky${IS_SHOWCASE_MODE ? ' staff-chrome-sticky--showcase' : ''}`}>
+        {IS_SHOWCASE_MODE && <ShowcaseBanner />}
+        <AppNavbar />
+        {IS_SHOWCASE_MODE && <ShowcaseStaffPitchBar />}
+      </div>
       <Container fluid className="pb-5">
         <SyncQueueBanner />
         <Outlet />

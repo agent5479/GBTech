@@ -14,6 +14,15 @@ export default function BookPage() {
       bodyClass="page-book"
       hero={
         <section className="page-hero page-hero--demo">
+          <div className="page-hero__banner">
+            <img
+              src={`${import.meta.env.BASE_URL}images/gbtech-banner-light.jpg`}
+              alt="GBTech — Golden Bay Technology: IT support and digital solutions"
+              width="1600"
+              height="500"
+              fetchPriority="high"
+            />
+          </div>
           <div className="page-hero-inner">
             <p className="section-label">GBTech · Advanced package demo</p>
             <h1>Potential booking system</h1>

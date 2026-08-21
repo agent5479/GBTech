@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { DemoCardImage } from '../../components/DemoHeroImage'
+import { GbtechDemoNav } from '../../components/GbtechDemoNav'
 
 /**
  * Painting estimates landing — two calculators, two jobs.
@@ -7,16 +8,19 @@ import { DemoCardImage } from '../../components/DemoHeroImage'
 export default function EstimatesHub() {
   return (
     <div className="hub estimates-hub">
+      <GbtechDemoNav />
       <header className="hub-hero demo-enter">
-        <p className="demo-badge">Painting estimates · simulated</p>
-        <h1>Estimates</h1>
-        <p className="estimates-hub-intro">
-          Two calculators for a rough sense of cost — indoor rooms, or weatherboards, corrugate, and roof iron.
-          Impression only. Not the same wall-area quote with a different skin.
-        </p>
-        <Link to="/" className="hub-back">
-          ← All demos
-        </Link>
+        <div className="hub-hero-copy">
+          <p className="demo-badge">Painting estimates · simulated</p>
+          <h1>Estimates</h1>
+          <p className="estimates-hub-intro">
+            Two calculators for a rough sense of cost — indoor rooms, or weatherboards, corrugate, and roof iron.
+            Impression only. Not the same wall-area quote with a different skin.
+          </p>
+          <Link to="/" className="hub-back">
+            ← All demos
+          </Link>
+        </div>
       </header>
       <div className="estimates-cards">
         <Link to="/painting/freshcoat" className="hub-card hub-card-freshcoat">
