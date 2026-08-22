@@ -1169,25 +1169,20 @@ body.marshall-page .hero-brand {
 body.gbtech-page .page-nav,
 body.marshall-page .page-nav {
   background: var(--accent-magenta);
-  border-color: var(--accent-magenta-mid);
+  border: 1px solid var(--accent-magenta-mid);
   color: var(--text-on-burgundy);
   position: sticky;
-  top: 0;
+  top: 0.65rem;
   z-index: 100;
   flex-direction: column;
   align-items: stretch;
-  /* Full-bleed brand bar — not a cream card */
-  border-radius: 0;
-  border-left: none;
-  border-right: none;
-  box-shadow: 0 2px 12px rgba(46, 125, 50, 0.28);
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 16px rgba(17, 20, 24, 0.12);
+  width: auto;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
   box-sizing: border-box;
-  padding-left: max(1.5rem, calc(50vw - 28rem));
-  padding-right: max(1.5rem, calc(50vw - 28rem));
 }
 
 body.gbtech-page .page-nav-back,
@@ -1861,12 +1856,6 @@ body.marshall-page .comparison-table tbody th {
     padding: 1rem 1.5rem;
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  body.gbtech-page .page-nav,
-  body.marshall-page .page-nav {
-    padding-left: max(1rem, calc(50vw - 28rem));
-    padding-right: max(1rem, calc(50vw - 28rem));
   }
 
   .page-nav-brand {
