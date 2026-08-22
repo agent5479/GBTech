@@ -12,6 +12,7 @@ import {
 import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoModeBar } from '../../components/DemoModeBar'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
+import { ShowcaseChrome } from '../../components/ShowcaseShell'
 
 const PIPELINE_STAGES = [
   { id: 'new', label: 'New' },
@@ -78,24 +79,28 @@ export default function TradeBoard() {
 
   return (
     <div className="tradeboard-page theme-tradeboard">
-      <header className="tradeboard-top">
-        <Link to="/" className="demo-back">
-          ← All demos
-        </Link>
-        <div>
-          <p className="demo-badge">Trade Board · multi-select jobs</p>
-          <h1>Site job board</h1>
-          <p className="demo-sub">Pin trades on one board — same pricing as a repair ticket.</p>
+      <ShowcaseChrome>
+        <header className="tradeboard-top">
+          <Link to="/" className="demo-back">
+            ← All demos
+          </Link>
+          <div>
+            <p className="demo-badge">Trade Board · multi-select jobs</p>
+            <h1>Site job board</h1>
+            <p className="demo-sub">Pin trades on one board — same pricing as a repair ticket.</p>
+          </div>
+          <span className="demo-theme-tag">Different UI · not a wizard</span>
+        </header>
+        <div className="demo-hero-photo">
+          <DemoCardImage id="tradeboard" className="demo-hero-photo__img" />
         </div>
-        <span className="demo-theme-tag">Different UI · not a wizard</span>
-      </header>
-      <div className="demo-hero-photo"><DemoCardImage id="tradeboard" className="demo-hero-photo__img" /></div>
-        <DemoPitchBar
-          packageTier="advanced"
-          compareTo="/handyman/bayfix"
-          compareLabel="Repair ticket"
-          engineNote="Two jobs, not two skins — site job board vs repair ticket."
-        />
+      </ShowcaseChrome>
+      <DemoPitchBar
+        packageTier="advanced"
+        compareTo="/handyman/bayfix"
+        compareLabel="Repair ticket"
+        engineNote="Two jobs, not two skins — site job board vs repair ticket."
+      />
       <DemoModeBar
         clientTo="/handyman/bayfix"
         clientLabel="Client view"

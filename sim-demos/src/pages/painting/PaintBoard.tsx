@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { BallparkExportActions } from '../../components/BallparkExportActions'
 import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
+import { ShowcaseChrome } from '../../components/ShowcaseShell'
 import { WeatherStrip } from '../../components/WeatherStrip'
 import { buildDemoForecast } from '../../shared/weatherMock'
 import {
@@ -110,21 +111,25 @@ export default function PaintBoard() {
 
   return (
     <div className="paintboard-page theme-paintboard">
-      <header className="paintboard-top">
-        <Link to="/painting" className="demo-back">
-          ← Painting estimates
-        </Link>
-        <div>
-          <p className="demo-badge">Ballpark only · impression, not a quote</p>
-          <h1>Weatherboards, corrugate &amp; roof</h1>
-          <p className="demo-sub">
-            Exterior calculator — cladding, corrugations, and roof iron. Ridges and pitch add paint area; roofs take
-            more labour.
-          </p>
+      <ShowcaseChrome>
+        <header className="paintboard-top">
+          <Link to="/painting" className="demo-back">
+            ← Painting estimates
+          </Link>
+          <div>
+            <p className="demo-badge">Ballpark only · impression, not a quote</p>
+            <h1>Weatherboards, corrugate &amp; roof</h1>
+            <p className="demo-sub">
+              Exterior calculator — cladding, corrugations, and roof iron. Ridges and pitch add paint area; roofs take
+              more labour.
+            </p>
+          </div>
+          <span className="demo-theme-tag">Exterior</span>
+        </header>
+        <div className="demo-hero-photo">
+          <DemoCardImage id="paintboard" className="demo-hero-photo__img" />
         </div>
-        <span className="demo-theme-tag">Exterior</span>
-      </header>
-      <div className="demo-hero-photo"><DemoCardImage id="paintboard" className="demo-hero-photo__img" /></div>
+      </ShowcaseChrome>
       <DemoPitchBar
         packageTier="advanced"
         compareTo="/painting/freshcoat"

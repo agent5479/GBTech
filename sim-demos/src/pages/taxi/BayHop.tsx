@@ -12,6 +12,7 @@ import { roadDistanceKm, roadPathBetween } from '../../shared/taxiRoutes'
 import type { LatLng } from '../../shared/sailingRoutes'
 import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
+import { ShowcaseChrome } from '../../components/ShowcaseShell'
 
 const SLOTS = ['ASAP', '16:00', '17:00', '18:00', '19:30', '21:00']
 const BAY_CENTER: LatLng = [-40.82, 172.82]
@@ -112,27 +113,31 @@ export default function BayHop() {
 
   return (
     <div className="bayhop-page theme-bayhop">
-      <header className="bayhop-bar">
-        <Link to="/" className="demo-back">
-          ← All demos
-        </Link>
-        <div>
-          <p className="demo-badge">Bay Hop · trip board</p>
-          <h1>Place-to-place trip board</h1>
+      <ShowcaseChrome>
+        <header className="bayhop-bar">
+          <Link to="/" className="demo-back">
+            ← All demos
+          </Link>
+          <div>
+            <p className="demo-badge">Bay Hop · trip board</p>
+            <h1>Place-to-place trip board</h1>
+          </div>
+          <ol className="bayhop-phases">
+            <li className={phase === 'from' ? 'on' : pickup ? 'done' : ''}>1 From</li>
+            <li className={phase === 'to' ? 'on' : dropoff ? 'done' : ''}>2 To</li>
+            <li className={phase === 'book' ? 'on' : ''}>3 Book</li>
+          </ol>
+        </header>
+        <div className="demo-hero-photo">
+          <DemoCardImage id="bayhop" className="demo-hero-photo__img" />
         </div>
-        <ol className="bayhop-phases">
-          <li className={phase === 'from' ? 'on' : pickup ? 'done' : ''}>1 From</li>
-          <li className={phase === 'to' ? 'on' : dropoff ? 'done' : ''}>2 To</li>
-          <li className={phase === 'book' ? 'on' : ''}>3 Book</li>
-        </ol>
-      </header>
-      <div className="demo-hero-photo"><DemoCardImage id="bayhop" className="demo-hero-photo__img" /></div>
-        <DemoPitchBar
-          packageTier="advanced"
-          compareTo="/taxi/mohua"
-          compareLabel="Phone hail"
-          engineNote="Two jobs, not two skins — place-to-place trip board vs phone hail."
-        />
+      </ShowcaseChrome>
+      <DemoPitchBar
+        packageTier="advanced"
+        compareTo="/taxi/mohua"
+        compareLabel="Phone hail"
+        engineNote="Two jobs, not two skins — place-to-place trip board vs phone hail."
+      />
 
       <div className="dispatch-queue-strip" aria-label="Dispatch queue">
         <p className="dispatch-queue-kicker">Live dispatch (demo)</p>

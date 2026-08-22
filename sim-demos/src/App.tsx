@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import type { ReactNode } from 'react'
 import { DemoPresentationProvider } from './context/DemoPresentation'
-import { TabletFrame } from './components/TabletFrame'
+import { ShowcaseShell } from './components/ShowcaseShell'
 import Hub from './pages/Hub'
 import CoastalCharter from './pages/yacht/CoastalCharter'
 import BayAdventure from './pages/yacht/BayAdventure'
@@ -29,7 +29,7 @@ import './styles/demos.css'
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
 
 function DemoRoute({ children }: { children: ReactNode }) {
-  return <TabletFrame>{children}</TabletFrame>
+  return <ShowcaseShell>{children}</ShowcaseShell>
 }
 
 export default function App() {

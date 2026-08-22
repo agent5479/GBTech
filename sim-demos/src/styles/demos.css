@@ -6303,13 +6303,28 @@ textarea {
 
 /* --- Desktop tablet stage (showcase demos) --- */
 
-.tablet-stage {
+.showcase-shell {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+}
+
+.showcase-chrome {
+  width: 100%;
+  max-width: none;
+  z-index: 2;
+}
+
+.tablet-stage {
+  min-height: 0;
   display: flex;
   align-items: stretch;
   justify-content: center;
   padding: 0;
   background: transparent;
+  width: 100%;
 }
 
 .tablet-device {
@@ -6338,12 +6353,61 @@ textarea {
 }
 
 @media (min-width: 900px) {
-  .tablet-stage {
-    align-items: center;
-    padding: 1.75rem 1.5rem 2rem;
+  .showcase-shell {
     background:
       radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 255, 255, 0.55), transparent 55%),
       linear-gradient(165deg, #d8d2c8 0%, #b8b0a4 42%, #9a9288 100%);
+    padding-bottom: 2rem;
+  }
+
+  .showcase-chrome {
+    width: min(1180px, calc(100vw - 3rem));
+    padding: 0 0 0.85rem;
+  }
+
+  .showcase-chrome .demo-pitch-bar,
+  .showcase-chrome .demo-mode-bar {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    color: #1a1a1a;
+  }
+
+  .showcase-chrome .demo-chrome,
+  .showcase-chrome .tradeboard-top,
+  .showcase-chrome .classboard-top,
+  .showcase-chrome .apiary-top,
+  .showcase-chrome .ops-admin-head,
+  .showcase-chrome .bayhop-bar,
+  .showcase-chrome .adventure-top,
+  .showcase-chrome .orchard-top,
+  .showcase-chrome .paintboard-top,
+  .showcase-chrome .hub-hero {
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 14px;
+    color: #1a1a1a;
+    margin-bottom: 0.55rem;
+  }
+
+  .showcase-chrome .demo-hero-photo {
+    margin-bottom: 0.55rem;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .showcase-chrome .gbtech-demo-nav {
+    margin-bottom: 0.55rem;
+    border-radius: 12px;
+  }
+
+  .tablet-stage {
+    align-items: center;
+    padding: 0 1.5rem;
+    background: transparent;
   }
 
   .tablet-device {
@@ -6383,7 +6447,7 @@ textarea {
   }
 
   .tablet-screen {
-    height: min(820px, calc(100vh - 5.5rem));
+    height: min(820px, calc(100vh - 12rem));
     overflow: auto;
     border-radius: 14px;
     background: #f4f1ec;
@@ -6402,12 +6466,13 @@ textarea {
 }
 
 @media (min-width: 1200px) {
+  .showcase-chrome,
   .tablet-device {
     width: min(1180px, calc(100vw - 4rem));
   }
 
   .tablet-screen {
-    height: min(860px, calc(100vh - 5.5rem));
+    height: min(860px, calc(100vh - 12rem));
   }
 }
 

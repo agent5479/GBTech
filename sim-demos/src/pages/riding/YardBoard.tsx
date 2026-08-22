@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
+import { ShowcaseChrome } from '../../components/ShowcaseShell'
 import {
   STAYS,
   addStayNight,
@@ -78,22 +79,24 @@ export default function YardBoard() {
 
   return (
     <div className="yardboard-page theme-yardboard">
-      <header className="classboard-top">
-        <Link to="/" className="demo-back">
-          ← All demos
-        </Link>
-        <div>
-          <p className="demo-badge">Yard Board · operator</p>
-          <h1>Horse week grid</h1>
-          <p className="demo-sub">
-            Rest days, farrier blocks, and overstays write to a simulated Apps Script calendar — guests cannot double-book.
-          </p>
+      <ShowcaseChrome>
+        <header className="classboard-top">
+          <Link to="/" className="demo-back">
+            ← All demos
+          </Link>
+          <div>
+            <p className="demo-badge">Yard Board · operator</p>
+            <h1>Horse week grid</h1>
+            <p className="demo-sub">
+              Rest days, farrier blocks, and overstays write to a simulated Apps Script calendar — guests cannot double-book.
+            </p>
+          </div>
+          <span className="demo-theme-tag">Different UI · not a wizard</span>
+        </header>
+        <div className="demo-hero-photo demo-hero-photo--compact">
+          <DemoCardImage id="yardboard" className="demo-hero-photo__img" />
         </div>
-        <span className="demo-theme-tag">Different UI · not a wizard</span>
-      </header>
-      <div className="demo-hero-photo demo-hero-photo--compact">
-        <DemoCardImage id="yardboard" className="demo-hero-photo__img" />
-      </div>
+      </ShowcaseChrome>
       <DemoPitchBar
         packageTier="advanced"
         compareTo="/riding/shoreride"

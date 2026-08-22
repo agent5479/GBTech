@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useDemoPresentation } from '../context/DemoPresentation'
 import { DemoCardImage } from './DemoHeroImage'
 import { GbtechDemoNav } from './GbtechDemoNav'
+import { ShowcaseChrome } from './ShowcaseShell'
 import type { DemoImageId } from '../shared/demoAssets'
 
 interface Props {
@@ -42,7 +43,7 @@ export function DemoChrome({
   }
 
   return (
-    <>
+    <ShowcaseChrome>
       <GbtechDemoNav />
       <header className="demo-chrome">
         <Link to={backTo} className="demo-back">
@@ -58,6 +59,6 @@ export function DemoChrome({
       <div className="demo-hero-photo">
         <DemoCardImage id={imageId} alt={heroAlt} className="demo-hero-photo__img" />
       </div>
-    </>
+    </ShowcaseChrome>
   )
 }

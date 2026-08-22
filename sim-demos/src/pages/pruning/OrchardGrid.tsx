@@ -10,6 +10,7 @@ import {
 } from '../../shared/pruningTrees'
 import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
+import { ShowcaseChrome } from '../../components/ShowcaseShell'
 
 const BLOCK_ZONES = ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'B4', 'C1', 'C2', 'C3', 'C4', 'D1', 'D2', 'D3', 'D4'] as const
 
@@ -90,23 +91,27 @@ export default function OrchardGrid() {
 
   return (
     <div className="orchard-page theme-orchard">
-      <header className="orchard-top">
-        <Link to="/" className="demo-back">
-          ← All demos
-        </Link>
-        <div>
-          <p className="demo-badge">Orchard Grid · tile counters</p>
-          <h1>Orchard count grid</h1>
+      <ShowcaseChrome>
+        <header className="orchard-top">
+          <Link to="/" className="demo-back">
+            ← All demos
+          </Link>
+          <div>
+            <p className="demo-badge">Orchard Grid · tile counters</p>
+            <h1>Orchard count grid</h1>
+          </div>
+          <span className="demo-theme-tag">Different UI · not a catalog</span>
+        </header>
+        <div className="demo-hero-photo">
+          <DemoCardImage id="orchard" className="demo-hero-photo__img" />
         </div>
-        <span className="demo-theme-tag">Different UI · not a catalog</span>
-      </header>
-      <div className="demo-hero-photo"><DemoCardImage id="orchard" className="demo-hero-photo__img" /></div>
-        <DemoPitchBar
-          packageTier="advanced"
-          compareTo="/pruning/canopy"
-          compareLabel="Garden prune catalog"
-          engineNote="Two jobs, not two skins — orchard count grid vs garden prune catalog."
-        />
+      </ShowcaseChrome>
+      <DemoPitchBar
+        packageTier="advanced"
+        compareTo="/pruning/canopy"
+        compareLabel="Garden prune catalog"
+        engineNote="Two jobs, not two skins — orchard count grid vs garden prune catalog."
+      />
 
       <div className="orchard-deck demo-enter">
         <section className="orchard-grid-pane">

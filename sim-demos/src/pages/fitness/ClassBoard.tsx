@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoModeBar } from '../../components/DemoModeBar'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
+import { ShowcaseChrome } from '../../components/ShowcaseShell'
 import {
   addExercise,
   classTypeById,
@@ -84,20 +85,24 @@ export default function ClassBoard() {
 
   return (
     <div className="classboard-page theme-classboard">
-      <header className="classboard-top">
-        <Link to="/" className="demo-back">
-          ← All demos
-        </Link>
-        <div>
-          <p className="demo-badge">Class Board · wall timetable</p>
-          <h1>Wall timetable</h1>
-          <p className="demo-sub">
-            Fill bars are the job — see how full each class is, then set the cap and roster. Not a member wallet.
-          </p>
+      <ShowcaseChrome>
+        <header className="classboard-top">
+          <Link to="/" className="demo-back">
+            ← All demos
+          </Link>
+          <div>
+            <p className="demo-badge">Class Board · wall timetable</p>
+            <h1>Wall timetable</h1>
+            <p className="demo-sub">
+              Fill bars are the job — see how full each class is, then set the cap and roster. Not a member wallet.
+            </p>
+          </div>
+          <span className="demo-theme-tag">Different UI · not a wizard</span>
+        </header>
+        <div className="demo-hero-photo">
+          <DemoCardImage id="classboard" className="demo-hero-photo__img" />
         </div>
-        <span className="demo-theme-tag">Different UI · not a wizard</span>
-      </header>
-      <div className="demo-hero-photo"><DemoCardImage id="classboard" className="demo-hero-photo__img" /></div>
+      </ShowcaseChrome>
       <DemoPitchBar
         packageTier="advanced"
         compareTo="/fitness/studioflow"

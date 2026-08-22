@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useDemoPresentation } from '../context/DemoPresentation'
+import { ShowcaseChrome } from './ShowcaseShell'
 
 export type PackageTier = 'essential' | 'advanced'
 export type PitchKind = 'package' | 'customOps'
@@ -37,32 +38,34 @@ export function DemoPitchBar({
       : 'Accounts, dynamic pricing, maps — closest to this style'
 
   return (
-    <aside className="demo-pitch-bar" aria-label="Offer and interface pairing">
-      <div className="demo-pitch-tier">
-        <span className="demo-pitch-kicker">This style ≈</span>
-        {isOps ? (
-          <>
-            <a className="demo-pitch-package" href={CUSTOM_MAIL}>
-              Custom ops · scoped project
-            </a>
-            <span className="demo-pitch-hint">Field + office systems you own — not a booking package</span>
-          </>
-        ) : (
-          <>
-            <a className="demo-pitch-package" href={`${PACKAGES}#${packageTier}`}>
-              {tierLabel}
-            </a>
-            <span className="demo-pitch-hint">{tierHint}</span>
-          </>
-        )}
-      </div>
-      <div className="demo-pitch-pair">
-        {engineNote && <p className="demo-pitch-engine">{engineNote}</p>}
-        <Link className="demo-pitch-compare" to={compareTo}>
-          Compare with {compareLabel} →
-        </Link>
-      </div>
-    </aside>
+    <ShowcaseChrome>
+      <aside className="demo-pitch-bar" aria-label="Offer and interface pairing">
+        <div className="demo-pitch-tier">
+          <span className="demo-pitch-kicker">This style ≈</span>
+          {isOps ? (
+            <>
+              <a className="demo-pitch-package" href={CUSTOM_MAIL}>
+                Custom ops · scoped project
+              </a>
+              <span className="demo-pitch-hint">Field + office systems you own — not a booking package</span>
+            </>
+          ) : (
+            <>
+              <a className="demo-pitch-package" href={`${PACKAGES}#${packageTier}`}>
+                {tierLabel}
+              </a>
+              <span className="demo-pitch-hint">{tierHint}</span>
+            </>
+          )}
+        </div>
+        <div className="demo-pitch-pair">
+          {engineNote && <p className="demo-pitch-engine">{engineNote}</p>}
+          <Link className="demo-pitch-compare" to={compareTo}>
+            Compare with {compareLabel} →
+          </Link>
+        </div>
+      </aside>
+    </ShowcaseChrome>
   )
 }
 

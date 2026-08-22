@@ -4,6 +4,7 @@ import { AdminTabShell } from '../../components/AdminTabShell'
 import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoModeBar } from '../../components/DemoModeBar'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
+import { ShowcaseChrome } from '../../components/ShowcaseShell'
 import { MarkersMap } from '../../components/MarkersMap'
 import { MultiSelectChipRail } from '../../components/MultiSelectChipRail'
 import { StaffRoleAllocator } from '../../components/StaffRoleAllocator'
@@ -120,20 +121,22 @@ export default function ApiaryBoard() {
 
   return (
     <div className="apiary-page theme-apiary">
-      <header className="apiary-top ops-admin-head">
-        <Link to="/" className="demo-back">
-          ← All demos
-        </Link>
-        <div>
-          <p className="demo-badge">Apiary Board · management</p>
-          <h1>Week ops dashboard</h1>
-          <p className="demo-sub">Admin backend — schedule staff, assign roles, filter yards.</p>
+      <ShowcaseChrome>
+        <header className="apiary-top ops-admin-head">
+          <Link to="/" className="demo-back">
+            ← All demos
+          </Link>
+          <div>
+            <p className="demo-badge">Apiary Board · management</p>
+            <h1>Week ops dashboard</h1>
+            <p className="demo-sub">Admin backend — schedule staff, assign roles, filter yards.</p>
+          </div>
+          <span className="demo-theme-tag">Ops dashboard</span>
+        </header>
+        <div className="demo-hero-photo demo-hero-photo--compact">
+          <DemoCardImage id="apiary" className="demo-hero-photo__img" />
         </div>
-        <span className="demo-theme-tag">Ops dashboard</span>
-      </header>
-      <div className="demo-hero-photo demo-hero-photo--compact">
-        <DemoCardImage id="apiary" className="demo-hero-photo__img" />
-      </div>
+      </ShowcaseChrome>
       <DemoPitchBar pitchKind="customOps" compareTo="/beekeeping/hiverun" compareLabel="Hive Run" />
       <DemoModeBar
         clientTo="/beekeeping/hiverun"
