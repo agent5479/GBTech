@@ -1,5 +1,7 @@
 # Golden Bay Technologies — https://gbtech.co.nz/
-# Index marketing pages only; keep demos, source, and private apps out of search.
+# Index marketing pages only: home, four theme hubs (it, web-digital, microsoft-workplace,
+# security-compliance), service leaves, case studies, and tools.
+# Keep demos, source, and private apps out of search.
 # Brand favicon paths must stay crawlable for Google/Bing SERP icons (incl. Googlebot-Image).
 
 User-agent: *
