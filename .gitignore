@@ -1,7 +1,11 @@
 node_modules/
 dist/
 demo/
-sim/
+# Built sim SPA is published by Actions; keep a committed stub so branch Pages
+# deploys do not 404 /sim/ during the ~2 min rebuild window.
+sim/**
+!sim/index.html
+!sim/404.html
 staff-demo/
 sim-demos/node_modules/
 sim-demos/osrm-routes.json

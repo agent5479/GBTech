@@ -12,7 +12,8 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  # Only the latest deploy should publish — overlapping pushes were racing and briefly wiping /sim/.
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -136,6 +137,7 @@ jobs:
           npm ci
           npm run build
           mkdir -p ../sim
+          # Overwrite the committed publish stub with the real Vite build
           cp -r dist/. ../sim/
           # SPA fallbacks for GitHub Pages deep links
           for d in yacht/coastal yacht/adventure taxi/mohua taxi/bayhop handyman/bayfix handyman/tradeboard pruning/canopy pruning/orchard painting painting/freshcoat painting/paintboard fitness/studioflow fitness/classboard riding/shoreride riding/yardboard venue/harbourbook venue/hallboard beekeeping/hiverun beekeeping/apiary homecare/visit homecare/rounds; do
