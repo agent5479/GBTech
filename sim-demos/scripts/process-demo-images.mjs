@@ -136,7 +136,12 @@ async function processDemo(id) {
   outDirs.forEach((dir) => {
     ensureDir(dir)
     clearObsolete(dir)
-    fs.copyFileSync(primary, path.join(dir, 'primary.jpg'))
+    const destPrimary = path.join(dir, 'primary.jpg')
+    if (path.resolve(primary) !== path.resolve(destPrimary)) {
+      const tmp = `${destPrimary}.copytmp`
+      fs.copyFileSync(primary, tmp)
+      replaceFile(tmp, destPrimary)
+    }
   })
 
   const aspect = w / h

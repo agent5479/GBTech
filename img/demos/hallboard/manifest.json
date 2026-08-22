@@ -1,9 +1,9 @@
 {
   "id": "hallboard",
   "primary": "primary.jpg",
-  "width": 802,
-  "height": 624,
-  "aspect": 1.2852564102564104,
+  "width": 1536,
+  "height": 1024,
+  "aspect": 1.5,
   "card": {
     "widths": [
       480,
@@ -22,9 +22,9 @@
       "1200": "card-1200.webp"
     },
     "heights": {
-      "480": 373,
-      "800": 622,
-      "1200": 934
+      "480": 320,
+      "800": 533,
+      "1200": 800
     }
   },
   "tiles": {
@@ -37,10 +37,10 @@
       {
         "index": 0,
         "region": {
-          "left": 44,
+          "left": 128,
           "top": 0,
-          "width": 287,
-          "height": 287
+          "width": 471,
+          "height": 471
         },
         "jpg": {
           "360": "tile-0-360.jpg",
@@ -54,10 +54,10 @@
       {
         "index": 1,
         "region": {
-          "left": 470,
+          "left": 937,
           "top": 0,
-          "width": 287,
-          "height": 287
+          "width": 471,
+          "height": 471
         },
         "jpg": {
           "360": "tile-1-360.jpg",
@@ -71,10 +71,10 @@
       {
         "index": 2,
         "region": {
-          "left": 44,
-          "top": 337,
-          "width": 287,
-          "height": 287
+          "left": 128,
+          "top": 553,
+          "width": 471,
+          "height": 471
         },
         "jpg": {
           "360": "tile-2-360.jpg",
@@ -88,10 +88,10 @@
       {
         "index": 3,
         "region": {
-          "left": 470,
-          "top": 337,
-          "width": 287,
-          "height": 287
+          "left": 937,
+          "top": 553,
+          "width": 471,
+          "height": 471
         },
         "jpg": {
           "360": "tile-3-360.jpg",

@@ -1,9 +1,9 @@
 {
   "id": "apiary",
   "primary": "primary.jpg",
-  "width": 506,
-  "height": 445,
-  "aspect": 1.1370786516853932,
+  "width": 1536,
+  "height": 1024,
+  "aspect": 1.5,
   "card": {
     "widths": [
       480,
@@ -22,9 +22,9 @@
       "1200": "card-1200.webp"
     },
     "heights": {
-      "480": 422,
-      "800": 704,
-      "1200": 1055
+      "480": 320,
+      "800": 533,
+      "1200": 800
     }
   },
   "tiles": {
@@ -37,10 +37,10 @@
       {
         "index": 0,
         "region": {
-          "left": 15,
+          "left": 128,
           "top": 0,
-          "width": 204,
-          "height": 204
+          "width": 471,
+          "height": 471
         },
         "jpg": {
           "360": "tile-0-360.jpg",
@@ -54,10 +54,10 @@
       {
         "index": 1,
         "region": {
-          "left": 286,
+          "left": 937,
           "top": 0,
-          "width": 204,
-          "height": 204
+          "width": 471,
+          "height": 471
         },
         "jpg": {
           "360": "tile-1-360.jpg",
@@ -71,10 +71,10 @@
       {
         "index": 2,
         "region": {
-          "left": 15,
-          "top": 240,
-          "width": 204,
-          "height": 204
+          "left": 128,
+          "top": 553,
+          "width": 471,
+          "height": 471
         },
         "jpg": {
           "360": "tile-2-360.jpg",
@@ -88,10 +88,10 @@
       {
         "index": 3,
         "region": {
-          "left": 286,
-          "top": 240,
-          "width": 204,
-          "height": 204
+          "left": 937,
+          "top": 553,
+          "width": 471,
+          "height": 471
         },
         "jpg": {
           "360": "tile-3-360.jpg",
