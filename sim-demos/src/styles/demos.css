@@ -244,13 +244,28 @@ textarea {
   animation: demo-fade-in var(--motion-med) var(--ease-out) both;
 }
 
-.map-route-label {
-  margin: 0.35rem 0 0;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  opacity: 0.7;
+.map-route-wrap.map-fill {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  margin: 0;
+}
+
+.map-route-wrap.map-fill .demo-map {
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+
+/* Labels under fill maps keep padding; plain wraps keep original spacing */
+.map-route-wrap:not(.map-fill) .map-route-label {
+  padding: 0;
 }
 
 /* Hub */
@@ -442,6 +457,14 @@ textarea {
   border-radius: 12px;
 }
 
+.demo-hero-photo--compact {
+  padding-bottom: 0.65rem;
+}
+
+.demo-hero-photo--compact .demo-hero-photo__img {
+  max-height: min(22vh, 11rem);
+}
+
 .demo-image-tiles {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -621,8 +644,28 @@ textarea {
 
 .cal-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
   gap: 0.75rem;
+}
+
+@media (min-width: 900px) {
+  .cal-grid {
+    grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+    gap: 0.9rem;
+  }
+
+  .cal-day {
+    min-height: 100%;
+  }
+
+  .cal-slot {
+    padding: 0.5rem 0.55rem;
+    font-size: 0.8rem;
+  }
+
+  .cal-slot-time {
+    font-size: 0.92rem;
+  }
 }
 
 .cal-day {
@@ -1185,7 +1228,8 @@ textarea {
 }
 
 .adventure-map {
-  min-height: 260px;
+  min-height: 320px;
+  height: min(58vh, 560px);
   border-radius: 16px;
   overflow: hidden;
   border: 2px solid rgba(13, 115, 119, 0.25);
@@ -3622,32 +3666,79 @@ textarea {
 
 .hive-field-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 380px);
+  grid-template-columns: 1fr;
   gap: 1.25rem;
-  padding: 0 1.25rem 2rem;
-  align-items: start;
+  padding: 0 1.25rem 2.5rem;
+  align-items: stretch;
+  max-width: 1180px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-@media (max-width: 900px) {
+@media (min-width: 960px) {
   .hive-field-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1.4fr) minmax(340px, 400px);
+    gap: 1.5rem;
+  }
+
+  .hive-field-layout .phone-shell-wrap {
+    padding: 0;
+    align-self: stretch;
+  }
+
+  .hive-field-layout .phone-shell {
+    width: 100%;
+    max-height: none;
+    min-height: 640px;
+    height: 100%;
   }
 }
 
 .hive-map-card {
-  min-height: 280px;
-  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+  border-radius: 14px;
   overflow: hidden;
   border: 1px solid rgba(218, 165, 32, 0.35);
+  background: rgba(0, 0, 0, 0.04);
 }
 
-.hive-map-card .demo-map {
-  min-height: 280px;
-  height: 360px;
+.theme-carevisit .hive-map-card {
+  border-color: rgba(61, 126, 166, 0.4);
 }
 
+.theme-apiary .hive-map-card {
+  border-color: rgba(212, 181, 106, 0.45);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.hive-map-card .demo-map,
+.hive-map-card--field .demo-map,
 .hive-map-card--wide .demo-map {
-  height: 280px;
+  min-height: 320px;
+  height: 100%;
+  margin: 0;
+}
+
+@media (min-width: 960px) {
+  .hive-map-card--field {
+    min-height: 640px;
+  }
+
+  .hive-map-card--field .demo-map {
+    min-height: 640px;
+  }
+
+  .hive-map-card--wide {
+    min-height: 420px;
+  }
+
+  .hive-map-card--wide .demo-map {
+    min-height: 420px;
+    height: min(48vh, 520px);
+  }
 }
 
 .hive-phone {
@@ -3660,6 +3751,13 @@ textarea {
   display: flex;
   flex-direction: column;
   max-height: 720px;
+}
+
+@media (min-width: 960px) {
+  .theme-hiverun .hive-field-layout .phone-shell,
+  .theme-carevisit .hive-field-layout .phone-shell {
+    max-height: none;
+  }
 }
 
 .theme-hiverun .phone-shell {
@@ -3827,12 +3925,136 @@ textarea {
 }
 
 .ops-season-hint {
-  margin: -0.35rem 1.25rem 1rem;
+  margin: -0.35rem 0 1rem;
   padding: 0.55rem 0.75rem;
   border-radius: 8px;
   border: 1px solid rgba(224, 122, 95, 0.55);
   background: rgba(224, 122, 95, 0.12);
   font-size: 0.88rem;
+}
+
+.ops-deck {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.25rem 2.75rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ops-deck .kpi-row {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.ops-deck .coverage-hero {
+  margin: 0 0 1rem;
+}
+
+.ops-board-surface {
+  margin-top: 0.35rem;
+  padding: 1rem 1.1rem 1.25rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-sizing: border-box;
+}
+
+.theme-rounds .ops-board-surface,
+.theme-apiary .ops-board-surface,
+.theme-hallboard .ops-board-surface,
+.theme-yardboard .ops-board-surface {
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.ops-board-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.ops-board-head h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.ops-board-head .hint {
+  margin: 0;
+}
+
+.ops-board-scroll {
+  overflow: auto;
+  max-width: 100%;
+  border-radius: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ops-cal-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  font-size: 0.84rem;
+}
+
+.ops-cal-table th,
+.ops-cal-table td {
+  min-width: 7.5rem;
+  padding: 0.65rem 0.55rem;
+  vertical-align: top;
+}
+
+.ops-cal-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: rgba(20, 24, 28, 0.96);
+  backdrop-filter: blur(4px);
+}
+
+.ops-cal-table tbody th,
+.ops-cal-table thead th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  min-width: 8.5rem;
+  width: 8.5rem;
+  text-align: left;
+  background: rgba(20, 24, 28, 0.96);
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.18);
+}
+
+.ops-cal-table thead th:first-child {
+  z-index: 4;
+}
+
+.theme-rounds .ops-cal-table thead th,
+.theme-rounds .ops-cal-table tbody th,
+.theme-apiary .ops-cal-table thead th,
+.theme-apiary .ops-cal-table tbody th,
+.theme-hallboard .ops-cal-table thead th,
+.theme-hallboard .ops-cal-table tbody th,
+.theme-yardboard .ops-cal-table thead th,
+.theme-yardboard .ops-cal-table tbody th {
+  background: rgba(18, 16, 14, 0.98);
+}
+
+.week-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-height: 4.5rem;
+}
+
+.week-cell select,
+.round-sheet select,
+.hall-cell select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .care-plan-sticky {
@@ -3991,14 +4213,21 @@ textarea {
 
 .apiary-split {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1fr;
   gap: 1rem;
-  padding: 0 1.25rem 1.25rem;
+  padding: 0 0 1.25rem;
+  align-items: stretch;
 }
 
-@media (max-width: 900px) {
+@media (min-width: 960px) {
   .apiary-split {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.85fr);
+    gap: 1.15rem;
+  }
+
+  .apiary-split .cluster-dash {
+    max-height: min(48vh, 520px);
+    overflow: auto;
   }
 }
 
@@ -4043,8 +4272,13 @@ textarea {
 
 .week-grid-wrap,
 .round-sheet-wrap {
-  padding: 0 1.25rem 1.5rem;
-  overflow-x: auto;
+  padding: 0;
+  overflow: visible;
+}
+
+.week-grid-wrap.ops-board-surface,
+.round-sheet-wrap.ops-board-surface {
+  padding: 1rem 1.1rem 1.25rem;
 }
 
 .week-grid,
@@ -4061,17 +4295,6 @@ textarea {
   border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 0.45rem;
   vertical-align: top;
-}
-
-.week-cell {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.week-cell select,
-.round-sheet select {
-  font-size: 0.78rem;
 }
 
 .week-empty,
@@ -4401,7 +4624,7 @@ textarea {
 .hall-time-grid th,
 .hall-time-grid td {
   border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 0.45rem;
+  padding: 0.55rem;
   vertical-align: top;
 }
 
@@ -4483,11 +4706,27 @@ textarea {
 }
 
 .yardboard-deck {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
   max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (min-width: 1100px) {
+  .yardboard-deck {
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 300px);
+    align-items: start;
+  }
 }
 
 .yardboard-deck .week-grid-wrap {
   padding: 0;
+}
+
+.yardboard-deck .ops-board-surface {
+  margin: 0;
 }
 
 .hall-time-legend {

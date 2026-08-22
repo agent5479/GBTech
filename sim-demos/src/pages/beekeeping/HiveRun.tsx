@@ -112,7 +112,7 @@ export default function HiveRun() {
       />
 
       <div className="hive-field-layout">
-        <div className="hive-map-card">
+        <div className="hive-map-card hive-map-card--field">
           <MarkersMap
             points={points}
             center={HIVE_MAP_CENTER}

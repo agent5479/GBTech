@@ -34,18 +34,36 @@ export function MapRoute({ path, center, zoom, className, pathColor = '#D3993C',
       maxZoom: 18,
     }).addTo(map)
 
-    if (path.length >= 2) {
-      const line = L.polyline(path, { color: pathColor, weight: 4, opacity: 0.9 }).addTo(map)
-      L.circleMarker(path[0], { radius: 6, color: pathColor, fillColor: '#fff', fillOpacity: 1 }).addTo(map)
-      const end = path[path.length - 1]
-      L.circleMarker(end, { radius: 6, color: pathColor, fillColor: pathColor, fillOpacity: 1 }).addTo(map)
-      map.fitBounds(line.getBounds(), { padding: [24, 24] })
-    } else if (path[0]) {
-      L.circleMarker(path[0], { radius: 7, color: pathColor, fillColor: pathColor, fillOpacity: 0.85 }).addTo(map)
-      map.setView(path[0], zoom)
+    const fit = () => {
+      if (path.length >= 2) {
+        const line = L.polyline(path, { color: pathColor, weight: 4, opacity: 0.9 }).addTo(map)
+        L.circleMarker(path[0], { radius: 6, color: pathColor, fillColor: '#fff', fillOpacity: 1 }).addTo(map)
+        const end = path[path.length - 1]
+        L.circleMarker(end, { radius: 6, color: pathColor, fillColor: pathColor, fillOpacity: 1 }).addTo(map)
+        map.fitBounds(line.getBounds(), { padding: [24, 24] })
+        return line
+      }
+      if (path[0]) {
+        L.circleMarker(path[0], { radius: 7, color: pathColor, fillColor: pathColor, fillOpacity: 0.85 }).addTo(map)
+        map.setView(path[0], zoom)
+      }
+      return null
     }
+    const line = fit()
+
+    const syncSize = () => {
+      map.invalidateSize({ animate: false })
+      if (line) map.fitBounds(line.getBounds(), { padding: [24, 24] })
+    }
+    const raf = requestAnimationFrame(syncSize)
+    const t = window.setTimeout(syncSize, 120)
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(syncSize) : null
+    ro?.observe(el)
 
     return () => {
+      cancelAnimationFrame(raf)
+      window.clearTimeout(t)
+      ro?.disconnect()
       map.remove()
       mapRef.current = null
     }

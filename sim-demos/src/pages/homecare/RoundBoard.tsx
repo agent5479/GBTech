@@ -63,16 +63,7 @@ export default function RoundBoard() {
         </div>
         <span className="demo-theme-tag">Day roster</span>
       </header>
-      <div className={`coverage-hero${gaps > 0 ? ' has-gaps' : ' all-clear'}`}>
-        <p className="coverage-hero__label">Uncovered visits</p>
-        <strong>{gaps}</strong>
-        <p>
-          {gaps > 0
-            ? `Tick Covered when the carer confirms — ${gaps} slot${gaps === 1 ? '' : 's'} still open.`
-            : 'All visits covered for this demo day.'}
-        </p>
-      </div>
-      <div className="demo-hero-photo">
+      <div className="demo-hero-photo demo-hero-photo--compact">
         <DemoCardImage id="rounds" className="demo-hero-photo__img" />
       </div>
       <DemoPitchBar
@@ -82,76 +73,93 @@ export default function RoundBoard() {
         engineNote="Management day roster vs field visit log."
       />
 
-      <div className="round-sheet-wrap">
-        <table className="round-sheet">
-          <thead>
-            <tr>
-              <th>Carer</th>
-              {ROUND_HOURS.map((h) => (
-                <th key={h}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {CARERS.map((c) => (
-              <tr key={c.id}>
-                <th>
-                  {c.name}
-                  <small>
-                    {rounds.filter((r) => r.carerId === c.id).length} visits
-                  </small>
-                </th>
-                {ROUND_HOURS.map((h) => {
-                  const slot = cell(c.id, h)
-                  if (!slot) {
-                    return (
-                      <td key={h} className="round-empty">
-                        —
-                      </td>
-                    )
-                  }
-                  const client = clientById(slot.clientId)
-                  return (
-                    <td key={h} className={slot.covered ? 'round-ok' : 'round-gap'}>
-                      <strong>{client?.name}</strong>
-                      <span>{client?.suburb}</span>
-                      <small>{slot.tasks.map((id) => careTaskById(id)?.name).join(' · ')}</small>
-                      <select
-                        value={slot.carerId}
-                        onChange={(e) => {
-                          setRoundCarer(slot.id, e.target.value)
-                          refresh()
-                        }}
-                      >
-                        {CARERS.map((x) => (
-                          <option key={x.id} value={x.id}>
-                            {x.name}
-                          </option>
-                        ))}
-                      </select>
-                      <label>
-                        <input
-                          type="checkbox"
-                          checked={slot.covered}
-                          onChange={() => {
-                            toggleRoundCovered(slot.id)
-                            refresh()
-                          }}
-                        />
-                        Covered
-                      </label>
-                    </td>
-                  )
-                })}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <div className="ops-deck">
+        <div className={`coverage-hero${gaps > 0 ? ' has-gaps' : ' all-clear'}`}>
+          <p className="coverage-hero__label">Uncovered visits</p>
+          <strong>{gaps}</strong>
+          <p>
+            {gaps > 0
+              ? `Tick Covered when the carer confirms — ${gaps} slot${gaps === 1 ? '' : 's'} still open.`
+              : 'All visits covered for this demo day.'}
+          </p>
+        </div>
 
-      <button type="button" className="btn primary launch-btn" onClick={() => setLocked(true)}>
-        Save rounds (demo)
-      </button>
+        <div className="ops-board-surface round-sheet-wrap">
+          <div className="ops-board-head">
+            <h2>Day round sheet</h2>
+            <p className="hint">Carers across visit windows — reassign or mark covered.</p>
+          </div>
+          <div className="ops-board-scroll">
+            <table className="round-sheet ops-cal-table">
+              <thead>
+                <tr>
+                  <th>Carer</th>
+                  {ROUND_HOURS.map((h) => (
+                    <th key={h}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {CARERS.map((c) => (
+                  <tr key={c.id}>
+                    <th>
+                      {c.name}
+                      <small>
+                        {rounds.filter((r) => r.carerId === c.id).length} visits
+                      </small>
+                    </th>
+                    {ROUND_HOURS.map((h) => {
+                      const slot = cell(c.id, h)
+                      if (!slot) {
+                        return (
+                          <td key={h} className="round-empty">
+                            —
+                          </td>
+                        )
+                      }
+                      const client = clientById(slot.clientId)
+                      return (
+                        <td key={h} className={slot.covered ? 'round-ok' : 'round-gap'}>
+                          <strong>{client?.name}</strong>
+                          <span>{client?.suburb}</span>
+                          <small>{slot.tasks.map((id) => careTaskById(id)?.name).join(' · ')}</small>
+                          <select
+                            value={slot.carerId}
+                            onChange={(e) => {
+                              setRoundCarer(slot.id, e.target.value)
+                              refresh()
+                            }}
+                          >
+                            {CARERS.map((x) => (
+                              <option key={x.id} value={x.id}>
+                                {x.name}
+                              </option>
+                            ))}
+                          </select>
+                          <label>
+                            <input
+                              type="checkbox"
+                              checked={slot.covered}
+                              onChange={() => {
+                                toggleRoundCovered(slot.id)
+                                refresh()
+                              }}
+                            />
+                            Covered
+                          </label>
+                        </td>
+                      )
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <button type="button" className="btn primary launch-btn" onClick={() => setLocked(true)}>
+            Save rounds (demo)
+          </button>
+        </div>
+      </div>
     </div>
   )
 }

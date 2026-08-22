@@ -86,7 +86,7 @@ export default function ApiaryBoard() {
         </div>
         <span className="demo-theme-tag">Ops dashboard</span>
       </header>
-      <div className="demo-hero-photo">
+      <div className="demo-hero-photo demo-hero-photo--compact">
         <DemoCardImage id="apiary" className="demo-hero-photo__img" />
       </div>
       <DemoPitchBar
@@ -96,112 +96,119 @@ export default function ApiaryBoard() {
         engineNote="Management dashboard vs field log-action — no public client."
       />
 
-      <div className="kpi-row">
-        <article>
-          <strong>{totalHives()}</strong>
-          <span>Hives</span>
-        </article>
-        <article>
-          <strong>{HIVE_YARDS.length}</strong>
-          <span>Clusters</span>
-        </article>
-        <article>
-          <strong>{reminders}</strong>
-          <span>Reminders</span>
-        </article>
-        <article className={quarantine || watch ? 'warn' : ''}>
-          <strong>{quarantine}</strong>
-          <span>Quarantine yards</span>
-        </article>
-      </div>
-      <p className="ops-season-hint">{seasonHint}</p>
-
-      <div className="apiary-split">
-        <div className="hive-map-card hive-map-card--wide">
-          <MarkersMap
-            points={points}
-            center={HIVE_MAP_CENTER}
-            zoom={10}
-            pathColor="#d4b56a"
-            label="Clusters — watch yards highlighted"
-          />
+      <div className="ops-deck">
+        <div className="kpi-row">
+          <article>
+            <strong>{totalHives()}</strong>
+            <span>Hives</span>
+          </article>
+          <article>
+            <strong>{HIVE_YARDS.length}</strong>
+            <span>Clusters</span>
+          </article>
+          <article>
+            <strong>{reminders}</strong>
+            <span>Reminders</span>
+          </article>
+          <article className={quarantine || watch ? 'warn' : ''}>
+            <strong>{quarantine}</strong>
+            <span>Quarantine yards</span>
+          </article>
         </div>
-        <ul className="cluster-dash">
-          {HIVE_YARDS.map((y) => (
-            <li key={y.id} className={`cluster-dash-item flag-${y.flag}`}>
-              <strong>{y.name}</strong>
-              <span>
-                {y.hiveCount} hives · {y.siteType} · {y.access}
-              </span>
-              <small>
-                {y.landowner}
-                {y.contactBefore ? ' · call first' : ''}
-              </small>
-            </li>
-          ))}
-        </ul>
-      </div>
+        <p className="ops-season-hint">{seasonHint}</p>
 
-      <div className="week-grid-wrap">
-        <h2>This week</h2>
-        <table className="week-grid">
-          <thead>
-            <tr>
-              <th>Yard</th>
-              {WEEK_DAYS.map((d) => (
-                <th key={d}>{d}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
+        <div className="apiary-split">
+          <div className="hive-map-card hive-map-card--wide">
+            <MarkersMap
+              points={points}
+              center={HIVE_MAP_CENTER}
+              zoom={10}
+              pathColor="#d4b56a"
+              label="Clusters — watch yards highlighted"
+            />
+          </div>
+          <ul className="cluster-dash">
             {HIVE_YARDS.map((y) => (
-              <tr key={y.id}>
-                <th>{y.name}</th>
-                {WEEK_DAYS.map((d) => {
-                  const cell = rows.find((r) => r.yardId === y.id && r.dayLabel === d)
-                  return (
-                    <td key={d}>
-                      {cell ? (
-                        <div className="week-cell">
-                          <select
-                            value={cell.staffId}
-                            onChange={(e) => {
-                              setAssignmentStaff(y.id, d, e.target.value)
-                              refresh()
-                            }}
-                          >
-                            {APIARY_STAFF.map((s) => (
-                              <option key={s.id} value={s.id}>
-                                {s.name}
-                              </option>
-                            ))}
-                          </select>
-                          <label>
-                            <input
-                              type="checkbox"
-                              checked={cell.reminder}
-                              onChange={() => {
-                                toggleReminder(y.id, d)
-                                refresh()
-                              }}
-                            />
-                            remind
-                          </label>
-                          <small>{staffById(cell.staffId)?.role}</small>
-                        </div>
-                      ) : (
-                        <span className="week-empty">—</span>
-                      )}
-                    </td>
-                  )
-                })}
-              </tr>
+              <li key={y.id} className={`cluster-dash-item flag-${y.flag}`}>
+                <strong>{y.name}</strong>
+                <span>
+                  {y.hiveCount} hives · {y.siteType} · {y.access}
+                </span>
+                <small>
+                  {y.landowner}
+                  {y.contactBefore ? ' · call first' : ''}
+                </small>
+              </li>
             ))}
-          </tbody>
-        </table>
-        <button type="button" className="btn primary launch-btn" onClick={() => setLocked(true)}>
-          Save roster (demo)
-        </button>
+          </ul>
+        </div>
+
+        <div className="ops-board-surface week-grid-wrap">
+          <div className="ops-board-head">
+            <h2>This week</h2>
+            <p className="hint">Staff × day — sticky yard column scrolls with the week.</p>
+          </div>
+          <div className="ops-board-scroll">
+            <table className="week-grid ops-cal-table">
+              <thead>
+                <tr>
+                  <th>Yard</th>
+                  {WEEK_DAYS.map((d) => (
+                    <th key={d}>{d}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {HIVE_YARDS.map((y) => (
+                  <tr key={y.id}>
+                    <th>{y.name}</th>
+                    {WEEK_DAYS.map((d) => {
+                      const cell = rows.find((r) => r.yardId === y.id && r.dayLabel === d)
+                      return (
+                        <td key={d}>
+                          {cell ? (
+                            <div className="week-cell">
+                              <select
+                                value={cell.staffId}
+                                onChange={(e) => {
+                                  setAssignmentStaff(y.id, d, e.target.value)
+                                  refresh()
+                                }}
+                              >
+                                {APIARY_STAFF.map((s) => (
+                                  <option key={s.id} value={s.id}>
+                                    {s.name}
+                                  </option>
+                                ))}
+                              </select>
+                              <label>
+                                <input
+                                  type="checkbox"
+                                  checked={cell.reminder}
+                                  onChange={() => {
+                                    toggleReminder(y.id, d)
+                                    refresh()
+                                  }}
+                                />
+                                remind
+                              </label>
+                              <small>{staffById(cell.staffId)?.role}</small>
+                            </div>
+                          ) : (
+                            <span className="week-empty">—</span>
+                          )}
+                        </td>
+                      )
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <button type="button" className="btn primary launch-btn" onClick={() => setLocked(true)}>
+            Save roster (demo)
+          </button>
+        </div>
       </div>
     </div>
   )

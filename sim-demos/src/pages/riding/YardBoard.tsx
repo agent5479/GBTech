@@ -80,7 +80,9 @@ export default function YardBoard() {
         </div>
         <span className="demo-theme-tag">Different UI · not a wizard</span>
       </header>
-      <div className="demo-hero-photo"><DemoCardImage id="yardboard" className="demo-hero-photo__img" /></div>
+      <div className="demo-hero-photo demo-hero-photo--compact">
+        <DemoCardImage id="yardboard" className="demo-hero-photo__img" />
+      </div>
       <DemoPitchBar
         packageTier="advanced"
         compareTo="/riding/shoreride"
@@ -88,17 +90,22 @@ export default function YardBoard() {
         engineNote="Same tide, sun, horse roster, and calendar check — yard board vs guest wizard."
       />
 
-      <div className="classboard-deck yardboard-deck demo-enter">
-        <div className="week-grid-wrap">
-          <table className="horse-week-grid">
-            <thead>
-              <tr>
-                <th>Horse</th>
-                {days.map((date) => (
-                  <th key={date}>{date.slice(5)}</th>
-                ))}
-              </tr>
-            </thead>
+      <div className="ops-deck yardboard-deck demo-enter">
+        <div className="ops-board-surface week-grid-wrap">
+          <div className="ops-board-head">
+            <h2>Horse × day</h2>
+            <p className="hint">Rest toggles and stay nights on one planner.</p>
+          </div>
+          <div className="ops-board-scroll">
+            <table className="horse-week-grid ops-cal-table">
+              <thead>
+                <tr>
+                  <th>Horse</th>
+                  {days.map((date) => (
+                    <th key={date}>{date.slice(5)}</th>
+                  ))}
+                </tr>
+              </thead>
             <tbody>
               {horses.map((h) => (
                 <tr key={h.id}>
@@ -138,6 +145,7 @@ export default function YardBoard() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
 
         <aside className="classboard-side">

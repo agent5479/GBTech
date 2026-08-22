@@ -97,7 +97,7 @@ export default function CareVisit() {
       />
 
       <div className="hive-field-layout">
-        <div className="hive-map-card">
+        <div className="hive-map-card hive-map-card--field">
           <MarkersMap
             points={points}
             center={CARE_MAP_CENTER}

@@ -68,16 +68,31 @@ export function MarkersMap({
       markers.push(marker)
     })
 
-    if (points.length > 1) {
-      map.fitBounds(
-        L.latLngBounds(points.map((p) => [p.lat, p.lng] as LatLng)),
-        { padding: [28, 28] },
-      )
-    } else if (points[0]) {
-      map.setView([points[0].lat, points[0].lng], zoom)
+    const fit = () => {
+      if (points.length > 1) {
+        map.fitBounds(
+          L.latLngBounds(points.map((p) => [p.lat, p.lng] as LatLng)),
+          { padding: [36, 36] },
+        )
+      } else if (points[0]) {
+        map.setView([points[0].lat, points[0].lng], zoom)
+      }
     }
+    fit()
+
+    const syncSize = () => {
+      map.invalidateSize({ animate: false })
+      fit()
+    }
+    const raf = requestAnimationFrame(syncSize)
+    const t = window.setTimeout(syncSize, 120)
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(syncSize) : null
+    ro?.observe(el)
 
     return () => {
+      cancelAnimationFrame(raf)
+      window.clearTimeout(t)
+      ro?.disconnect()
       markers.forEach((m) => m.remove())
       map.remove()
       mapRef.current = null
@@ -86,7 +101,7 @@ export function MarkersMap({
   }, [id, pointsKey, center, zoom, pathColor])
 
   return (
-    <div className="map-route-wrap">
+    <div className="map-route-wrap map-fill">
       <div
         id={`demo-markers-${id}`}
         className={className ?? 'demo-map'}
