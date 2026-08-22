@@ -1258,6 +1258,135 @@ body.marshall-page .page-nav-links a:focus-visible {
   outline: none;
 }
 
+/* Services mega-menu (details/summary) */
+body.gbtech-page .page-nav-links,
+body.marshall-page .page-nav-links {
+  position: relative;
+}
+
+body.gbtech-page .nav-services,
+body.marshall-page .nav-services {
+  position: relative;
+}
+
+body.gbtech-page .nav-services > summary,
+body.marshall-page .nav-services > summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-on-burgundy);
+  border: 1px solid rgba(246, 247, 248, 0.35);
+  border-radius: 999px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+body.gbtech-page .nav-services > summary::-webkit-details-marker,
+body.marshall-page .nav-services > summary::-webkit-details-marker {
+  display: none;
+}
+
+body.gbtech-page .nav-services > summary::after,
+body.marshall-page .nav-services > summary::after {
+  content: "";
+  display: inline-block;
+  width: 0.35rem;
+  height: 0.35rem;
+  margin-left: 0.4rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-0.1rem) rotate(45deg);
+  vertical-align: middle;
+}
+
+body.gbtech-page .nav-services[open] > summary,
+body.gbtech-page .nav-services > summary:hover,
+body.gbtech-page .nav-services > summary:focus-visible,
+body.marshall-page .nav-services[open] > summary,
+body.marshall-page .nav-services > summary:hover,
+body.marshall-page .nav-services > summary:focus-visible {
+  background: rgba(167, 209, 41, 0.22);
+  border-color: var(--lime);
+  outline: none;
+}
+
+body.gbtech-page .nav-services-panel,
+body.marshall-page .nav-services-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(10rem, 1fr));
+  gap: 0.85rem 1.25rem;
+  margin-top: 0.55rem;
+  padding: 0.85rem 1rem;
+  background: rgba(11, 26, 15, 0.96);
+  border: 1px solid rgba(246, 247, 248, 0.28);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+body.gbtech-page .nav-services-group,
+body.marshall-page .nav-services-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+body.gbtech-page .nav-services-hub,
+body.marshall-page .nav-services-hub {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--lime) !important;
+  text-decoration: none;
+  padding: 0.15rem 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+body.gbtech-page .nav-services-group a:not(.nav-services-hub),
+body.marshall-page .nav-services-group a:not(.nav-services-hub) {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(246, 247, 248, 0.88) !important;
+  text-decoration: none;
+  padding: 0.2rem 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+body.gbtech-page .nav-services-group a:hover,
+body.gbtech-page .nav-services-group a:focus-visible,
+body.marshall-page .nav-services-group a:hover,
+body.marshall-page .nav-services-group a:focus-visible {
+  color: var(--lime) !important;
+  background: transparent !important;
+  outline: none;
+}
+
+@media (min-width: 900px) {
+  body.gbtech-page .nav-services-panel,
+  body.marshall-page .nav-services-panel {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 0.35rem);
+    z-index: 120;
+    min-width: min(36rem, calc(100vw - 3rem));
+    grid-template-columns: repeat(4, minmax(8.5rem, 1fr));
+  }
+}
+
+@media (max-width: 899px) {
+  body.gbtech-page .nav-services-panel,
+  body.marshall-page .nav-services-panel {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+}
+
 body.gbtech-page p,
 body.gbtech-page li,
 body.marshall-page p,
