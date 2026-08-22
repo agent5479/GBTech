@@ -5473,10 +5473,6 @@ textarea {
   font-size: 0.85rem;
 }
 
-.demo-quote-minimal a {
-  color: inherit;
-}
-
 .hub-hero-hint {
   font-size: 0.92rem;
   opacity: 0.85;
@@ -5530,14 +5526,9 @@ textarea {
 }
 
 .hub-feature-index__link {
-  border: 0;
-  background: none;
-  padding: 0;
-  font: inherit;
   font-weight: 600;
   color: #5a2a35;
-  cursor: pointer;
-  text-align: left;
+  text-decoration: none;
 }
 
 .hub-feature-index__link:hover {
@@ -5550,39 +5541,6 @@ textarea {
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.55);
-}
-
-.hub-card-preview {
-  display: block;
-  width: 100%;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  margin: 0;
-  text-align: left;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
-}
-
-.hub-card-preview:focus-visible {
-  outline: 2px solid #c45a7a;
-  outline-offset: -2px;
-}
-
-.hub-showcase-link {
-  display: block;
-  padding: 0.55rem 1.35rem 1rem;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #6b5258;
-  text-decoration: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.hub-showcase-link:hover {
-  color: #5a2a35;
-  text-decoration: underline;
 }
 
 .hub-role-tag {
@@ -5628,152 +5586,9 @@ textarea {
   color: rgba(0, 0, 0, 0.6);
 }
 
-.hub-card .hub-card-preview .hub-kind,
-.hub-card .hub-card-preview h2,
-.hub-card .hub-card-preview .hub-look,
-.hub-card .hub-card-preview p,
-.hub-card .hub-card-preview .hub-go {
-  margin-left: 1.35rem;
-  margin-right: 1.35rem;
-}
-
-.app-preview-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  background: rgba(20, 16, 18, 0.72);
-  backdrop-filter: blur(4px);
-}
-
-.app-preview-dialog {
-  width: min(960px, 100%);
-  max-height: min(92vh, 900px);
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
-  overflow: hidden;
-}
-
-.app-preview-dialog__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.85rem 1rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.app-preview-dialog__head h2 {
-  margin: 0;
-  font-size: 1.05rem;
-}
-
-.app-preview-close {
-  border: 0;
-  background: rgba(0, 0, 0, 0.06);
-  width: 2rem;
-  height: 2rem;
-  border-radius: 999px;
-  font-size: 1.25rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.app-preview-frame {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-  background: #f0ece8;
-}
-
-.app-preview-frame__chrome {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.45rem 0.65rem;
-  border-radius: 10px 10px 0 0;
-  background: rgba(0, 0, 0, 0.08);
-}
-
-.app-preview-frame__chrome span {
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.app-preview-frame__chrome p {
-  margin: 0 0 0 auto;
-  font-size: 0.72rem;
-  opacity: 0.65;
-}
-
-.app-preview-iframe {
-  width: 100%;
-  flex: 1;
-  min-height: min(70vh, 640px);
-  border: 0;
-  background: #fff;
-}
-
-.app-preview-frame--phone {
-  max-width: 390px;
-  margin: 0 auto;
-}
-
-.app-preview-frame--phone .app-preview-iframe {
-  min-height: min(72vh, 720px);
-  border-radius: 0 0 18px 18px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
-}
-
-.app-preview-frame--tablet {
-  max-width: 768px;
-  margin: 0 auto;
-}
-
-.app-preview-frame--browser {
-  width: 100%;
-}
-
-.app-preview-frame--browser .app-preview-iframe {
-  border-radius: 0 0 10px 10px;
-}
-
-.app-preview-dialog__foot {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  align-items: center;
-  padding: 0.85rem 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
 @media (max-width: 900px) {
   .hub-feature-index__grid {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 640px) {
-  .app-preview-overlay {
-    padding: 0;
-    align-items: stretch;
-  }
-
-  .app-preview-dialog {
-    max-height: 100vh;
-    border-radius: 0;
   }
 }
 

@@ -1,6 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { AppPreviewOverlay } from '../components/AppPreviewOverlay'
 import { DemoCardImage } from '../components/DemoHeroImage'
 import { GbtechDemoNav } from '../components/GbtechDemoNav'
 import type { DemoImageId } from '../shared/demoAssets'
@@ -250,17 +249,9 @@ const GROUPS: {
   },
 ]
 
-type PreviewState = {
-  title: string
-  path: string
-  frame: 'phone' | 'tablet' | 'browser'
-}
-
 const ALL_DEMOS = GROUPS.flatMap((g) => g.demos)
 
 export default function Hub() {
-  const [preview, setPreview] = useState<PreviewState | null>(null)
-
   const featureIndex = useMemo(() => {
     const byRole: Record<DemoRole, typeof ALL_DEMOS> = {
       booking: [],
@@ -274,15 +265,6 @@ export default function Hub() {
     return byRole
   }, [])
 
-  const openPreview = (demo: (typeof ALL_DEMOS)[number]) => {
-    const meta = DEMO_FEATURES[demo.to]
-    setPreview({
-      title: demo.title,
-      path: demo.to,
-      frame: meta?.frame ?? 'browser',
-    })
-  }
-
   return (
     <div className="hub">
       <GbtechDemoNav />
@@ -295,7 +277,6 @@ export default function Hub() {
             apps. Pairings follow the job: client + staff, dual client booking UIs, dual staff/ops, or indoor vs outdoor
             client jobs — not the same screen twice.
           </p>
-          <p className="hub-hero-hint">Click a card to preview the app on its own — or open the full showcase page with pitch and hero.</p>
           <p>
             <Link className="hub-back" to="/painting">
               Painting estimates hub →
@@ -322,9 +303,9 @@ export default function Hub() {
                   const meta = DEMO_FEATURES[d.to]
                   return (
                     <li key={d.to}>
-                      <button type="button" className="hub-feature-index__link" onClick={() => openPreview(d)}>
+                      <Link to={d.to} className="hub-feature-index__link">
                         {d.title}
-                      </button>
+                      </Link>
                       {meta?.features[0] ? <span className="hub-feature-chip">{meta.features[0]}</span> : null}
                     </li>
                   )
@@ -342,42 +323,28 @@ export default function Hub() {
             {group.demos.map((d) => {
               const meta = DEMO_FEATURES[d.to]
               return (
-                <article key={d.to} className={`hub-card ${d.card}`}>
-                  <button type="button" className="hub-card-preview" onClick={() => openPreview(d)}>
-                    <DemoCardImage id={d.imageId} />
-                    {meta ? <span className={`hub-role-tag hub-role-tag--${meta.role}`}>{ROLE_LABELS[meta.role]}</span> : null}
-                    <span className="hub-kind">{d.kind}</span>
-                    <h2>{d.title}</h2>
-                    <p className="hub-look">{d.look}</p>
-                    <p>{d.blurb}</p>
-                    {meta?.features.length ? (
-                      <ul className="hub-feature-tags">
-                        {meta.features.map((f) => (
-                          <li key={f}>{f}</li>
-                        ))}
-                      </ul>
-                    ) : null}
-                    <span className="hub-go">Preview app →</span>
-                  </button>
-                  <Link to={d.to} className="hub-showcase-link">
-                    Showcase view →
-                  </Link>
-                </article>
+                <Link key={d.to} to={d.to} className={`hub-card ${d.card}`}>
+                  <DemoCardImage id={d.imageId} />
+                  {meta ? <span className={`hub-role-tag hub-role-tag--${meta.role}`}>{ROLE_LABELS[meta.role]}</span> : null}
+                  <span className="hub-kind">{d.kind}</span>
+                  <h2>{d.title}</h2>
+                  <p className="hub-look">{d.look}</p>
+                  <p>{d.blurb}</p>
+                  {meta?.features.length ? (
+                    <ul className="hub-feature-tags">
+                      {meta.features.map((f) => (
+                        <li key={f}>{f}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  <span className="hub-go">Open demo →</span>
+                </Link>
               )
             })}
           </div>
         </section>
       ))}
 
-      {preview ? (
-        <AppPreviewOverlay
-          open
-          onClose={() => setPreview(null)}
-          title={preview.title}
-          path={preview.path}
-          frame={preview.frame}
-        />
-      ) : null}
     </div>
   )
 }
