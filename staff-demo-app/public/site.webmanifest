@@ -4,13 +4,13 @@
   "description": "Private staff catalog for Gold Standard Dog Training households, sessions, and assessments.",
   "icons": [
     {
-      "src": "/favicon/dog192.jpg",
+      "src": "favicon/dog192.jpg",
       "sizes": "192x192",
       "type": "image/jpeg",
       "purpose": "any"
     },
     {
-      "src": "/favicon/dog512.jpg",
+      "src": "favicon/dog512.jpg",
       "sizes": "512x512",
       "type": "image/jpeg",
       "purpose": "any"
@@ -19,5 +19,5 @@
   "theme_color": "#2d4a2d",
   "background_color": "#f8f5ee",
   "display": "browser",
-  "start_url": "/"
+  "start_url": "./"
 }
