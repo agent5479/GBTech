@@ -13,3 +13,4 @@ booking-demo/node_modules/
 .env.local
 *.tsbuildinfo
 .DS_Store
+sim-demos/1temp/

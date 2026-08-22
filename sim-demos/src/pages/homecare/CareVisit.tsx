@@ -1,37 +1,44 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DemoChrome } from '../../components/DemoChrome'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
-import { buildYachtCalendar } from '../../shared/calendarMock'
+import { MarkersMap } from '../../components/MarkersMap'
+import { PhoneShell } from '../../components/PhoneShell'
 import {
   CARE_CLIENTS,
-  CARE_TASKS,
+  CARE_MAP_CENTER,
   CARERS,
   careTaskById,
   clientById,
+  tasksByGroup,
   visitMinutes,
 } from '../../shared/homecare'
 
-/** Care Visit — field carer / staff visit workflow. */
+/** Care Visit — field visit log on a phone (client card, grouped checks, meds due). */
 export default function CareVisit() {
-  const days = useMemo(() => buildYachtCalendar(8), [])
-  const [step, setStep] = useState(1)
   const [clientId, setClientId] = useState('eleanor')
   const [tasks, setTasks] = useState<string[]>(['meds', 'mobility'])
+  const [medsDone, setMedsDone] = useState<string[]>([])
   const [carerId, setCarerId] = useState('ana')
-  const [date, setDate] = useState<string>()
-  const [time, setTime] = useState<string>()
   const [notes, setNotes] = useState('')
   const [done, setDone] = useState(false)
 
   const client = clientById(clientId)
-  const selectedDay = days.find((d) => d.date === date)
+  const grouped = tasksByGroup()
   const minutes = visitMinutes(tasks)
-  const canWhen = Boolean(date && time)
-  const canConfirm = Boolean(client && tasks.length && canWhen)
+  const points = CARE_CLIENTS.map((c) => ({
+    id: c.id,
+    lat: c.lat,
+    lng: c.lng,
+    label: c.name,
+    selected: c.id === clientId,
+  }))
 
   const toggleTask = (id: string) => {
     setTasks((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
+  }
+  const toggleMed = (label: string) => {
+    setMedsDone((prev) => (prev.includes(label) ? prev.filter((x) => x !== label) : [...prev, label]))
   }
 
   if (done && client) {
@@ -50,17 +57,10 @@ export default function CareVisit() {
           </p>
           <p>{tasks.map((id) => careTaskById(id)?.name).join(' · ')}</p>
           <p>
-            {date} @ {time} · ~{minutes} min · {CARERS.find((c) => c.id === carerId)?.name}
+            ~{minutes} min · {CARERS.find((c) => c.id === carerId)?.name}
           </p>
           <DemoQuoteCta styleName="Care Visit" />
-          <button
-            type="button"
-            className="btn ghost"
-            onClick={() => {
-              setDone(false)
-              setStep(1)
-            }}
-          >
+          <button type="button" className="btn ghost" onClick={() => setDone(false)}>
             Log another visit
           </button>
           <Link to="/" className="adventure-hub-link">
@@ -71,7 +71,7 @@ export default function CareVisit() {
           packageTier="advanced"
           compareTo="/homecare/rounds"
           compareLabel="Round Board"
-          engineNote="Field carer visit vs management rounds — staff + coordination, not public booking."
+          engineNote="Field visit log vs management day roster — staff + coordination."
         />
       </div>
     )
@@ -81,182 +81,111 @@ export default function CareVisit() {
     <div className="homecare-page theme-carevisit">
       <DemoChrome
         theme="Care Visit"
-        title="Care visit"
-        subtitle="Field carer workflow — household, task ticks, slot, hand-off note. Fictional clients."
+        title="Log a visit"
+        subtitle="Field carer — household on the map, plan ticks, meds due. Not a public booking flow."
         imageId="carevisit"
-        badge="Simulated · field staff"
+        badge="Simulated · field log"
       />
       <DemoPitchBar
         packageTier="advanced"
         compareTo="/homecare/rounds"
         compareLabel="Round Board"
-        engineNote="Field carer visit vs management rounds — staff + coordination, not public booking."
+        engineNote="Field visit log vs management day roster — staff + coordination."
       />
 
-      <ol className="wizard-steps" aria-label="Visit steps">
-        {[1, 2, 3, 4].map((n) => (
-          <li key={n} className={step === n ? 'active' : step > n ? 'done' : ''}>
-            {n}
-          </li>
-        ))}
-      </ol>
+      <div className="hive-field-layout">
+        <div className="hive-map-card">
+          <MarkersMap
+            points={points}
+            center={CARE_MAP_CENTER}
+            zoom={10}
+            pathColor="#3d7ea6"
+            label="Households · tap to switch client"
+            onSelect={setClientId}
+          />
+        </div>
 
-      {step === 1 && (
-        <section className="yacht-panel demo-enter">
-          <h2>1. Household</h2>
-          <label className="field">
-            Client
-            <select value={clientId} onChange={(e) => setClientId(e.target.value)}>
+        <PhoneShell brand="Care Visit">
+          <div className="hive-phone care-phone">
+            <p className="phone-kicker">This household</p>
+            <div className="client-pick">
               {CARE_CLIENTS.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name} · {c.suburb}
-                </option>
-              ))}
-            </select>
-          </label>
-          {client && <p className="hint">{client.planNote}</p>}
-          <label className="field">
-            Carer on this visit
-            <select value={carerId} onChange={(e) => setCarerId(e.target.value)}>
-              {CARERS.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <div className="btn-row">
-            <button type="button" className="btn primary" onClick={() => setStep(2)}>
-              Next: Tasks
-            </button>
-          </div>
-        </section>
-      )}
-
-      {step === 2 && (
-        <section className="yacht-panel demo-enter">
-          <h2>2. Care tasks</h2>
-          <div className="job-check-list">
-            {CARE_TASKS.map((t) => {
-              const on = tasks.includes(t.id)
-              return (
-                <label key={t.id} className={`job-check${on ? ' on' : ''}`}>
-                  <input type="checkbox" checked={on} onChange={() => toggleTask(t.id)} />
+                <button
+                  key={c.id}
+                  type="button"
+                  className={`client-card${clientId === c.id ? ' on' : ''}`}
+                  onClick={() => setClientId(c.id)}
+                >
+                  <strong>{c.name}</strong>
                   <span>
-                    <strong>{t.name}</strong>
-                    <small>
-                      {t.blurb} · ~{t.minutes} min
-                    </small>
+                    {c.suburb} · {c.planNote}
                   </span>
-                </label>
-              )
-            })}
-          </div>
-          <p className="live-estimate">
-            Visit length <strong>~{minutes} min</strong>
-          </p>
-          <div className="btn-row">
-            <button type="button" className="btn ghost" onClick={() => setStep(1)}>
-              Back
-            </button>
+                </button>
+              ))}
+            </div>
+
+            <label className="field">
+              Carer
+              <select value={carerId} onChange={(e) => setCarerId(e.target.value)}>
+                {CARERS.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            {client && client.medsDue.length > 0 && (
+              <section className="task-cat">
+                <h3>Due this visit</h3>
+                {client.medsDue.map((m) => (
+                  <label key={m} className={`hive-check${medsDone.includes(m) ? ' on' : ''}`}>
+                    <input type="checkbox" checked={medsDone.includes(m)} onChange={() => toggleMed(m)} />
+                    {m}
+                  </label>
+                ))}
+              </section>
+            )}
+
+            {Object.entries(grouped).map(([group, list]) => (
+              <section key={group} className="task-cat">
+                <h3>{group}</h3>
+                {list.map((t) => {
+                  const on = tasks.includes(t.id)
+                  return (
+                    <label key={t.id} className={`hive-check${on ? ' on' : ''}`}>
+                      <input type="checkbox" checked={on} onChange={() => toggleTask(t.id)} />
+                      {t.name}
+                      <small> ~{t.minutes}m</small>
+                    </label>
+                  )
+                })}
+              </section>
+            ))}
+
+            <p className="live-estimate">
+              Visit length <strong>~{minutes} min</strong>
+            </p>
+            <label className="field">
+              Hand-off
+              <textarea
+                rows={2}
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                placeholder="Appetite, mood, meds taken…"
+              />
+            </label>
             <button
               type="button"
               className="btn primary"
               disabled={!tasks.length}
-              onClick={() => setStep(3)}
+              onClick={() => setDone(true)}
             >
-              Next: When
+              Complete visit
             </button>
           </div>
-        </section>
-      )}
-
-      {step === 3 && (
-        <section className="yacht-panel demo-enter">
-          <h2>3. Visit slot</h2>
-          <div className="day-rail">
-            {days.map((d) => {
-              const openCount = d.slots.filter((s) => s.status === 'open').length
-              const blocked = openCount === 0
-              return (
-                <button
-                  key={d.date}
-                  type="button"
-                  disabled={blocked}
-                  className={`day-pill${date === d.date ? ' on' : ''}${blocked ? ' blocked' : ''}`}
-                  onClick={() => {
-                    setDate(d.date)
-                    setTime(undefined)
-                  }}
-                >
-                  <span>{d.label}</span>
-                  <small>{blocked ? 'Full' : `${openCount} open`}</small>
-                </button>
-              )
-            })}
-          </div>
-          {selectedDay && (
-            <div className="time-rail">
-              {selectedDay.slots.map((slot) => (
-                <button
-                  key={slot.time}
-                  type="button"
-                  disabled={slot.status !== 'open'}
-                  className={`time-chip status-${slot.status}${time === slot.time ? ' on' : ''}`}
-                  onClick={() => setTime(slot.time)}
-                >
-                  {slot.time}
-                </button>
-              ))}
-            </div>
-          )}
-          <div className="btn-row">
-            <button type="button" className="btn ghost" onClick={() => setStep(2)}>
-              Back
-            </button>
-            <button type="button" className="btn primary" disabled={!canWhen} onClick={() => setStep(4)}>
-              Next: Hand-off
-            </button>
-          </div>
-        </section>
-      )}
-
-      {step === 4 && client && (
-        <section className="yacht-panel demo-enter">
-          <h2>4. Hand-off &amp; review</h2>
-          <label className="field">
-            Notes for next carer / family
-            <textarea
-              rows={3}
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              placeholder="Appetite, mood, meds taken…"
-            />
-          </label>
-          <div className="summary">
-            <p>
-              <strong>Client:</strong> {client.name} ({client.suburb})
-            </p>
-            <p>
-              <strong>Tasks:</strong> {tasks.map((id) => careTaskById(id)?.name).join(', ')}
-            </p>
-            <p>
-              <strong>When:</strong> {date} @ {time} · ~{minutes} min
-            </p>
-            <p>
-              <strong>Carer:</strong> {CARERS.find((c) => c.id === carerId)?.name}
-            </p>
-          </div>
-          <div className="btn-row">
-            <button type="button" className="btn ghost" onClick={() => setStep(3)}>
-              Back
-            </button>
-            <button type="button" className="btn primary" disabled={!canConfirm} onClick={() => setDone(true)}>
-              Complete visit (demo)
-            </button>
-          </div>
-        </section>
-      )}
+        </PhoneShell>
+      </div>
     </div>
   )
 }

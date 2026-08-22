@@ -2,23 +2,37 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
+import { MarkersMap } from '../../components/MarkersMap'
 import {
   APIARY_STAFF,
+  HIVE_MAP_CENTER,
   HIVE_YARDS,
   LIVE_BEEMARSHALL_URL,
+  WEEK_DAYS,
   getAssignments,
   setAssignmentStaff,
   staffById,
   toggleReminder,
+  totalHives,
   yardById,
 } from '../../shared/beekeeping'
 
-/** Apiary Board — management staff schedules & yard organisation. */
+/** Apiary Board — management dashboard: KPIs, cluster map, week roster. */
 export default function ApiaryBoard() {
   const [, setTick] = useState(0)
   const refresh = () => setTick((n) => n + 1)
   const rows = getAssignments()
   const [locked, setLocked] = useState(false)
+  const reminders = rows.filter((r) => r.reminder).length
+  const watch = HIVE_YARDS.filter((y) => y.flag !== 'ok').length
+
+  const points = HIVE_YARDS.map((y) => ({
+    id: y.id,
+    lat: y.lat,
+    lng: y.lng,
+    label: `${y.name} · ${y.hiveCount}`,
+    selected: y.flag !== 'ok',
+  }))
 
   if (locked) {
     return (
@@ -26,7 +40,9 @@ export default function ApiaryBoard() {
         <div className="adventure-launch-ok demo-enter-success">
           <p className="demo-badge">Simulated · management</p>
           <h1>Roster saved</h1>
-          <p>{rows.filter((r) => r.reminder).length} reminders active</p>
+          <p>
+            {totalHives()} hives · {reminders} reminders
+          </p>
           <p className="hint">
             Live app:{' '}
             <a href={LIVE_BEEMARSHALL_URL} target="_blank" rel="noopener noreferrer">
@@ -45,7 +61,7 @@ export default function ApiaryBoard() {
           packageTier="advanced"
           compareTo="/beekeeping/hiverun"
           compareLabel="Hive Run"
-          engineNote="Management staff schedules vs field hive-cluster actions — no public client."
+          engineNote="Management dashboard vs field log-action — no public client."
         />
       </div>
     )
@@ -53,16 +69,16 @@ export default function ApiaryBoard() {
 
   return (
     <div className="apiary-page theme-apiary">
-      <header className="tradeboard-top">
+      <header className="apiary-top">
         <Link to="/" className="demo-back">
           ← All demos
         </Link>
         <div>
           <p className="demo-badge">Apiary Board · management</p>
-          <h1>Staff &amp; yard roster</h1>
-          <p className="demo-sub">Who covers which cluster, reminders, GPS chips — organise the team.</p>
+          <h1>Yards, hives, week roster</h1>
+          <p className="demo-sub">Dashboard of clusters — assign staff by day, flags, access. Not a booking wizard.</p>
         </div>
-        <span className="demo-theme-tag">Management · not field wizard</span>
+        <span className="demo-theme-tag">Ops dashboard</span>
       </header>
       <div className="demo-hero-photo">
         <DemoCardImage id="apiary" className="demo-hero-photo__img" />
@@ -71,75 +87,117 @@ export default function ApiaryBoard() {
         packageTier="advanced"
         compareTo="/beekeeping/hiverun"
         compareLabel="Hive Run"
-        engineNote="Management staff schedules vs field hive-cluster actions — no public client."
+        engineNote="Management dashboard vs field log-action — no public client."
       />
 
-      <div className="tradeboard-deck demo-enter">
-        <aside className="tradeboard-jobs">
-          <h2>Week assignments</h2>
-          <div className="apiary-roster">
-            {rows.map((row) => {
-              const yard = yardById(row.yardId)
-              return (
-                <article key={`${row.yardId}-${row.dayLabel}`} className="apiary-row">
-                  <header>
-                    <strong>
-                      {row.dayLabel} · {yard?.name}
-                    </strong>
-                    <span className="gps-chip">{yard?.gpsLabel}</span>
-                  </header>
-                  <p className="hint">
-                    {yard?.hiveCount} hives · focus: {row.focus}
-                  </p>
-                  <label className="field">
-                    Staff
-                    <select
-                      value={row.staffId}
-                      onChange={(e) => {
-                        setAssignmentStaff(row.yardId, row.dayLabel, e.target.value)
-                        refresh()
-                      }}
-                    >
-                      {APIARY_STAFF.map((s) => (
-                        <option key={s.id} value={s.id}>
-                          {s.name} · {s.role}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label className={`exercise-check${row.reminder ? ' on' : ''}`}>
-                    <input
-                      type="checkbox"
-                      checked={row.reminder}
-                      onChange={() => {
-                        toggleReminder(row.yardId, row.dayLabel)
-                        refresh()
-                      }}
-                    />
-                    Reminder on
-                  </label>
-                  <p className="roster-line">Assigned: {staffById(row.staffId)?.name}</p>
-                </article>
-              )
-            })}
-          </div>
-        </aside>
-        <aside className="tradeboard-side">
-          <section>
-            <h2>Clusters</h2>
-            <p className="hint">GPS labels match Hive Run yards — same engine, management view.</p>
-            <ul className="benefit-list-sim">
-              {HIVE_YARDS.map((y) => (
-                <li key={y.id}>
-                  {y.name} · <span className="gps-chip">{y.gpsLabel}</span>
-                </li>
+      <div className="kpi-row">
+        <article>
+          <strong>{totalHives()}</strong>
+          <span>Hives</span>
+        </article>
+        <article>
+          <strong>{HIVE_YARDS.length}</strong>
+          <span>Clusters</span>
+        </article>
+        <article>
+          <strong>{reminders}</strong>
+          <span>Reminders</span>
+        </article>
+        <article className={watch ? 'warn' : ''}>
+          <strong>{watch}</strong>
+          <span>Watch / quarantine</span>
+        </article>
+      </div>
+
+      <div className="apiary-split">
+        <div className="hive-map-card hive-map-card--wide">
+          <MarkersMap
+            points={points}
+            center={HIVE_MAP_CENTER}
+            zoom={10}
+            pathColor="#d4b56a"
+            label="Clusters — watch yards highlighted"
+          />
+        </div>
+        <ul className="cluster-dash">
+          {HIVE_YARDS.map((y) => (
+            <li key={y.id} className={`cluster-dash-item flag-${y.flag}`}>
+              <strong>{y.name}</strong>
+              <span>
+                {y.hiveCount} hives · {y.siteType} · {y.access}
+              </span>
+              <small>
+                {y.landowner}
+                {y.contactBefore ? ' · call first' : ''}
+              </small>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="week-grid-wrap">
+        <h2>This week</h2>
+        <table className="week-grid">
+          <thead>
+            <tr>
+              <th>Yard</th>
+              {WEEK_DAYS.map((d) => (
+                <th key={d}>{d}</th>
               ))}
-            </ul>
-          </section>
-          <button type="button" className="btn primary launch-btn" onClick={() => setLocked(true)}>
-            Save roster (demo)
-          </button>
-        </aside>
+            </tr>
+          </thead>
+          <tbody>
+            {HIVE_YARDS.map((y) => (
+              <tr key={y.id}>
+                <th>{y.name}</th>
+                {WEEK_DAYS.map((d) => {
+                  const cell = rows.find((r) => r.yardId === y.id && r.dayLabel === d)
+                  return (
+                    <td key={d}>
+                      {cell ? (
+                        <div className="week-cell">
+                          <select
+                            value={cell.staffId}
+                            onChange={(e) => {
+                              setAssignmentStaff(y.id, d, e.target.value)
+                              refresh()
+                            }}
+                          >
+                            {APIARY_STAFF.map((s) => (
+                              <option key={s.id} value={s.id}>
+                                {s.name}
+                              </option>
+                            ))}
+                          </select>
+                          <label>
+                            <input
+                              type="checkbox"
+                              checked={cell.reminder}
+                              onChange={() => {
+                                toggleReminder(y.id, d)
+                                refresh()
+                              }}
+                            />
+                            remind
+                          </label>
+                          <small>{staffById(cell.staffId)?.role}</small>
+                        </div>
+                      ) : (
+                        <span className="week-empty">—</span>
+                      )}
+                    </td>
+                  )
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p className="hint">
+          {yardById('anatoki')?.name} is flagged quarantine — dry-only access.
+        </p>
+        <button type="button" className="btn primary launch-btn" onClick={() => setLocked(true)}>
+          Save roster (demo)
+        </button>
       </div>
     </div>
   )

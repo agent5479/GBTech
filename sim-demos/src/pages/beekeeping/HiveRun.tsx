@@ -2,30 +2,36 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DemoChrome } from '../../components/DemoChrome'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
-import { buildYachtCalendar } from '../../shared/calendarMock'
+import { MarkersMap } from '../../components/MarkersMap'
+import { PhoneShell } from '../../components/PhoneShell'
 import {
-  HIVE_TASKS,
+  HIVE_MAP_CENTER,
   HIVE_YARDS,
   LIVE_BEEMARSHALL_URL,
   taskById,
+  tasksByCategory,
   yardById,
+  type HiveFlag,
 } from '../../shared/beekeeping'
 
-/** Hive Run — field staff yard/cluster work (no public client). */
+/** Hive Run — field log action (cluster on map, categorised tasks). Not a booking wizard. */
 export default function HiveRun() {
-  const days = useMemo(() => buildYachtCalendar(8), [])
-  const [step, setStep] = useState(1)
   const [yardId, setYardId] = useState('collingwood')
-  const [tasks, setTasks] = useState<string[]>(['inspect'])
-  const [date, setDate] = useState<string>()
-  const [time, setTime] = useState<string>()
+  const [filter, setFilter] = useState<'common' | 'all'>('common')
+  const [tasks, setTasks] = useState<string[]>(['inspect', 'queen'])
+  const [flag, setFlag] = useState<HiveFlag>('ok')
   const [notes, setNotes] = useState('')
   const [done, setDone] = useState(false)
 
   const yard = yardById(yardId)
-  const selectedDay = days.find((d) => d.date === date)
-  const canWhen = Boolean(date && time)
-  const canConfirm = Boolean(yard && tasks.length && canWhen)
+  const grouped = useMemo(() => tasksByCategory(filter), [filter])
+  const points = HIVE_YARDS.map((y) => ({
+    id: y.id,
+    lat: y.lat,
+    lng: y.lng,
+    label: `${y.name} · ${y.hiveCount}`,
+    selected: y.id === yardId,
+  }))
 
   const toggleTask = (id: string) => {
     setTasks((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
@@ -36,23 +42,20 @@ export default function HiveRun() {
       <div className="beekeeping-page theme-hiverun">
         <DemoChrome
           theme="Hive Run"
-          title="Field run logged"
-          subtitle="Simulated hive work — nothing wrote to a live calendar."
+          title="Action logged"
+          subtitle="Simulated field log — nothing wrote to a live calendar."
           imageId="hiverun"
         />
         <div className="yacht-panel success-panel demo-enter-success">
-          <h2>Run queued (demo)</h2>
+          <h2>Logged at {yard.name}</h2>
           <p>
-            {yard.name} · {yard.hiveCount} hives · {yard.gpsLabel}
+            {yard.hiveCount} hives · {yard.gpsLabel} · flag {flag}
           </p>
           <p>{tasks.map((id) => taskById(id)?.name).join(' · ')}</p>
-          <p>
-            {date} @ {time}
-          </p>
           <p className="hint">
             Live staff app:{' '}
             <a href={LIVE_BEEMARSHALL_URL} target="_blank" rel="noopener noreferrer">
-              BeeMarshall on GitHub Pages
+              BeeMarshall
             </a>
           </p>
           <DemoQuoteCta styleName="Hive Run" />
@@ -61,10 +64,10 @@ export default function HiveRun() {
             className="btn ghost"
             onClick={() => {
               setDone(false)
-              setStep(1)
+              setTasks(['inspect'])
             }}
           >
-            Plan another run
+            Log another action
           </button>
           <Link to="/" className="adventure-hub-link">
             ← All demos
@@ -74,7 +77,7 @@ export default function HiveRun() {
           packageTier="advanced"
           compareTo="/beekeeping/apiary"
           compareLabel="Apiary Board"
-          engineNote="Field hive-cluster actions vs management staff schedules — no public client booking."
+          engineNote="Field log-action vs management dashboard — no public client booking."
         />
       </div>
     )
@@ -84,171 +87,112 @@ export default function HiveRun() {
     <div className="beekeeping-page theme-hiverun">
       <DemoChrome
         theme="Hive Run"
-        title="Hive cluster run"
-        subtitle="Field staff — pick a yard, tick seasonal tasks, navigate by GPS label. No external clients."
+        title="Log a yard action"
+        subtitle="Field staff — pick a cluster on the map, tick what you did. Common vs all tasks."
         imageId="hiverun"
-        badge="Simulated · field staff"
+        badge="Simulated · field log"
       />
       <DemoPitchBar
         packageTier="advanced"
         compareTo="/beekeeping/apiary"
         compareLabel="Apiary Board"
-        engineNote="Field hive-cluster actions vs management staff schedules — no public client booking."
+        engineNote="Field log-action vs management dashboard — no public client booking."
       />
 
-      <ol className="wizard-steps" aria-label="Run steps">
-        {[1, 2, 3, 4].map((n) => (
-          <li key={n} className={step === n ? 'active' : step > n ? 'done' : ''}>
-            {n}
-          </li>
-        ))}
-      </ol>
+      <div className="hive-field-layout">
+        <div className="hive-map-card">
+          <MarkersMap
+            points={points}
+            center={HIVE_MAP_CENTER}
+            zoom={10}
+            pathColor="#DAA520"
+            label="Tap a cluster · GPS yards (demo)"
+            onSelect={setYardId}
+          />
+        </div>
 
-      {step === 1 && (
-        <section className="yacht-panel demo-enter">
-          <h2>1. Yard / cluster</h2>
-          <label className="field">
-            Site
-            <select value={yardId} onChange={(e) => setYardId(e.target.value)}>
+        <PhoneShell brand="Hive Run">
+          <div className="hive-phone">
+            <p className="phone-kicker">At this cluster</p>
+            <div className="cluster-pick">
               {HIVE_YARDS.map((y) => (
-                <option key={y.id} value={y.id}>
-                  {y.name} · {y.hiveCount} hives
-                </option>
-              ))}
-            </select>
-          </label>
-          {yard && (
-            <div className="gps-chip-row" aria-label="Cluster location">
-              <span className="gps-chip">{yard.gpsLabel}</span>
-              <span className="hint">{yard.accessNote}</span>
-            </div>
-          )}
-          <div className="btn-row">
-            <button type="button" className="btn primary" onClick={() => setStep(2)}>
-              Next: Tasks
-            </button>
-          </div>
-        </section>
-      )}
-
-      {step === 2 && (
-        <section className="yacht-panel demo-enter">
-          <h2>2. Seasonal tasks</h2>
-          <div className="job-check-list">
-            {HIVE_TASKS.map((t) => {
-              const on = tasks.includes(t.id)
-              return (
-                <label key={t.id} className={`job-check${on ? ' on' : ''}`}>
-                  <input type="checkbox" checked={on} onChange={() => toggleTask(t.id)} />
+                <button
+                  key={y.id}
+                  type="button"
+                  className={`cluster-chip${yardId === y.id ? ' on' : ''}${y.flag !== 'ok' ? ` flag-${y.flag}` : ''}`}
+                  onClick={() => setYardId(y.id)}
+                >
+                  <strong>{y.name}</strong>
                   <span>
-                    <strong>{t.name}</strong>
-                    <small>
-                      {t.blurb} · {t.seasonHint}
-                    </small>
+                    {y.hiveCount} hives · {y.access}
                   </span>
-                </label>
-              )
-            })}
-          </div>
-          <div className="btn-row">
-            <button type="button" className="btn ghost" onClick={() => setStep(1)}>
-              Back
-            </button>
+                </button>
+              ))}
+            </div>
+            {yard && (
+              <p className="hive-meta">
+                {yard.landowner}
+                {yard.contactBefore ? ' · contact before visit' : ''} · {yard.accessNote}
+              </p>
+            )}
+
+            <div className="task-filter">
+              <button
+                type="button"
+                className={filter === 'common' ? 'on' : ''}
+                onClick={() => setFilter('common')}
+              >
+                Common
+              </button>
+              <button type="button" className={filter === 'all' ? 'on' : ''} onClick={() => setFilter('all')}>
+                All tasks
+              </button>
+            </div>
+
+            {Object.entries(grouped).map(([cat, list]) => (
+              <section key={cat} className="task-cat">
+                <h3>{cat}</h3>
+                {list.map((t) => {
+                  const on = tasks.includes(t.id)
+                  return (
+                    <label key={t.id} className={`hive-check${on ? ' on' : ''}`}>
+                      <input type="checkbox" checked={on} onChange={() => toggleTask(t.id)} />
+                      {t.name}
+                      {t.common && <span className="star">★</span>}
+                    </label>
+                  )
+                })}
+              </section>
+            ))}
+
+            <label className="field">
+              Yard flag
+              <select value={flag} onChange={(e) => setFlag(e.target.value as HiveFlag)}>
+                <option value="ok">OK</option>
+                <option value="watch">Watch</option>
+                <option value="quarantine">Quarantine</option>
+              </select>
+            </label>
+            <label className="field">
+              Notes
+              <textarea
+                rows={2}
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                placeholder="Queen cells, wet track…"
+              />
+            </label>
             <button
               type="button"
               className="btn primary"
               disabled={!tasks.length}
-              onClick={() => setStep(3)}
+              onClick={() => setDone(true)}
             >
-              Next: When
+              Log actions
             </button>
           </div>
-        </section>
-      )}
-
-      {step === 3 && (
-        <section className="yacht-panel demo-enter">
-          <h2>3. When</h2>
-          <div className="day-rail">
-            {days.map((d) => {
-              const openCount = d.slots.filter((s) => s.status === 'open').length
-              const blocked = openCount === 0
-              return (
-                <button
-                  key={d.date}
-                  type="button"
-                  disabled={blocked}
-                  className={`day-pill${date === d.date ? ' on' : ''}${blocked ? ' blocked' : ''}`}
-                  onClick={() => {
-                    setDate(d.date)
-                    setTime(undefined)
-                  }}
-                >
-                  <span>{d.label}</span>
-                  <small>{blocked ? 'Full' : `${openCount} open`}</small>
-                </button>
-              )
-            })}
-          </div>
-          {selectedDay && (
-            <div className="time-rail">
-              {selectedDay.slots.map((slot) => (
-                <button
-                  key={slot.time}
-                  type="button"
-                  disabled={slot.status !== 'open'}
-                  className={`time-chip status-${slot.status}${time === slot.time ? ' on' : ''}`}
-                  onClick={() => setTime(slot.time)}
-                >
-                  {slot.time}
-                </button>
-              ))}
-            </div>
-          )}
-          <div className="btn-row">
-            <button type="button" className="btn ghost" onClick={() => setStep(2)}>
-              Back
-            </button>
-            <button type="button" className="btn primary" disabled={!canWhen} onClick={() => setStep(4)}>
-              Next: Notes
-            </button>
-          </div>
-        </section>
-      )}
-
-      {step === 4 && yard && (
-        <section className="yacht-panel demo-enter">
-          <h2>4. Site notes &amp; review</h2>
-          <label className="field">
-            Field notes
-            <textarea
-              rows={3}
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              placeholder="Queen cells, wet track, neighbour dogs…"
-            />
-          </label>
-          <div className="summary">
-            <p>
-              <strong>Yard:</strong> {yard.name} ({yard.gpsLabel})
-            </p>
-            <p>
-              <strong>Tasks:</strong> {tasks.map((id) => taskById(id)?.name).join(', ')}
-            </p>
-            <p>
-              <strong>When:</strong> {date} @ {time}
-            </p>
-          </div>
-          <div className="btn-row">
-            <button type="button" className="btn ghost" onClick={() => setStep(3)}>
-              Back
-            </button>
-            <button type="button" className="btn primary" disabled={!canConfirm} onClick={() => setDone(true)}>
-              Log run (demo)
-            </button>
-          </div>
-        </section>
-      )}
+        </PhoneShell>
+      </div>
     </div>
   )
 }

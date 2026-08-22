@@ -16,7 +16,6 @@ import {
 /** Harbour Book — client facility booking wizard. */
 export default function HarbourBook() {
   const days = useMemo(() => buildYachtCalendar(8), [])
-  const [step, setStep] = useState(1)
   const [roomId, setRoomId] = useState('workshop')
   const [hours, setHours] = useState(2)
   const [extras, setExtras] = useState<string[]>(['av'])
@@ -66,7 +65,6 @@ export default function HarbourBook() {
             className="btn ghost"
             onClick={() => {
               setDone(false)
-              setStep(1)
             }}
           >
             Book another (demo)
@@ -90,7 +88,7 @@ export default function HarbourBook() {
       <DemoChrome
         theme="Harbour Book"
         title="Book a facility"
-        subtitle="Harbour Hall sample venue — pick a room, window, and extras. Client-side booking wizard."
+        subtitle="Harbour Hall sample venue — tap a room on the floor plan, then a window and extras."
         imageId="harbourbook"
         badge="Simulated · client booking"
       />
@@ -101,35 +99,29 @@ export default function HarbourBook() {
         engineNote="Client facility book vs staff day board — Harbour Hall pair."
       />
 
-      <ol className="wizard-steps" aria-label="Booking steps">
-        {[1, 2, 3, 4].map((n) => (
-          <li key={n} className={step === n ? 'active' : step > n ? 'done' : ''}>
-            {n}
-          </li>
-        ))}
-      </ol>
-
-      {step === 1 && (
-        <section className="yacht-panel demo-enter">
-          <h2>1. Choose a room</h2>
-          <div className="job-check-list">
-            {HALL_ROOMS.map((r) => {
-              const on = roomId === r.id
-              return (
-                <label key={r.id} className={`job-check${on ? ' on' : ''}`}>
-                  <input type="radio" name="room" checked={on} onChange={() => setRoomId(r.id)} />
-                  <span>
-                    <strong>{r.name}</strong>
-                    <small>
-                      {r.blurb} · up to {r.capacity} · ${r.hourlyRate}/hr
-                    </small>
-                  </span>
-                </label>
-              )
-            })}
-          </div>
+      <div className="hall-floor">
+        <div className="hall-rooms">
+          {HALL_ROOMS.map((r) => {
+            const on = roomId === r.id
+            return (
+              <button
+                key={r.id}
+                type="button"
+                className={`hall-room hall-room-${r.id}${on ? ' on' : ''}`}
+                onClick={() => setRoomId(r.id)}
+              >
+                <span className="hall-room-cap">up to {r.capacity}</span>
+                <strong>{r.name}</strong>
+                <p>{r.blurb}</p>
+                <span className="hall-rate">${r.hourlyRate}/hr</span>
+              </button>
+            )
+          })}
+        </div>
+        <aside className="hall-book-side">
+          <h2>Hire window</h2>
           <label className="field">
-            Hire length (hours)
+            Hours
             <input
               type="number"
               min={1}
@@ -138,18 +130,7 @@ export default function HarbourBook() {
               onChange={(e) => setHours(Math.max(1, Number(e.target.value) || 1))}
             />
           </label>
-          <div className="btn-row">
-            <button type="button" className="btn primary" onClick={() => setStep(2)}>
-              Next: When
-            </button>
-          </div>
-        </section>
-      )}
-
-      {step === 2 && (
-        <section className="yacht-panel demo-enter">
-          <h2>2. Preferred window</h2>
-          <div className="day-rail" role="listbox" aria-label="Available days">
+          <div className="day-rail">
             {days.map((d) => {
               const openCount = d.slots.filter((s) => s.status === 'open').length
               const blocked = openCount === 0
@@ -185,38 +166,24 @@ export default function HarbourBook() {
               ))}
             </div>
           )}
-          <div className="btn-row">
-            <button type="button" className="btn ghost" onClick={() => setStep(1)}>
-              Back
-            </button>
-            <button type="button" className="btn primary" disabled={!canWhen} onClick={() => setStep(3)}>
-              Next: Party &amp; extras
-            </button>
-          </div>
-        </section>
-      )}
-
-      {step === 3 && room && (
-        <section className="yacht-panel demo-enter">
-          <h2>3. Party &amp; extras</h2>
-          <label className="field">
-            Party size
-            <div className="crew-stepper">
-              <button type="button" className="btn ghost" onClick={() => setParty((n) => Math.max(1, n - 1))}>
-                −
-              </button>
-              <span>{party}</span>
-              <button
-                type="button"
-                className="btn ghost"
-                onClick={() => setParty((n) => Math.min(room.capacity, n + 1))}
-              >
-                +
-              </button>
-            </div>
-            <small className="hint">Room cap {room.capacity}</small>
-          </label>
-          <p className="hint">Tick add-ons</p>
+          {room && (
+            <label className="field">
+              Party
+              <div className="crew-stepper">
+                <button type="button" className="btn ghost" onClick={() => setParty((n) => Math.max(1, n - 1))}>
+                  −
+                </button>
+                <span>{party}</span>
+                <button
+                  type="button"
+                  className="btn ghost"
+                  onClick={() => setParty((n) => Math.min(room.capacity, n + 1))}
+                >
+                  +
+                </button>
+              </div>
+            </label>
+          )}
           <div className="job-check-list">
             {HALL_EXTRAS.map((e) => {
               const on = extras.includes(e.id)
@@ -232,66 +199,19 @@ export default function HarbourBook() {
             })}
           </div>
           <label className="field">
-            Notes for staff
-            <textarea
-              rows={3}
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              placeholder="Setup needs, access…"
-            />
+            Notes
+            <textarea rows={2} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Setup…" />
           </label>
           {estimate && (
             <p className="live-estimate">
-              Running estimate <strong>{formatHallBracket(estimate)}</strong>
+              <strong>{formatHallBracket(estimate)}</strong>
             </p>
           )}
-          <div className="btn-row">
-            <button type="button" className="btn ghost" onClick={() => setStep(2)}>
-              Back
-            </button>
-            <button type="button" className="btn primary" onClick={() => setStep(4)}>
-              Next: Review
-            </button>
-          </div>
-        </section>
-      )}
-
-      {step === 4 && estimate && room && (
-        <section className="yacht-panel demo-enter">
-          <h2>4. Review</h2>
-          <div className="summary">
-            <p>
-              <strong>Room:</strong> {room.name} · {hours}h
-            </p>
-            <p>
-              <strong>When:</strong> {date} @ {time}
-            </p>
-            <p>
-              <strong>Party:</strong> {party}
-            </p>
-            {extras.length > 0 && (
-              <p>
-                <strong>Extras:</strong>{' '}
-                {extras.map((id) => HALL_EXTRAS.find((e) => e.id === id)?.name).join(', ')}
-              </p>
-            )}
-            {notes && (
-              <p>
-                <strong>Notes:</strong> {notes}
-              </p>
-            )}
-            <p className="estimate-bracket">Estimated {formatHallBracket(estimate)}</p>
-          </div>
-          <div className="btn-row">
-            <button type="button" className="btn ghost" onClick={() => setStep(3)}>
-              Back
-            </button>
-            <button type="button" className="btn primary" disabled={!canConfirm} onClick={() => setDone(true)}>
-              Confirm booking (demo)
-            </button>
-          </div>
-        </section>
-      )}
+          <button type="button" className="btn primary" disabled={!canConfirm} onClick={() => setDone(true)}>
+            Confirm hire (demo)
+          </button>
+        </aside>
+      </div>
     </div>
   )
 }

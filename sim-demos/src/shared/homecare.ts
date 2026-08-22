@@ -1,10 +1,15 @@
-/** Home-care ops — field carer visits + management rounds (not public guest booking). */
+/** Home-care ops — field visit log + management rounds. */
+
+export type CareTaskGroup = 'Meds' | 'Personal' | 'Home' | 'Notes'
 
 export interface CareClient {
   id: string
   name: string
   suburb: string
   planNote: string
+  medsDue: string[]
+  lat: number
+  lng: number
 }
 
 export interface CareTask {
@@ -12,6 +17,7 @@ export interface CareTask {
   name: string
   blurb: string
   minutes: number
+  group: CareTaskGroup
 }
 
 export interface Carer {
@@ -30,18 +36,52 @@ export interface RoundSlot {
 }
 
 export const CARE_CLIENTS: CareClient[] = [
-  { id: 'eleanor', name: 'Eleanor P.', suburb: 'Tākaka', planNote: 'Morning meds · mobility aid' },
-  { id: 'harold', name: 'Harold M.', suburb: 'Pōhara', planNote: 'Meal prep · company visit' },
-  { id: 'ruth', name: 'Ruth K.', suburb: 'Collingwood', planNote: 'Personal care · laundry' },
-  { id: 'ben', name: 'Ben W.', suburb: 'Tākaka', planNote: 'Special-needs routine · notes to family' },
+  {
+    id: 'eleanor',
+    name: 'Eleanor P.',
+    suburb: 'Tākaka',
+    planNote: 'Morning meds · mobility aid',
+    medsDue: ['08:30 breakfast set', 'Blood pressure log'],
+    lat: -40.855,
+    lng: 172.808,
+  },
+  {
+    id: 'harold',
+    name: 'Harold M.',
+    suburb: 'Pōhara',
+    planNote: 'Meal prep · company visit',
+    medsDue: ['Lunchtime tablets'],
+    lat: -40.837,
+    lng: 172.889,
+  },
+  {
+    id: 'ruth',
+    name: 'Ruth K.',
+    suburb: 'Collingwood',
+    planNote: 'Personal care · laundry',
+    medsDue: [],
+    lat: -40.682,
+    lng: 172.683,
+  },
+  {
+    id: 'ben',
+    name: 'Ben W.',
+    suburb: 'Tākaka',
+    planNote: 'Special-needs routine · notes to family',
+    medsDue: ['Afternoon prompt'],
+    lat: -40.85,
+    lng: 172.81,
+  },
 ]
 
 export const CARE_TASKS: CareTask[] = [
-  { id: 'meds', name: 'Medication support', blurb: 'Prompt and record.', minutes: 15 },
-  { id: 'meal', name: 'Meal prep', blurb: 'Simple meal and tidy.', minutes: 40 },
-  { id: 'personal', name: 'Personal care', blurb: 'Hygiene support per plan.', minutes: 45 },
-  { id: 'mobility', name: 'Mobility / walk', blurb: 'Safe transfer or short walk.', minutes: 30 },
-  { id: 'notes', name: 'Family hand-off note', blurb: 'Write what happened this visit.', minutes: 10 },
+  { id: 'meds', name: 'Medication support', blurb: 'Prompt and record.', minutes: 15, group: 'Meds' },
+  { id: 'bp', name: 'Vitals / BP log', blurb: 'Chart if required.', minutes: 10, group: 'Meds' },
+  { id: 'personal', name: 'Personal care', blurb: 'Hygiene support per plan.', minutes: 45, group: 'Personal' },
+  { id: 'mobility', name: 'Mobility / walk', blurb: 'Safe transfer or short walk.', minutes: 30, group: 'Personal' },
+  { id: 'meal', name: 'Meal prep', blurb: 'Simple meal and tidy.', minutes: 40, group: 'Home' },
+  { id: 'laundry', name: 'Laundry / tidy', blurb: 'Light household as planned.', minutes: 25, group: 'Home' },
+  { id: 'notes', name: 'Family hand-off', blurb: 'Write what happened this visit.', minutes: 10, group: 'Notes' },
 ]
 
 export const CARERS: Carer[] = [
@@ -49,6 +89,8 @@ export const CARERS: Carer[] = [
   { id: 'craig', name: 'Craig' },
   { id: 'zoe', name: 'Zoe' },
 ]
+
+export const ROUND_HOURS = ['08:30', '10:00', '13:00', '15:30'] as const
 
 let rounds: RoundSlot[] = [
   {
@@ -120,3 +162,11 @@ export function setRoundHandoff(id: string, handoff: string) {
 export function visitMinutes(taskIds: string[]): number {
   return taskIds.reduce((sum, id) => sum + (careTaskById(id)?.minutes ?? 0), 0)
 }
+
+export function tasksByGroup(): Record<CareTaskGroup, CareTask[]> {
+  const grouped = { Meds: [], Personal: [], Home: [], Notes: [] } as Record<CareTaskGroup, CareTask[]>
+  for (const t of CARE_TASKS) grouped[t.group].push(t)
+  return grouped
+}
+
+export const CARE_MAP_CENTER: [number, number] = [-40.8, 172.8]
