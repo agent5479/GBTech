@@ -2076,3 +2076,59 @@ body.marshall-page .comparison-table tbody th {
 .cost-compare-results .package-price {
   margin-bottom: 0.35rem;
 }
+
+/* Demos spotlight — draws visitors to /sim/ */
+.demos-showcase {
+  position: relative;
+  background: linear-gradient(145deg, rgba(255, 252, 248, 0.98), rgba(248, 240, 244, 0.95));
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  overflow: hidden;
+}
+
+.demos-showcase::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    120deg,
+    var(--accent-magenta),
+    var(--accent),
+    #7eb8d4,
+    var(--accent-magenta)
+  );
+  background-size: 300% 300%;
+  animation: demos-showcase-border 8s ease infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.demos-showcase > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes demos-showcase-border {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.demos-showcase .cta-button.primary {
+  box-shadow: 0 8px 24px rgba(90, 42, 53, 0.18);
+}
+

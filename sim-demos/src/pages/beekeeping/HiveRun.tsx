@@ -15,6 +15,13 @@ import {
   type HiveFlag,
 } from '../../shared/beekeeping'
 
+const TREATMENT_COMPLIANCE = [
+  { id: 'ppe', label: 'PPE on — gloves & veil' },
+  { id: 'label', label: 'Treatment batch labelled' },
+  { id: 'interval', label: 'Withdrawal interval noted' },
+  { id: 'photo', label: 'Treatment log photo taken' },
+] as const
+
 /** Hive Run — field log action (cluster on map, categorised tasks). Not a booking wizard. */
 export default function HiveRun() {
   const [yardId, setYardId] = useState('collingwood')
@@ -25,6 +32,12 @@ export default function HiveRun() {
   const [done, setDone] = useState(false)
   const [breakHives, setBreakHives] = useState(false)
   const [hivePick, setHivePick] = useState<number | null>(null)
+  const [compliance, setCompliance] = useState<string[]>([])
+
+  const toggleCompliance = (id: string) => {
+    setCompliance((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
+  }
+  const complianceDone = TREATMENT_COMPLIANCE.every((c) => compliance.includes(c.id))
 
   const yard = yardById(yardId)
   const hiveChips = yard ? hiveChipIds(yard.hiveCount) : []
@@ -77,6 +90,7 @@ export default function HiveRun() {
             onClick={() => {
               setDone(false)
               setTasks(['inspect'])
+              setCompliance([])
             }}
           >
             Log another action
@@ -213,6 +227,23 @@ export default function HiveRun() {
               </section>
             ))}
 
+            <section className="checklist-panel">
+              <h3>Treatment compliance</h3>
+              {TREATMENT_COMPLIANCE.map((c) => (
+                <label key={c.id} className={`hive-check${compliance.includes(c.id) ? ' on' : ''}`}>
+                  <input
+                    type="checkbox"
+                    checked={compliance.includes(c.id)}
+                    onChange={() => toggleCompliance(c.id)}
+                  />
+                  {c.label}
+                </label>
+              ))}
+              {!complianceDone && tasks.length > 0 && (
+                <p className="handoff-need">Complete compliance checks before logging.</p>
+              )}
+            </section>
+
             <label className="field">
               Yard flag
               <select value={flag} onChange={(e) => setFlag(e.target.value as HiveFlag)}>
@@ -233,7 +264,7 @@ export default function HiveRun() {
             <button
               type="button"
               className="btn primary"
-              disabled={!tasks.length}
+              disabled={!tasks.length || !complianceDone}
               onClick={() => setDone(true)}
             >
               Log actions

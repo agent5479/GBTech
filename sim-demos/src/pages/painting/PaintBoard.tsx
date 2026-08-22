@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { BallparkExportActions } from '../../components/BallparkExportActions'
 import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
+import { WeatherStrip } from '../../components/WeatherStrip'
+import { buildDemoForecast } from '../../shared/weatherMock'
 import {
   EXTERIOR_SURFACE_KINDS,
   ROOF_PITCHES,
@@ -31,6 +33,8 @@ const EXTERIOR_UNDERCOATS = undercoatsFor('outdoor')
  * Paint Board — exterior weatherboards / corrugate / roof (client-grade calculator).
  */
 export default function PaintBoard() {
+  const forecast = useMemo(() => buildDemoForecast(5), [])
+  const [paintDay, setPaintDay] = useState<string>()
   const [surfaces, setSurfaces] = useState<PaintSurface[]>([
     {
       id: 'wb-street',
@@ -127,6 +131,17 @@ export default function PaintBoard() {
         compareLabel="Indoor rooms"
         engineNote="Two jobs, not two skins — weatherboards, corrugate and roof vs indoor rooms."
       />
+
+      <section className="paintboard-weather">
+        <h2>Weather window</h2>
+        <p className="hint">Exterior work needs dry days — tap a forecast card to note your preferred window.</p>
+        <WeatherStrip days={forecast} selectedDate={paintDay} onSelectDate={setPaintDay} />
+        {paintDay && (
+          <p className="weather-pick">
+            Preferred window: <strong>{forecast.find((f) => f.date === paintDay)?.summary}</strong>
+          </p>
+        )}
+      </section>
 
       <div className="paintboard-deck demo-enter">
         <aside className="paintboard-walls">

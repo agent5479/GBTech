@@ -8,6 +8,13 @@ import { buildDemoForecast, forecastForDate } from '../../shared/weatherMock'
 import { SAILING_ROUTES } from '../../shared/sailingRoutes'
 import { YACHT_PACKAGES } from '../../shared/yachtPackages'
 
+const SAFETY_BRIEFING = [
+  { id: 'lifejacket', label: 'Lifejacket sizing checked for all guests' },
+  { id: 'manoverboard', label: 'Man-overboard drill explained' },
+  { id: 'rails', label: 'Handholds and deck rules reviewed' },
+  { id: 'weather', label: 'Weather hold and return plan understood' },
+] as const
+
 /** Coastal Charter — package → route → date/weather → party & confirm. */
 export function YachtWizard() {
   const days = useMemo(() => buildYachtCalendar(10), [])
@@ -19,7 +26,14 @@ export function YachtWizard() {
   const [routeId, setRouteId] = useState(SAILING_ROUTES[0].id)
   const [party, setParty] = useState(4)
   const [notes, setNotes] = useState('')
+  const [briefingDone, setBriefingDone] = useState<Record<string, boolean>>({})
   const [done, setDone] = useState(false)
+
+  const briefingComplete = SAFETY_BRIEFING.every((item) => briefingDone[item.id])
+
+  const toggleBriefing = (id: string) => {
+    setBriefingDone((prev) => ({ ...prev, [id]: !prev[id] }))
+  }
 
   const route = SAILING_ROUTES.find((r) => r.id === routeId)!
   const pkg = YACHT_PACKAGES.find((p) => p.id === pkgId)!
@@ -204,11 +218,28 @@ export function YachtWizard() {
               </p>
             )}
           </div>
+
+          <h3 className="subhead">Safety briefing</h3>
+          <p className="hint">Skipper needs these ticked before the demo booking locks in.</p>
+          <div className="job-check-list">
+            {SAFETY_BRIEFING.map((item) => {
+              const on = Boolean(briefingDone[item.id])
+              return (
+                <label key={item.id} className={`job-check${on ? ' on' : ''}`}>
+                  <input type="checkbox" checked={on} onChange={() => toggleBriefing(item.id)} />
+                  <span>
+                    <strong>{item.label}</strong>
+                  </span>
+                </label>
+              )
+            })}
+          </div>
+
           <div className="btn-row">
             <button type="button" className="btn ghost" onClick={() => setStep(3)}>
               Back
             </button>
-            <button type="button" className="btn primary" onClick={() => setDone(true)}>
+            <button type="button" className="btn primary" disabled={!briefingComplete} onClick={() => setDone(true)}>
               Confirm demo booking
             </button>
           </div>

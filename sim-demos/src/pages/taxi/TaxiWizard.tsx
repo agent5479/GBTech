@@ -20,10 +20,13 @@ function isPeakBooking(when: 'now' | 'later', laterTime: string): boolean {
   return Number.isFinite(hour) && hour >= 17
 }
 
+const SAVED_PLACES = ['takaka', 'pohara', 'airport', 'waitapu'] as const
+
 /** Mohua Ride — phone-shell ride-hail flow. */
 export function TaxiWizard() {
   const [pickup, setPickup] = useState('takaka')
   const [dropoff, setDropoff] = useState('pohara')
+  const [placeFocus, setPlaceFocus] = useState<'pickup' | 'dropoff'>('pickup')
   const [tier, setTier] = useState<VehicleTier>('standard')
   const [passengers, setPassengers] = useState(1)
   const [when, setWhen] = useState<'now' | 'later'>('now')
@@ -114,6 +117,46 @@ export function TaxiWizard() {
         />
       <PhoneShell brand="Mohua Ride">
         <div className="taxi-flow demo-enter">
+          <div className="place-rail-block">
+            <p className="place-rail-kicker">Recent &amp; saved places</p>
+            <div className="place-rail" role="group" aria-label="Recent places">
+              {SAVED_PLACES.map((id) => {
+                const p = placeById(id)
+                if (!p) return null
+                const active = (placeFocus === 'pickup' && pickup === id) || (placeFocus === 'dropoff' && dropoff === id)
+                return (
+                  <button
+                    key={id}
+                    type="button"
+                    className={`chip${active ? ' selected' : ''}`}
+                    onClick={() => {
+                      if (placeFocus === 'pickup') setPickup(id)
+                      else setDropoff(id)
+                    }}
+                  >
+                    {p.name}
+                  </button>
+                )
+              })}
+            </div>
+            <div className="place-rail-focus">
+              <button
+                type="button"
+                className={`chip${placeFocus === 'pickup' ? ' selected' : ''}`}
+                onClick={() => setPlaceFocus('pickup')}
+              >
+                Set pickup
+              </button>
+              <button
+                type="button"
+                className={`chip${placeFocus === 'dropoff' ? ' selected' : ''}`}
+                onClick={() => setPlaceFocus('dropoff')}
+              >
+                Set drop-off
+              </button>
+            </div>
+          </div>
+
           <label className="field">
             Pickup
             <select value={pickup} onChange={(e) => setPickup(e.target.value)}>

@@ -12,12 +12,29 @@ import {
   toggleRoundCovered,
 } from '../../shared/homecare'
 
+type VisitStatus = 'scheduled' | 'en-route' | 'done'
+
+function timeToMin(t: string): number {
+  const [h, m] = t.split(':').map(Number)
+  return h * 60 + m
+}
+
+function travelGapMinutes(prevTime: string, currTime: string): number {
+  return timeToMin(currTime) - timeToMin(prevTime)
+}
+
 /** Round Board — day roster as carer rows × time columns (management). */
 export default function RoundBoard() {
   const [, setTick] = useState(0)
   const refresh = () => setTick((n) => n + 1)
   const rounds = getRounds()
   const [locked, setLocked] = useState(false)
+  const [visitStatus, setVisitStatus] = useState<Record<string, VisitStatus>>({})
+
+  const getStatus = (slotId: string): VisitStatus => visitStatus[slotId] ?? 'scheduled'
+  const setStatus = (slotId: string, status: VisitStatus) => {
+    setVisitStatus((prev) => ({ ...prev, [slotId]: status }))
+  }
   const gaps = rounds.filter((r) => !r.covered).length
 
   const cell = (carerId: string, time: string) =>
@@ -100,7 +117,9 @@ export default function RoundBoard() {
                 </tr>
               </thead>
               <tbody>
-                {CARERS.map((c) => (
+                {CARERS.map((c) => {
+                  const carerSlots = ROUND_HOURS.map((h) => cell(c.id, h)).filter(Boolean)
+                  return (
                   <tr key={c.id}>
                     <th>
                       {c.name}
@@ -118,11 +137,30 @@ export default function RoundBoard() {
                         )
                       }
                       const client = clientById(slot.clientId)
+                      const slotIndex = carerSlots.findIndex((s) => s!.id === slot.id)
+                      const prevSlot = slotIndex > 0 ? carerSlots[slotIndex - 1] : null
+                      const gapMin =
+                        prevSlot && prevSlot.time !== slot.time
+                          ? travelGapMinutes(prevSlot.time, slot.time)
+                          : null
                       return (
                         <td key={h} className={slot.covered ? 'round-ok' : 'round-gap'}>
+                          {gapMin != null && gapMin > 0 && (
+                            <small className="travel-gap">{gapMin} min travel</small>
+                          )}
                           <strong>{client?.name}</strong>
                           <span>{client?.suburb}</span>
                           <small>{slot.tasks.map((id) => careTaskById(id)?.name).join(' · ')}</small>
+                          <select
+                            className="status-pipeline"
+                            value={getStatus(slot.id)}
+                            aria-label={`${client?.name} visit status`}
+                            onChange={(e) => setStatus(slot.id, e.target.value as VisitStatus)}
+                          >
+                            <option value="scheduled">Scheduled</option>
+                            <option value="en-route">En route</option>
+                            <option value="done">Done</option>
+                          </select>
                           <select
                             value={slot.carerId}
                             onChange={(e) => {
@@ -151,7 +189,8 @@ export default function RoundBoard() {
                       )
                     })}
                   </tr>
-                ))}
+                  )
+                })}
               </tbody>
             </table>
           </div>

@@ -25,6 +25,13 @@ import {
 const INDOOR_PAINTS = paintsFor('indoor')
 const INDOOR_UNDERCOATS = undercoatsFor('indoor')
 
+const ROOM_PREP_CHECKLIST = [
+  { id: 'furniture', label: 'Furniture moved or covered' },
+  { id: 'fixtures', label: 'Fixtures and switches masked' },
+  { id: 'floor', label: 'Floor protection down' },
+  { id: 'ventilation', label: 'Windows open for ventilation' },
+] as const
+
 function labourHint(kind: SurfaceKindId): string | null {
   if (kind === 'ceiling') return 'slower overhead labour'
   if (kind === 'skirting' || kind === 'window' || kind === 'detailing') return 'fiddly cut-in labour'
@@ -53,6 +60,13 @@ export default function FreshCoat() {
   ])
   const [paintTypeId, setPaintTypeId] = useState<PaintTypeId>('standard')
   const [undercoatId, setUndercoatId] = useState<UndercoatId>('acrylic')
+  const [prepDone, setPrepDone] = useState<Record<string, boolean>>({})
+
+  const prepComplete = ROOM_PREP_CHECKLIST.every((item) => prepDone[item.id])
+
+  const togglePrep = (id: string) => {
+    setPrepDone((prev) => ({ ...prev, [id]: !prev[id] }))
+  }
 
   const estimate = useMemo(
     () => estimatePaintJob(surfaces, paintTypeId, undercoatId, 'indoor'),
@@ -314,6 +328,24 @@ export default function FreshCoat() {
             </ul>
             <p className="estimate-bracket">Estimated cost {formatPaintBracket(estimate)}</p>
           </div>
+
+          <h3 className="subhead">Room prep checklist</h3>
+          <p className="hint">Client-side prep — tick what you&apos;ll have ready before the painter arrives.</p>
+          <div className="job-check-list">
+            {ROOM_PREP_CHECKLIST.map((item) => {
+              const on = Boolean(prepDone[item.id])
+              return (
+                <label key={item.id} className={`job-check${on ? ' on' : ''}`}>
+                  <input type="checkbox" checked={on} onChange={() => togglePrep(item.id)} />
+                  <span>
+                    <strong>{item.label}</strong>
+                  </span>
+                </label>
+              )
+            })}
+          </div>
+          {!prepComplete && <p className="hint">All prep items recommended before confirming a live quote visit.</p>}
+
           <BallparkExportActions estimate={estimate} />
           <DemoQuoteCta styleName="Fresh Coat" />
           <div className="btn-row">

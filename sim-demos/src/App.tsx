@@ -1,4 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { DemoPresentationProvider } from './context/DemoPresentation'
 import Hub from './pages/Hub'
 import CoastalCharter from './pages/yacht/CoastalCharter'
 import BayAdventure from './pages/yacht/BayAdventure'
@@ -28,6 +29,7 @@ const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
 export default function App() {
   return (
     <BrowserRouter basename={basename === '/' ? undefined : basename}>
+      <DemoPresentationProvider>
       <Routes>
         <Route path="/" element={<Hub />} />
         <Route path="/yacht/coastal" element={<CoastalCharter />} />
@@ -53,6 +55,7 @@ export default function App() {
         <Route path="/homecare/rounds" element={<RoundBoard />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      </DemoPresentationProvider>
     </BrowserRouter>
   )
 }

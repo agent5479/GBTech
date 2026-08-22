@@ -19,6 +19,12 @@ import {
   type StayId,
 } from '../../shared/horseYard'
 
+const GROOMS = [
+  { id: 'mia', name: 'Mia' },
+  { id: 'jack', name: 'Jack' },
+  { id: 'sara', name: 'Sara' },
+] as const
+
 /**
  * Yard Board — operator: horse rest days, stays, calendar conflicts.
  */
@@ -32,8 +38,13 @@ export default function YardBoard() {
   const [stayId, setStayId] = useState<StayId>('camp')
   const [stayDate, setStayDate] = useState(startKey)
   const [locked, setLocked] = useState(false)
+  const [groomAssign, setGroomAssign] = useState<Record<string, string>>({})
   const sync = syncLabels()
   const allEvents = getEvents()
+
+  const ridesToday = (horseId: string) =>
+    allEvents.filter((e) => e.date === startKey && e.horseId === horseId && e.kind === 'booking').length
+  const atMaxCount = horses.filter((h) => ridesToday(h.id) >= h.maxPerDay).length
 
   if (locked) {
     return (
@@ -91,6 +102,11 @@ export default function YardBoard() {
       />
 
       <div className="ops-deck yardboard-deck demo-enter">
+        <p className={`coverage-banner${atMaxCount === 0 ? ' all-clear' : ''}`}>
+          {atMaxCount === 0
+            ? 'No horses at max rides today.'
+            : `${atMaxCount} horse${atMaxCount === 1 ? '' : 's'} at max rides today — check before booking.`}
+        </p>
         <div className="ops-board-surface week-grid-wrap">
           <div className="ops-board-head">
             <h2>Horse × day</h2>
@@ -114,6 +130,20 @@ export default function YardBoard() {
                     <small>
                       {h.level} · max {h.maxPerDay}/day
                     </small>
+                    <select
+                      value={groomAssign[h.id] ?? ''}
+                      aria-label={`Groom for ${h.name}`}
+                      onChange={(e) =>
+                        setGroomAssign((prev) => ({ ...prev, [h.id]: e.target.value }))
+                      }
+                    >
+                      <option value="">Groom —</option>
+                      {GROOMS.map((g) => (
+                        <option key={g.id} value={g.id}>
+                          {g.name}
+                        </option>
+                      ))}
+                    </select>
                   </th>
                   {days.map((date) => {
                     const resting = h.restWeekday != null && weekdayFromKey(date) === h.restWeekday
@@ -148,9 +178,13 @@ export default function YardBoard() {
           </div>
         </div>
 
-        <aside className="classboard-side">
-          <section>
-            <h2>Daily cap</h2>
+        <aside className="ops-board-surface yardboard-side">
+          <div className="ops-board-head">
+            <h2>Yard controls</h2>
+            <p className="hint">Caps, stay nights, and save.</p>
+          </div>
+          <section className="yardboard-side-section">
+            <h3>Daily cap</h3>
             <p className="hint">Max rides per horse. Booking checks this against the calendar.</p>
             <div className="exercise-checks">
               {horses.map((h) => (
@@ -174,8 +208,8 @@ export default function YardBoard() {
             </div>
           </section>
 
-          <section>
-            <h2>Add stay night</h2>
+          <section className="yardboard-side-section">
+            <h3>Add stay night</h3>
             <p className="hint">Farmstay, camp, or a visiting horse — blocked on the same calendar.</p>
             <label className="field">
               Night

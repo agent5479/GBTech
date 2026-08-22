@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useDemoPresentation } from '../context/DemoPresentation'
 import { DemoCardImage } from './DemoHeroImage'
 import { GbtechDemoNav } from './GbtechDemoNav'
 import type { DemoImageId } from '../shared/demoAssets'
@@ -24,6 +25,22 @@ export function DemoChrome({
   backTo = '/',
   backLabel = '← All demos',
 }: Props) {
+  const { showShowcaseChrome } = useDemoPresentation()
+
+  if (!showShowcaseChrome) {
+    return (
+      <header className="demo-app-bar">
+        <Link to={backTo} className="demo-back">
+          {backLabel}
+        </Link>
+        <div className="demo-app-bar__title">
+          <span className="demo-theme-tag">{theme}</span>
+          <h1>{title}</h1>
+        </div>
+      </header>
+    )
+  }
+
   return (
     <>
       <GbtechDemoNav />

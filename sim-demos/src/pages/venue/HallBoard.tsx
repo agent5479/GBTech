@@ -16,14 +16,27 @@ import {
 const FALLBACK_HOURS = ['09:00', '10:00', '13:00', '15:00']
 const STATUS_CYCLE: HallHold['status'][] = ['hold', 'confirmed', 'blocked']
 
+const TURNAROUND_BUFFER_MIN = 30
+
 /** Hall Board — staff venue day board (not a client wizard). */
 export default function HallBoard() {
   const [, setTick] = useState(0)
   const refresh = () => setTick((n) => n + 1)
   const holds = getHolds()
   const [locked, setLocked] = useState(false)
+  const [bufferOn, setBufferOn] = useState(true)
 
   const hours = [...new Set([...FALLBACK_HOURS, ...holds.map((h) => h.time)])].sort()
+  const totalCells = HALL_ROOMS.length * hours.length
+  const freeSlots = totalCells - holds.length
+
+  const isBufferCell = (roomId: string, time: string): boolean => {
+    if (!bufferOn) return false
+    const timeIdx = hours.indexOf(time)
+    if (timeIdx <= 0) return false
+    const prevTime = hours[timeIdx - 1]
+    return holds.some((h) => h.roomId === roomId && h.time === prevTime)
+  }
 
   if (locked) {
     return (
@@ -80,6 +93,16 @@ export default function HallBoard() {
       />
 
       <div className="ops-deck demo-enter">
+        <p className={`coverage-banner${freeSlots === 0 ? '' : ' all-clear'}`}>
+          {freeSlots === 0
+            ? 'No free room slots — board is full.'
+            : `${freeSlots} free room slot${freeSlots === 1 ? '' : 's'} available today.`}
+        </p>
+        <label className="hive-check" style={{ marginBottom: '0.75rem' }}>
+          <input type="checkbox" checked={bufferOn} onChange={(e) => setBufferOn(e.target.checked)} />
+          Show {TURNAROUND_BUFFER_MIN} min turnaround buffer after bookings
+        </label>
+
         <div className="ops-board-surface week-grid-wrap">
           <div className="ops-board-head">
             <h2>Rooms × hours</h2>
@@ -105,6 +128,13 @@ export default function HallBoard() {
                     {hours.map((time) => {
                       const hold = holds.find((h) => h.roomId === room.id && h.time === time)
                       if (!hold) {
+                        if (isBufferCell(room.id, time)) {
+                          return (
+                            <td key={time} className="hall-cell-free hall-cell-buffer">
+                              Buffer {TURNAROUND_BUFFER_MIN}m
+                            </td>
+                          )
+                        }
                         return (
                           <td key={time} className="hall-cell-free">
                             Free

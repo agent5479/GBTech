@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useDemoPresentation } from '../context/DemoPresentation'
 
 export type PackageTier = 'essential' | 'advanced'
 export type PitchKind = 'package' | 'customOps'
@@ -25,6 +26,9 @@ export function DemoPitchBar({
   compareLabel,
   engineNote,
 }: PitchBarProps) {
+  const { showShowcaseChrome } = useDemoPresentation()
+  if (!showShowcaseChrome) return null
+
   const isOps = pitchKind === 'customOps'
   const tierLabel = packageTier === 'essential' ? 'Essential · $351' : 'Advanced · $702'
   const tierHint =
@@ -69,6 +73,15 @@ interface QuoteCtaProps {
 
 /** End-of-demo conversion CTA. */
 export function DemoQuoteCta({ styleName, pitchKind = 'package' }: QuoteCtaProps) {
+  const { showShowcaseChrome } = useDemoPresentation()
+  if (!showShowcaseChrome) {
+    return (
+      <p className="demo-quote-minimal">
+        <a href="/#packages">Like this style? Get a quote on GBTech →</a>
+      </p>
+    )
+  }
+
   if (pitchKind === 'customOps') {
     return (
       <div className="demo-quote-cta">

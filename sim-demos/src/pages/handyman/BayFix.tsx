@@ -23,6 +23,10 @@ export default function BayFix() {
   const [date, setDate] = useState<string>()
   const [time, setTime] = useState<string>()
   const [placeId, setPlaceId] = useState(GB_PLACES[0].id)
+  const [gateCode, setGateCode] = useState('')
+  const [parkingNote, setParkingNote] = useState('')
+  const [dogOnSite, setDogOnSite] = useState(false)
+  const [photoName, setPhotoName] = useState<string>()
   const [notes, setNotes] = useState('')
   const [done, setDone] = useState(false)
 
@@ -204,6 +208,32 @@ export default function BayFix() {
       {step === 3 && (
         <section key="step-3" className="yacht-panel demo-enter">
           <h2>3. Site details</h2>
+          <div className="site-access-card">
+            <h3 className="subhead">Site access</h3>
+            <label className="field">
+              Gate code / buzzer
+              <input
+                value={gateCode}
+                onChange={(e) => setGateCode(e.target.value)}
+                placeholder="e.g. #4821 or ring front bell"
+              />
+            </label>
+            <label className="field">
+              Parking
+              <input
+                value={parkingNote}
+                onChange={(e) => setParkingNote(e.target.value)}
+                placeholder="Driveway, street, or farm gate"
+              />
+            </label>
+            <label className={`job-check${dogOnSite ? ' on' : ''}`}>
+              <input type="checkbox" checked={dogOnSite} onChange={(e) => setDogOnSite(e.target.checked)} />
+              <span>
+                <strong>Dog on site</strong>
+                <small>Tradie will call before entering</small>
+              </span>
+            </label>
+          </div>
           <label className="field">
             Area
             <select value={placeId} onChange={(e) => setPlaceId(e.target.value)}>
@@ -216,13 +246,23 @@ export default function BayFix() {
           </label>
           <label className="field">
             Notes for the tradie
-            <textarea rows={3} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Gate code, parking, pets…" />
+            <textarea rows={3} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Anything else…" />
           </label>
           <div className="photo-attach">
-            <button type="button" className="btn ghost" disabled title="Demo only — photo upload ships in a live build">
-              Attach photo (coming soon)
+            <button
+              type="button"
+              className="btn ghost"
+              onClick={() => setPhotoName(`leak-${Date.now().toString(36).slice(-4)}.jpg`)}
+            >
+              Attach photo (demo)
             </button>
-            <p className="hint">Real tickets usually need a photo of the problem — included in a live portal.</p>
+            {photoName ? (
+              <p className="photo-stub-name">
+                Attached: <strong>{photoName}</strong>
+              </p>
+            ) : (
+              <p className="hint">Real tickets usually need a photo of the problem — stub filename only here.</p>
+            )}
           </div>
           <div className="btn-row">
             <button type="button" className="btn ghost" onClick={() => setStep(2)}>
@@ -251,6 +291,19 @@ export default function BayFix() {
             {notes && (
               <p>
                 <strong>Notes:</strong> {notes}
+              </p>
+            )}
+            {(gateCode || parkingNote || dogOnSite) && (
+              <p>
+                <strong>Access:</strong>
+                {gateCode ? ` Gate ${gateCode}` : ''}
+                {parkingNote ? ` · Parking ${parkingNote}` : ''}
+                {dogOnSite ? ' · Dog on site' : ''}
+              </p>
+            )}
+            {photoName && (
+              <p>
+                <strong>Photo:</strong> {photoName}
               </p>
             )}
             <p>

@@ -14,6 +14,12 @@ import {
   visitMinutes,
 } from '../../shared/homecare'
 
+const CLOSEOUT_ITEMS = [
+  { id: 'keys', label: 'Keys / alarm secured' },
+  { id: 'meds', label: 'Meds chart updated' },
+  { id: 'family', label: 'Family notified if needed' },
+] as const
+
 /** Care Visit — field visit log on a phone (client card, grouped checks, meds due). */
 export default function CareVisit() {
   const [clientId, setClientId] = useState('eleanor')
@@ -22,6 +28,13 @@ export default function CareVisit() {
   const [carerId, setCarerId] = useState('ana')
   const [notes, setNotes] = useState('')
   const [done, setDone] = useState(false)
+  const [concernFlag, setConcernFlag] = useState(false)
+  const [concernNote, setConcernNote] = useState('')
+  const [closeout, setCloseout] = useState<string[]>([])
+
+  const toggleCloseout = (id: string) => {
+    setCloseout((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
+  }
 
   const client = clientById(clientId)
   const grouped = tasksByGroup()
@@ -62,6 +75,7 @@ export default function CareVisit() {
             ~{minutes} min · {CARERS.find((c) => c.id === carerId)?.name}
           </p>
           {notes.trim() ? <p className="hint">Family: {notes.trim()}</p> : null}
+          {concernFlag ? <p className="hint">Concern flagged: {concernNote.trim() || 'No detail'}</p> : null}
           <DemoQuoteCta styleName="Care Visit" pitchKind="customOps" />
           <button type="button" className="btn ghost" onClick={() => setDone(false)}>
             Log another visit
@@ -176,6 +190,41 @@ export default function CareVisit() {
             <p className="live-estimate">
               Visit length <strong>~{minutes} min</strong>
             </p>
+
+            <label className={`hive-check concern-flag${concernFlag ? ' on' : ''}`}>
+              <input
+                type="checkbox"
+                checked={concernFlag}
+                onChange={(e) => setConcernFlag(e.target.checked)}
+              />
+              Flag concern / incident
+            </label>
+            {concernFlag && (
+              <label className="field">
+                Concern note
+                <textarea
+                  rows={2}
+                  value={concernNote}
+                  onChange={(e) => setConcernNote(e.target.value)}
+                  placeholder="Fall risk, mood change, missed meds…"
+                />
+              </label>
+            )}
+
+            <section className="checklist-panel">
+              <h4>Close-out (optional)</h4>
+              {CLOSEOUT_ITEMS.map((c) => (
+                <label key={c.id} className={`hive-check${closeout.includes(c.id) ? ' on' : ''}`}>
+                  <input
+                    type="checkbox"
+                    checked={closeout.includes(c.id)}
+                    onChange={() => toggleCloseout(c.id)}
+                  />
+                  {c.label}
+                </label>
+              ))}
+            </section>
+
             <label className="field">
               Family hand-off
               <textarea

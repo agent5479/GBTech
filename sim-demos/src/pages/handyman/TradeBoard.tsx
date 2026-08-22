@@ -12,6 +12,15 @@ import {
 import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 
+const PIPELINE_STAGES = [
+  { id: 'new', label: 'New' },
+  { id: 'scheduled', label: 'Scheduled' },
+  { id: 'onsite', label: 'On site' },
+  { id: 'done', label: 'Done' },
+] as const
+
+type PipelineStage = (typeof PIPELINE_STAGES)[number]['id']
+
 /**
  * Trade Board — single-screen multi-select (not a wizard).
  * Job chips + day/time rail + estimate column.
@@ -22,7 +31,12 @@ export default function TradeBoard() {
   const [date, setDate] = useState<string>()
   const [time, setTime] = useState<string>()
   const [placeId, setPlaceId] = useState('takaka')
+  const [jobStages, setJobStages] = useState<Record<string, PipelineStage>>({})
   const [done, setDone] = useState(false)
+
+  const setJobStage = (jobId: string, stage: PipelineStage) => {
+    setJobStages((prev) => ({ ...prev, [jobId]: stage }))
+  }
 
   const estimate = useMemo(() => estimateHandymanJobs(selected), [selected])
   const selectedDay = days.find((d) => d.date === date)
@@ -117,6 +131,37 @@ export default function TradeBoard() {
               )
             })}
           </div>
+
+          {selected.length > 0 && (
+            <section className="job-pipeline-block">
+              <h2>Job pipeline</h2>
+              <p className="hint">Drag jobs through stages on a live board — demo status chips here.</p>
+              <ul className="job-pipeline-list">
+                {selected.map((id) => {
+                  const job = jobById(id)
+                  if (!job) return null
+                  const stage = jobStages[id] ?? 'new'
+                  return (
+                    <li key={id} className="job-pipeline-item">
+                      <strong>{job.name}</strong>
+                      <div className="job-pipeline-stages">
+                        {PIPELINE_STAGES.map((s) => (
+                          <button
+                            key={s.id}
+                            type="button"
+                            className={`status-chip pipeline-chip${stage === s.id ? ' on' : ''}`}
+                            onClick={() => setJobStage(id, s.id)}
+                          >
+                            {s.label}
+                          </button>
+                        ))}
+                      </div>
+                    </li>
+                  )
+                })}
+              </ul>
+            </section>
+          )}
         </aside>
 
         <aside className="tradeboard-side">

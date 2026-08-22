@@ -16,6 +16,12 @@ import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 const SLOTS = ['ASAP', '16:00', '17:00', '18:00', '19:30', '21:00']
 const BAY_CENTER: LatLng = [-40.82, 172.82]
 
+const DISPATCH_QUEUE = [
+  { id: 'd1', from: 'Tākaka town', to: 'Pōhara Beach', status: 'en-route' as const },
+  { id: 'd2', from: 'Collingwood', to: 'Tākaka Aerodrome', status: 'waiting' as const },
+  { id: 'd3', from: 'Tata Beach', to: 'Waitapu Bridge', status: 'assigned' as const },
+]
+
 function slotIsPeak(slot: string): boolean {
   if (slot === 'ASAP') return false
   const hour = Number(slot.split(':')[0])
@@ -127,6 +133,20 @@ export default function BayHop() {
           compareLabel="Phone hail"
           engineNote="Two jobs, not two skins — place-to-place trip board vs phone hail."
         />
+
+      <div className="dispatch-queue-strip" aria-label="Dispatch queue">
+        <p className="dispatch-queue-kicker">Live dispatch (demo)</p>
+        <ul className="dispatch-queue-list">
+          {DISPATCH_QUEUE.map((job) => (
+            <li key={job.id} className="dispatch-queue-item">
+              <span className="dispatch-route">
+                {job.from} → {job.to}
+              </span>
+              <span className={`status-chip status-${job.status}`}>{job.status.replace('-', ' ')}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <div className="bayhop-board demo-enter" key={phase}>
         <section className="bayhop-places">

@@ -11,6 +11,18 @@ import {
 import { DemoCardImage } from '../../components/DemoHeroImage'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 
+const BLOCK_ZONES = ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'B4', 'C1', 'C2', 'C3', 'C4', 'D1', 'D2', 'D3', 'D4'] as const
+
+const TREE_ZONES: Record<string, string> = {
+  apple: 'A1',
+  citrus: 'A2',
+  stone: 'B1',
+  native: 'C3',
+  hedge: 'D1',
+  shade: 'C4',
+  rose: 'B4',
+}
+
 /**
  * Orchard Grid — species tile grid with per-tile counters (not a catalog list).
  * Side panel: schedule + estimate.
@@ -21,7 +33,13 @@ export default function OrchardGrid() {
   const [addOns, setAddOns] = useState<string[]>(['chipper'])
   const [date, setDate] = useState<string>()
   const [time, setTime] = useState<string>()
+  const [zoneFilter, setZoneFilter] = useState<string>()
   const [done, setDone] = useState(false)
+
+  const visibleTrees = useMemo(
+    () => (zoneFilter ? PRUNING_TREES.filter((t) => TREE_ZONES[t.id] === zoneFilter) : PRUNING_TREES),
+    [zoneFilter],
+  )
 
   const estimate = useMemo(() => estimatePruning(qty, addOns), [qty, addOns])
   const selectedDay = days.find((d) => d.date === date)
@@ -93,6 +111,28 @@ export default function OrchardGrid() {
       <div className="orchard-deck demo-enter">
         <section className="orchard-grid-pane">
           <h2>Species tiles</h2>
+          <div className="zone-picker-row">
+            <p className="hall-book-kicker">Block zone</p>
+            <div className="route-chips">
+              <button
+                type="button"
+                className={`chip${!zoneFilter ? ' selected' : ''}`}
+                onClick={() => setZoneFilter(undefined)}
+              >
+                All
+              </button>
+              {BLOCK_ZONES.map((z) => (
+                <button
+                  key={z}
+                  type="button"
+                  className={`chip${zoneFilter === z ? ' selected' : ''}`}
+                  onClick={() => setZoneFilter(z)}
+                >
+                  {z}
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="add-kind-row">
             {PRUNING_FRUIT_ADDS.map((q) => (
               <button
@@ -106,7 +146,10 @@ export default function OrchardGrid() {
             ))}
           </div>
           <div className="orchard-tiles">
-            {PRUNING_TREES.map((t) => {
+            {visibleTrees.length === 0 && (
+              <p className="hint">No species in block {zoneFilter} — pick another zone or show all.</p>
+            )}
+            {visibleTrees.map((t) => {
               const count = qty[t.id] ?? 0
               return (
                 <div key={t.id} className={`orchard-tile${count > 0 ? ' on' : ''}`}>
@@ -115,6 +158,7 @@ export default function OrchardGrid() {
                       {count}
                     </span>
                   )}
+                  <span className="orchard-zone-tag">{TREE_ZONES[t.id]}</span>
                   <strong>{t.name}</strong>
                   <small>
                     ${t.pricePerUnit}/{t.unitLabel}

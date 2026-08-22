@@ -19,6 +19,24 @@ import {
   type WindowStatus,
 } from '../../shared/horseYard'
 
+const WEIGHT_CHIPS = [
+  { id: 'under90', label: 'Under 90 kg' },
+  { id: '90-110', label: '90–110 kg' },
+  { id: 'over110', label: 'Over 110 kg' },
+] as const
+
+const EXPERIENCE_CHIPS = [
+  { id: 'beginner', label: 'Beginner' },
+  { id: 'intermediate', label: 'Intermediate' },
+  { id: 'advanced', label: 'Advanced' },
+] as const
+
+const SAFETY_CHECKLIST = [
+  { id: 'helmet', label: 'Helmet fitted' },
+  { id: 'boots', label: 'Closed-toe boots' },
+  { id: 'briefing', label: 'Beach route briefing heard' },
+] as const
+
 /**
  * Shore Ride — guest wizard.
  * Ride type → tide/sun window (calendar conflict check) → horse + optional stay → confirm.
@@ -32,6 +50,10 @@ export default function ShoreRide() {
   const [windowDate, setWindowDate] = useState<string>()
   const [horseId, setHorseId] = useState<string>()
   const [stayId, setStayId] = useState<StayId | 'none'>('none')
+  const [waiverAccepted, setWaiverAccepted] = useState(false)
+  const [weightId, setWeightId] = useState<string>()
+  const [experienceId, setExperienceId] = useState<string>()
+  const [safetyDone, setSafetyDone] = useState<Record<string, boolean>>({})
   const [done, setDone] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -44,6 +66,12 @@ export default function ShoreRide() {
   const horse = horseId ? horseById(horseId) : undefined
   const stay = stayId !== 'none' ? stayById(stayId) : undefined
   const sync = syncLabels()
+  const safetyComplete = SAFETY_CHECKLIST.every((item) => safetyDone[item.id])
+  const canConfirmRide = waiverAccepted && Boolean(weightId) && Boolean(experienceId) && safetyComplete
+
+  const toggleSafety = (id: string) => {
+    setSafetyDone((prev) => ({ ...prev, [id]: !prev[id] }))
+  }
 
   if (done && chosen && horse) {
     return (
@@ -81,6 +109,10 @@ export default function ShoreRide() {
               setError(null)
               setHorseId(undefined)
               setWindowDate(undefined)
+              setWaiverAccepted(false)
+              setWeightId(undefined)
+              setExperienceId(undefined)
+              setSafetyDone({})
             }}
           >
             Book another ride (demo)
@@ -114,23 +146,24 @@ export default function ShoreRide() {
         engineNote="Same tide, sun, horse roster, and calendar check — guest wizard vs yard board."
       />
 
-      <TideSunStrip
-        rideName={ride.name}
-        usesTides={ride.usesTides}
-        windows={windows}
-        chosen={chosen}
-        onOpenWindows={() => setStep(2)}
-      />
+      <div className="shoreride-flow">
+        <TideSunStrip
+          rideName={ride.name}
+          usesTides={ride.usesTides}
+          windows={windows}
+          chosen={chosen}
+          onOpenWindows={() => setStep(2)}
+        />
 
-      <ol className="wizard-steps" aria-label="Booking steps">
-        {[1, 2, 3, 4].map((n) => (
-          <li key={n} className={step === n ? 'active' : step > n ? 'done' : ''}>
-            {n}
-          </li>
-        ))}
-      </ol>
+        <ol className="wizard-steps" aria-label="Booking steps">
+          {[1, 2, 3, 4].map((n) => (
+            <li key={n} className={step === n ? 'active' : step > n ? 'done' : ''}>
+              {n}
+            </li>
+          ))}
+        </ol>
 
-      {step === 1 && (
+        {step === 1 && (
         <section className="yacht-panel demo-enter">
           <h2>1. Ride type</h2>
           <p className="hint">Beach and sunset need a usable tide. Arena and vaulting only check weather and the calendar.</p>
@@ -261,6 +294,57 @@ export default function ShoreRide() {
             <p>Calendar check: {chosen.reasons.slice(0, 3).join(' · ')}</p>
             {error && <p className="hint">{error}</p>}
           </div>
+
+          <h3 className="subhead">Rider details</h3>
+          <label className={`job-check${waiverAccepted ? ' on' : ''}`}>
+            <input type="checkbox" checked={waiverAccepted} onChange={(e) => setWaiverAccepted(e.target.checked)} />
+            <span>
+              <strong>Rider waiver accepted</strong>
+              <small>Assumes liability and follows yard rules (demo only)</small>
+            </span>
+          </label>
+          <p className="hall-book-kicker">Weight range</p>
+          <div className="route-chips">
+            {WEIGHT_CHIPS.map((w) => (
+              <button
+                key={w.id}
+                type="button"
+                className={`chip${weightId === w.id ? ' selected' : ''}`}
+                onClick={() => setWeightId(w.id)}
+              >
+                {w.label}
+              </button>
+            ))}
+          </div>
+          <p className="hall-book-kicker">Experience</p>
+          <div className="route-chips">
+            {EXPERIENCE_CHIPS.map((e) => (
+              <button
+                key={e.id}
+                type="button"
+                className={`chip${experienceId === e.id ? ' selected' : ''}`}
+                onClick={() => setExperienceId(e.id)}
+              >
+                {e.label}
+              </button>
+            ))}
+          </div>
+
+          <h3 className="subhead">Pre-ride safety</h3>
+          <div className="job-check-list">
+            {SAFETY_CHECKLIST.map((item) => {
+              const on = Boolean(safetyDone[item.id])
+              return (
+                <label key={item.id} className={`job-check${on ? ' on' : ''}`}>
+                  <input type="checkbox" checked={on} onChange={() => toggleSafety(item.id)} />
+                  <span>
+                    <strong>{item.label}</strong>
+                  </span>
+                </label>
+              )
+            })}
+          </div>
+
           <div className="btn-row">
             <button type="button" className="btn ghost" onClick={() => setStep(3)}>
               Back
@@ -268,6 +352,7 @@ export default function ShoreRide() {
             <button
               type="button"
               className="btn primary"
+              disabled={!canConfirmRide}
               onClick={() => {
                 const msg = scriptBook({
                   rideId,
@@ -293,6 +378,7 @@ export default function ShoreRide() {
           </div>
         </section>
       )}
+      </div>
     </div>
   )
 }

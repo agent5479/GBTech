@@ -10,6 +10,7 @@ import {
   LIVE_BEEMARSHALL_URL,
   WEEK_DAYS,
   apiaryOpsHint,
+  dryOnlyYardsWithReminder,
   getAssignments,
   quarantineYards,
   setAssignmentStaff,
@@ -28,6 +29,14 @@ export default function ApiaryBoard() {
   const watch = HIVE_YARDS.filter((y) => y.flag !== 'ok').length
   const quarantine = quarantineYards().length
   const seasonHint = apiaryOpsHint()
+  const hasOverdue = quarantine > 0 || dryOnlyYardsWithReminder().length > 0
+  const [visitSeq, setVisitSeq] = useState<Record<string, number>>({})
+
+  const seqKey = (yardId: string, day: string) => `${yardId}-${day}`
+  const getSeq = (yardId: string, day: string) => visitSeq[seqKey(yardId, day)] ?? 1
+  const setSeq = (yardId: string, day: string, n: number) => {
+    setVisitSeq((prev) => ({ ...prev, [seqKey(yardId, day)]: Math.max(1, Math.min(99, n)) }))
+  }
 
   const points = HIVE_YARDS.map((y) => ({
     id: y.id,
@@ -115,7 +124,10 @@ export default function ApiaryBoard() {
             <span>Quarantine yards</span>
           </article>
         </div>
-        <p className="ops-season-hint">{seasonHint}</p>
+        <div className={`ops-overdue-banner ops-season-hint${hasOverdue ? '' : ' all-clear'}`}>
+          <strong>{hasOverdue ? 'Overdue — attention needed' : 'Season check — all clear'}</strong>
+          <p>{seasonHint}</p>
+        </div>
 
         <div className="apiary-split">
           <div className="hive-map-card hive-map-card--wide">
@@ -181,6 +193,17 @@ export default function ApiaryBoard() {
                                   </option>
                                 ))}
                               </select>
+                              <label className="visit-seq-field">
+                                Visit #
+                                <input
+                                  type="number"
+                                  min={1}
+                                  max={99}
+                                  aria-label={`Visit sequence ${y.name} ${d}`}
+                                  value={getSeq(y.id, d)}
+                                  onChange={(e) => setSeq(y.id, d, Number(e.target.value))}
+                                />
+                              </label>
                               <label>
                                 <input
                                   type="checkbox"

@@ -26,6 +26,8 @@ export default function StudioFlow() {
   const [step, setStep] = useState(1)
   const [occurrenceId, setOccurrenceId] = useState<string>()
   const [planId, setPlanId] = useState<PlanId>(getMember().planId)
+  const [waitlistOccId, setWaitlistOccId] = useState<string>()
+  const [waitlistPosition, setWaitlistPosition] = useState<number>()
   const [done, setDone] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -70,6 +72,8 @@ export default function StudioFlow() {
               setDone(false)
               setStep(1)
               setError(null)
+              setWaitlistOccId(undefined)
+              setWaitlistPosition(undefined)
             }}
           >
             Book another class (demo)
@@ -132,22 +136,49 @@ export default function StudioFlow() {
               const left = spotsLeft(o)
               const full = left === 0
               const on = occurrenceId === o.id
+              const onWaitlist = waitlistOccId === o.id
               return (
-                <button
-                  key={o.id}
-                  type="button"
-                  disabled={full}
-                  className={`class-occ-card${on ? ' selected' : ''}${full ? ' is-full' : ''}`}
-                  onClick={() => setOccurrenceId(o.id)}
-                >
-                  <strong>
-                    {type.name} · {o.time}
-                  </strong>
-                  <span>{o.dayLabel}</span>
-                  <span className="spots-line">
-                    {full ? 'Full' : `${left} of ${type.cap} spots left`}
-                  </span>
-                </button>
+                <div key={o.id} className={`class-occ-wrap${on ? ' selected' : ''}${full ? ' is-full' : ''}`}>
+                  <button
+                    type="button"
+                    disabled={full}
+                    className={`class-occ-card${on ? ' selected' : ''}${full ? ' is-full' : ''}`}
+                    onClick={() => {
+                      setOccurrenceId(o.id)
+                      setWaitlistOccId(undefined)
+                      setWaitlistPosition(undefined)
+                    }}
+                  >
+                    <strong>
+                      {type.name} · {o.time}
+                    </strong>
+                    <span>{o.dayLabel}</span>
+                    <span className="spots-line">
+                      {full ? 'Full' : `${left} of ${type.cap} spots left`}
+                    </span>
+                  </button>
+                  {full && (
+                    <div className="waitlist-row">
+                      {onWaitlist && waitlistPosition ? (
+                        <p className="waitlist-position">
+                          Waitlist position <strong>#{waitlistPosition}</strong> — we&apos;ll ping you if a spot opens
+                        </p>
+                      ) : (
+                        <button
+                          type="button"
+                          className="btn ghost waitlist-join"
+                          onClick={() => {
+                            setWaitlistOccId(o.id)
+                            setOccurrenceId(undefined)
+                            setWaitlistPosition(2 + (o.id.length % 3))
+                          }}
+                        >
+                          Join waitlist (demo)
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
               )
             })}
           </div>

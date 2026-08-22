@@ -10,6 +10,16 @@ import {
   formatPruningBracket,
 } from '../../shared/pruningTrees'
 
+const TREE_HAZARDS: Record<string, { id: string; label: string }[]> = {
+  apple: [{ id: 'powerline', label: 'Near powerline' }],
+  citrus: [{ id: 'steep', label: 'Steep bank' }],
+  stone: [{ id: 'dog', label: 'Dog on site' }],
+  native: [{ id: 'steep', label: 'Steep access' }, { id: 'protected', label: 'Protected specimen' }],
+  hedge: [{ id: 'traffic', label: 'Road frontage' }],
+  shade: [{ id: 'powerline', label: 'Overhead lines' }, { id: 'steep', label: 'Soft ground' }],
+  rose: [],
+}
+
 /**
  * Canopy Care — vertical catalog with qty steppers, then when / review.
  */
@@ -21,7 +31,16 @@ export default function CanopyCare() {
   const [date, setDate] = useState<string>()
   const [time, setTime] = useState<string>()
   const [access, setAccess] = useState('')
+  const [hazardFlags, setHazardFlags] = useState<Record<string, string[]>>({})
   const [done, setDone] = useState(false)
+
+  const toggleHazard = (treeId: string, hazardId: string) => {
+    setHazardFlags((prev) => {
+      const current = prev[treeId] ?? []
+      const next = current.includes(hazardId) ? current.filter((x) => x !== hazardId) : [...current, hazardId]
+      return { ...prev, [treeId]: next }
+    })
+  }
 
   const estimate = useMemo(() => estimatePruning(qty, addOns), [qty, addOns])
   const selectedDay = days.find((d) => d.date === date)
@@ -111,6 +130,8 @@ export default function CanopyCare() {
           <div className="prune-catalog">
             {PRUNING_TREES.map((t) => {
               const count = qty[t.id] ?? 0
+              const hazards = TREE_HAZARDS[t.id] ?? []
+              const activeHazards = hazardFlags[t.id] ?? []
               return (
                 <div key={t.id} className={`prune-row${count > 0 ? ' on' : ''}`}>
                   <div>
@@ -118,6 +139,20 @@ export default function CanopyCare() {
                     <small>
                       {t.blurb} · ${t.pricePerUnit}/{t.unitLabel}
                     </small>
+                    {count > 0 && hazards.length > 0 && (
+                      <div className="hazard-flag-row">
+                        {hazards.map((h) => (
+                          <button
+                            key={h.id}
+                            type="button"
+                            className={`hazard-chip${activeHazards.includes(h.id) ? ' on' : ''}`}
+                            onClick={() => toggleHazard(t.id, h.id)}
+                          >
+                            {h.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                   <div className="crew-stepper">
                     <button type="button" aria-label={`Fewer ${t.name}`} onClick={() => setCount(t.id, count - 1)}>

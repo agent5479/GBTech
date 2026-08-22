@@ -14,6 +14,20 @@ import {
   toggleExercise,
 } from '../../shared/fitnessStudio'
 
+const INSTRUCTORS = [
+  { id: 'jess', name: 'Jess (lead)' },
+  { id: 'tom', name: 'Tom' },
+  { id: 'priya', name: 'Priya' },
+  { id: 'cover', name: 'Cover pool' },
+] as const
+
+const EQUIPMENT_ITEMS = [
+  { id: 'mats', label: 'Mats wiped down' },
+  { id: 'weights', label: 'Weights re-racked' },
+  { id: 'audio', label: 'Audio / mic tested' },
+  { id: 'firstaid', label: 'First-aid kit checked' },
+] as const
+
 /**
  * Class Board — instructor ops: schedule, cap, roster, exercise catalog.
  */
@@ -27,6 +41,12 @@ export default function ClassBoard() {
   const [selectedTypeId, setSelectedTypeId] = useState(classes[0]?.id ?? 'strength')
   const [newExercise, setNewExercise] = useState('')
   const [locked, setLocked] = useState(false)
+  const [substitutes, setSubstitutes] = useState<Record<string, string>>({})
+  const [equipment, setEquipment] = useState<string[]>([])
+
+  const toggleEquipment = (id: string) => {
+    setEquipment((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
+  }
 
   const selected = classTypeById(selectedTypeId)
   const typeOccs = occurrences.filter((o) => o.classTypeId === selectedTypeId)
@@ -118,6 +138,23 @@ export default function ClassBoard() {
                   <span style={{ width: `${fill}%` }} />
                 </div>
                 <p className="hint">{left === 0 ? 'Full — no more bookings' : `${left} spots left`}</p>
+                <label className="field">
+                  Substitute
+                  <select
+                    value={substitutes[o.id] ?? ''}
+                    aria-label={`Substitute for ${o.time} ${o.dayLabel}`}
+                    onChange={(e) =>
+                      setSubstitutes((prev) => ({ ...prev, [o.id]: e.target.value }))
+                    }
+                  >
+                    <option value="">Regular instructor</option>
+                    {INSTRUCTORS.map((i) => (
+                      <option key={i.id} value={i.id}>
+                        {i.name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
                 <p className="roster-line">
                   Attendees: {o.roster.length ? o.roster.join(', ') : 'None yet'}
                   {o.bookedCount > o.roster.length ? ` + ${o.bookedCount - o.roster.length} more` : ''}
@@ -191,6 +228,21 @@ export default function ClassBoard() {
                   + Add
                 </button>
               </div>
+            </section>
+
+            <section className="checklist-panel">
+              <h2>Equipment checklist</h2>
+              <p className="hint">Tick before the first class of the day.</p>
+              {EQUIPMENT_ITEMS.map((item) => (
+                <label key={item.id} className={`exercise-check${equipment.includes(item.id) ? ' on' : ''}`}>
+                  <input
+                    type="checkbox"
+                    checked={equipment.includes(item.id)}
+                    onChange={() => toggleEquipment(item.id)}
+                  />
+                  {item.label}
+                </label>
+              ))}
             </section>
 
             <p className="sync-chip">{sync.firebase}</p>
