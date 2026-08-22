@@ -16,6 +16,75 @@ const GROUPS: {
   }[]
 }[] = [
   {
+    heading: 'Venue booking · Harbour Hall',
+    demos: [
+      {
+        to: '/venue/harbourbook',
+        title: 'Book a facility',
+        kind: 'Harbour Book · client wizard',
+        look: 'Harbour · timber · teal',
+        blurb: 'Client-side room hire — facilities, party size, extras checkboxes, calendar window.',
+        card: 'hub-card-harbourbook',
+        imageId: 'harbourbook',
+      },
+      {
+        to: '/venue/hallboard',
+        title: 'Venue day board',
+        kind: 'Hall Board · staff',
+        look: 'Ink · brass',
+        blurb: 'Staff holds, blocks, and assignee dropdowns — same rooms as Harbour Book.',
+        card: 'hub-card-hallboard',
+        imageId: 'hallboard',
+      },
+    ],
+  },
+  {
+    heading: 'Beekeeping · BeeMarshall-style',
+    demos: [
+      {
+        to: '/beekeeping/hiverun',
+        title: 'Hive cluster run',
+        kind: 'Hive Run · field staff',
+        look: 'Honey · charcoal',
+        blurb: 'No public clients — field staff pick a yard, tick seasonal tasks, GPS cluster chips.',
+        card: 'hub-card-hiverun',
+        imageId: 'hiverun',
+      },
+      {
+        to: '/beekeeping/apiary',
+        title: 'Staff & yard roster',
+        kind: 'Apiary Board · management',
+        look: 'Wax · forest',
+        blurb: 'Management view — assign staff to yards, reminders, same clusters as Hive Run.',
+        card: 'hub-card-apiary',
+        imageId: 'apiary',
+      },
+    ],
+  },
+  {
+    heading: 'Home-care ops',
+    demos: [
+      {
+        to: '/homecare/visit',
+        title: 'Care visit',
+        kind: 'Care Visit · field staff',
+        look: 'Sky · soft slate',
+        blurb: 'Carer workflow — household select, care-task ticks, visit slot, hand-off notes.',
+        card: 'hub-card-carevisit',
+        imageId: 'carevisit',
+      },
+      {
+        to: '/homecare/rounds',
+        title: 'Day rounds',
+        kind: 'Round Board · management',
+        look: 'Navy · coral',
+        blurb: 'Management roster — assign carers, coverage gaps, hand-offs across households.',
+        card: 'hub-card-rounds',
+        imageId: 'rounds',
+      },
+    ],
+  },
+  {
     heading: 'Fitness studio',
     demos: [
       {
@@ -185,10 +254,11 @@ export default function Hub() {
       <header className="hub-hero demo-enter">
         <div className="hub-hero-copy">
           <p className="demo-badge">GBTech · simulated templates</p>
-          <h1>Try a booking demo</h1>
+          <h1>Try a booking or ops demo</h1>
           <p>
-            Fully simulated — no Google Calendar writes, no payments, no dispatch. Seven Golden Bay verticals, each as
-            two named jobs — a classic wizard and a different interface — not the same screen twice.
+            Fully simulated — no Google Calendar writes, no payments, no dispatch. Ten Golden Bay verticals, each as two
+            named apps. Pairings follow the industry: client + staff, dual client booking UIs, dual staff/ops, or indoor
+            vs outdoor client jobs — not the same screen twice.
           </p>
           <p>
             <Link className="hub-back" to="/painting">

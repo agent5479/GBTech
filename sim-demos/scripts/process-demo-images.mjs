@@ -33,6 +33,12 @@ const DEMOS = [
   'classboard',
   'shoreride',
   'yardboard',
+  'harbourbook',
+  'hallboard',
+  'hiverun',
+  'apiary',
+  'carevisit',
+  'rounds',
 ]
 
 const CARD_WIDTHS = [480, 800, 1200]

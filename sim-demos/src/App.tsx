@@ -15,6 +15,12 @@ import StudioFlow from './pages/fitness/StudioFlow'
 import ClassBoard from './pages/fitness/ClassBoard'
 import ShoreRide from './pages/riding/ShoreRide'
 import YardBoard from './pages/riding/YardBoard'
+import HarbourBook from './pages/venue/HarbourBook'
+import HallBoard from './pages/venue/HallBoard'
+import HiveRun from './pages/beekeeping/HiveRun'
+import ApiaryBoard from './pages/beekeeping/ApiaryBoard'
+import CareVisit from './pages/homecare/CareVisit'
+import RoundBoard from './pages/homecare/RoundBoard'
 import './styles/demos.css'
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
@@ -39,6 +45,12 @@ export default function App() {
         <Route path="/fitness/classboard" element={<ClassBoard />} />
         <Route path="/riding/shoreride" element={<ShoreRide />} />
         <Route path="/riding/yardboard" element={<YardBoard />} />
+        <Route path="/venue/harbourbook" element={<HarbourBook />} />
+        <Route path="/venue/hallboard" element={<HallBoard />} />
+        <Route path="/beekeeping/hiverun" element={<HiveRun />} />
+        <Route path="/beekeeping/apiary" element={<ApiaryBoard />} />
+        <Route path="/homecare/visit" element={<CareVisit />} />
+        <Route path="/homecare/rounds" element={<RoundBoard />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

@@ -15,6 +15,12 @@ export type DemoImageId =
   | 'classboard'
   | 'shoreride'
   | 'yardboard'
+  | 'harbourbook'
+  | 'hallboard'
+  | 'hiverun'
+  | 'apiary'
+  | 'carevisit'
+  | 'rounds'
 
 const CARD_WIDTHS = [480, 800, 1200] as const
 const TILE_WIDTHS = [360, 720] as const
@@ -87,4 +93,10 @@ export const DEMO_META: Record<DemoImageId, { title: string; alt: string }> = {
   classboard: { title: 'Class Board', alt: 'Instructor reviewing a class timetable on a board' },
   shoreride: { title: 'Shore Ride', alt: 'Horses on a Golden Bay beach at low tide' },
   yardboard: { title: 'Yard Board', alt: 'Tack and lead ropes in a timber stable yard' },
+  harbourbook: { title: 'Harbour Book', alt: 'Community hall hire space ready for booking' },
+  hallboard: { title: 'Hall Board', alt: 'Venue staff coordinating room bookings on a board' },
+  hiverun: { title: 'Hive Run', alt: 'Beehive clusters in a rural Golden Bay yard' },
+  apiary: { title: 'Apiary Board', alt: 'Apiarist planning hive sites and staff runs' },
+  carevisit: { title: 'Care Visit', alt: 'Home care visit with notes and care plan' },
+  rounds: { title: 'Round Board', alt: 'Care team coordinating a day of client visits' },
 }
