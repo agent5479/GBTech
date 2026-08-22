@@ -17,7 +17,11 @@ export function AppNavbar() {
   const isActive = (path: string) => location.pathname.startsWith(path);
 
   return (
-    <Navbar bg="white" expand="lg" sticky="top" className="shadow-sm mb-3 navbar-gsdt">
+    <Navbar
+      bg={IS_SHOWCASE_MODE ? undefined : 'white'}
+      expand="lg"
+      className={`shadow-sm mb-0 navbar-gsdt${IS_SHOWCASE_MODE ? ' navbar-gsdt--showcase' : ' mb-3'}`}
+    >
       <Container fluid>
         <Navbar.Brand as={Link} to="/dashboard" className="fw-bold text-primary">
           <i className={`bi ${IS_SHOWCASE_MODE ? 'bi-building' : 'bi-dog'} me-2`} />

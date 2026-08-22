@@ -686,16 +686,13 @@ p:last-child {
 .demo-card .demo-card-kind,
 .demo-card h3,
 .demo-card p {
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
+  margin-left: 1.35rem;
+  margin-right: 1.35rem;
 }
 
 .demo-card .demo-card-kind {
-  margin-top: 1rem;
-}
-
-.demo-card p {
-  margin-bottom: 1.15rem;
+  margin-top: 1.15rem;
+  margin-bottom: 0.4rem;
 }
 
 .demo-card:hover {
@@ -711,17 +708,18 @@ p:last-child {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--accent-magenta);
-  margin-bottom: 0.4rem;
 }
 
 .demo-card h3 {
-  margin: 0 0 0.5rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
   font-size: 1.05rem;
   color: var(--accent-magenta);
 }
 
 .demo-card p {
-  margin: 0;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
   font-size: 0.9rem;
   color: var(--text-muted);
 }
@@ -737,7 +735,7 @@ p:last-child {
   justify-content: center;
   width: 3rem;
   height: 3rem;
-  margin: 1.15rem 1.25rem 0.65rem;
+  margin: 1.15rem 1.35rem 0.65rem;
   border-radius: var(--radius-sm);
   color: var(--accent);
   background: linear-gradient(145deg, rgba(211, 153, 60, 0.14), rgba(75, 13, 28, 0.06));
@@ -1177,6 +1175,18 @@ body.marshall-page .page-nav {
   z-index: 100;
   flex-direction: column;
   align-items: stretch;
+  /* Full-bleed brand bar — not a cream card */
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  box-shadow: 0 2px 12px rgba(75, 13, 28, 0.28);
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-sizing: border-box;
+  padding-left: max(1.5rem, calc(50vw - 28rem));
+  padding-right: max(1.5rem, calc(50vw - 28rem));
 }
 
 body.gbtech-page .page-nav-back,
@@ -1850,6 +1860,12 @@ body.marshall-page .comparison-table tbody th {
     padding: 1rem 1.5rem;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  body.gbtech-page .page-nav,
+  body.marshall-page .page-nav {
+    padding-left: max(1rem, calc(50vw - 28rem));
+    padding-right: max(1rem, calc(50vw - 28rem));
   }
 
   .page-nav-brand {
