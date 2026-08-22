@@ -5609,9 +5609,16 @@ textarea {
 
 .hub-feature-index__col li {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.35rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.hub-feature-index__col > ul > li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
 }
 
 .hub-feature-index__link {
@@ -5624,12 +5631,30 @@ textarea {
   text-decoration: underline;
 }
 
+.hub-feature-index__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hub-feature-index__pills > li {
+  display: contents;
+  padding: 0;
+  border: 0;
+}
+
 .hub-feature-chip {
+  display: inline-flex;
+  align-items: center;
   font-size: 0.68rem;
-  padding: 0.1rem 0.4rem;
+  font-weight: 600;
+  padding: 0.18rem 0.48rem;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.05);
-  color: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.65);
 }
 
 .hub-role-tag {

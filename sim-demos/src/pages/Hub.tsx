@@ -291,8 +291,8 @@ export default function Hub() {
       <section className="hub-feature-index" aria-label="Feature index by demo role">
         <h2 className="hub-theme">Feature showroom</h2>
         <p className="hub-feature-index__lead">
-          Each demo adds visible capabilities on top of its core flow — checklists, coverage banners, dispatch strips, and
-          confirm gates you can mix into your build.
+          Full capability lists per demo — checklists, boards, maps, wallets, and confirm gates you can mix into a custom
+          build.
         </p>
         <div className="hub-feature-index__grid">
           {(Object.keys(featureIndex) as DemoRole[]).map((role) => (
@@ -306,7 +306,15 @@ export default function Hub() {
                       <Link to={d.to} className="hub-feature-index__link">
                         {d.title}
                       </Link>
-                      {meta?.features[0] ? <span className="hub-feature-chip">{meta.features[0]}</span> : null}
+                      {meta?.features.length ? (
+                        <ul className="hub-feature-index__pills" aria-label={`${d.title} features`}>
+                          {meta.features.map((f) => (
+                            <li key={f}>
+                              <span className="hub-feature-chip">{f}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
                     </li>
                   )
                 })}
