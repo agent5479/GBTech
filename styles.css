@@ -25,6 +25,8 @@
   --radius-lg: 14px;
   --section-gap: 1.25rem;
   --shadow-panel: 0 2px 10px rgba(17, 20, 24, 0.06), 0 1px 2px rgba(17, 20, 24, 0.04);
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-display: "Montserrat", system-ui, sans-serif;
 }
 
 *,
@@ -44,7 +46,7 @@ body {
   background: linear-gradient(180deg, #FFFFFF 0%, var(--bg) 40%, #EEF0F2 100%);
   background-attachment: fixed;
   color: var(--text);
-  font-family: "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.75;
   position: relative;
@@ -64,9 +66,10 @@ body {
   padding: 2rem 1.5rem 5rem;
 }
 
-/* Typography */
-h1, h2, h3 {
-  font-family: "DM Sans", system-ui, sans-serif;
+/* Typography — Montserrat Bold headings, Inter Regular body */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
 }
 
 h1 {
@@ -74,17 +77,18 @@ h1 {
   font-weight: 700;
   margin: 0 0 0.75rem;
   line-height: 1.25;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   color: var(--accent-magenta);
 }
 
 h2 {
   font-size: 1.15rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--accent-magenta);
   margin: 0 0 1.25rem;
   padding-bottom: 0;
   border-bottom: none;
+  letter-spacing: -0.01em;
 }
 
 p {
@@ -154,9 +158,11 @@ p:last-child {
 }
 
 .hero-brand {
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--accent-magenta);
   margin: 0 0 0.35rem;
 }
@@ -252,7 +258,7 @@ p:last-child {
 .cta-button {
   display: inline-block;
   padding: 0.85rem 1.6rem;
-  font-family: "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
@@ -439,9 +445,10 @@ p:last-child {
 
 /* Task breakdown */
 .section-role {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
   margin: 0 0 0.35rem;
@@ -704,9 +711,10 @@ p:last-child {
 
 .demo-card-kind {
   display: block;
-  font-size: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent-magenta);
 }
@@ -1735,7 +1743,7 @@ body.marshall-page .comparison-table tbody th {
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(8px);
   border-top: 2px solid var(--accent-magenta);
-  font-family: "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 500;
   z-index: 1000;
