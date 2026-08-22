@@ -288,42 +288,6 @@ export default function Hub() {
         </div>
       </header>
 
-      <section className="hub-feature-index" aria-label="Feature index by demo role">
-        <h2 className="hub-theme">Feature showroom</h2>
-        <p className="hub-feature-index__lead">
-          Full capability lists per demo — checklists, boards, maps, wallets, and confirm gates you can mix into a custom
-          build.
-        </p>
-        <div className="hub-feature-index__grid">
-          {(Object.keys(featureIndex) as DemoRole[]).map((role) => (
-            <article key={role} className={`hub-feature-index__col hub-feature-index__col--${role}`}>
-              <h3>{ROLE_LABELS[role]}</h3>
-              <ul>
-                {featureIndex[role].map((d) => {
-                  const meta = DEMO_FEATURES[d.to]
-                  return (
-                    <li key={d.to}>
-                      <Link to={d.to} className="hub-feature-index__link">
-                        {d.title}
-                      </Link>
-                      {meta?.features.length ? (
-                        <ul className="hub-feature-index__pills" aria-label={`${d.title} features`}>
-                          {meta.features.map((f) => (
-                            <li key={f}>
-                              <span className="hub-feature-chip">{f}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      ) : null}
-                    </li>
-                  )
-                })}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
-
       {GROUPS.map((group) => (
         <section key={group.heading} className="hub-group">
           <h2 className="hub-theme">{group.heading}</h2>
@@ -352,6 +316,47 @@ export default function Hub() {
           </div>
         </section>
       ))}
+
+      <details className="hub-feature-index">
+        <summary className="hub-feature-index__summary">
+          <span className="hub-theme">Feature showroom</span>
+          <span className="hub-feature-index__hint">Capability catalog — expand to browse</span>
+        </summary>
+        <div className="hub-feature-index__body">
+          <p className="hub-feature-index__lead">
+            Full capability lists per demo — checklists, boards, maps, wallets, and confirm gates you can mix into a
+            custom build.
+          </p>
+          <div className="hub-feature-index__grid">
+            {(Object.keys(featureIndex) as DemoRole[]).map((role) => (
+              <article key={role} className={`hub-feature-index__col hub-feature-index__col--${role}`}>
+                <h3>{ROLE_LABELS[role]}</h3>
+                <ul>
+                  {featureIndex[role].map((d) => {
+                    const meta = DEMO_FEATURES[d.to]
+                    return (
+                      <li key={d.to}>
+                        <Link to={d.to} className="hub-feature-index__link">
+                          {d.title}
+                        </Link>
+                        {meta?.features.length ? (
+                          <ul className="hub-feature-index__pills" aria-label={`${d.title} features`}>
+                            {meta.features.map((f) => (
+                              <li key={f}>
+                                <span className="hub-feature-chip">{f}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </li>
+                    )
+                  })}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </details>
 
     </div>
   )

@@ -5568,15 +5568,60 @@ textarea {
 }
 
 .hub-feature-index {
-  margin: 2rem 0 0;
-  padding: 1.5rem;
+  margin: 2.5rem 0 1rem;
+  padding: 0;
   border-radius: 16px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 244, 240, 0.9));
   border: 1px solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.hub-feature-index__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding: 1.1rem 1.35rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.hub-feature-index__summary::-webkit-details-marker {
+  display: none;
+}
+
+.hub-feature-index__summary::after {
+  content: 'Show';
+  margin-left: auto;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.hub-feature-index[open] > .hub-feature-index__summary::after {
+  content: 'Hide';
+}
+
+.hub-feature-index__summary .hub-theme {
+  margin: 0;
+}
+
+.hub-feature-index__hint {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.hub-feature-index__body {
+  padding: 0 1.5rem 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .hub-feature-index__lead {
-  margin: 0 0 1rem;
+  margin: 1rem 0;
   max-width: 52rem;
 }
 
