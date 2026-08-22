@@ -30,6 +30,10 @@ jobs:
           test -f marshall-solutions.html
           test -f robots.txt
           test -f styles.css
+          test -f services/it.html
+          test -f services/web-digital.html
+          test -f services/microsoft-workplace.html
+          test -f services/security-compliance.html
           test -f services/it-support.html
           test -f services/cyber-security.html
           test -f services/automation-ai.html
@@ -39,6 +43,9 @@ jobs:
           test -f services/essential-website.html
           test -f services/booking-portal.html
           test -f services/wix-migration.html
+          test -f services/microsoft-365.html
+          test -f services/powerapps-dataverse.html
+          test -f services/mobile-apps.html
           test -f case-studies/beemarshall.html
           test -f case-studies/home-care-ops.html
           test -f tools/hosting-cost-compare.html
@@ -67,11 +74,14 @@ jobs:
       - name: Verify SEO meta tags on each page
         run: |
           pages="index.html
+            services/it.html services/web-digital.html services/microsoft-workplace.html
+            services/security-compliance.html
             services/it-support.html services/cyber-security.html services/automation-ai.html
             services/backup-disaster-recovery.html
             services/servers-networks.html services/cloud-migration.html
             services/essential-website.html services/booking-portal.html
             services/wix-migration.html
+            services/microsoft-365.html services/powerapps-dataverse.html services/mobile-apps.html
             case-studies/beemarshall.html case-studies/home-care-ops.html
             tools/hosting-cost-compare.html"
           for page in $pages; do
@@ -101,7 +111,17 @@ jobs:
           grep -q 'Disallow: /staff-demo/' robots.txt
           grep -q 'Disallow: /booking-demo/' robots.txt
           grep -q 'Disallow: /staff-demo-app/' robots.txt
+          grep -q 'Disallow: /marshall-solutions.html' robots.txt
           grep -q 'Allow: /' robots.txt
+          # Sitemap must list theme hubs; must not list demos or legacy stub
+          grep -q 'services/it.html' sitemap.xml
+          grep -q 'services/web-digital.html' sitemap.xml
+          grep -q 'services/microsoft-workplace.html' sitemap.xml
+          grep -q 'services/security-compliance.html' sitemap.xml
+          grep -q 'services/microsoft-365.html' sitemap.xml
+          ! grep -q '/sim/' sitemap.xml
+          ! grep -q '/demo/' sitemap.xml
+          ! grep -q 'marshall-solutions' sitemap.xml
 
       - name: Setup Node
         uses: actions/setup-node@v4

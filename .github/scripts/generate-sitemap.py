@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Regenerate sitemap.xml from indexable marketing routes only.
 
-Simulated demos (/sim/) are noindex and Disallow'd in robots.txt — do not list them.
+Simulated demos (/sim/), live showcases (/demo/, /staff-demo/), and source trees
+are noindex and Disallow'd in robots.txt — do not list them.
 """
 
 import os
@@ -13,6 +14,12 @@ BASE_URL = "https://gbtech.co.nz"
 # (source file for lastmod, public path, priority)
 ROUTES = [
     ("index.html", "", "1.0"),
+    # Four theme hubs
+    ("services/it.html", "services/it.html", "0.9"),
+    ("services/web-digital.html", "services/web-digital.html", "0.9"),
+    ("services/microsoft-workplace.html", "services/microsoft-workplace.html", "0.9"),
+    ("services/security-compliance.html", "services/security-compliance.html", "0.9"),
+    # Service leaves
     ("services/it-support.html", "services/it-support.html", "0.9"),
     ("services/cyber-security.html", "services/cyber-security.html", "0.8"),
     ("services/backup-disaster-recovery.html", "services/backup-disaster-recovery.html", "0.8"),
@@ -22,6 +29,10 @@ ROUTES = [
     ("services/essential-website.html", "services/essential-website.html", "0.8"),
     ("services/booking-portal.html", "services/booking-portal.html", "0.8"),
     ("services/wix-migration.html", "services/wix-migration.html", "0.8"),
+    ("services/microsoft-365.html", "services/microsoft-365.html", "0.8"),
+    ("services/powerapps-dataverse.html", "services/powerapps-dataverse.html", "0.8"),
+    ("services/mobile-apps.html", "services/mobile-apps.html", "0.8"),
+    # Case studies + tools
     ("case-studies/beemarshall.html", "case-studies/beemarshall.html", "0.7"),
     ("case-studies/home-care-ops.html", "case-studies/home-care-ops.html", "0.7"),
     ("tools/hosting-cost-compare.html", "tools/hosting-cost-compare.html", "0.7"),
