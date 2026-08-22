@@ -8,22 +8,22 @@ import {
   LIVE_BOOK_URL,
   LIVE_STAFF_URL,
   getHolds,
-  roomById,
   setHoldAssignee,
   setHoldStatus,
   type HallHold,
 } from '../../shared/venueHall'
+
+const FALLBACK_HOURS = ['09:00', '10:00', '13:00', '15:00']
+const STATUS_CYCLE: HallHold['status'][] = ['hold', 'confirmed', 'blocked']
 
 /** Hall Board — staff venue day board (not a client wizard). */
 export default function HallBoard() {
   const [, setTick] = useState(0)
   const refresh = () => setTick((n) => n + 1)
   const holds = getHolds()
-  const [roomFilter, setRoomFilter] = useState<string>('all')
   const [locked, setLocked] = useState(false)
 
-  const visible =
-    roomFilter === 'all' ? holds : holds.filter((h) => h.roomId === roomFilter)
+  const hours = [...new Set([...FALLBACK_HOURS, ...holds.map((h) => h.time)])].sort()
 
   if (locked) {
     return (
@@ -31,7 +31,7 @@ export default function HallBoard() {
         <div className="adventure-launch-ok demo-enter-success">
           <p className="demo-badge">Simulated · staff board</p>
           <h1>Board saved</h1>
-          <p>{visible.length} rows on today&apos;s board</p>
+          <p>{holds.length} rows on today&apos;s board</p>
           <p className="hint">
             Full product:{' '}
             <a href={LIVE_STAFF_URL}>Harbour Hall staff demo</a>
@@ -64,7 +64,7 @@ export default function HallBoard() {
         </Link>
         <div>
           <p className="demo-badge">Hall Board · staff</p>
-          <h1>Venue day board</h1>
+          <h1>Rooms × hours board</h1>
           <p className="demo-sub">Holds, blocks, and who owns each room window — staff side of Harbour Hall.</p>
         </div>
         <span className="demo-theme-tag">Staff · not a wizard</span>
@@ -79,95 +79,88 @@ export default function HallBoard() {
         engineNote="Staff day board vs client facility book — Harbour Hall pair."
       />
 
-      <div className="tradeboard-deck demo-enter">
-        <aside className="tradeboard-jobs">
-          <h2>Rooms</h2>
-          <div className="class-type-tabs">
-            <button
-              type="button"
-              className={`chip${roomFilter === 'all' ? ' selected' : ''}`}
-              onClick={() => setRoomFilter('all')}
-            >
-              All
-            </button>
-            {HALL_ROOMS.map((r) => (
-              <button
-                key={r.id}
-                type="button"
-                className={`chip${roomFilter === r.id ? ' selected' : ''}`}
-                onClick={() => setRoomFilter(r.id)}
-              >
-                {r.name}
-              </button>
+      <div className="week-grid-wrap demo-enter">
+        <table className="hall-time-grid">
+          <thead>
+            <tr>
+              <th>Room</th>
+              {hours.map((t) => (
+                <th key={t}>{t}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {HALL_ROOMS.map((room) => (
+              <tr key={room.id}>
+                <th>
+                  {room.name}
+                  <small>{room.capacity} pax</small>
+                </th>
+                {hours.map((time) => {
+                  const hold = holds.find((h) => h.roomId === room.id && h.time === time)
+                  if (!hold) {
+                    return (
+                      <td key={time} className="hall-cell-free">
+                        Free
+                      </td>
+                    )
+                  }
+                  return (
+                    <td key={time} className={`hall-cell status-${hold.status}`}>
+                      <button
+                        type="button"
+                        className="hall-status-cycle"
+                        onClick={() => {
+                          const i = STATUS_CYCLE.indexOf(hold.status)
+                          setHoldStatus(hold.id, STATUS_CYCLE[(i + 1) % STATUS_CYCLE.length])
+                          refresh()
+                        }}
+                      >
+                        {hold.status}
+                      </button>
+                      <p>{hold.partyName === '—' ? 'No party' : hold.partyName}</p>
+                      <select
+                        value={hold.status}
+                        aria-label={`${room.name} ${time} status`}
+                        onChange={(e) => {
+                          setHoldStatus(hold.id, e.target.value as HallHold['status'])
+                          refresh()
+                        }}
+                      >
+                        <option value="hold">Hold</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="blocked">Blocked</option>
+                      </select>
+                      <select
+                        value={hold.assigneeId ?? ''}
+                        aria-label={`${room.name} ${time} assignee`}
+                        onChange={(e) => {
+                          setHoldAssignee(hold.id, e.target.value)
+                          refresh()
+                        }}
+                      >
+                        <option value="">Unassigned</option>
+                        {HALL_STAFF.map((s) => (
+                          <option key={s.id} value={s.id}>
+                            {s.name}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  )
+                })}
+              </tr>
             ))}
-          </div>
-          <div className="hall-hold-stack">
-            {visible.map((h) => (
-              <HoldCard key={h.id} hold={h} onChange={refresh} />
-            ))}
-          </div>
-        </aside>
-        <aside className="tradeboard-side">
-          <section>
-            <h2>Legend</h2>
-            <p className="hint">Toggle hold → confirmed → blocked. Assign front-desk or facilities.</p>
-            <ul className="benefit-list-sim">
-              <li>Confirmed — imported booking</li>
-              <li>Hold — awaiting deposit / staff OK</li>
-              <li>Blocked — maintenance or private</li>
-            </ul>
-          </section>
-          <button type="button" className="btn primary launch-btn" onClick={() => setLocked(true)}>
-            Save board (demo)
-          </button>
-        </aside>
+          </tbody>
+        </table>
       </div>
-    </div>
-  )
-}
 
-function HoldCard({ hold, onChange }: { hold: HallHold; onChange: () => void }) {
-  const room = roomById(hold.roomId)
-  return (
-    <article className={`hall-hold status-${hold.status}`}>
-      <header>
-        <strong>
-          {hold.dayLabel} {hold.time}
-        </strong>
-        <span>{room?.name}</span>
-      </header>
-      <p>{hold.partyName === '—' ? 'No party' : hold.partyName}</p>
-      <label className="field">
-        Status
-        <select
-          value={hold.status}
-          onChange={(e) => {
-            setHoldStatus(hold.id, e.target.value as HallHold['status'])
-            onChange()
-          }}
-        >
-          <option value="hold">Hold</option>
-          <option value="confirmed">Confirmed</option>
-          <option value="blocked">Blocked</option>
-        </select>
-      </label>
-      <label className="field">
-        Assignee
-        <select
-          value={hold.assigneeId ?? ''}
-          onChange={(e) => {
-            setHoldAssignee(hold.id, e.target.value)
-            onChange()
-          }}
-        >
-          <option value="">Unassigned</option>
-          {HALL_STAFF.map((s) => (
-            <option key={s.id} value={s.id}>
-              {s.name}
-            </option>
-          ))}
-        </select>
-      </label>
-    </article>
+      <p className="hint hall-time-legend">
+        Cycle status or pick hold / confirmed / blocked. Assign front-desk or facilities when a slot is occupied.
+      </p>
+      <button type="button" className="btn primary launch-btn" onClick={() => setLocked(true)}>
+        Save board (demo)
+      </button>
+    </div>
   )
 }

@@ -9,12 +9,13 @@ import {
   HIVE_YARDS,
   LIVE_BEEMARSHALL_URL,
   WEEK_DAYS,
+  apiaryOpsHint,
   getAssignments,
+  quarantineYards,
   setAssignmentStaff,
   staffById,
   toggleReminder,
   totalHives,
-  yardById,
 } from '../../shared/beekeeping'
 
 /** Apiary Board — management dashboard: KPIs, cluster map, week roster. */
@@ -25,6 +26,8 @@ export default function ApiaryBoard() {
   const [locked, setLocked] = useState(false)
   const reminders = rows.filter((r) => r.reminder).length
   const watch = HIVE_YARDS.filter((y) => y.flag !== 'ok').length
+  const quarantine = quarantineYards().length
+  const seasonHint = apiaryOpsHint()
 
   const points = HIVE_YARDS.map((y) => ({
     id: y.id,
@@ -49,7 +52,7 @@ export default function ApiaryBoard() {
               BeeMarshall
             </a>
           </p>
-          <DemoQuoteCta styleName="Apiary Board" />
+          <DemoQuoteCta styleName="Apiary Board" pitchKind="customOps" />
           <button type="button" className="btn ghost" onClick={() => setLocked(false)}>
             Keep editing
           </button>
@@ -58,7 +61,7 @@ export default function ApiaryBoard() {
           </Link>
         </div>
         <DemoPitchBar
-          packageTier="advanced"
+          pitchKind="customOps"
           compareTo="/beekeeping/hiverun"
           compareLabel="Hive Run"
           engineNote="Management dashboard vs field log-action — no public client."
@@ -75,8 +78,11 @@ export default function ApiaryBoard() {
         </Link>
         <div>
           <p className="demo-badge">Apiary Board · management</p>
-          <h1>Yards, hives, week roster</h1>
-          <p className="demo-sub">Dashboard of clusters — assign staff by day, flags, access. Not a booking wizard.</p>
+          <h1>Week ops dashboard</h1>
+          <p className="demo-sub">
+            Assign staff by day, chase reminders, and keep quarantine and dry-only access in view. Management
+            only — not a public booking flow.
+          </p>
         </div>
         <span className="demo-theme-tag">Ops dashboard</span>
       </header>
@@ -84,7 +90,7 @@ export default function ApiaryBoard() {
         <DemoCardImage id="apiary" className="demo-hero-photo__img" />
       </div>
       <DemoPitchBar
-        packageTier="advanced"
+        pitchKind="customOps"
         compareTo="/beekeeping/hiverun"
         compareLabel="Hive Run"
         engineNote="Management dashboard vs field log-action — no public client."
@@ -103,11 +109,12 @@ export default function ApiaryBoard() {
           <strong>{reminders}</strong>
           <span>Reminders</span>
         </article>
-        <article className={watch ? 'warn' : ''}>
-          <strong>{watch}</strong>
-          <span>Watch / quarantine</span>
+        <article className={quarantine || watch ? 'warn' : ''}>
+          <strong>{quarantine}</strong>
+          <span>Quarantine yards</span>
         </article>
       </div>
+      <p className="ops-season-hint">{seasonHint}</p>
 
       <div className="apiary-split">
         <div className="hive-map-card hive-map-card--wide">
@@ -192,9 +199,6 @@ export default function ApiaryBoard() {
             ))}
           </tbody>
         </table>
-        <p className="hint">
-          {yardById('anatoki')?.name} is flagged quarantine — dry-only access.
-        </p>
         <button type="button" className="btn primary launch-btn" onClick={() => setLocked(true)}>
           Save roster (demo)
         </button>

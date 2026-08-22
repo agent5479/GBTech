@@ -41,7 +41,7 @@ export default function StudioFlow() {
       <div className="fitness-page theme-studioflow">
         <DemoChrome
           theme="Studio Flow"
-          title="Class locked in (demo)"
+          title="Credit burned (demo)"
           subtitle="Nothing was charged or written to a live calendar."
           imageId="studioflow"
         />
@@ -82,26 +82,36 @@ export default function StudioFlow() {
           packageTier="essential"
           compareTo="/fitness/classboard"
           compareLabel="Class Board"
-          engineNote="Same packs, caps, and calendar check — member wizard vs instructor board."
+          engineNote="Member pack wallet vs instructor wall timetable — same packs, caps, and calendar check."
         />
       </div>
     )
   }
 
+  const walletPlan = planById(member.planId)
+
   return (
     <div className="fitness-page theme-studioflow">
       <DemoChrome
         theme="Studio Flow"
-        title="Studio Flow"
-        subtitle="Book a class, pay in advance, and stop when the room is full — the calendar holds the cap."
+        title="Member pack wallet"
+        subtitle="Prepaid credits sit in the wallet and burn when you book — the calendar still holds the cap."
         imageId="studioflow"
       />
       <DemoPitchBar
         packageTier="essential"
         compareTo="/fitness/classboard"
         compareLabel="Class Board"
-        engineNote="Same packs, caps, and calendar check — member wizard vs instructor board."
+        engineNote="Member pack wallet vs instructor wall timetable — same packs, caps, and calendar check."
       />
+
+      <div className="wallet-strip" aria-live="polite">
+        <span className="wallet-strip-kicker">Wallet</span>
+        <strong>{walletPlan?.name ?? 'Member pack'}</strong>
+        <span>
+          {member.creditsLeft === 1 ? '1 credit left' : `${member.creditsLeft} credits left`}
+        </span>
+      </div>
 
       <ol className="wizard-steps" aria-label="Booking steps">
         {[1, 2, 3].map((n) => (
@@ -219,7 +229,7 @@ export default function StudioFlow() {
                 setDone(true)
               }}
             >
-              Pay &amp; book (demo)
+              Burn 1 credit &amp; book (demo)
             </button>
           </div>
         </section>

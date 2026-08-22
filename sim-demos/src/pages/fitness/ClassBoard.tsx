@@ -55,7 +55,7 @@ export default function ClassBoard() {
           packageTier="advanced"
           compareTo="/fitness/studioflow"
           compareLabel="Studio Flow"
-          engineNote="Same packs, caps, and calendar check — instructor board vs member wizard."
+          engineNote="Instructor wall timetable vs member pack wallet — same packs, caps, and calendar check."
         />
       </div>
     )
@@ -68,9 +68,11 @@ export default function ClassBoard() {
           ← All demos
         </Link>
         <div>
-          <p className="demo-badge">Class Board · instructor</p>
-          <h1>Fill the room without watching it</h1>
-          <p className="demo-sub">Set the cap, tick the work, see who&apos;s coming. Calendar and Firebase are simulated.</p>
+          <p className="demo-badge">Class Board · wall timetable</p>
+          <h1>Wall timetable</h1>
+          <p className="demo-sub">
+            Fill bars are the job — see how full each class is, then set the cap and roster. Not a member wallet.
+          </p>
         </div>
         <span className="demo-theme-tag">Different UI · not a wizard</span>
       </header>
@@ -79,12 +81,12 @@ export default function ClassBoard() {
         packageTier="advanced"
         compareTo="/fitness/studioflow"
         compareLabel="Studio Flow"
-        engineNote="Same packs, caps, and calendar check — instructor board vs member wizard."
+        engineNote="Instructor wall timetable vs member pack wallet — same packs, caps, and calendar check."
       />
 
       <div className="classboard-deck demo-enter">
         <aside className="classboard-schedule">
-          <h2>Today&apos;s board</h2>
+          <h2>Fill bars</h2>
           <div className="class-type-tabs">
             {classes.map((c) => (
               <button

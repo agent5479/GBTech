@@ -1,34 +1,56 @@
 import { Link } from 'react-router-dom'
 
 export type PackageTier = 'essential' | 'advanced'
+export type PitchKind = 'package' | 'customOps'
 
-const MARSHALL = '/#packages'
-const QUOTE = `${MARSHALL}#packages`
+const PACKAGES = '/#packages'
+const CUSTOM_MAIL =
+  'mailto:warwick.marshall@gmail.com?subject=Custom%20operational%20app%20%E2%80%94%20GBTech%20demo'
 
 interface PitchBarProps {
-  /** Which GBTech package this demo style maps to. */
-  packageTier: PackageTier
-  /** Path to the sibling UI that shares the same booking engine. */
+  /** Booking/estimate demos map to a package; ops demos use customOps. */
+  pitchKind?: PitchKind
+  /** Required when pitchKind is package (default). */
+  packageTier?: PackageTier
   compareTo: string
   compareLabel: string
   engineNote?: string
 }
 
-/** Persistent pitch strip: package tier + compare sibling UI. */
-export function DemoPitchBar({ packageTier, compareTo, compareLabel, engineNote }: PitchBarProps) {
+/** Persistent pitch strip: package tier or custom ops + compare sibling UI. */
+export function DemoPitchBar({
+  pitchKind = 'package',
+  packageTier = 'advanced',
+  compareTo,
+  compareLabel,
+  engineNote,
+}: PitchBarProps) {
+  const isOps = pitchKind === 'customOps'
   const tierLabel = packageTier === 'essential' ? 'Essential · $351' : 'Advanced · $702'
   const tierHint =
     packageTier === 'essential'
       ? 'Streamlined calendar booking — closest to this style'
       : 'Accounts, dynamic pricing, maps — closest to this style'
+
   return (
-    <aside className="demo-pitch-bar" aria-label="Package and interface pairing">
+    <aside className="demo-pitch-bar" aria-label="Offer and interface pairing">
       <div className="demo-pitch-tier">
         <span className="demo-pitch-kicker">This style ≈</span>
-        <a className="demo-pitch-package" href={`${MARSHALL}#${packageTier}`}>
-          {tierLabel}
-        </a>
-        <span className="demo-pitch-hint">{tierHint}</span>
+        {isOps ? (
+          <>
+            <a className="demo-pitch-package" href={CUSTOM_MAIL}>
+              Custom ops · scoped project
+            </a>
+            <span className="demo-pitch-hint">Field + office systems you own — not a booking package</span>
+          </>
+        ) : (
+          <>
+            <a className="demo-pitch-package" href={`${PACKAGES}#${packageTier}`}>
+              {tierLabel}
+            </a>
+            <span className="demo-pitch-hint">{tierHint}</span>
+          </>
+        )}
       </div>
       <div className="demo-pitch-pair">
         {engineNote && <p className="demo-pitch-engine">{engineNote}</p>}
@@ -42,16 +64,29 @@ export function DemoPitchBar({ packageTier, compareTo, compareLabel, engineNote 
 
 interface QuoteCtaProps {
   styleName: string
+  pitchKind?: PitchKind
 }
 
-/** End-of-demo conversion CTA — links back to GBTech packages. */
-export function DemoQuoteCta({ styleName }: QuoteCtaProps) {
+/** End-of-demo conversion CTA. */
+export function DemoQuoteCta({ styleName, pitchKind = 'package' }: QuoteCtaProps) {
+  if (pitchKind === 'customOps') {
+    return (
+      <div className="demo-quote-cta">
+        <p>
+          Like the <strong>{styleName}</strong> ops pattern?
+        </p>
+        <a className="btn primary" href={CUSTOM_MAIL}>
+          Discuss a custom ops app →
+        </a>
+      </div>
+    )
+  }
   return (
     <div className="demo-quote-cta">
       <p>
         Like the <strong>{styleName}</strong> style?
       </p>
-      <a className="btn primary" href={QUOTE}>
+      <a className="btn primary" href={`${PACKAGES}#packages`}>
         Get a quote → Essential $351 / Advanced $702
       </a>
     </div>

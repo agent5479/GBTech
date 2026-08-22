@@ -16,6 +16,7 @@ import {
   type RideId,
   type RideWindow,
   type StayId,
+  type WindowStatus,
 } from '../../shared/horseYard'
 
 /**
@@ -26,7 +27,7 @@ export default function ShoreRide() {
   const [, setTick] = useState(0)
   const refresh = () => setTick((n) => n + 1)
 
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(2)
   const [rideId, setRideId] = useState<RideId>('beach')
   const [windowDate, setWindowDate] = useState<string>()
   const [horseId, setHorseId] = useState<string>()
@@ -76,7 +77,7 @@ export default function ShoreRide() {
             className="btn ghost"
             onClick={() => {
               setDone(false)
-              setStep(1)
+              setStep(2)
               setError(null)
               setHorseId(undefined)
               setWindowDate(undefined)
@@ -102,7 +103,7 @@ export default function ShoreRide() {
     <div className="riding-page theme-shoreride">
       <DemoChrome
         theme="Shore Ride"
-        title="Shore Ride"
+        title="Tide-gated beach ride"
         subtitle="Pick a ride, then the tide, sunrise, and linked calendar decide which windows are actually free."
         imageId="shoreride"
       />
@@ -111,6 +112,14 @@ export default function ShoreRide() {
         compareTo="/riding/yardboard"
         compareLabel="Yard Board"
         engineNote="Same tide, sun, horse roster, and calendar check — guest wizard vs yard board."
+      />
+
+      <TideSunStrip
+        rideName={ride.name}
+        usesTides={ride.usesTides}
+        windows={windows}
+        chosen={chosen}
+        onOpenWindows={() => setStep(2)}
       />
 
       <ol className="wizard-steps" aria-label="Booking steps">
@@ -152,7 +161,7 @@ export default function ShoreRide() {
       )}
 
       {step === 2 && (
-        <section className="yacht-panel demo-enter">
+        <section className="yacht-panel demo-enter ride-windows-primary">
           <h2>2. Tide, sun, and calendar</h2>
           <p className="hint">
             Simulated Apps Script asks the linked calendar for conflicts, then layers tide and daylight. Full,
@@ -285,6 +294,49 @@ export default function ShoreRide() {
         </section>
       )}
     </div>
+  )
+}
+
+const STATUS_ORDER: WindowStatus[] = ['ok', 'caution', 'conflict', 'unsuitable']
+
+function TideSunStrip({
+  rideName,
+  usesTides,
+  windows,
+  chosen,
+  onOpenWindows,
+}: {
+  rideName: string
+  usesTides: boolean
+  windows: RideWindow[]
+  chosen?: RideWindow
+  onOpenWindows: () => void
+}) {
+  const counts = STATUS_ORDER.map((status) => ({
+    status,
+    n: windows.filter((w) => w.status === status).length,
+  })).filter((c) => c.n > 0)
+
+  return (
+    <button type="button" className="tide-sun-strip" onClick={onOpenWindows}>
+      <div>
+        <p className="tide-sun-strip__label">Tide &amp; sun strip</p>
+        <p>
+          <strong>{rideName}</strong>
+          {usesTides ? ' · tide-gated' : ' · sun and weather only'}
+          {chosen ? ` · ${chosen.dayLabel} ${chosen.startClock}–${chosen.endClock}` : ''}
+        </p>
+      </div>
+      {usesTides && (
+        <ul className="tide-sun-strip__counts" aria-label="Window statuses">
+          {counts.map((c) => (
+            <li key={c.status} className={`is-${c.status}`}>
+              {c.n} {c.status}
+            </li>
+          ))}
+        </ul>
+      )}
+    </button>
   )
 }
 

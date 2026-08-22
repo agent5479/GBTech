@@ -15,6 +15,7 @@ import {
   toggleHorseRest,
   addDaysKey,
   PLANNER_DAYS,
+  weekdayFromKey,
   type StayId,
 } from '../../shared/horseYard'
 
@@ -26,11 +27,11 @@ export default function YardBoard() {
   const refresh = () => setTick((n) => n + 1)
 
   const horses = getHorses()
-  const [dayOffset, setDayOffset] = useState(0)
+  const startKey = todayKey()
+  const days = Array.from({ length: PLANNER_DAYS }, (_, i) => addDaysKey(startKey, i))
   const [stayId, setStayId] = useState<StayId>('camp')
+  const [stayDate, setStayDate] = useState(startKey)
   const [locked, setLocked] = useState(false)
-  const date = addDaysKey(todayKey(), dayOffset)
-  const dayEvents = eventsOn(date)
   const sync = syncLabels()
   const allEvents = getEvents()
 
@@ -72,7 +73,7 @@ export default function YardBoard() {
         </Link>
         <div>
           <p className="demo-badge">Yard Board · operator</p>
-          <h1>Horses, tides, and the calendar in one place</h1>
+          <h1>Horse week grid</h1>
           <p className="demo-sub">
             Rest days, farrier blocks, and overstays write to a simulated Apps Script calendar — guests cannot double-book.
           </p>
@@ -88,56 +89,66 @@ export default function YardBoard() {
       />
 
       <div className="classboard-deck yardboard-deck demo-enter">
-        <aside className="classboard-schedule">
-          <h2>Linked calendar</h2>
-          <div className="class-type-tabs">
-            {Array.from({ length: PLANNER_DAYS }, (_, i) => (
-              <button
-                key={i}
-                type="button"
-                className={`chip${dayOffset === i ? ' selected' : ''}`}
-                onClick={() => setDayOffset(i)}
-              >
-                {addDaysKey(todayKey(), i).slice(5)}
-              </button>
-            ))}
-          </div>
-          {dayEvents.length === 0 && <p className="hint">No events this day — the window is clear.</p>}
-          {dayEvents.map((ev) => (
-            <article key={ev.id} className={`class-fill-card cal-kind-${ev.kind}`}>
-              <header>
-                <strong>
-                  {clockFromMin(ev.startMin)}–{clockFromMin(ev.endMin)}
-                </strong>
-                <span>{ev.kind}</span>
-              </header>
-              <p className="roster-line">{ev.title}</p>
-              <p className="sync-chip">Calendar event {ev.id}</p>
-            </article>
-          ))}
-        </aside>
+        <div className="week-grid-wrap">
+          <table className="horse-week-grid">
+            <thead>
+              <tr>
+                <th>Horse</th>
+                {days.map((date) => (
+                  <th key={date}>{date.slice(5)}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {horses.map((h) => (
+                <tr key={h.id}>
+                  <th>
+                    {h.name}
+                    <small>
+                      {h.level} · max {h.maxPerDay}/day
+                    </small>
+                  </th>
+                  {days.map((date) => {
+                    const resting = h.restWeekday != null && weekdayFromKey(date) === h.restWeekday
+                    const cellEvents = eventsOn(date).filter(
+                      (e) => e.kind !== 'open' && (e.kind === 'stay' || !e.horseId || e.horseId === h.id),
+                    )
+                    return (
+                      <td key={date} className={resting ? 'horse-cell-rest' : ''}>
+                        <label className={`exercise-check${resting ? ' on' : ''}`}>
+                          <input
+                            type="checkbox"
+                            checked={resting}
+                            onChange={() => {
+                              toggleHorseRest(h.id, date)
+                              refresh()
+                            }}
+                          />
+                          Rest
+                        </label>
+                        {cellEvents.map((ev) => (
+                          <p key={ev.id} className={`horse-cell-ev cal-kind-${ev.kind}`}>
+                            {ev.kind === 'stay' ? 'Stay' : clockFromMin(ev.startMin)} · {ev.title}
+                          </p>
+                        ))}
+                      </td>
+                    )
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         <aside className="classboard-side">
           <section>
-            <h2>Horse roster</h2>
-            <p className="hint">Tick rest. Cap daily rides. Booking checks this against the calendar.</p>
+            <h2>Daily cap</h2>
+            <p className="hint">Max rides per horse. Booking checks this against the calendar.</p>
             <div className="exercise-checks">
               {horses.map((h) => (
-                <label key={h.id} className={`exercise-check${h.restWeekday != null ? ' on' : ''}`}>
-                  <input
-                    type="checkbox"
-                    checked={h.restWeekday != null}
-                    onChange={() => {
-                      toggleHorseRest(h.id)
-                      refresh()
-                    }}
-                  />
+                <label key={h.id} className="exercise-check">
                   <span>
                     <strong>{h.name}</strong>
-                    <small>
-                      {' '}
-                      {h.level} · max {h.maxPerDay}/day
-                    </small>
                   </span>
                   <input
                     type="number"
@@ -156,8 +167,18 @@ export default function YardBoard() {
           </section>
 
           <section>
-            <h2>Overstay</h2>
-            <p className="hint">Farmstay, camp, or a visiting horse for the night — blocked on the same calendar.</p>
+            <h2>Add stay night</h2>
+            <p className="hint">Farmstay, camp, or a visiting horse — blocked on the same calendar.</p>
+            <label className="field">
+              Night
+              <select value={stayDate} onChange={(e) => setStayDate(e.target.value)}>
+                {days.map((d) => (
+                  <option key={d} value={d}>
+                    {d}
+                  </option>
+                ))}
+              </select>
+            </label>
             <div className="class-type-tabs">
               {STAYS.map((s) => (
                 <button
@@ -174,11 +195,11 @@ export default function YardBoard() {
               type="button"
               className="btn ghost"
               onClick={() => {
-                addStayNight(date, stayId)
+                addStayNight(stayDate, stayId)
                 refresh()
               }}
             >
-              Add {STAYS.find((s) => s.id === stayId)?.name} on this day
+              Add {STAYS.find((s) => s.id === stayId)?.name}
             </button>
           </section>
 

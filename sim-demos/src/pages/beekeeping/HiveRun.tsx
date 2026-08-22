@@ -8,6 +8,7 @@ import {
   HIVE_MAP_CENTER,
   HIVE_YARDS,
   LIVE_BEEMARSHALL_URL,
+  hiveChipIds,
   taskById,
   tasksByCategory,
   yardById,
@@ -22,8 +23,18 @@ export default function HiveRun() {
   const [flag, setFlag] = useState<HiveFlag>('ok')
   const [notes, setNotes] = useState('')
   const [done, setDone] = useState(false)
+  const [breakHives, setBreakHives] = useState(false)
+  const [hivePick, setHivePick] = useState<number | null>(null)
 
   const yard = yardById(yardId)
+  const hiveChips = yard ? hiveChipIds(yard.hiveCount) : []
+  const isQuarantineYard = yard?.flag === 'quarantine'
+
+  const selectYard = (id: string) => {
+    setYardId(id)
+    setBreakHives(false)
+    setHivePick(null)
+  }
   const grouped = useMemo(() => tasksByCategory(filter), [filter])
   const points = HIVE_YARDS.map((y) => ({
     id: y.id,
@@ -50,6 +61,7 @@ export default function HiveRun() {
           <h2>Logged at {yard.name}</h2>
           <p>
             {yard.hiveCount} hives · {yard.gpsLabel} · flag {flag}
+            {hivePick != null ? ` · hive ${hivePick}` : ''}
           </p>
           <p>{tasks.map((id) => taskById(id)?.name).join(' · ')}</p>
           <p className="hint">
@@ -58,7 +70,7 @@ export default function HiveRun() {
               BeeMarshall
             </a>
           </p>
-          <DemoQuoteCta styleName="Hive Run" />
+          <DemoQuoteCta styleName="Hive Run" pitchKind="customOps" />
           <button
             type="button"
             className="btn ghost"
@@ -74,7 +86,7 @@ export default function HiveRun() {
           </Link>
         </div>
         <DemoPitchBar
-          packageTier="advanced"
+          pitchKind="customOps"
           compareTo="/beekeeping/apiary"
           compareLabel="Apiary Board"
           engineNote="Field log-action vs management dashboard — no public client booking."
@@ -93,7 +105,7 @@ export default function HiveRun() {
         badge="Simulated · field log"
       />
       <DemoPitchBar
-        packageTier="advanced"
+        pitchKind="customOps"
         compareTo="/beekeeping/apiary"
         compareLabel="Apiary Board"
         engineNote="Field log-action vs management dashboard — no public client booking."
@@ -107,7 +119,7 @@ export default function HiveRun() {
             zoom={10}
             pathColor="#DAA520"
             label="Tap a cluster · GPS yards (demo)"
-            onSelect={setYardId}
+            onSelect={selectYard}
           />
         </div>
 
@@ -120,7 +132,7 @@ export default function HiveRun() {
                   key={y.id}
                   type="button"
                   className={`cluster-chip${yardId === y.id ? ' on' : ''}${y.flag !== 'ok' ? ` flag-${y.flag}` : ''}`}
-                  onClick={() => setYardId(y.id)}
+                  onClick={() => selectYard(y.id)}
                 >
                   <strong>{y.name}</strong>
                   <span>
@@ -130,10 +142,46 @@ export default function HiveRun() {
               ))}
             </div>
             {yard && (
-              <p className="hive-meta">
-                {yard.landowner}
-                {yard.contactBefore ? ' · contact before visit' : ''} · {yard.accessNote}
-              </p>
+              <div className={`landowner-card${yard.contactBefore ? ' call-first' : ''}`}>
+                <p className="landowner-kicker">Landowner</p>
+                <strong>{yard.landowner}</strong>
+                {yard.contactBefore ? (
+                  <span className="call-badge">Contact before visit</span>
+                ) : (
+                  <span className="call-ok">No call required</span>
+                )}
+                <small>{yard.accessNote}</small>
+              </div>
+            )}
+
+            {isQuarantineYard && (
+              <div className="hive-break">
+                <label className="hive-break-toggle">
+                  <input
+                    type="checkbox"
+                    checked={breakHives}
+                    onChange={(e) => {
+                      setBreakHives(e.target.checked)
+                      if (!e.target.checked) setHivePick(null)
+                    }}
+                  />
+                  Break into individual hives
+                </label>
+                {breakHives && (
+                  <div className="hive-id-chips" role="group" aria-label="Hive number">
+                    {hiveChips.map((n) => (
+                      <button
+                        key={n}
+                        type="button"
+                        className={`hive-id-chip${hivePick === n ? ' on' : ''}`}
+                        onClick={() => setHivePick((prev) => (prev === n ? null : n))}
+                      >
+                        Hive {n}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             )}
 
             <div className="task-filter">

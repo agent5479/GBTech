@@ -171,6 +171,38 @@ export function totalHives(): number {
   return HIVE_YARDS.reduce((s, y) => s + y.hiveCount, 0)
 }
 
+/** Individual hive chips on field log — cap at 6 so the phone stays scannable. */
+export function hiveChipIds(hiveCount: number): number[] {
+  const n = Math.min(Math.max(hiveCount, 0), 6)
+  return Array.from({ length: n }, (_, i) => i + 1)
+}
+
+export function quarantineYards(): HiveYard[] {
+  return HIVE_YARDS.filter((y) => y.flag === 'quarantine')
+}
+
+/** Dry-only sites that still have a week reminder ticked. */
+export function dryOnlyYardsWithReminder(): HiveYard[] {
+  const due = new Set(getAssignments().filter((a) => a.reminder).map((a) => a.yardId))
+  return HIVE_YARDS.filter((y) => y.access === 'dry-only' && due.has(y.id))
+}
+
+export function apiaryOpsHint(): string {
+  const q = quarantineYards()
+  const dry = dryOnlyYardsWithReminder()
+  const parts: string[] = []
+  if (q.length) {
+    parts.push(
+      `${q.length} quarantine yard${q.length === 1 ? '' : 's'}: ${q.map((y) => y.name).join(', ')}`,
+    )
+  }
+  if (dry.length) {
+    parts.push(`Dry-only with reminder due: ${dry.map((y) => y.name).join(', ')}`)
+  }
+  if (!parts.length) return 'No dry-only reminders overdue · no quarantine yards flagged.'
+  return parts.join(' · ')
+}
+
 export function tasksByCategory(filter: 'common' | 'all'): Record<string, HiveTask[]> {
   const list = filter === 'common' ? HIVE_TASKS.filter((t) => t.common) : HIVE_TASKS
   const grouped: Record<string, HiveTask[]> = {}

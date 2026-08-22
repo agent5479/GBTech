@@ -197,7 +197,7 @@ export function addDaysKey(iso: string, n: number): string {
   return dt.toISOString().slice(0, 10)
 }
 
-function weekdayFromKey(iso: string): number {
+export function weekdayFromKey(iso: string): number {
   const [y, m, d] = iso.split('-').map(Number)
   return new Date(Date.UTC(y, m - 1, d)).getUTCDay()
 }
@@ -540,10 +540,15 @@ export function scriptBook(req: BookRequest): string | null {
   return null
 }
 
-export function toggleHorseRest(horseId: string): void {
+export function toggleHorseRest(horseId: string, date?: string): void {
   const horse = store.horses.find((h) => h.id === horseId)
   if (!horse) return
-  horse.restWeekday = horse.restWeekday == null ? weekdayFromKey(todayKey()) : null
+  const wd = weekdayFromKey(date ?? todayKey())
+  if (date != null) {
+    horse.restWeekday = horse.restWeekday === wd ? null : wd
+    return
+  }
+  horse.restWeekday = horse.restWeekday == null ? wd : null
 }
 
 export function setHorseMax(horseId: string, max: number): void {

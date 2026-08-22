@@ -26,6 +26,8 @@ export default function CareVisit() {
   const client = clientById(clientId)
   const grouped = tasksByGroup()
   const minutes = visitMinutes(tasks)
+  const handoffReady = notes.trim().length > 0
+  const canComplete = tasks.length > 0 && handoffReady
   const points = CARE_CLIENTS.map((c) => ({
     id: c.id,
     lat: c.lat,
@@ -59,7 +61,8 @@ export default function CareVisit() {
           <p>
             ~{minutes} min · {CARERS.find((c) => c.id === carerId)?.name}
           </p>
-          <DemoQuoteCta styleName="Care Visit" />
+          {notes.trim() ? <p className="hint">Family: {notes.trim()}</p> : null}
+          <DemoQuoteCta styleName="Care Visit" pitchKind="customOps" />
           <button type="button" className="btn ghost" onClick={() => setDone(false)}>
             Log another visit
           </button>
@@ -68,7 +71,7 @@ export default function CareVisit() {
           </Link>
         </div>
         <DemoPitchBar
-          packageTier="advanced"
+          pitchKind="customOps"
           compareTo="/homecare/rounds"
           compareLabel="Round Board"
           engineNote="Field visit log vs management day roster — staff + coordination."
@@ -87,7 +90,7 @@ export default function CareVisit() {
         badge="Simulated · field log"
       />
       <DemoPitchBar
-        packageTier="advanced"
+        pitchKind="customOps"
         compareTo="/homecare/rounds"
         compareLabel="Round Board"
         engineNote="Field visit log vs management day roster — staff + coordination."
@@ -107,6 +110,13 @@ export default function CareVisit() {
 
         <PhoneShell brand="Care Visit">
           <div className="hive-phone care-phone">
+            {client && (
+              <aside className="care-plan-sticky">
+                <p className="care-plan-kicker">Care plan</p>
+                <strong>{client.name}</strong>
+                <p>{client.planNote}</p>
+              </aside>
+            )}
             <p className="phone-kicker">This household</p>
             <div className="client-pick">
               {CARE_CLIENTS.map((c) => (
@@ -167,18 +177,22 @@ export default function CareVisit() {
               Visit length <strong>~{minutes} min</strong>
             </p>
             <label className="field">
-              Hand-off
+              Family hand-off
               <textarea
                 rows={2}
+                required
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                placeholder="Appetite, mood, meds taken…"
+                placeholder="Appetite, mood, meds taken… (required)"
               />
             </label>
+            {!handoffReady && tasks.length > 0 && (
+              <p className="handoff-need">Add a family note before you complete.</p>
+            )}
             <button
               type="button"
               className="btn primary"
-              disabled={!tasks.length}
+              disabled={!canComplete}
               onClick={() => setDone(true)}
             >
               Complete visit

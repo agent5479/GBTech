@@ -32,7 +32,7 @@ export default function RoundBoard() {
           <p>
             {rounds.length} visits · {gaps} coverage gap{gaps === 1 ? '' : 's'}
           </p>
-          <DemoQuoteCta styleName="Round Board" />
+          <DemoQuoteCta styleName="Round Board" pitchKind="customOps" />
           <button type="button" className="btn ghost" onClick={() => setLocked(false)}>
             Keep editing
           </button>
@@ -41,7 +41,7 @@ export default function RoundBoard() {
           </Link>
         </div>
         <DemoPitchBar
-          packageTier="advanced"
+          pitchKind="customOps"
           compareTo="/homecare/visit"
           compareLabel="Care Visit"
           engineNote="Management day roster vs field visit log."
@@ -59,25 +59,28 @@ export default function RoundBoard() {
         <div>
           <p className="demo-badge">Round Board · management</p>
           <h1>Today&apos;s round sheet</h1>
-          <p className="demo-sub">Carers down the side, visit windows across — cover gaps, reassign.</p>
+          <p className="demo-sub">Carers × visit windows — cover gaps, reassign. Management only.</p>
         </div>
         <span className="demo-theme-tag">Day roster</span>
       </header>
+      <div className={`coverage-hero${gaps > 0 ? ' has-gaps' : ' all-clear'}`}>
+        <p className="coverage-hero__label">Uncovered visits</p>
+        <strong>{gaps}</strong>
+        <p>
+          {gaps > 0
+            ? `Tick Covered when the carer confirms — ${gaps} slot${gaps === 1 ? '' : 's'} still open.`
+            : 'All visits covered for this demo day.'}
+        </p>
+      </div>
       <div className="demo-hero-photo">
         <DemoCardImage id="rounds" className="demo-hero-photo__img" />
       </div>
       <DemoPitchBar
-        packageTier="advanced"
+        pitchKind="customOps"
         compareTo="/homecare/visit"
         compareLabel="Care Visit"
         engineNote="Management day roster vs field visit log."
       />
-
-      {gaps > 0 && (
-        <p className="coverage-banner">
-          {gaps} uncovered visit{gaps === 1 ? '' : 's'} — tick Covered when the carer confirms.
-        </p>
-      )}
 
       <div className="round-sheet-wrap">
         <table className="round-sheet">
