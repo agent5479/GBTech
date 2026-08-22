@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AdminTabShell } from '../../components/AdminTabShell'
 import { DemoCardImage } from '../../components/DemoHeroImage'
+import { DemoModeBar } from '../../components/DemoModeBar'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import { MarkersMap } from '../../components/MarkersMap'
 import { MultiSelectChipRail } from '../../components/MultiSelectChipRail'
@@ -134,6 +135,31 @@ export default function ApiaryBoard() {
         <DemoCardImage id="apiary" className="demo-hero-photo__img" />
       </div>
       <DemoPitchBar pitchKind="customOps" compareTo="/beekeeping/hiverun" compareLabel="Hive Run" />
+      <DemoModeBar
+        clientTo="/beekeeping/hiverun"
+        clientLabel="Field view"
+        opsTo="/beekeeping/apiary"
+        opsLabel="Admin view"
+      />
+
+      <div className="kpi-row kpi-row--header">
+        <article>
+          <strong>{totalHives()}</strong>
+          <span>Active hives</span>
+        </article>
+        <article className={reminders ? 'warn' : undefined}>
+          <strong>{reminders}</strong>
+          <span>Reminders</span>
+        </article>
+        <article className={quarantine ? 'warn' : undefined}>
+          <strong>{quarantine}</strong>
+          <span>Quarantine yards</span>
+        </article>
+        <article>
+          <strong>{getAllStaff().length}</strong>
+          <span>Field staff</span>
+        </article>
+      </div>
 
       <div className="ops-admin-deck">
         <AdminTabShell tabs={ADMIN_TABS} active={tab} onChange={setTab}>

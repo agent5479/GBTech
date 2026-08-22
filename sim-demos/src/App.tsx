@@ -1,5 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import type { ReactNode } from 'react'
 import { DemoPresentationProvider } from './context/DemoPresentation'
+import { TabletFrame } from './components/TabletFrame'
 import Hub from './pages/Hub'
 import CoastalCharter from './pages/yacht/CoastalCharter'
 import BayAdventure from './pages/yacht/BayAdventure'
@@ -26,33 +28,37 @@ import './styles/demos.css'
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
 
+function DemoRoute({ children }: { children: ReactNode }) {
+  return <TabletFrame>{children}</TabletFrame>
+}
+
 export default function App() {
   return (
     <BrowserRouter basename={basename === '/' ? undefined : basename}>
       <DemoPresentationProvider>
       <Routes>
         <Route path="/" element={<Hub />} />
-        <Route path="/yacht/coastal" element={<CoastalCharter />} />
-        <Route path="/yacht/adventure" element={<BayAdventure />} />
-        <Route path="/taxi/mohua" element={<MohuaRide />} />
-        <Route path="/taxi/bayhop" element={<BayHop />} />
-        <Route path="/handyman/bayfix" element={<BayFix />} />
-        <Route path="/handyman/tradeboard" element={<TradeBoard />} />
-        <Route path="/pruning/canopy" element={<CanopyCare />} />
-        <Route path="/pruning/orchard" element={<OrchardGrid />} />
-        <Route path="/painting" element={<EstimatesHub />} />
-        <Route path="/painting/freshcoat" element={<FreshCoat />} />
-        <Route path="/painting/paintboard" element={<PaintBoard />} />
-        <Route path="/fitness/studioflow" element={<StudioFlow />} />
-        <Route path="/fitness/classboard" element={<ClassBoard />} />
-        <Route path="/riding/shoreride" element={<ShoreRide />} />
-        <Route path="/riding/yardboard" element={<YardBoard />} />
-        <Route path="/venue/harbourbook" element={<HarbourBook />} />
-        <Route path="/venue/hallboard" element={<HallBoard />} />
-        <Route path="/beekeeping/hiverun" element={<HiveRun />} />
-        <Route path="/beekeeping/apiary" element={<ApiaryBoard />} />
-        <Route path="/homecare/visit" element={<CareVisit />} />
-        <Route path="/homecare/rounds" element={<RoundBoard />} />
+        <Route path="/yacht/coastal" element={<DemoRoute><CoastalCharter /></DemoRoute>} />
+        <Route path="/yacht/adventure" element={<DemoRoute><BayAdventure /></DemoRoute>} />
+        <Route path="/taxi/mohua" element={<DemoRoute><MohuaRide /></DemoRoute>} />
+        <Route path="/taxi/bayhop" element={<DemoRoute><BayHop /></DemoRoute>} />
+        <Route path="/handyman/bayfix" element={<DemoRoute><BayFix /></DemoRoute>} />
+        <Route path="/handyman/tradeboard" element={<DemoRoute><TradeBoard /></DemoRoute>} />
+        <Route path="/pruning/canopy" element={<DemoRoute><CanopyCare /></DemoRoute>} />
+        <Route path="/pruning/orchard" element={<DemoRoute><OrchardGrid /></DemoRoute>} />
+        <Route path="/painting" element={<DemoRoute><EstimatesHub /></DemoRoute>} />
+        <Route path="/painting/freshcoat" element={<DemoRoute><FreshCoat /></DemoRoute>} />
+        <Route path="/painting/paintboard" element={<DemoRoute><PaintBoard /></DemoRoute>} />
+        <Route path="/fitness/studioflow" element={<DemoRoute><StudioFlow /></DemoRoute>} />
+        <Route path="/fitness/classboard" element={<DemoRoute><ClassBoard /></DemoRoute>} />
+        <Route path="/riding/shoreride" element={<DemoRoute><ShoreRide /></DemoRoute>} />
+        <Route path="/riding/yardboard" element={<DemoRoute><YardBoard /></DemoRoute>} />
+        <Route path="/venue/harbourbook" element={<DemoRoute><HarbourBook /></DemoRoute>} />
+        <Route path="/venue/hallboard" element={<DemoRoute><HallBoard /></DemoRoute>} />
+        <Route path="/beekeeping/hiverun" element={<DemoRoute><HiveRun /></DemoRoute>} />
+        <Route path="/beekeeping/apiary" element={<DemoRoute><ApiaryBoard /></DemoRoute>} />
+        <Route path="/homecare/visit" element={<DemoRoute><CareVisit /></DemoRoute>} />
+        <Route path="/homecare/rounds" element={<DemoRoute><RoundBoard /></DemoRoute>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       </DemoPresentationProvider>

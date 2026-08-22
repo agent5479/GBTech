@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DemoCardImage } from '../../components/DemoHeroImage'
+import { DemoModeBar } from '../../components/DemoModeBar'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import {
   HALL_ROOMS,
@@ -91,6 +92,31 @@ export default function HallBoard() {
         compareLabel="Harbour Book"
         engineNote="Staff day board vs client facility book — Harbour Hall pair."
       />
+      <DemoModeBar
+        clientTo="/venue/harbourbook"
+        clientLabel="Client view"
+        opsTo="/venue/hallboard"
+        opsLabel="Admin view"
+      />
+
+      <div className="kpi-row kpi-row--header">
+        <article>
+          <strong>{holds.length}</strong>
+          <span>Active holds</span>
+        </article>
+        <article className={freeSlots === 0 ? 'warn' : undefined}>
+          <strong>{freeSlots}</strong>
+          <span>Free slots</span>
+        </article>
+        <article>
+          <strong>{Math.round(((totalCells - freeSlots) / Math.max(1, totalCells)) * 100)}%</strong>
+          <span>Room utilization</span>
+        </article>
+        <article>
+          <strong>{bufferOn ? 'On' : 'Off'}</strong>
+          <span>Turnaround buffer</span>
+        </article>
+      </div>
 
       <div className="ops-deck demo-enter">
         <p className={`coverage-banner${freeSlots === 0 ? '' : ' all-clear'}`}>

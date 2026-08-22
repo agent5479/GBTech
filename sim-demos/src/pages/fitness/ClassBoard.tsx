@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DemoCardImage } from '../../components/DemoHeroImage'
+import { DemoModeBar } from '../../components/DemoModeBar'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import {
   addExercise,
@@ -103,6 +104,12 @@ export default function ClassBoard() {
         compareLabel="Studio Flow"
         engineNote="Instructor wall timetable vs member pack wallet — same packs, caps, and calendar check."
       />
+      <DemoModeBar
+        clientTo="/fitness/studioflow"
+        clientLabel="Client view"
+        opsTo="/fitness/classboard"
+        opsLabel="Admin view"
+      />
 
       <div className="classboard-deck demo-enter">
         <aside className="classboard-schedule">
@@ -124,6 +131,22 @@ export default function ClassBoard() {
             if (!type) return null
             const left = spotsLeft(o)
             const fill = Math.min(100, Math.round((o.bookedCount / type.cap) * 100))
+            const fillLevel =
+              left === 0 || fill >= 100
+                ? 'fill-full'
+                : fill >= 85
+                  ? 'fill-critical'
+                  : fill >= 60
+                    ? 'fill-warn'
+                    : 'fill-ok'
+            const urgencyLabel =
+              fillLevel === 'fill-full'
+                ? 'Full'
+                : fillLevel === 'fill-critical'
+                  ? 'Almost full'
+                  : fillLevel === 'fill-warn'
+                    ? 'Filling up'
+                    : 'Spots open'
             return (
               <article key={o.id} className="class-fill-card">
                 <header>
@@ -134,9 +157,10 @@ export default function ClassBoard() {
                     {o.bookedCount}/{type.cap}
                   </span>
                 </header>
-                <div className="fill-bar" aria-hidden="true">
+                <div className={`fill-bar ${fillLevel}`} aria-hidden="true">
                   <span style={{ width: `${fill}%` }} />
                 </div>
+                <p className={`fill-urgency ${fillLevel}`}>{urgencyLabel}</p>
                 <p className="hint">{left === 0 ? 'Full — no more bookings' : `${left} spots left`}</p>
                 <label className="field">
                   Substitute

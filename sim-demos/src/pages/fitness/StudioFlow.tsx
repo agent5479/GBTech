@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DemoChrome } from '../../components/DemoChrome'
+import { DemoModeBar } from '../../components/DemoModeBar'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import {
   FITNESS_PLANS,
@@ -20,7 +21,7 @@ import {
  * Class (spots vs cap) → prepaid plan → confirm (simulated calendar + Firebase).
  */
 export default function StudioFlow() {
-  const [, setTick] = useState(0)
+  const [tick, setTick] = useState(0)
   const refresh = () => setTick((n) => n + 1)
 
   const [step, setStep] = useState(1)
@@ -30,8 +31,19 @@ export default function StudioFlow() {
   const [waitlistPosition, setWaitlistPosition] = useState<number>()
   const [done, setDone] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [peakOn, setPeakOn] = useState(false)
 
-  const occurrences = getOccurrences()
+  const occurrences = useMemo(() => {
+    const base = getOccurrences()
+    if (!peakOn) return base
+    return base.map((o) => {
+      const type = classTypeById(o.classTypeId)
+      const cap = type?.cap ?? o.bookedCount
+      const peakBooked = Math.min(cap, Math.max(o.bookedCount, Math.ceil(cap * 0.92)))
+      return { ...o, bookedCount: peakBooked }
+    })
+  }, [peakOn, tick])
+
   const member = getMember()
   const occ = occurrenceId ? occurrences.find((o) => o.id === occurrenceId) : undefined
   const cls = occ ? classTypeById(occ.classTypeId) : undefined
@@ -108,6 +120,19 @@ export default function StudioFlow() {
         compareLabel="Class Board"
         engineNote="Member pack wallet vs instructor wall timetable — same packs, caps, and calendar check."
       />
+      <DemoModeBar
+        clientTo="/fitness/studioflow"
+        clientLabel="Client view"
+        opsTo="/fitness/classboard"
+        opsLabel="Admin view"
+        peakOn={peakOn}
+        onPeakToggle={(on) => {
+          setPeakOn(on)
+          setOccurrenceId(undefined)
+          setWaitlistOccId(undefined)
+          setWaitlistPosition(undefined)
+        }}
+      />
 
       <div className="wallet-strip" aria-live="polite">
         <span className="wallet-strip-kicker">Wallet</span>
@@ -154,7 +179,11 @@ export default function StudioFlow() {
                     </strong>
                     <span>{o.dayLabel}</span>
                     <span className="spots-line">
-                      {full ? 'Full' : `${left} of ${type.cap} spots left`}
+                      {full
+                        ? 'Full'
+                        : left <= Math.max(2, Math.ceil(type.cap * 0.15))
+                          ? `Almost full · ${left} of ${type.cap} left`
+                          : `${left} of ${type.cap} spots left`}
                     </span>
                   </button>
                   {full && (

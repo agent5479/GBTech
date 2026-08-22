@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DemoChrome } from '../../components/DemoChrome'
+import { DemoModeBar } from '../../components/DemoModeBar'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import { buildYachtCalendar } from '../../shared/calendarMock'
 import {
@@ -111,6 +112,12 @@ export default function HarbourBook() {
         compareLabel="Hall Board"
         engineNote="Client facility book vs staff day board — Harbour Hall pair."
       />
+      <DemoModeBar
+        clientTo="/venue/harbourbook"
+        clientLabel="Client view"
+        opsTo="/venue/hallboard"
+        opsLabel="Admin view"
+      />
 
       <div className="ops-deck hall-book-deck">
         <div className="hall-floor-pane ops-board-surface">
@@ -175,6 +182,27 @@ export default function HarbourBook() {
             </div>
             {selectedDay ? (
               <>
+                <p className="hall-book-kicker">Day occupancy</p>
+                <div className="day-occupancy-strip" role="listbox" aria-label="Day occupancy strip">
+                  {selectedDay.slots.map((slot) => {
+                    const blocked = slot.status !== 'open'
+                    return (
+                      <button
+                        key={slot.time}
+                        type="button"
+                        role="option"
+                        aria-selected={time === slot.time}
+                        disabled={blocked}
+                        className={`day-occupancy-block status-${slot.status}${time === slot.time ? ' on' : ''}`}
+                        title={slot.note ?? slot.status}
+                        onClick={() => setTime(slot.time)}
+                      >
+                        <span>{slot.time}</span>
+                        <small>{slot.status === 'open' ? 'Open' : slot.status === 'booked' ? 'Busy' : 'Hold'}</small>
+                      </button>
+                    )
+                  })}
+                </div>
                 <p className="hall-book-kicker">Start time</p>
                 <div className="time-rail hall-time-grid">
                   {selectedDay.slots.map((slot) => (

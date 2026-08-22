@@ -10,6 +10,7 @@ import {
   jobById,
 } from '../../shared/handymanJobs'
 import { DemoCardImage } from '../../components/DemoHeroImage'
+import { DemoModeBar } from '../../components/DemoModeBar'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 
 const PIPELINE_STAGES = [
@@ -95,6 +96,12 @@ export default function TradeBoard() {
           compareLabel="Repair ticket"
           engineNote="Two jobs, not two skins — site job board vs repair ticket."
         />
+      <DemoModeBar
+        clientTo="/handyman/bayfix"
+        clientLabel="Client view"
+        opsTo="/handyman/tradeboard"
+        opsLabel="Admin view"
+      />
 
       <div className="tradeboard-deck demo-enter">
         <aside className="tradeboard-jobs">
@@ -135,31 +142,46 @@ export default function TradeBoard() {
           {selected.length > 0 && (
             <section className="job-pipeline-block">
               <h2>Job pipeline</h2>
-              <p className="hint">Drag jobs through stages on a live board — demo status chips here.</p>
-              <ul className="job-pipeline-list">
-                {selected.map((id) => {
-                  const job = jobById(id)
-                  if (!job) return null
-                  const stage = jobStages[id] ?? 'new'
+              <p className="hint">Tap a job card to advance it — New → Scheduled → On site → Done.</p>
+              <div className="job-kanban">
+                {PIPELINE_STAGES.map((s) => {
+                  const cards = selected.filter((id) => (jobStages[id] ?? 'new') === s.id)
                   return (
-                    <li key={id} className="job-pipeline-item">
-                      <strong>{job.name}</strong>
-                      <div className="job-pipeline-stages">
-                        {PIPELINE_STAGES.map((s) => (
-                          <button
-                            key={s.id}
-                            type="button"
-                            className={`status-chip pipeline-chip${stage === s.id ? ' on' : ''}`}
-                            onClick={() => setJobStage(id, s.id)}
-                          >
-                            {s.label}
-                          </button>
-                        ))}
-                      </div>
-                    </li>
+                    <div key={s.id} className="job-kanban-col" data-stage={s.id}>
+                      <h3>
+                        {s.label}
+                        <span>{cards.length}</span>
+                      </h3>
+                      {cards.length ? (
+                        cards.map((id) => {
+                          const job = jobById(id)
+                          if (!job) return null
+                          const idx = PIPELINE_STAGES.findIndex((x) => x.id === s.id)
+                          const next = PIPELINE_STAGES[Math.min(idx + 1, PIPELINE_STAGES.length - 1)]
+                          return (
+                            <button
+                              key={id}
+                              type="button"
+                              className="job-kanban-card"
+                              onClick={() => setJobStage(id, next.id)}
+                              title={
+                                s.id === 'done'
+                                  ? 'Already complete — tap to keep on Done'
+                                  : `Advance to ${next.label}`
+                              }
+                            >
+                              <strong>{job.name}</strong>
+                              <small>{s.id === 'done' ? 'Complete' : `Tap → ${next.label}`}</small>
+                            </button>
+                          )
+                        })
+                      ) : (
+                        <p className="job-kanban-empty">Empty</p>
+                      )}
+                    </div>
                   )
                 })}
-              </ul>
+              </div>
             </section>
           )}
         </aside>

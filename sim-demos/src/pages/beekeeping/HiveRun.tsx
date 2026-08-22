@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DemoChrome } from '../../components/DemoChrome'
+import { DemoModeBar } from '../../components/DemoModeBar'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import { MarkersMap } from '../../components/MarkersMap'
 import { PhoneShell } from '../../components/PhoneShell'
@@ -135,6 +136,12 @@ export default function HiveRun() {
         compareLabel="Apiary Board"
         engineNote="Field log-action vs management dashboard — no public client booking."
       />
+      <DemoModeBar
+        clientTo="/beekeeping/hiverun"
+        clientLabel="Field view"
+        opsTo="/beekeeping/apiary"
+        opsLabel="Admin view"
+      />
 
       <div className="ops-field-flow">
       <div className="hive-field-layout">
@@ -149,7 +156,18 @@ export default function HiveRun() {
           />
         </div>
 
-        <PhoneShell brand="Hive Run">
+        <PhoneShell
+          brand="Hive Run"
+          fabLabel="Log action"
+          onFab={() => {
+            if (phoneTab !== 'log') {
+              setPhoneTab('log')
+              return
+            }
+            if (tasks.length && complianceDone) setDone(true)
+            else document.getElementById('hive-log-confirm')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          }}
+        >
           <div className="field-phone-tabs" role="tablist">
             {(['log', 'roster', 'tasks'] as const).map((t) => (
               <button
@@ -240,6 +258,35 @@ export default function HiveRun() {
                   <span className="call-ok">No call required</span>
                 )}
                 <small>{yard.accessNote}</small>
+              </div>
+            )}
+
+            {yard && (
+              <div className="hive-meter-row" aria-label="Yard strength meters">
+                <div className="hive-meter">
+                  <label>
+                    <span>Hive strength</span>
+                    <span>
+                      {yard.flag === 'quarantine' ? 35 : yard.flag === 'watch' ? 58 : Math.min(96, 55 + yard.hiveCount)}%
+                    </span>
+                  </label>
+                  <div className="hive-meter-track">
+                    <span
+                      style={{
+                        width: `${yard.flag === 'quarantine' ? 35 : yard.flag === 'watch' ? 58 : Math.min(96, 55 + yard.hiveCount)}%`,
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="hive-meter hive-meter--supers">
+                  <label>
+                    <span>Honey supers</span>
+                    <span>{Math.max(1, Math.round(yard.hiveCount / 4))} / {Math.max(2, Math.round(yard.hiveCount / 2))}</span>
+                  </label>
+                  <div className="hive-meter-track">
+                    <span style={{ width: `${Math.min(100, Math.round((yard.hiveCount / 4 / Math.max(2, yard.hiveCount / 2)) * 100))}%` }} />
+                  </div>
+                </div>
               </div>
             )}
 
@@ -337,6 +384,7 @@ export default function HiveRun() {
               />
             </label>
             <button
+              id="hive-log-confirm"
               type="button"
               className="btn primary"
               disabled={!tasks.length || !complianceDone}

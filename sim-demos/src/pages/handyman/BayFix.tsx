@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DemoChrome } from '../../components/DemoChrome'
+import { DemoModeBar } from '../../components/DemoModeBar'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import { buildYachtCalendar } from '../../shared/calendarMock'
 import { GB_PLACES } from '../../shared/gbPlaces'
@@ -96,6 +97,12 @@ export default function BayFix() {
           compareLabel="Site job board"
           engineNote="Two jobs, not two skins — repair ticket vs site job board."
         />
+      <DemoModeBar
+        clientTo="/handyman/bayfix"
+        clientLabel="Client view"
+        opsTo="/handyman/tradeboard"
+        opsLabel="Admin view"
+      />
 
       <ol className="wizard-steps" aria-label="Booking steps">
         {[1, 2, 3, 4].map((n) => (
