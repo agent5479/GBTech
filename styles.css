@@ -1130,6 +1130,10 @@ body.gbtech-page .hero {
   align-items: start;
 }
 
+body.gbtech-page .hero:not(:has(.image-block)) {
+  grid-template-columns: 1fr;
+}
+
 body.gbtech-page .hero .image-block {
   margin: 0;
   max-width: 16rem;
