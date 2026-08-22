@@ -8,9 +8,8 @@ import {
   estimatePruning,
   formatPruningBracket,
 } from '../../shared/pruningTrees'
-import { DemoCardImage } from '../../components/DemoHeroImage'
+import { DemoOutsideShell } from '../../components/DemoChrome'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
-import { ShowcaseChrome } from '../../components/ShowcaseShell'
 
 const BLOCK_ZONES = ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'B4', 'C1', 'C2', 'C3', 'C4', 'D1', 'D2', 'D3', 'D4'] as const
 
@@ -91,27 +90,20 @@ export default function OrchardGrid() {
 
   return (
     <div className="orchard-page theme-orchard">
-      <ShowcaseChrome>
-        <header className="orchard-top">
-          <Link to="/" className="demo-back">
-            ← All demos
-          </Link>
-          <div>
-            <p className="demo-badge">Orchard Grid · tile counters</p>
-            <h1>Orchard count grid</h1>
-          </div>
-          <span className="demo-theme-tag">Different UI · not a catalog</span>
-        </header>
-        <div className="demo-hero-photo">
-          <DemoCardImage id="orchard" className="demo-hero-photo__img" />
-        </div>
-      </ShowcaseChrome>
+      <DemoOutsideShell imageId="orchard" />
       <DemoPitchBar
         packageTier="advanced"
         compareTo="/pruning/canopy"
         compareLabel="Garden prune catalog"
         engineNote="Two jobs, not two skins — orchard count grid vs garden prune catalog."
       />
+      <header className="orchard-top">
+        <div>
+          <p className="demo-badge">Orchard Grid · tile counters</p>
+          <h1>Orchard count grid</h1>
+        </div>
+        <span className="demo-theme-tag">Different UI · not a catalog</span>
+      </header>
 
       <div className="orchard-deck demo-enter">
         <section className="orchard-grid-pane">

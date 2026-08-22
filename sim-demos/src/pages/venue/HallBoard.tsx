@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { DemoCardImage } from '../../components/DemoHeroImage'
+import { DemoOutsideShell } from '../../components/DemoChrome'
 import { DemoModeBar } from '../../components/DemoModeBar'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
-import { ShowcaseChrome } from '../../components/ShowcaseShell'
 import {
   HALL_ROOMS,
   HALL_STAFF,
@@ -73,22 +72,7 @@ export default function HallBoard() {
 
   return (
     <div className="hallboard-page theme-hallboard">
-      <ShowcaseChrome>
-        <header className="tradeboard-top">
-          <Link to="/" className="demo-back">
-            ← All demos
-          </Link>
-          <div>
-            <p className="demo-badge">Hall Board · staff</p>
-            <h1>Rooms × hours board</h1>
-            <p className="demo-sub">Holds, blocks, and who owns each room window — staff side of Harbour Hall.</p>
-          </div>
-          <span className="demo-theme-tag">Staff · not a wizard</span>
-        </header>
-        <div className="demo-hero-photo demo-hero-photo--compact">
-          <DemoCardImage id="hallboard" className="demo-hero-photo__img" />
-        </div>
-      </ShowcaseChrome>
+      <DemoOutsideShell imageId="hallboard" heroCompact />
       <DemoPitchBar
         packageTier="advanced"
         compareTo="/venue/harbourbook"
@@ -101,6 +85,14 @@ export default function HallBoard() {
         opsTo="/venue/hallboard"
         opsLabel="Admin view"
       />
+      <header className="tradeboard-top">
+        <div>
+          <p className="demo-badge">Hall Board · staff</p>
+          <h1>Rooms × hours board</h1>
+          <p className="demo-sub">Holds, blocks, and who owns each room window — staff side of Harbour Hall.</p>
+        </div>
+        <span className="demo-theme-tag">Staff · not a wizard</span>
+      </header>
 
       <div className="kpi-row kpi-row--header">
         <article>

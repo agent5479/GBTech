@@ -1,9 +1,8 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AdminTabShell } from '../../components/AdminTabShell'
-import { DemoCardImage } from '../../components/DemoHeroImage'
+import { DemoOutsideShell } from '../../components/DemoChrome'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
-import { ShowcaseChrome } from '../../components/ShowcaseShell'
 import { MultiSelectChipRail } from '../../components/MultiSelectChipRail'
 import { StaffRoleAllocator } from '../../components/StaffRoleAllocator'
 import { WeekCalendarNav } from '../../components/WeekCalendarNav'
@@ -108,23 +107,16 @@ export default function RoundBoard() {
 
   return (
     <div className="rounds-page theme-rounds">
-      <ShowcaseChrome>
-        <header className="apiary-top ops-admin-head">
-          <Link to="/" className="demo-back">
-            ← All demos
-          </Link>
-          <div>
-            <p className="demo-badge">Round Board · management</p>
-            <h1>Care rounds admin</h1>
-            <p className="demo-sub">Schedule · staff roles · client filters · coverage tools.</p>
-          </div>
-          <span className="demo-theme-tag">Admin backend</span>
-        </header>
-        <div className="demo-hero-photo demo-hero-photo--compact">
-          <DemoCardImage id="rounds" className="demo-hero-photo__img" />
-        </div>
-      </ShowcaseChrome>
+      <DemoOutsideShell imageId="rounds" heroCompact />
       <DemoPitchBar pitchKind="customOps" compareTo="/homecare/visit" compareLabel="Care Visit" />
+      <header className="apiary-top ops-admin-head">
+        <div>
+          <p className="demo-badge">Round Board · management</p>
+          <h1>Care rounds admin</h1>
+          <p className="demo-sub">Schedule · staff roles · client filters · coverage tools.</p>
+        </div>
+        <span className="demo-theme-tag">Admin backend</span>
+      </header>
 
       <div className="ops-admin-deck">
         <AdminTabShell tabs={ADMIN_TABS} active={tab} onChange={setTab}>

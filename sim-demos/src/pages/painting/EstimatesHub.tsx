@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
+import { DemoOutsideShell } from '../../components/DemoChrome'
 import { DemoCardImage } from '../../components/DemoHeroImage'
-import { GbtechDemoNav } from '../../components/GbtechDemoNav'
-import { ShowcaseChrome } from '../../components/ShowcaseShell'
 
 /**
  * Painting estimates landing — two calculators, two jobs.
@@ -9,22 +8,17 @@ import { ShowcaseChrome } from '../../components/ShowcaseShell'
 export default function EstimatesHub() {
   return (
     <div className="hub estimates-hub">
-      <ShowcaseChrome>
-        <GbtechDemoNav />
-        <header className="hub-hero demo-enter">
-          <div className="hub-hero-copy">
-            <p className="demo-badge">Painting estimates · simulated</p>
-            <h1>Estimates</h1>
-            <p className="estimates-hub-intro">
-              Two calculators for a rough sense of cost — indoor rooms, or weatherboards, corrugate, and roof iron.
-              Impression only. Not the same wall-area quote with a different skin.
-            </p>
-            <Link to="/" className="hub-back">
-              ← All demos
-            </Link>
-          </div>
-        </header>
-      </ShowcaseChrome>
+      <DemoOutsideShell showNav />
+      <header className="hub-hero demo-enter">
+        <div className="hub-hero-copy">
+          <p className="demo-badge">Painting estimates · simulated</p>
+          <h1>Estimates</h1>
+          <p className="estimates-hub-intro">
+            Two calculators for a rough sense of cost — indoor rooms, or weatherboards, corrugate, and roof iron.
+            Impression only. Not the same wall-area quote with a different skin.
+          </p>
+        </div>
+      </header>
       <div className="estimates-cards">
         <Link to="/painting/freshcoat" className="hub-card hub-card-freshcoat">
           <DemoCardImage id="freshcoat" />

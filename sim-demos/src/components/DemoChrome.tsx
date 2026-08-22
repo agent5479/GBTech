@@ -1,9 +1,64 @@
+import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { useDemoPresentation } from '../context/DemoPresentation'
 import { DemoCardImage } from './DemoHeroImage'
 import { GbtechDemoNav } from './GbtechDemoNav'
 import { ShowcaseChrome } from './ShowcaseShell'
 import type { DemoImageId } from '../shared/demoAssets'
+
+interface OutsideProps {
+  backTo?: string
+  backLabel?: string
+  imageId?: DemoImageId
+  heroAlt?: string
+  /** Compact hero crop (ops boards). */
+  heroCompact?: boolean
+  showNav?: boolean
+  children?: ReactNode
+}
+
+/** Marketing chrome above the tablet: nav, back link, optional hero. Titles stay in-app. */
+export function DemoOutsideShell({
+  backTo = '/',
+  backLabel = '← All demos',
+  imageId,
+  heroAlt,
+  heroCompact,
+  showNav = false,
+  children,
+}: OutsideProps) {
+  const { showShowcaseChrome } = useDemoPresentation()
+
+  if (!showShowcaseChrome) {
+    return (
+      <>
+        <div className="demo-outside-bar demo-outside-bar--inline">
+          <Link to={backTo} className="demo-back">
+            {backLabel}
+          </Link>
+        </div>
+        {children}
+      </>
+    )
+  }
+
+  return (
+    <ShowcaseChrome>
+      {showNav ? <GbtechDemoNav /> : null}
+      <div className="demo-outside-bar">
+        <Link to={backTo} className="demo-back">
+          {backLabel}
+        </Link>
+      </div>
+      {imageId ? (
+        <div className={`demo-hero-photo${heroCompact ? ' demo-hero-photo--compact' : ''}`}>
+          <DemoCardImage id={imageId} alt={heroAlt} className="demo-hero-photo__img" />
+        </div>
+      ) : null}
+      {children}
+    </ShowcaseChrome>
+  )
+}
 
 interface Props {
   theme: string
@@ -43,22 +98,16 @@ export function DemoChrome({
   }
 
   return (
-    <ShowcaseChrome>
-      <GbtechDemoNav />
-      <header className="demo-chrome">
-        <Link to={backTo} className="demo-back">
-          {backLabel}
-        </Link>
+    <>
+      <DemoOutsideShell backTo={backTo} backLabel={backLabel} imageId={imageId} heroAlt={heroAlt} showNav />
+      <header className="demo-chrome demo-chrome--in-app">
         <div>
           <p className="demo-badge">{badge}</p>
           <h1>{title}</h1>
-          {subtitle && <p className="demo-sub">{subtitle}</p>}
+          {subtitle ? <p className="demo-sub">{subtitle}</p> : null}
         </div>
         <span className="demo-theme-tag">{theme}</span>
       </header>
-      <div className="demo-hero-photo">
-        <DemoCardImage id={imageId} alt={heroAlt} className="demo-hero-photo__img" />
-      </div>
-    </ShowcaseChrome>
+    </>
   )
 }

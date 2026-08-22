@@ -1,9 +1,8 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MapRoute } from '../../components/MapRoute'
-import { DemoCardImage } from '../../components/DemoHeroImage'
+import { DemoOutsideShell } from '../../components/DemoChrome'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
-import { ShowcaseChrome } from '../../components/ShowcaseShell'
 import { buildYachtCalendar } from '../../shared/calendarMock'
 import { forecastForDate } from '../../shared/weatherMock'
 import { SAILING_ROUTES } from '../../shared/sailingRoutes'
@@ -76,31 +75,24 @@ export default function BayAdventure() {
 
   return (
     <div className="adventure-page theme-adventure">
-      <ShowcaseChrome>
-        <header className="adventure-top">
-          <Link to="/" className="demo-back">
-            ← All demos
-          </Link>
-          <div>
-            <p className="demo-badge">Bay Adventure · mission deck</p>
-            <h1>Mission deck day</h1>
-            <p className="demo-sub">
-              Route first on the map, then day and time. Wind/swell can gate launch; crew roles sit on the mission, not a
-              package radio.
-            </p>
-          </div>
-          <span className="demo-theme-tag">Different UI · not a recolour</span>
-        </header>
-        <div className="demo-hero-photo">
-          <DemoCardImage id="adventure" className="demo-hero-photo__img" />
-        </div>
-      </ShowcaseChrome>
+      <DemoOutsideShell imageId="adventure" />
       <DemoPitchBar
         packageTier="advanced"
         compareTo="/yacht/coastal"
         compareLabel="Skippered bay sail"
         engineNote="Two jobs, not two skins — map-first adventure day vs skippered bay sail."
       />
+      <header className="adventure-top">
+        <div>
+          <p className="demo-badge">Bay Adventure · mission deck</p>
+          <h1>Mission deck day</h1>
+          <p className="demo-sub">
+            Route first on the map, then day and time. Wind/swell can gate launch; crew roles sit on the mission, not a
+            package radio.
+          </p>
+        </div>
+        <span className="demo-theme-tag">Different UI · not a recolour</span>
+      </header>
 
       <div className="adventure-deck demo-enter">
         <aside className="adventure-map-pane">

@@ -9,10 +9,9 @@ import {
   formatHandymanBracket,
   jobById,
 } from '../../shared/handymanJobs'
-import { DemoCardImage } from '../../components/DemoHeroImage'
+import { DemoOutsideShell } from '../../components/DemoChrome'
 import { DemoModeBar } from '../../components/DemoModeBar'
 import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
-import { ShowcaseChrome } from '../../components/ShowcaseShell'
 
 const PIPELINE_STAGES = [
   { id: 'new', label: 'New' },
@@ -79,22 +78,7 @@ export default function TradeBoard() {
 
   return (
     <div className="tradeboard-page theme-tradeboard">
-      <ShowcaseChrome>
-        <header className="tradeboard-top">
-          <Link to="/" className="demo-back">
-            ← All demos
-          </Link>
-          <div>
-            <p className="demo-badge">Trade Board · multi-select jobs</p>
-            <h1>Site job board</h1>
-            <p className="demo-sub">Pin trades on one board — same pricing as a repair ticket.</p>
-          </div>
-          <span className="demo-theme-tag">Different UI · not a wizard</span>
-        </header>
-        <div className="demo-hero-photo">
-          <DemoCardImage id="tradeboard" className="demo-hero-photo__img" />
-        </div>
-      </ShowcaseChrome>
+      <DemoOutsideShell imageId="tradeboard" />
       <DemoPitchBar
         packageTier="advanced"
         compareTo="/handyman/bayfix"
@@ -107,6 +91,14 @@ export default function TradeBoard() {
         opsTo="/handyman/tradeboard"
         opsLabel="Admin view"
       />
+      <header className="tradeboard-top">
+        <div>
+          <p className="demo-badge">Trade Board · multi-select jobs</p>
+          <h1>Site job board</h1>
+          <p className="demo-sub">Pin trades on one board — same pricing as a repair ticket.</p>
+        </div>
+        <span className="demo-theme-tag">Different UI · not a wizard</span>
+      </header>
 
       <div className="tradeboard-deck demo-enter">
         <aside className="tradeboard-jobs">
