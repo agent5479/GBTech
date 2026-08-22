@@ -37,15 +37,20 @@ export interface ApiaryStaff {
   id: string
   name: string
   role: string
+  skills: string[]
 }
 
 export interface YardAssignment {
   yardId: string
   staffId: string
+  assistantStaffId?: string
   dayLabel: string
+  weekStart: string
   focus: string
   reminder: boolean
 }
+
+export const STAFF_SKILLS = ['treatment-certified', 'forklift', 'landowner-call', 'extractor'] as const
 
 export const HIVE_YARDS: HiveYard[] = [
   {
@@ -125,19 +130,48 @@ export const HIVE_TASKS: HiveTask[] = [
 ]
 
 export const APIARY_STAFF: ApiaryStaff[] = [
-  { id: 'lars', name: 'Lars', role: 'Lead apiarist' },
-  { id: 'nina', name: 'Nina', role: 'Field hand' },
-  { id: 'tom', name: 'Tom', role: 'Seasonal' },
+  { id: 'lars', name: 'Lars', role: 'Lead apiarist', skills: ['treatment-certified', 'landowner-call', 'extractor'] },
+  { id: 'nina', name: 'Nina', role: 'Field hand', skills: ['treatment-certified', 'forklift'] },
+  { id: 'tom', name: 'Tom', role: 'Seasonal', skills: ['landowner-call'] },
 ]
 
 export const WEEK_DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] as const
 
+function defaultWeekStart(): string {
+  const d = new Date()
+  d.setHours(12, 0, 0, 0)
+  const day = d.getDay()
+  const diff = day === 0 ? -6 : 1 - day
+  d.setDate(d.getDate() + diff)
+  return d.toISOString().slice(0, 10)
+}
+
+const BASE_WEEK = defaultWeekStart()
+
 let assignments: YardAssignment[] = [
-  { yardId: 'collingwood', staffId: 'lars', dayLabel: 'Mon', focus: 'Inspect + treat', reminder: true },
-  { yardId: 'pakawau', staffId: 'nina', dayLabel: 'Mon', focus: 'Feed', reminder: false },
-  { yardId: 'takaka', staffId: 'lars', dayLabel: 'Wed', focus: 'Harvest', reminder: true },
-  { yardId: 'anatoki', staffId: 'tom', dayLabel: 'Thu', focus: 'Inspect', reminder: true },
+  { yardId: 'collingwood', staffId: 'lars', assistantStaffId: 'nina', dayLabel: 'Mon', weekStart: BASE_WEEK, focus: 'Inspect + treat', reminder: true },
+  { yardId: 'pakawau', staffId: 'nina', dayLabel: 'Mon', weekStart: BASE_WEEK, focus: 'Feed', reminder: false },
+  { yardId: 'takaka', staffId: 'lars', dayLabel: 'Wed', weekStart: BASE_WEEK, focus: 'Harvest', reminder: true },
+  { yardId: 'anatoki', staffId: 'tom', dayLabel: 'Thu', weekStart: BASE_WEEK, focus: 'Inspect', reminder: true },
+  { yardId: 'collingwood', staffId: 'tom', dayLabel: 'Tue', weekStart: shiftWeekIso(BASE_WEEK, 1), focus: 'Feed check', reminder: false },
+  { yardId: 'takaka', staffId: 'nina', assistantStaffId: 'tom', dayLabel: 'Fri', weekStart: shiftWeekIso(BASE_WEEK, 1), focus: 'Extract', reminder: true },
 ]
+
+function shiftWeekIso(weekStart: string, delta: number): string {
+  const d = new Date(`${weekStart}T12:00:00`)
+  d.setDate(d.getDate() + delta * 7)
+  return d.toISOString().slice(0, 10)
+}
+
+let staffRoles: Record<string, string> = {
+  lars: 'Lead apiarist',
+  nina: 'Field hand',
+  tom: 'Seasonal',
+}
+
+let staffSkills: Record<string, string[]> = Object.fromEntries(
+  APIARY_STAFF.map((s) => [s.id, [...s.skills]]),
+)
 
 export function yardById(id: string): HiveYard | undefined {
   return HIVE_YARDS.find((y) => y.id === id)
@@ -148,22 +182,71 @@ export function taskById(id: string): HiveTask | undefined {
 }
 
 export function staffById(id: string): ApiaryStaff | undefined {
-  return APIARY_STAFF.find((s) => s.id === id)
+  const base = APIARY_STAFF.find((s) => s.id === id)
+  if (!base) return undefined
+  return { ...base, role: staffRoles[id] ?? base.role, skills: staffSkills[id] ?? base.skills }
+}
+
+export function getAllStaff(): ApiaryStaff[] {
+  return APIARY_STAFF.map((s) => staffById(s.id)!)
 }
 
 export function getAssignments(): YardAssignment[] {
   return assignments.map((a) => ({ ...a }))
 }
 
-export function setAssignmentStaff(yardId: string, dayLabel: string, staffId: string) {
-  assignments = assignments.map((a) =>
-    a.yardId === yardId && a.dayLabel === dayLabel ? { ...a, staffId } : a,
+export function getAssignmentsForWeek(weekStart: string): YardAssignment[] {
+  return getAssignments().filter((a) => a.weekStart === weekStart)
+}
+
+export function getMyAssignmentsToday(staffId: string, weekStart: string, dayLabel: string): YardAssignment[] {
+  return getAssignmentsForWeek(weekStart).filter(
+    (a) => a.dayLabel === dayLabel && (a.staffId === staffId || a.assistantStaffId === staffId),
   )
 }
 
-export function toggleReminder(yardId: string, dayLabel: string) {
+export function setAssignmentStaff(yardId: string, dayLabel: string, weekStart: string, staffId: string) {
   assignments = assignments.map((a) =>
-    a.yardId === yardId && a.dayLabel === dayLabel ? { ...a, reminder: !a.reminder } : a,
+    a.yardId === yardId && a.dayLabel === dayLabel && a.weekStart === weekStart ? { ...a, staffId } : a,
+  )
+}
+
+export function setAssignmentAssistant(
+  yardId: string,
+  dayLabel: string,
+  weekStart: string,
+  assistantStaffId: string | undefined,
+) {
+  assignments = assignments.map((a) =>
+    a.yardId === yardId && a.dayLabel === dayLabel && a.weekStart === weekStart
+      ? { ...a, assistantStaffId: assistantStaffId || undefined }
+      : a,
+  )
+}
+
+export function setStaffRole(staffId: string, role: string) {
+  staffRoles = { ...staffRoles, [staffId]: role }
+}
+
+export function toggleStaffSkill(staffId: string, skill: string) {
+  const current = staffSkills[staffId] ?? []
+  staffSkills = {
+    ...staffSkills,
+    [staffId]: current.includes(skill) ? current.filter((s) => s !== skill) : [...current, skill],
+  }
+}
+
+export function staffWeekLoad(staffId: string, weekStart: string): number {
+  return getAssignmentsForWeek(weekStart).filter(
+    (a) => a.staffId === staffId || a.assistantStaffId === staffId,
+  ).length
+}
+
+export function toggleReminder(yardId: string, dayLabel: string, weekStart: string) {
+  assignments = assignments.map((a) =>
+    a.yardId === yardId && a.dayLabel === dayLabel && a.weekStart === weekStart
+      ? { ...a, reminder: !a.reminder }
+      : a,
   )
 }
 
@@ -171,7 +254,6 @@ export function totalHives(): number {
   return HIVE_YARDS.reduce((s, y) => s + y.hiveCount, 0)
 }
 
-/** Individual hive chips on field log — cap at 6 so the phone stays scannable. */
 export function hiveChipIds(hiveCount: number): number[] {
   const n = Math.min(Math.max(hiveCount, 0), 6)
   return Array.from({ length: n }, (_, i) => i + 1)
@@ -181,7 +263,6 @@ export function quarantineYards(): HiveYard[] {
   return HIVE_YARDS.filter((y) => y.flag === 'quarantine')
 }
 
-/** Dry-only sites that still have a week reminder ticked. */
 export function dryOnlyYardsWithReminder(): HiveYard[] {
   const due = new Set(getAssignments().filter((a) => a.reminder).map((a) => a.yardId))
   return HIVE_YARDS.filter((y) => y.access === 'dry-only' && due.has(y.id))
@@ -216,3 +297,10 @@ export function tasksByCategory(filter: 'common' | 'all'): Record<string, HiveTa
 export const HIVE_MAP_CENTER: [number, number] = [-40.78, 172.76]
 
 export const LIVE_BEEMARSHALL_URL = 'https://agent5479.github.io/LarsBees/beemarshall-full.html'
+
+export const DEMO_FIELD_STAFF_ID = 'lars'
+
+export function todayDayLabel(): string {
+  const labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] as const
+  return labels[new Date().getDay()]
+}

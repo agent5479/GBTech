@@ -8,11 +8,16 @@ import {
   CARE_CLIENTS,
   CARE_MAP_CENTER,
   CARERS,
+  DEMO_FIELD_CARER_ID,
   careTaskById,
+  carerById,
   clientById,
+  getCarerRoundsToday,
+  getRoundsForWeek,
   tasksByGroup,
   visitMinutes,
 } from '../../shared/homecare'
+import { currentWeekStart } from '../../shared/schedulingMock'
 
 const CLOSEOUT_ITEMS = [
   { id: 'keys', label: 'Keys / alarm secured' },
@@ -31,6 +36,11 @@ export default function CareVisit() {
   const [concernFlag, setConcernFlag] = useState(false)
   const [concernNote, setConcernNote] = useState('')
   const [closeout, setCloseout] = useState<string[]>([])
+  const [phoneTab, setPhoneTab] = useState<'visit' | 'plan' | 'today'>('visit')
+
+  const weekStart = currentWeekStart()
+  const myToday = getCarerRoundsToday(DEMO_FIELD_CARER_ID, weekStart)
+  const assignedSlot = getRoundsForWeek(weekStart).find((r) => r.clientId === clientId)
 
   const toggleCloseout = (id: string) => {
     setCloseout((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
@@ -110,6 +120,7 @@ export default function CareVisit() {
         engineNote="Field visit log vs management day roster — staff + coordination."
       />
 
+      <div className="ops-field-flow">
       <div className="hive-field-layout">
         <div className="hive-map-card hive-map-card--field">
           <MarkersMap
@@ -123,6 +134,67 @@ export default function CareVisit() {
         </div>
 
         <PhoneShell brand="Care Visit">
+          <div className="field-phone-tabs" role="tablist">
+            {(['visit', 'plan', 'today'] as const).map((t) => (
+              <button
+                key={t}
+                type="button"
+                role="tab"
+                className={phoneTab === t ? 'on' : ''}
+                onClick={() => setPhoneTab(t)}
+              >
+                {t === 'visit' ? 'Visit' : t === 'plan' ? 'Plan' : 'Today'}
+              </button>
+            ))}
+          </div>
+          {assignedSlot && phoneTab === 'visit' ? (
+            <p className="assigned-banner">
+              Assigned: {carerById(assignedSlot.carerId)?.name} · {assignedSlot.time}
+              {assignedSlot.reliefCarerId ? ` · relief ${carerById(assignedSlot.reliefCarerId)?.name}` : ''}
+            </p>
+          ) : null}
+
+          {phoneTab === 'plan' && client && (
+            <div className="hive-phone care-phone">
+              <aside className="care-plan-sticky care-plan-full">
+                <p className="care-plan-kicker">Care plan</p>
+                <strong>{client.name}</strong>
+                <p>{client.planNote}</p>
+                {client.medsDue.length ? (
+                  <>
+                    <h4>Meds schedule</h4>
+                    <ul>
+                      {client.medsDue.map((m) => (
+                        <li key={m}>{m}</li>
+                      ))}
+                    </ul>
+                  </>
+                ) : null}
+              </aside>
+            </div>
+          )}
+
+          {phoneTab === 'today' && (
+            <div className="hive-phone care-phone">
+              <p className="phone-kicker">My round today</p>
+              <ul className="roster-day-list">
+                {myToday.map((r) => {
+                  const cl = clientById(r.clientId)
+                  return (
+                    <li key={r.id}>
+                      <strong>
+                        {r.time} · {cl?.name}
+                      </strong>
+                      <span>{cl?.suburb}</span>
+                      <small>{r.covered ? 'Covered' : 'Uncovered'}</small>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          )}
+
+          {phoneTab === 'visit' && (
           <div className="hive-phone care-phone">
             {client && (
               <aside className="care-plan-sticky">
@@ -247,7 +319,9 @@ export default function CareVisit() {
               Complete visit
             </button>
           </div>
+          )}
         </PhoneShell>
+      </div>
       </div>
     </div>
   )

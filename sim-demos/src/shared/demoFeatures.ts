@@ -17,19 +17,19 @@ export const DEMO_FEATURES: Record<string, DemoFeatureMeta> = {
   },
   '/beekeeping/hiverun': {
     role: 'ops',
-    features: ['Treatment checklist', 'Landowner call-first', 'Cluster map'],
+    features: ['My roster tab', 'Field ↔ admin link', 'Treatment checklist'],
   },
   '/beekeeping/apiary': {
     role: 'ops',
-    features: ['Visit sequence', 'Overdue banner', 'Week roster grid'],
+    features: ['Admin tabs', 'Multi-week roster', 'Staff role assign'],
   },
   '/homecare/visit': {
     role: 'ops',
-    features: ['Incident flag', 'Close-out checklist', 'Care-plan card'],
+    features: ['Today tab', 'Assigned carer banner', 'Close-out checklist'],
   },
   '/homecare/rounds': {
     role: 'ops',
-    features: ['Travel gaps', 'Status pipeline', 'Coverage headline'],
+    features: ['Admin tabs', 'Skills filter', 'Coverage auto-fill'],
   },
   '/fitness/studioflow': {
     role: 'booking',

@@ -5,15 +5,20 @@ import { DemoPitchBar, DemoQuoteCta } from '../../components/DemoPitch'
 import { MarkersMap } from '../../components/MarkersMap'
 import { PhoneShell } from '../../components/PhoneShell'
 import {
+  DEMO_FIELD_STAFF_ID,
   HIVE_MAP_CENTER,
   HIVE_YARDS,
   LIVE_BEEMARSHALL_URL,
+  getMyAssignmentsToday,
   hiveChipIds,
+  staffById,
   taskById,
   tasksByCategory,
+  todayDayLabel,
   yardById,
   type HiveFlag,
 } from '../../shared/beekeeping'
+import { currentWeekStart } from '../../shared/schedulingMock'
 
 const TREATMENT_COMPLIANCE = [
   { id: 'ppe', label: 'PPE on — gloves & veil' },
@@ -33,6 +38,12 @@ export default function HiveRun() {
   const [breakHives, setBreakHives] = useState(false)
   const [hivePick, setHivePick] = useState<number | null>(null)
   const [compliance, setCompliance] = useState<string[]>([])
+  const [phoneTab, setPhoneTab] = useState<'log' | 'roster' | 'tasks'>('log')
+
+  const weekStart = currentWeekStart()
+  const todayLabel = todayDayLabel()
+  const myRoster = getMyAssignmentsToday(DEMO_FIELD_STAFF_ID, weekStart, todayLabel)
+  const assignedLead = myRoster.length ? staffById(myRoster[0].staffId) : undefined
 
   const toggleCompliance = (id: string) => {
     setCompliance((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
@@ -125,6 +136,7 @@ export default function HiveRun() {
         engineNote="Field log-action vs management dashboard — no public client booking."
       />
 
+      <div className="ops-field-flow">
       <div className="hive-field-layout">
         <div className="hive-map-card hive-map-card--field">
           <MarkersMap
@@ -138,6 +150,69 @@ export default function HiveRun() {
         </div>
 
         <PhoneShell brand="Hive Run">
+          <div className="field-phone-tabs" role="tablist">
+            {(['log', 'roster', 'tasks'] as const).map((t) => (
+              <button
+                key={t}
+                type="button"
+                role="tab"
+                className={phoneTab === t ? 'on' : ''}
+                onClick={() => setPhoneTab(t)}
+              >
+                {t === 'log' ? 'Log' : t === 'roster' ? 'My roster' : 'Tasks'}
+              </button>
+            ))}
+          </div>
+          {assignedLead && phoneTab === 'log' ? (
+            <p className="assigned-banner">
+              Today: {assignedLead.name} · {myRoster.length} yard{myRoster.length === 1 ? '' : 's'} on roster
+            </p>
+          ) : null}
+
+          {phoneTab === 'roster' && (
+            <div className="hive-phone">
+              <p className="phone-kicker">My roster · {todayLabel}</p>
+              {myRoster.length ? (
+                <ul className="roster-day-list">
+                  {myRoster.map((a) => {
+                    const y = yardById(a.yardId)
+                    return (
+                      <li key={`${a.yardId}-${a.dayLabel}`}>
+                        <strong>{y?.name}</strong>
+                        <span>{a.focus}</span>
+                        {a.assistantStaffId ? (
+                          <small>+ {staffById(a.assistantStaffId)?.name}</small>
+                        ) : null}
+                      </li>
+                    )
+                  })}
+                </ul>
+              ) : (
+                <p className="hint">No yards assigned for this demo day — check Apiary Board.</p>
+              )}
+            </div>
+          )}
+
+          {phoneTab === 'tasks' && (
+            <div className="hive-phone">
+              <p className="phone-kicker">Task reference</p>
+              {Object.entries(tasksByCategory('all')).map(([cat, list]) => (
+                <section key={cat} className="task-cat">
+                  <h3>{cat}</h3>
+                  <ul className="task-ref-list">
+                    {list.map((t) => (
+                      <li key={t.id}>
+                        {t.name}
+                        {t.common ? ' ★' : ''}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+          )}
+
+          {phoneTab === 'log' && (
           <div className="hive-phone">
             <p className="phone-kicker">At this cluster</p>
             <div className="cluster-pick">
@@ -270,7 +345,9 @@ export default function HiveRun() {
               Log actions
             </button>
           </div>
+          )}
         </PhoneShell>
+      </div>
       </div>
     </div>
   )

@@ -23,17 +23,24 @@ export interface CareTask {
 export interface Carer {
   id: string
   name: string
+  role: string
+  skills: string[]
+  maxVisitsPerDay: number
 }
 
 export interface RoundSlot {
   id: string
   clientId: string
   time: string
+  weekStart: string
   carerId: string
+  reliefCarerId?: string
   tasks: string[]
   handoff: string
   covered: boolean
 }
+
+export const CARER_SKILLS = ['meds', 'hoist', 'dementia', 'special-needs'] as const
 
 export const CARE_CLIENTS: CareClient[] = [
   {
@@ -85,18 +92,36 @@ export const CARE_TASKS: CareTask[] = [
 ]
 
 export const CARERS: Carer[] = [
-  { id: 'ana', name: 'Ana' },
-  { id: 'craig', name: 'Craig' },
-  { id: 'zoe', name: 'Zoe' },
+  { id: 'ana', name: 'Ana', role: 'Lead carer', skills: ['meds', 'hoist', 'dementia'], maxVisitsPerDay: 4 },
+  { id: 'craig', name: 'Craig', role: 'Relief', skills: ['meds', 'special-needs'], maxVisitsPerDay: 3 },
+  { id: 'zoe', name: 'Zoe', role: 'Trainee', skills: ['meds'], maxVisitsPerDay: 3 },
 ]
 
 export const ROUND_HOURS = ['08:30', '10:00', '13:00', '15:30'] as const
+
+function defaultWeekStart(): string {
+  const d = new Date()
+  d.setHours(12, 0, 0, 0)
+  const day = d.getDay()
+  const diff = day === 0 ? -6 : 1 - day
+  d.setDate(d.getDate() + diff)
+  return d.toISOString().slice(0, 10)
+}
+
+function shiftWeekIso(weekStart: string, delta: number): string {
+  const d = new Date(`${weekStart}T12:00:00`)
+  d.setDate(d.getDate() + delta * 7)
+  return d.toISOString().slice(0, 10)
+}
+
+const BASE_WEEK = defaultWeekStart()
 
 let rounds: RoundSlot[] = [
   {
     id: 'r1',
     clientId: 'eleanor',
     time: '08:30',
+    weekStart: BASE_WEEK,
     carerId: 'ana',
     tasks: ['meds', 'mobility'],
     handoff: 'Slept well · cane by door',
@@ -106,6 +131,7 @@ let rounds: RoundSlot[] = [
     id: 'r2',
     clientId: 'harold',
     time: '10:00',
+    weekStart: BASE_WEEK,
     carerId: 'craig',
     tasks: ['meal', 'notes'],
     handoff: '',
@@ -115,7 +141,9 @@ let rounds: RoundSlot[] = [
     id: 'r3',
     clientId: 'ruth',
     time: '13:00',
+    weekStart: BASE_WEEK,
     carerId: 'zoe',
+    reliefCarerId: 'ana',
     tasks: ['personal', 'meal'],
     handoff: 'Prefer afternoon visits',
     covered: false,
@@ -124,12 +152,36 @@ let rounds: RoundSlot[] = [
     id: 'r4',
     clientId: 'ben',
     time: '15:30',
+    weekStart: BASE_WEEK,
     carerId: 'ana',
     tasks: ['personal', 'notes'],
     handoff: '',
     covered: true,
   },
+  {
+    id: 'r5',
+    clientId: 'eleanor',
+    time: '08:30',
+    weekStart: shiftWeekIso(BASE_WEEK, 1),
+    carerId: 'craig',
+    tasks: ['meds', 'bp'],
+    handoff: '',
+    covered: true,
+  },
+  {
+    id: 'r6',
+    clientId: 'ben',
+    time: '13:00',
+    weekStart: shiftWeekIso(BASE_WEEK, 1),
+    carerId: 'zoe',
+    tasks: ['personal'],
+    handoff: '',
+    covered: false,
+  },
 ]
+
+let carerRoles: Record<string, string> = Object.fromEntries(CARERS.map((c) => [c.id, c.role]))
+let carerSkills: Record<string, string[]> = Object.fromEntries(CARERS.map((c) => [c.id, [...c.skills]]))
 
 export function clientById(id: string): CareClient | undefined {
   return CARE_CLIENTS.find((c) => c.id === id)
@@ -140,15 +192,35 @@ export function careTaskById(id: string): CareTask | undefined {
 }
 
 export function carerById(id: string): Carer | undefined {
-  return CARERS.find((c) => c.id === id)
+  const base = CARERS.find((c) => c.id === id)
+  if (!base) return undefined
+  return { ...base, role: carerRoles[id] ?? base.role, skills: carerSkills[id] ?? base.skills }
+}
+
+export function getAllCarers(): Carer[] {
+  return CARERS.map((c) => carerById(c.id)!)
 }
 
 export function getRounds(): RoundSlot[] {
   return rounds.map((r) => ({ ...r, tasks: [...r.tasks] }))
 }
 
+export function getRoundsForWeek(weekStart: string): RoundSlot[] {
+  return getRounds().filter((r) => r.weekStart === weekStart)
+}
+
+export function getCarerRoundsToday(carerId: string, weekStart: string): RoundSlot[] {
+  return getRoundsForWeek(weekStart).filter(
+    (r) => r.carerId === carerId || r.reliefCarerId === carerId,
+  )
+}
+
 export function setRoundCarer(id: string, carerId: string) {
   rounds = rounds.map((r) => (r.id === id ? { ...r, carerId } : r))
+}
+
+export function setRoundRelief(id: string, reliefCarerId: string | undefined) {
+  rounds = rounds.map((r) => (r.id === id ? { ...r, reliefCarerId: reliefCarerId || undefined } : r))
 }
 
 export function toggleRoundCovered(id: string) {
@@ -157,6 +229,48 @@ export function toggleRoundCovered(id: string) {
 
 export function setRoundHandoff(id: string, handoff: string) {
   rounds = rounds.map((r) => (r.id === id ? { ...r, handoff } : r))
+}
+
+export function setCarerRole(carerId: string, role: string) {
+  carerRoles = { ...carerRoles, [carerId]: role }
+}
+
+export function toggleCarerSkill(carerId: string, skill: string) {
+  const current = carerSkills[carerId] ?? []
+  carerSkills = {
+    ...carerSkills,
+    [carerId]: current.includes(skill) ? current.filter((s) => s !== skill) : [...current, skill],
+  }
+}
+
+export function carerWeekLoad(carerId: string, weekStart: string): number {
+  return getRoundsForWeek(weekStart).filter(
+    (r) => r.carerId === carerId || r.reliefCarerId === carerId,
+  ).length
+}
+
+export function suggestCarerForClient(clientId: string, weekStart: string): string | undefined {
+  const client = clientById(clientId)
+  if (!client) return undefined
+  const needsMeds = client.medsDue.length > 0
+  const candidates = getAllCarers()
+    .filter((c) => !needsMeds || c.skills.includes('meds'))
+    .filter((c) => carerWeekLoad(c.id, weekStart) < c.maxVisitsPerDay)
+  return candidates[0]?.id
+}
+
+export function autoFillCoverageGaps(weekStart: string): number {
+  let filled = 0
+  rounds = rounds.map((r) => {
+    if (r.weekStart !== weekStart || r.covered) return r
+    const relief = suggestCarerForClient(r.clientId, weekStart)
+    if (relief && relief !== r.carerId) {
+      filled++
+      return { ...r, reliefCarerId: relief, covered: true }
+    }
+    return r
+  })
+  return filled
 }
 
 export function visitMinutes(taskIds: string[]): number {
@@ -170,3 +284,14 @@ export function tasksByGroup(): Record<CareTaskGroup, CareTask[]> {
 }
 
 export const CARE_MAP_CENTER: [number, number] = [-40.8, 172.8]
+
+export const DEMO_FIELD_CARER_ID = 'ana'
+
+export function clientNeedsForCarer(clientId: string): string[] {
+  const c = clientById(clientId)
+  if (!c) return []
+  const needs: string[] = []
+  if (c.medsDue.length) needs.push('meds')
+  if (c.planNote.toLowerCase().includes('special')) needs.push('special-needs')
+  return needs
+}
