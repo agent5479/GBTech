@@ -417,19 +417,23 @@ textarea {
 .hub-card h2,
 .hub-card .hub-look,
 .hub-card > p,
-.hub-card .hub-go {
-  margin-left: 1.35rem;
-  margin-right: 1.35rem;
+.hub-card .hub-go,
+.hub-card .hub-role-tag,
+.hub-card .hub-feature-tags {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .hub-card .hub-kind {
   display: block;
   margin-top: 1rem;
+  margin-bottom: 0;
 }
 
 .hub-card .hub-go {
   display: inline-block;
-  margin-bottom: 1.25rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1.35rem;
 }
 
 .demo-hero-photo {
@@ -520,8 +524,12 @@ textarea {
 }
 
 .hub-card h2 {
-  margin: 0.35rem 0;
-  font-size: 1.2rem;
+  margin-top: 0.55rem;
+  margin-bottom: 0.4rem;
+  font-size: 1.38rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 .hub-kind {
@@ -535,7 +543,14 @@ textarea {
 .hub-look {
   font-size: 0.85rem;
   color: #6b5258;
-  margin: 0 0 0.5rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.hub-card > p:not(.hub-look) {
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+  line-height: 1.45;
 }
 
 .hub-go {
@@ -5545,7 +5560,8 @@ textarea {
 
 .hub-role-tag {
   display: inline-block;
-  margin: 0.75rem 1.35rem 0;
+  margin-top: 0.85rem;
+  margin-bottom: 0;
   padding: 0.15rem 0.5rem;
   border-radius: 999px;
   font-size: 0.62rem;
@@ -5571,7 +5587,8 @@ textarea {
 
 .hub-feature-tags {
   list-style: none;
-  margin: 0 1.35rem 0.75rem;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
