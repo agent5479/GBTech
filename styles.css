@@ -1,29 +1,30 @@
-/* GBTech — warm light theme, burgundy & golden orange branding */
+/* GBTech — charcoal / GB green / lime / gold / light */
 
 :root {
-  --bg: #FAF6F2;
-  --bg-subtle: #F3EBE4;
+  --bg: #F6F7F8;
+  --bg-subtle: #EEF0F2;
   --panel-bg: #FFFFFF;
-  --border: #E5D8CF;
-  --border-strong: #C9B5A8;
-  --text: #2E1A20;
-  --text-muted: #6B5258;
-  --accent: #D3993C;
-  --accent-bright: #C4862E;
-  --accent-alt: #B87A1F;
-  --accent-magenta: #4B0D1C;
-  --accent-magenta-mid: #7A2438;
-  --accent-magenta-dark: #3A0C17;
-  --accent-magenta-light: #F5EBEE;
-  --text-on-accent: #4B0D1C;
-  --text-on-burgundy: #FAF6F2;
-  --accent-glow: rgba(211, 153, 60, 0.28);
-  --magenta-glow: rgba(75, 13, 28, 0.14);
+  --border: #D8DCE0;
+  --border-strong: #B8BEC4;
+  --text: #111418;
+  --text-muted: #5A6169;
+  --accent: #D4AF37;
+  --accent-bright: #E0C04A;
+  --accent-alt: #B8962E;
+  --lime: #A7D129;
+  --accent-magenta: #2E7D32;
+  --accent-magenta-mid: #388E3C;
+  --accent-magenta-dark: #1B5E20;
+  --accent-magenta-light: #E8F5E9;
+  --text-on-accent: #111418;
+  --text-on-burgundy: #F6F7F8;
+  --accent-glow: rgba(212, 175, 55, 0.3);
+  --magenta-glow: rgba(46, 125, 50, 0.16);
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --section-gap: 1.25rem;
-  --shadow-panel: 0 2px 10px rgba(75, 13, 28, 0.06), 0 1px 2px rgba(75, 13, 28, 0.04);
+  --shadow-panel: 0 2px 10px rgba(17, 20, 24, 0.06), 0 1px 2px rgba(17, 20, 24, 0.04);
 }
 
 *,
@@ -40,7 +41,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(180deg, #FFFDFB 0%, var(--bg) 35%, #F5EDE6 100%);
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--bg) 40%, #EEF0F2 100%);
   background-attachment: fixed;
   color: var(--text);
   font-family: "DM Sans", system-ui, sans-serif;
@@ -144,7 +145,7 @@ p:last-child {
   border: 2px solid var(--border-strong);
   border-radius: var(--radius-sm);
   display: block;
-  box-shadow: 0 2px 8px rgba(75, 13, 28, 0.08);
+  box-shadow: 0 2px 8px rgba(17, 20, 24, 0.08);
 }
 
 .hero-text {
@@ -265,7 +266,7 @@ p:last-child {
 .cta-button.primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: var(--accent-magenta);
+  color: var(--text-on-accent);
   box-shadow: 0 2px 8px var(--accent-glow);
   font-size: 0.9rem;
   padding: 0.875rem 1.5rem;
@@ -274,7 +275,7 @@ p:last-child {
 .cta-button.primary:hover {
   background: var(--accent-bright);
   border-color: var(--accent-bright);
-  color: var(--accent-magenta-dark);
+  color: var(--text);
 }
 
 .cta-button.secondary {
@@ -315,7 +316,7 @@ p:last-child {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--accent);
-  background: rgba(211, 153, 60, 0.12);
+  background: rgba(212, 175, 55, 0.14);
   border: 1px solid var(--accent);
   border-radius: var(--radius-sm);
   padding: 0.2rem 0.6rem;
@@ -335,7 +336,7 @@ p:last-child {
   display: block;
   font-size: 0.95rem;
   line-height: 1.5;
-  color: rgba(250, 246, 242, 0.88);
+  color: rgba(246, 247, 248, 0.88);
   margin-bottom: 0.75rem;
   max-width: 36rem;
 }
@@ -737,9 +738,9 @@ p:last-child {
   height: 3rem;
   margin: 1.15rem 1.35rem 0.65rem;
   border-radius: var(--radius-sm);
-  color: var(--accent);
-  background: linear-gradient(145deg, rgba(211, 153, 60, 0.14), rgba(75, 13, 28, 0.06));
-  border: 1px solid rgba(211, 153, 60, 0.35);
+  color: var(--accent-magenta);
+  background: linear-gradient(145deg, rgba(167, 209, 41, 0.16), rgba(46, 125, 50, 0.08));
+  border: 1px solid rgba(46, 125, 50, 0.28);
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
@@ -750,9 +751,9 @@ p:last-child {
 }
 
 .spectrum-card:hover .spectrum-icon {
-  color: var(--accent-magenta);
-  border-color: var(--accent);
-  background: linear-gradient(145deg, rgba(211, 153, 60, 0.22), rgba(75, 13, 28, 0.1));
+  color: var(--accent-magenta-dark);
+  border-color: var(--lime);
+  background: linear-gradient(145deg, rgba(167, 209, 41, 0.28), rgba(46, 125, 50, 0.12));
   transform: translateY(-1px);
 }
 
@@ -775,8 +776,8 @@ p:last-child {
 }
 
 .demo-card-mohua {
-  border-color: rgba(75, 13, 28, 0.28);
-  background: linear-gradient(165deg, #faf6f2 0%, var(--bg-subtle) 100%);
+  border-color: rgba(46, 125, 50, 0.28);
+  background: linear-gradient(165deg, #F6F7F8 0%, var(--bg-subtle) 100%);
 }
 
 .demo-card-bayhop {
@@ -1179,7 +1180,7 @@ body.marshall-page .page-nav {
   border-radius: 0;
   border-left: none;
   border-right: none;
-  box-shadow: 0 2px 12px rgba(75, 13, 28, 0.28);
+  box-shadow: 0 2px 12px rgba(46, 125, 50, 0.28);
   width: 100vw;
   max-width: 100vw;
   margin-left: calc(50% - 50vw);
@@ -1205,7 +1206,7 @@ body.marshall-page .page-nav-back:hover {
 
 body.gbtech-page .page-nav-brand,
 body.marshall-page .page-nav-brand {
-  color: rgba(250, 246, 242, 0.85);
+  color: rgba(246, 247, 248, 0.85);
 }
 
 body.gbtech-page .page-nav-brand strong,
@@ -1229,7 +1230,7 @@ body.marshall-page .page-nav-links {
   gap: 0.4rem 0.5rem;
   padding-top: 0.65rem;
   margin-top: 0.65rem;
-  border-top: 1px solid rgba(250, 246, 242, 0.2);
+  border-top: 1px solid rgba(246, 247, 248, 0.22);
 }
 
 body.gbtech-page .page-nav-links a,
@@ -1240,7 +1241,7 @@ body.marshall-page .page-nav-links a {
   font-weight: 600;
   color: var(--text-on-burgundy);
   text-decoration: none;
-  border: 1px solid rgba(250, 246, 242, 0.35);
+  border: 1px solid rgba(246, 247, 248, 0.35);
   border-radius: 999px;
   transition: background 0.2s ease, border-color 0.2s ease;
 }
@@ -1249,8 +1250,8 @@ body.gbtech-page .page-nav-links a:hover,
 body.gbtech-page .page-nav-links a:focus-visible,
 body.marshall-page .page-nav-links a:hover,
 body.marshall-page .page-nav-links a:focus-visible {
-  background: rgba(211, 153, 60, 0.2);
-  border-color: var(--accent);
+  background: rgba(167, 209, 41, 0.22);
+  border-color: var(--lime);
   outline: none;
 }
 
@@ -1322,7 +1323,7 @@ body.gbtech-page .package-tier-featured,
 body.marshall-page .package-tier-featured {
   border-color: var(--accent);
   box-shadow: 0 4px 20px var(--accent-glow);
-  background: linear-gradient(to bottom, rgba(211, 153, 60, 0.06), var(--bg-subtle));
+  background: linear-gradient(to bottom, rgba(212, 175, 55, 0.08), var(--bg-subtle));
 }
 
 body.gbtech-page .tier-badge,
@@ -1333,8 +1334,8 @@ body.marshall-page .tier-badge {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--accent);
-  background: rgba(211, 153, 60, 0.12);
-  border: 1px solid rgba(211, 153, 60, 0.35);
+  background: rgba(212, 175, 55, 0.14);
+  border: 1px solid rgba(212, 175, 55, 0.4);
   border-radius: 999px;
   padding: 0.3rem 0.65rem;
   margin: 0 0 0.75rem;
@@ -1743,7 +1744,7 @@ body.marshall-page .comparison-table tbody th {
   font-size: 0.9rem;
   font-weight: 500;
   z-index: 1000;
-  box-shadow: 0 -4px 16px rgba(75, 13, 28, 0.06);
+  box-shadow: 0 -4px 16px rgba(17, 20, 24, 0.06);
 }
 
 .footer-label {
