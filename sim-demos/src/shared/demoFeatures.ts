@@ -25,14 +25,18 @@ export const DEMO_FEATURES: Record<string, DemoFeatureMeta> = {
   '/venue/hallboard': {
     role: 'ops',
     features: [
+      'Day navigation',
+      'Occupancy strip',
+      'Search board',
+      'Status filters',
+      'Find next booking',
+      'Colour prefs',
       'KPI header',
-      'Coverage banner',
       'Rooms × hours grid',
       'Turnaround buffer',
       'Status cycle',
       'Staff assignee',
-      'Free-slot coverage',
-      'Demo mode',
+      'Place hold',
     ],
   },
   '/beekeeping/hiverun': {

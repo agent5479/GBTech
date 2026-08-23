@@ -5579,141 +5579,6 @@ table.hall-time-grid {
   opacity: 0.85;
 }
 
-.hub-feature-index {
-  margin: 2.5rem 0 1rem;
-  padding: 0;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 244, 240, 0.9));
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  overflow: hidden;
-}
-
-.hub-feature-index__summary {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.5rem 1rem;
-  padding: 1.1rem 1.35rem;
-  cursor: pointer;
-  list-style: none;
-  user-select: none;
-}
-
-.hub-feature-index__summary::-webkit-details-marker {
-  display: none;
-}
-
-.hub-feature-index__summary::after {
-  content: 'Show';
-  margin-left: auto;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  opacity: 0.55;
-}
-
-.hub-feature-index[open] > .hub-feature-index__summary::after {
-  content: 'Hide';
-}
-
-.hub-feature-index__summary .hub-theme {
-  margin: 0;
-}
-
-.hub-feature-index__hint {
-  font-size: 0.85rem;
-  opacity: 0.7;
-}
-
-.hub-feature-index__body {
-  padding: 0 1.5rem 1.5rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.hub-feature-index__lead {
-  margin: 1rem 0;
-  max-width: 52rem;
-}
-
-.hub-feature-index__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.hub-feature-index__col {
-  padding: 1rem;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.hub-feature-index__col h3 {
-  margin: 0 0 0.65rem;
-  font-size: 0.95rem;
-}
-
-.hub-feature-index__col ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-
-.hub-feature-index__col li {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.4rem;
-  padding: 0.45rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.hub-feature-index__col > ul > li:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
-
-.hub-feature-index__link {
-  font-weight: 600;
-  color: #5a2a35;
-  text-decoration: none;
-}
-
-.hub-feature-index__link:hover {
-  text-decoration: underline;
-}
-
-.hub-feature-index__pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.hub-feature-index__pills > li {
-  display: contents;
-  padding: 0;
-  border: 0;
-}
-
-.hub-feature-chip {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.68rem;
-  font-weight: 600;
-  padding: 0.18rem 0.48rem;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.06);
-  color: rgba(0, 0, 0, 0.65);
-}
-
 .hub-role-tag {
   display: inline-block;
   margin-top: 0.85rem;
@@ -5753,16 +5618,33 @@ table.hall-time-grid {
 
 .hub-feature-tags li {
   font-size: 0.68rem;
-  padding: 0.15rem 0.45rem;
+  padding: 0.2rem 0.5rem;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.05);
-  color: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-@media (max-width: 900px) {
-  .hub-feature-index__grid {
-    grid-template-columns: 1fr;
-  }
+/* Dark hub cards — light badges for readable contrast */
+.hub-card--ink .hub-feature-tags li {
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.hub-card--ink .hub-role-tag--booking {
+  background: rgba(140, 190, 230, 0.28);
+  color: #e8f4fc;
+}
+
+.hub-card--ink .hub-role-tag--estimate {
+  background: rgba(230, 190, 100, 0.3);
+  color: #fff4d6;
+}
+
+.hub-card--ink .hub-role-tag--ops {
+  background: rgba(150, 210, 170, 0.28);
+  color: #e6f8ec;
 }
 
 /* ——— Ops admin backend + slim field layout ——— */

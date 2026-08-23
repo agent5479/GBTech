@@ -1,9 +1,8 @@
-import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { DemoCardImage } from '../components/DemoHeroImage'
 import { GbtechDemoNav } from '../components/GbtechDemoNav'
 import type { DemoImageId } from '../shared/demoAssets'
-import { DEMO_FEATURES, ROLE_LABELS, type DemoRole } from '../shared/demoFeatures'
+import { DEMO_FEATURES, ROLE_LABELS } from '../shared/demoFeatures'
 
 const GROUPS: {
   heading: string
@@ -14,6 +13,8 @@ const GROUPS: {
     look: string
     blurb: string
     card: string
+    /** Dark-surface cards need light badge contrast. */
+    ink?: boolean
     imageId: DemoImageId
   }[]
 }[] = [
@@ -36,6 +37,7 @@ const GROUPS: {
         look: 'Ink · brass',
         blurb: 'Staff day grid — hold, confirm, or block each room window.',
         card: 'hub-card-hallboard',
+        ink: true,
         imageId: 'hallboard',
       },
     ],
@@ -59,6 +61,7 @@ const GROUPS: {
         look: 'Wax · forest',
         blurb: 'KPI strip, cluster map, staff × day week grid — management ops.',
         card: 'hub-card-apiary',
+        ink: true,
         imageId: 'apiary',
       },
     ],
@@ -82,6 +85,7 @@ const GROUPS: {
         look: 'Navy · coral',
         blurb: 'Carers × visit windows — uncovered visits headline the board.',
         card: 'hub-card-rounds',
+        ink: true,
         imageId: 'rounds',
       },
     ],
@@ -105,6 +109,7 @@ const GROUPS: {
         look: 'Charcoal · lime',
         blurb: 'Fill bars, caps, exercise ticks — run the room from the board.',
         card: 'hub-card-classboard',
+        ink: true,
         imageId: 'classboard',
       },
     ],
@@ -128,6 +133,7 @@ const GROUPS: {
         look: 'Timber · straw · brass',
         blurb: 'Horses × days — rest, farrier, farmstay on one planner.',
         card: 'hub-card-yardboard',
+        ink: true,
         imageId: 'yardboard',
       },
     ],
@@ -174,6 +180,7 @@ const GROUPS: {
         look: 'Charcoal · citrus',
         blurb: 'Tablet place-grid From/To — road path, vehicle cards, time rail.',
         card: 'hub-card-bayhop',
+        ink: true,
         imageId: 'bayhop',
       },
     ],
@@ -197,6 +204,7 @@ const GROUPS: {
         look: 'Graphite · signal orange',
         blurb: 'Pin trade chips on one board — live estimate beside the day rail.',
         card: 'hub-card-tradeboard',
+        ink: true,
         imageId: 'tradeboard',
       },
     ],
@@ -243,28 +251,14 @@ const GROUPS: {
         look: 'Charcoal · paint yellow',
         blurb: 'Cladding profile, roof pitch, primers — copy or print the impression.',
         card: 'hub-card-paintboard',
+        ink: true,
         imageId: 'paintboard',
       },
     ],
   },
 ]
 
-const ALL_DEMOS = GROUPS.flatMap((g) => g.demos)
-
 export default function Hub() {
-  const featureIndex = useMemo(() => {
-    const byRole: Record<DemoRole, typeof ALL_DEMOS> = {
-      booking: [],
-      estimate: [],
-      ops: [],
-    }
-    for (const demo of ALL_DEMOS) {
-      const meta = DEMO_FEATURES[demo.to]
-      if (meta) byRole[meta.role].push(demo)
-    }
-    return byRole
-  }, [])
-
   return (
     <div className="hub">
       <GbtechDemoNav />
@@ -295,15 +289,21 @@ export default function Hub() {
             {group.demos.map((d) => {
               const meta = DEMO_FEATURES[d.to]
               return (
-                <Link key={d.to} to={d.to} className={`hub-card ${d.card}`}>
+                <Link
+                  key={d.to}
+                  to={d.to}
+                  className={`hub-card ${d.card}${d.ink ? ' hub-card--ink' : ''}`}
+                >
                   <DemoCardImage id={d.imageId} />
-                  {meta ? <span className={`hub-role-tag hub-role-tag--${meta.role}`}>{ROLE_LABELS[meta.role]}</span> : null}
+                  {meta ? (
+                    <span className={`hub-role-tag hub-role-tag--${meta.role}`}>{ROLE_LABELS[meta.role]}</span>
+                  ) : null}
                   <span className="hub-kind">{d.kind}</span>
                   <h2>{d.title}</h2>
                   <p className="hub-look">{d.look}</p>
                   <p>{d.blurb}</p>
                   {meta?.features.length ? (
-                    <ul className="hub-feature-tags">
+                    <ul className="hub-feature-tags" aria-label={`${d.title} capabilities`}>
                       {meta.features.map((f) => (
                         <li key={f}>{f}</li>
                       ))}
@@ -316,48 +316,6 @@ export default function Hub() {
           </div>
         </section>
       ))}
-
-      <details className="hub-feature-index">
-        <summary className="hub-feature-index__summary">
-          <span className="hub-theme">Feature showroom</span>
-          <span className="hub-feature-index__hint">Capability catalog — expand to browse</span>
-        </summary>
-        <div className="hub-feature-index__body">
-          <p className="hub-feature-index__lead">
-            Full capability lists per demo — checklists, boards, maps, wallets, and confirm gates you can mix into a
-            custom build.
-          </p>
-          <div className="hub-feature-index__grid">
-            {(Object.keys(featureIndex) as DemoRole[]).map((role) => (
-              <article key={role} className={`hub-feature-index__col hub-feature-index__col--${role}`}>
-                <h3>{ROLE_LABELS[role]}</h3>
-                <ul>
-                  {featureIndex[role].map((d) => {
-                    const meta = DEMO_FEATURES[d.to]
-                    return (
-                      <li key={d.to}>
-                        <Link to={d.to} className="hub-feature-index__link">
-                          {d.title}
-                        </Link>
-                        {meta?.features.length ? (
-                          <ul className="hub-feature-index__pills" aria-label={`${d.title} features`}>
-                            {meta.features.map((f) => (
-                              <li key={f}>
-                                <span className="hub-feature-chip">{f}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        ) : null}
-                      </li>
-                    )
-                  })}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </div>
-      </details>
-
     </div>
   )
 }
