@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom'
 import { useDemoPresentation } from '../context/DemoPresentation'
-import { ShowcaseChrome } from './ShowcaseShell'
 
 export type PackageTier = 'essential' | 'advanced'
 export type PitchKind = 'package' | 'customOps'
@@ -19,54 +17,9 @@ interface PitchBarProps {
   engineNote?: string
 }
 
-/** Persistent pitch strip: package tier or custom ops + compare sibling UI. */
-export function DemoPitchBar({
-  pitchKind = 'package',
-  packageTier = 'advanced',
-  compareTo,
-  compareLabel,
-  engineNote,
-}: PitchBarProps) {
-  const { showShowcaseChrome } = useDemoPresentation()
-  if (!showShowcaseChrome) return null
-
-  const isOps = pitchKind === 'customOps'
-  const tierLabel = packageTier === 'essential' ? 'Essential · $351' : 'Advanced · $702'
-  const tierHint =
-    packageTier === 'essential'
-      ? 'Streamlined calendar booking — closest to this style'
-      : 'Accounts, dynamic pricing, maps — closest to this style'
-
-  return (
-    <ShowcaseChrome>
-      <aside className="demo-pitch-bar" aria-label="Offer and interface pairing">
-        <div className="demo-pitch-tier">
-          <span className="demo-pitch-kicker">This style ≈</span>
-          {isOps ? (
-            <>
-              <a className="demo-pitch-package" href={CUSTOM_MAIL}>
-                Custom ops · scoped project
-              </a>
-              <span className="demo-pitch-hint">Field + office systems you own — not a booking package</span>
-            </>
-          ) : (
-            <>
-              <a className="demo-pitch-package" href={`${PACKAGES}#${packageTier}`}>
-                {tierLabel}
-              </a>
-              <span className="demo-pitch-hint">{tierHint}</span>
-            </>
-          )}
-        </div>
-        <div className="demo-pitch-pair">
-          {engineNote && <p className="demo-pitch-engine">{engineNote}</p>}
-          <Link className="demo-pitch-compare" to={compareTo}>
-            Compare with {compareLabel} →
-          </Link>
-        </div>
-      </aside>
-    </ShowcaseChrome>
-  )
+/** Pitch strip removed from showcase chrome — kept for typed props / quote CTA sibling. */
+export function DemoPitchBar(_props: PitchBarProps) {
+  return null
 }
 
 interface QuoteCtaProps {

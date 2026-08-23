@@ -9,22 +9,39 @@ import type { DemoImageId } from '../shared/demoAssets'
 interface OutsideProps {
   backTo?: string
   backLabel?: string
+  /** Hero renders inside the tablet bezel (not in outside chrome). */
   imageId?: DemoImageId
   heroAlt?: string
   /** Compact hero crop (ops boards). */
   heroCompact?: boolean
-  showNav?: boolean
   children?: ReactNode
 }
 
-/** Marketing chrome above the tablet: nav, back link, optional hero. Titles stay in-app. */
+function InAppHero({
+  imageId,
+  heroAlt,
+  heroCompact,
+}: {
+  imageId: DemoImageId
+  heroAlt?: string
+  heroCompact?: boolean
+}) {
+  return (
+    <div
+      className={`demo-hero-photo demo-hero-photo--in-app${heroCompact ? ' demo-hero-photo--compact' : ''}`}
+    >
+      <DemoCardImage id={imageId} alt={heroAlt} className="demo-hero-photo__img" />
+    </div>
+  )
+}
+
+/** Sticky nav + back link outside the tablet; optional hero stays inside the bezel. */
 export function DemoOutsideShell({
   backTo = '/',
   backLabel = '← All demos',
   imageId,
   heroAlt,
   heroCompact,
-  showNav = false,
   children,
 }: OutsideProps) {
   const { showShowcaseChrome } = useDemoPresentation()
@@ -37,26 +54,25 @@ export function DemoOutsideShell({
             {backLabel}
           </Link>
         </div>
+        {imageId ? <InAppHero imageId={imageId} heroAlt={heroAlt} heroCompact={heroCompact} /> : null}
         {children}
       </>
     )
   }
 
   return (
-    <ShowcaseChrome>
-      {showNav ? <GbtechDemoNav /> : null}
-      <div className="demo-outside-bar">
-        <Link to={backTo} className="demo-back">
-          {backLabel}
-        </Link>
-      </div>
-      {imageId ? (
-        <div className={`demo-hero-photo${heroCompact ? ' demo-hero-photo--compact' : ''}`}>
-          <DemoCardImage id={imageId} alt={heroAlt} className="demo-hero-photo__img" />
+    <>
+      <ShowcaseChrome>
+        <GbtechDemoNav />
+        <div className="demo-outside-bar">
+          <Link to={backTo} className="demo-back">
+            {backLabel}
+          </Link>
         </div>
-      ) : null}
+      </ShowcaseChrome>
+      {imageId ? <InAppHero imageId={imageId} heroAlt={heroAlt} heroCompact={heroCompact} /> : null}
       {children}
-    </ShowcaseChrome>
+    </>
   )
 }
 
@@ -99,7 +115,7 @@ export function DemoChrome({
 
   return (
     <>
-      <DemoOutsideShell backTo={backTo} backLabel={backLabel} imageId={imageId} heroAlt={heroAlt} showNav />
+      <DemoOutsideShell backTo={backTo} backLabel={backLabel} imageId={imageId} heroAlt={heroAlt} />
       <header className="demo-chrome demo-chrome--in-app">
         <div>
           <p className="demo-badge">{badge}</p>

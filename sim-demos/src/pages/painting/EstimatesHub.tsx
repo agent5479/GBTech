@@ -8,7 +8,7 @@ import { DemoCardImage } from '../../components/DemoHeroImage'
 export default function EstimatesHub() {
   return (
     <div className="hub estimates-hub">
-      <DemoOutsideShell showNav />
+      <DemoOutsideShell />
       <header className="hub-hero demo-enter">
         <div className="hub-hero-copy">
           <p className="demo-badge">Painting estimates · simulated</p>

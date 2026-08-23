@@ -6435,72 +6435,56 @@ textarea {
     background:
       radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 255, 255, 0.55), transparent 55%),
       linear-gradient(165deg, #d8d2c8 0%, #b8b0a4 42%, #9a9288 100%);
-    padding-bottom: 2rem;
+    padding: 0 0 1.25rem;
+    min-height: 100vh;
   }
 
   .showcase-chrome {
     width: min(1180px, calc(100vw - 3rem));
-    padding: 0 0 0.85rem;
-  }
-
-  .showcase-chrome .demo-pitch-bar,
-  .showcase-chrome .demo-mode-bar {
-    margin-left: 0;
-    margin-right: 0;
-    max-width: none;
-    background: rgba(255, 255, 255, 0.82);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    color: #1a1a1a;
+    padding: 0.65rem 0 0.55rem;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: linear-gradient(
+      180deg,
+      rgba(216, 210, 200, 0.96) 0%,
+      rgba(216, 210, 200, 0.88) 70%,
+      rgba(216, 210, 200, 0) 100%
+    );
   }
 
   .showcase-chrome .demo-outside-bar {
     display: flex;
     align-items: center;
-    margin-bottom: 0.55rem;
-    padding: 0.75rem 1.1rem;
-    background: rgba(255, 255, 255, 0.82);
+    margin-top: 0.4rem;
+    padding: 0.55rem 1.1rem;
+    background: rgba(255, 255, 255, 0.92);
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 12px;
   }
 
-  .showcase-chrome .demo-chrome,
-  .showcase-chrome .tradeboard-top,
-  .showcase-chrome .classboard-top,
-  .showcase-chrome .apiary-top,
-  .showcase-chrome .ops-admin-head,
-  .showcase-chrome .bayhop-bar,
-  .showcase-chrome .adventure-top,
-  .showcase-chrome .orchard-top,
-  .showcase-chrome .paintboard-top,
-  .showcase-chrome .hub-hero {
-    background: rgba(255, 255, 255, 0.82);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 14px;
-    color: #1a1a1a;
-    margin-bottom: 0.55rem;
-  }
-
-  .showcase-chrome .demo-hero-photo {
-    margin-bottom: 0.55rem;
-    border-radius: 14px;
-    overflow: hidden;
-  }
-
   .showcase-chrome .gbtech-demo-nav {
-    margin-bottom: 0.55rem;
+    margin-bottom: 0;
     border-radius: 12px;
   }
 
   .tablet-stage {
-    align-items: center;
+    align-items: stretch;
+    flex: 1 1 auto;
+    display: flex;
     padding: 0 1.5rem;
     background: transparent;
+    min-height: calc(100vh - 7rem);
   }
 
   .tablet-device {
     width: min(1080px, calc(100vw - 3rem));
     max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 100%;
   }
 
   .tablet-bezel {
@@ -6513,6 +6497,10 @@ textarea {
       0 -2px 0 rgba(0, 0, 0, 0.35) inset,
       0 28px 60px rgba(0, 0, 0, 0.35),
       0 8px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 100%;
   }
 
   .tablet-sensor {
@@ -6523,6 +6511,7 @@ textarea {
     border-radius: 50%;
     background: radial-gradient(circle at 35% 35%, #5a6a7a, #1a1a1c 70%);
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.35);
+    flex-shrink: 0;
   }
 
   .tablet-home {
@@ -6532,22 +6521,31 @@ textarea {
     margin: 0.7rem auto 0;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.18);
+    flex-shrink: 0;
   }
 
+  /* Full-height screen — page scrolls; no nested scroll inside the bezel */
   .tablet-screen {
-    height: min(820px, calc(100vh - 12rem));
-    overflow: auto;
+    flex: 1 1 auto;
+    height: auto;
+    min-height: calc(100vh - 11rem);
+    max-height: none;
+    overflow: visible;
     border-radius: 14px;
     background: #f4f1ec;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.45);
-    -webkit-overflow-scrolling: touch;
   }
 
   .tablet-screen > * {
     min-height: 100% !important;
   }
 
-  /* Nested phone mockups stay readable inside the tablet stage */
+  .tablet-screen .demo-hero-photo--in-app,
+  .tablet-screen .demo-hero-photo {
+    margin: 0;
+    border-radius: 0;
+  }
+
   .tablet-screen .phone-shell-wrap {
     padding-bottom: 1.25rem;
   }
@@ -6557,10 +6555,6 @@ textarea {
   .showcase-chrome,
   .tablet-device {
     width: min(1180px, calc(100vw - 4rem));
-  }
-
-  .tablet-screen {
-    height: min(860px, calc(100vh - 12rem));
   }
 }
 
