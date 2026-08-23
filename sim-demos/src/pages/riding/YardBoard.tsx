@@ -93,7 +93,7 @@ export default function YardBoard() {
             Rest days, farrier blocks, and overstays write to a simulated Apps Script calendar — guests cannot double-book.
           </p>
         </div>
-        <span className="demo-theme-tag">Different UI · not a wizard</span>
+        <span className="demo-theme-tag">Yard board</span>
       </header>
 
       <div className="ops-deck yardboard-deck demo-enter">

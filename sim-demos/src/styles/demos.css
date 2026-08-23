@@ -4001,14 +4001,14 @@ textarea {
   font-size: 0.65rem;
 }
 
-.hall-time-grid {
+.time-rail.hall-time-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.35rem;
   overflow: visible;
 }
 
-.hall-time-grid .time-chip {
+.time-rail.hall-time-grid .time-chip {
   width: 100%;
   justify-content: center;
 }
@@ -5153,6 +5153,10 @@ textarea {
 
 .ride-windows-primary {
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent, #8b5a2b) 35%, transparent);
+}
+
+table.hall-time-grid {
+  display: table;
 }
 
 .horse-week-grid,

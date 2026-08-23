@@ -91,7 +91,7 @@ export default function BayAdventure() {
             package radio.
           </p>
         </div>
-        <span className="demo-theme-tag">Different UI · not a recolour</span>
+        <span className="demo-theme-tag">Adventure board</span>
       </header>
 
       <div className="adventure-deck demo-enter">

@@ -97,7 +97,7 @@ export default function TradeBoard() {
           <h1>Site job board</h1>
           <p className="demo-sub">Pin trades on one board — same pricing as a repair ticket.</p>
         </div>
-        <span className="demo-theme-tag">Different UI · not a wizard</span>
+        <span className="demo-theme-tag">Job board</span>
       </header>
 
       <div className="tradeboard-deck demo-enter">

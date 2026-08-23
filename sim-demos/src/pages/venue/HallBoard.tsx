@@ -91,7 +91,7 @@ export default function HallBoard() {
           <h1>Rooms × hours board</h1>
           <p className="demo-sub">Holds, blocks, and who owns each room window — staff side of Harbour Hall.</p>
         </div>
-        <span className="demo-theme-tag">Staff · not a wizard</span>
+        <span className="demo-theme-tag">Staff board</span>
       </header>
 
       <div className="kpi-row kpi-row--header">

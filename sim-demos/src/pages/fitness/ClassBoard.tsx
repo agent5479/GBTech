@@ -105,7 +105,7 @@ export default function ClassBoard() {
             Fill bars are the job — see how full each class is, then set the cap and roster. Not a member wallet.
           </p>
         </div>
-        <span className="demo-theme-tag">Different UI · not a wizard</span>
+        <span className="demo-theme-tag">Class board</span>
       </header>
 
       <div className="classboard-deck demo-enter">

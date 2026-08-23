@@ -102,7 +102,7 @@ export default function OrchardGrid() {
           <p className="demo-badge">Orchard Grid · tile counters</p>
           <h1>Orchard count grid</h1>
         </div>
-        <span className="demo-theme-tag">Different UI · not a catalog</span>
+        <span className="demo-theme-tag">Orchard board</span>
       </header>
 
       <div className="orchard-deck demo-enter">
