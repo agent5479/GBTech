@@ -921,6 +921,47 @@ textarea {
   animation: demo-pop var(--motion-slow) var(--ease-spring) both;
 }
 
+/* Inside tablet showcase: drop nested phone bezel (all PhoneShell apps) */
+.phone-shell-wrap--flat {
+  display: block;
+  padding: 0;
+  width: 100%;
+}
+
+.phone-shell.phone-shell--flat {
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  animation: none;
+  overflow: visible;
+  background: transparent;
+}
+
+.phone-flat-bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem 0.35rem;
+}
+
+.phone-flat-bar__brand {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.phone-flat-bar__hint {
+  font-size: 0.72rem;
+  opacity: 0.5;
+}
+
 .phone-notch {
   width: 120px;
   height: 18px;
@@ -1117,6 +1158,16 @@ textarea {
   background: linear-gradient(180deg, #3a0c17 0%, #1c0a10 100%);
 }
 
+.theme-mohua .phone-shell--flat {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.theme-mohua .phone-flat-bar {
+  color: #faf6f2;
+}
+
 .theme-mohua .btn.primary {
   background: var(--accent, #d3993c);
   color: var(--demo-accent-ink, #4b0d1c);
@@ -1140,6 +1191,12 @@ textarea {
 .theme-bayhop .phone-shell {
   border-color: #333;
   background: #121212;
+}
+
+.theme-bayhop .phone-shell--flat {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
 }
 
 .theme-bayhop .btn.primary {
@@ -4121,6 +4178,11 @@ textarea {
     min-height: 640px;
     height: 100%;
   }
+
+  .hive-field-layout .phone-shell--flat {
+    min-height: 0;
+    height: auto;
+  }
 }
 
 .hive-map-card {
@@ -4181,6 +4243,11 @@ textarea {
   max-height: 720px;
 }
 
+.theme-hiverun .phone-shell--flat,
+.theme-carevisit .phone-shell--flat {
+  max-height: none;
+}
+
 @media (min-width: 960px) {
   .theme-hiverun .hive-field-layout .phone-shell,
   .theme-carevisit .hive-field-layout .phone-shell {
@@ -4200,8 +4267,23 @@ textarea {
   color: #142230;
 }
 
+.theme-hiverun .phone-shell--flat,
+.theme-carevisit .phone-shell--flat {
+  border-color: transparent;
+  background: transparent;
+}
+
+.theme-bayfix .phone-shell--flat,
+.theme-canopy .phone-shell--flat {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
 .theme-hiverun .phone-status,
-.theme-carevisit .phone-status {
+.theme-carevisit .phone-status,
+.theme-hiverun .phone-flat-bar,
+.theme-carevisit .phone-flat-bar {
   color: #1a1510;
   opacity: 0.85;
 }
@@ -6434,6 +6516,10 @@ table.hall-time-grid {
 
   .tablet-screen .phone-shell-wrap {
     padding-bottom: 1.25rem;
+  }
+
+  .tablet-screen .phone-shell-wrap--flat {
+    padding-bottom: 0;
   }
 }
 

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useDemoPresentation } from '../context/DemoPresentation'
 
 interface Props {
   children: ReactNode
@@ -8,15 +9,31 @@ interface Props {
   fabDisabled?: boolean
 }
 
+/**
+ * Field-app frame. On mobile / embed: phone bezel.
+ * Inside the desktop tablet showcase: flat panel (no nested phone chrome).
+ */
 export function PhoneShell({ children, brand, fabLabel, onFab, fabDisabled }: Props) {
+  const { showShowcaseChrome } = useDemoPresentation()
+  const flat = showShowcaseChrome
+
   return (
-    <div className="phone-shell-wrap">
-      <div className="phone-shell">
-        <div className="phone-notch" aria-hidden="true" />
-        <div className="phone-status">
-          <span>9:41</span>
-          <span>{brand}</span>
-        </div>
+    <div className={`phone-shell-wrap${flat ? ' phone-shell-wrap--flat' : ''}`}>
+      <div className={`phone-shell${flat ? ' phone-shell--flat' : ''}`}>
+        {!flat ? (
+          <>
+            <div className="phone-notch" aria-hidden="true" />
+            <div className="phone-status">
+              <span>9:41</span>
+              <span>{brand}</span>
+            </div>
+          </>
+        ) : (
+          <header className="phone-flat-bar">
+            <p className="phone-flat-bar__brand">{brand}</p>
+            <span className="phone-flat-bar__hint">Field view</span>
+          </header>
+        )}
         <div className="phone-body">
           {children}
           {fabLabel && onFab ? (
