@@ -26,6 +26,16 @@ Primary public entity: **Golden Bay Technologies (GBTech)** at **https://gbtech.
 - [ ] Diversify channels: YouTube, local community, email to past clients
 - [ ] Keep naming consistent: legal/Maps/schema = Golden Bay Technologies; package line = Marshall Solutions
 
+## AI search / GEO
+
+Cursor checklist: [`.cursor/rules/seo-geo.mdc`](../.cursor/rules/seo-geo.mdc). Priority: crawler access → render/index → schema → llms.txt → content → off-site/measure.
+
+- [x] Hand-written `/llms.txt` (brand + key indexable URLs; demos called out as non-citation sources)
+- [x] Explicit AI bot allows in `robots.txt` (GPTBot, OAI-SearchBot, ChatGPT-User, Google-Extended, ClaudeBot, PerplexityBot, Perplexity-User, Applebot-Extended)
+- [ ] Confirm GitHub Pages **Enforce HTTPS** (repo Settings → Pages) — `http://gbtech.co.nz/` has been observed serving 200 without redirect
+- [ ] Periodic AI citation spot-checks (ChatGPT, Perplexity, Gemini, Claude) for real target prompts; log which pages/competitors get cited
+- Note: GitHub Pages has no server access logs for AI-bot crawl verification; rely on robots allows + citation sampling
+
 ## Content & measurement
 
 - [ ] Further informationally additive assets only when unique — no generic how-to blog

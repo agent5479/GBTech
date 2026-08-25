@@ -1,0 +1,28 @@
+---
+description: SEO/GEO checklist for gbtech.co.nz marketing pages and client local SEO
+globs: robots.txt,sitemap.xml,llms.txt,index.html,services/**/*.html,case-studies/**/*.html,tools/**/*.html,demoplan/seo*.md,demoplan/local-seo*.md
+alwaysApply: false
+---
+
+# SEO / GEO (gbtech.co.nz)
+
+Priority when auditing or changing marketing pages: **0 access → 1 render/index → 3 schema → 2 llms.txt → 4 content → 5–8 off-site/measure**.
+
+## Hard constraints
+
+- Demos (`/sim/`, `/sim-demos/`, `/demo/`, `/staff-demo/`) stay **Disallow** and out of sitemap — never promote as citation sources.
+- Never invent `sameAs`, GBP, or social URLs; only add real profiles.
+- No generic how-to blog filler — keep or add only proprietary data, first-party tools, real case studies, or distinct expert takes.
+- Hand-write `/llms.txt`; do not rely on host auto-generated defaults.
+
+## Checklist (verify or implement)
+
+0. **Crawler access** — AI bots (GPTBot, OAI-SearchBot, ChatGPT-User, Google-Extended, ClaudeBot, Perplexity*, Applebot-Extended) not Disallow’d; marketing paths Allow’d. GitHub Pages + Fastly (no Cloudflare AI WAF).
+1. **Render/index** — static HTML; HTTPS; `rel=canonical` per page; `sitemap.xml` current and linked from `robots.txt`.
+2. **llms.txt** — brand one-liner + key indexable URLs with one-line descriptions each.
+3. **JSON-LD** — LocalBusiness/Person on home; Service on service leaves; WebApplication on tools; FAQPage/HowTo only when that content exists (static, not client-only).
+4. **Content** — lead sections with standalone answers; clean H1→H2→H3; tables/lists over long prose.
+5. **Client local SEO** — follow [demoplan/local-seo-entity-checklist.md](demoplan/local-seo-entity-checklist.md).
+6–8. **Off-site / brand / measure** — see [demoplan/seo-entity-follow-ups.md](demoplan/seo-entity-follow-ups.md) (GBP, Search Console, AI citation spot-checks).
+
+Full follow-ups and open domain/GBP items: [demoplan/seo-entity-follow-ups.md](demoplan/seo-entity-follow-ups.md).

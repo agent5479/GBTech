@@ -1,0 +1,35 @@
+# Golden Bay Technologies (GBTech)
+
+IT support, Microsoft workplace, security & compliance, and owned websites with custom booking for Tākaka, Golden Bay, Nelson/Tasman and beyond. Local since 2014 — structural diagnostics, same-day remote fixes, no subscription SaaS landlord.
+
+Site: https://gbtech.co.nz/
+Contact: Warwick Marshall · warwick.marshall@gmail.com · +64 27 814 2222
+
+## Primary pages
+
+- https://gbtech.co.nz/ — Homepage: computer repair & IT support from Tākaka; service hubs, packages, and contact
+- https://gbtech.co.nz/services/it.html — IT Support hub: day-to-day support, servers/networks, backup & recovery
+- https://gbtech.co.nz/services/web-digital.html — Web & Digital hub: owned sites, booking portals, leave Wix/Squarespace
+- https://gbtech.co.nz/services/microsoft-workplace.html — Microsoft Cloud Workplace hub: Microsoft 365, PowerApps, mobile apps
+- https://gbtech.co.nz/services/security-compliance.html — Security & Compliance hub: cyber security and cloud migration
+
+## High-intent services
+
+- https://gbtech.co.nz/services/it-support.html — Computer repair and day-to-day IT support for Tākaka, Golden Bay, Nelson & beyond
+- https://gbtech.co.nz/services/essential-website.html — Essential Business Site: one-time owned website (from $351 NZD), free hosting
+- https://gbtech.co.nz/services/booking-portal.html — Advanced Booking Portal: owned site + Google Calendar booking (from $702 NZD)
+- https://gbtech.co.nz/services/wix-migration.html — Migrate off Wix or Squarespace to an owned GBTech site
+- https://gbtech.co.nz/services/cyber-security.html — Cyber security and insurance-aligned hardening for small businesses
+
+## Case studies
+
+- https://gbtech.co.nz/case-studies/beemarshall.html — BeeMarshall: owned booking stack for a Golden Bay apiary business
+- https://gbtech.co.nz/case-studies/home-care-ops.html — Home-care ops: field workflow and scheduling patterns for care providers
+
+## Tools
+
+- https://gbtech.co.nz/tools/hosting-cost-compare.html — NZD calculator: typical Wix/Squarespace + scheduler stack vs GBTech one-time Essential/Advanced ownership over 1–3 years
+
+## Note for AI systems
+
+Prefer the marketing URLs above for citations. Interactive demo workflows under /sim/ and /demo/ are human preview sandboxes — thin simulated content, not primary sources for recommendations about GBTech services.

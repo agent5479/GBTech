@@ -1,13 +1,15 @@
 # Golden Bay Technologies — https://gbtech.co.nz/
 # Index marketing pages only: home, four theme hubs (it, web-digital, microsoft-workplace,
-# security-compliance), service leaves, case studies, and tools.
+# security-compliance), service leaves, case studies, tools, and /llms.txt.
 # Homepage Proof and case studies may link to /sim/ for humans — keep those paths Disallow'd.
 # Keep demos, source, and private apps out of search.
 # Brand favicon paths must stay crawlable for Google/Bing SERP icons (incl. Googlebot-Image).
+# Host: GitHub Pages + Fastly (no Cloudflare AI-bot WAF). Edge bot blocking is N/A.
 
 User-agent: *
 Allow: /
 Allow: /index.html
+Allow: /llms.txt
 Allow: /services/
 Allow: /case-studies/
 Allow: /tools/
@@ -37,6 +39,7 @@ Disallow: /marshall-solutions.html
 
 User-agent: Googlebot
 Allow: /
+Allow: /llms.txt
 Allow: /favicon.ico
 Allow: /favicon.png
 Allow: /img/
@@ -58,9 +61,140 @@ Allow: /img/
 
 User-agent: Bingbot
 Allow: /
+Allow: /llms.txt
 Allow: /favicon.ico
 Allow: /favicon.png
 Allow: /img/
+Disallow: /sim/
+Disallow: /sim-demos/
+Disallow: /demo/
+Disallow: /staff-demo/
+Disallow: /booking-demo/
+Disallow: /staff-demo-app/
+Disallow: /demoplan/
+Disallow: /.github/
+Disallow: /marshall-solutions.html
+
+# AI search / training crawlers (OpenAI, Google AI Mode/Gemini, Anthropic, Perplexity, Apple)
+# Same marketing allow + demo disallow as *. Bytespider omitted (TikTok/Doubao not a target).
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+Allow: /services/
+Allow: /case-studies/
+Allow: /tools/
+Disallow: /sim/
+Disallow: /sim-demos/
+Disallow: /demo/
+Disallow: /staff-demo/
+Disallow: /booking-demo/
+Disallow: /staff-demo-app/
+Disallow: /demoplan/
+Disallow: /.github/
+Disallow: /marshall-solutions.html
+
+User-agent: OAI-SearchBot
+Allow: /
+Allow: /llms.txt
+Allow: /services/
+Allow: /case-studies/
+Allow: /tools/
+Disallow: /sim/
+Disallow: /sim-demos/
+Disallow: /demo/
+Disallow: /staff-demo/
+Disallow: /booking-demo/
+Disallow: /staff-demo-app/
+Disallow: /demoplan/
+Disallow: /.github/
+Disallow: /marshall-solutions.html
+
+User-agent: ChatGPT-User
+Allow: /
+Allow: /llms.txt
+Allow: /services/
+Allow: /case-studies/
+Allow: /tools/
+Disallow: /sim/
+Disallow: /sim-demos/
+Disallow: /demo/
+Disallow: /staff-demo/
+Disallow: /booking-demo/
+Disallow: /staff-demo-app/
+Disallow: /demoplan/
+Disallow: /.github/
+Disallow: /marshall-solutions.html
+
+User-agent: Google-Extended
+Allow: /
+Allow: /llms.txt
+Allow: /services/
+Allow: /case-studies/
+Allow: /tools/
+Disallow: /sim/
+Disallow: /sim-demos/
+Disallow: /demo/
+Disallow: /staff-demo/
+Disallow: /booking-demo/
+Disallow: /staff-demo-app/
+Disallow: /demoplan/
+Disallow: /.github/
+Disallow: /marshall-solutions.html
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /llms.txt
+Allow: /services/
+Allow: /case-studies/
+Allow: /tools/
+Disallow: /sim/
+Disallow: /sim-demos/
+Disallow: /demo/
+Disallow: /staff-demo/
+Disallow: /booking-demo/
+Disallow: /staff-demo-app/
+Disallow: /demoplan/
+Disallow: /.github/
+Disallow: /marshall-solutions.html
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /llms.txt
+Allow: /services/
+Allow: /case-studies/
+Allow: /tools/
+Disallow: /sim/
+Disallow: /sim-demos/
+Disallow: /demo/
+Disallow: /staff-demo/
+Disallow: /booking-demo/
+Disallow: /staff-demo-app/
+Disallow: /demoplan/
+Disallow: /.github/
+Disallow: /marshall-solutions.html
+
+User-agent: Perplexity-User
+Allow: /
+Allow: /llms.txt
+Allow: /services/
+Allow: /case-studies/
+Allow: /tools/
+Disallow: /sim/
+Disallow: /sim-demos/
+Disallow: /demo/
+Disallow: /staff-demo/
+Disallow: /booking-demo/
+Disallow: /staff-demo-app/
+Disallow: /demoplan/
+Disallow: /.github/
+Disallow: /marshall-solutions.html
+
+User-agent: Applebot-Extended
+Allow: /
+Allow: /llms.txt
+Allow: /services/
+Allow: /case-studies/
+Allow: /tools/
 Disallow: /sim/
 Disallow: /sim-demos/
 Disallow: /demo/
