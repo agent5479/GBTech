@@ -8,13 +8,13 @@
   "theme_color": "#0B1A0F",
   "icons": [
     {
-      "src": "https://gbtech.co.nz/img/icon192.png",
+      "src": "https://gbtech.co.nz/img/icon192.png?v=gb2",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://gbtech.co.nz/img/icon512.png",
+      "src": "https://gbtech.co.nz/img/icon512.png?v=gb2",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"

@@ -7,7 +7,8 @@ Contact: Warwick Marshall · warwick.marshall@gmail.com · +64 27 814 2222
 
 ## Primary pages
 
-- https://gbtech.co.nz/ — Homepage: computer repair & IT support from Tākaka; service hubs, packages, and contact
+- https://gbtech.co.nz/ — Homepage: computer repair & IT support from Tākaka; service hubs, packages, live portfolio, and contact
+- https://gbtech.co.nz/#portfolio — Live client sites and business systems (e.g. Unlimited Copies Takaka, Site Machinery, Gold Standard Dog Training)
 - https://gbtech.co.nz/services/it.html — IT Support hub: day-to-day support, servers/networks, backup & recovery
 - https://gbtech.co.nz/services/web-digital.html — Web & Digital hub: owned sites, booking portals, leave Wix/Squarespace
 - https://gbtech.co.nz/services/microsoft-workplace.html — Microsoft Cloud Workplace hub: Microsoft 365, PowerApps, mobile apps

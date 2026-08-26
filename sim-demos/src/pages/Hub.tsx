@@ -272,6 +272,11 @@ export default function Hub() {
             client jobs — not the same screen twice.
           </p>
           <p>
+            <Link className="hub-back" to="/build">
+              Design your own sketch →
+            </Link>
+          </p>
+          <p>
             <Link className="hub-back" to="/painting">
               Painting estimates hub →
             </Link>

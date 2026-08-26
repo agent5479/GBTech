@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { DemoPresentationProvider } from './context/DemoPresentation'
 import { ShowcaseShell } from './components/ShowcaseShell'
 import Hub from './pages/Hub'
+import BuildApp from './pages/BuildApp'
 import CoastalCharter from './pages/yacht/CoastalCharter'
 import BayAdventure from './pages/yacht/BayAdventure'
 import MohuaRide from './pages/taxi/MohuaRide'
@@ -38,6 +39,7 @@ export default function App() {
       <DemoPresentationProvider>
       <Routes>
         <Route path="/" element={<Hub />} />
+        <Route path="/build" element={<DemoRoute><BuildApp /></DemoRoute>} />
         <Route path="/yacht/coastal" element={<DemoRoute><CoastalCharter /></DemoRoute>} />
         <Route path="/yacht/adventure" element={<DemoRoute><BayAdventure /></DemoRoute>} />
         <Route path="/taxi/mohua" element={<DemoRoute><MohuaRide /></DemoRoute>} />

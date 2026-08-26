@@ -65,12 +65,18 @@ jobs:
           test -f img/icon192.png
           test -f img/icon512.png
           test -f site.webmanifest
+          test -f sim-demos/public/favicon.ico
+          test -f sim-demos/public/favicon.png
+          test ! -e sim-demos/public/favicon.svg
           grep -q 'img/icon192.png' site.webmanifest
           grep -q 'https://gbtech.co.nz/img/icon192.png' index.html
           grep -q 'Googlebot-Image' robots.txt
           grep -q 'Allow: /favicon.png' robots.txt
           ! grep -q 'jelly' index.html site.webmanifest
           ! grep -rq 'jelly' services case-studies tools --include='*.html'
+          # Cursor/Vite default purple jellyfish must never ship as a site icon
+          ! grep -rq '863bff' sim-demos booking-demo --include='*.svg' --include='*.html' --include='*.ico'
+          ! grep -rq '863bff' . --include='favicon.svg'
 
       - name: Verify SEO meta tags on each page
         run: |
