@@ -20,12 +20,17 @@ Contact: Warwick Marshall · warwick.marshall@gmail.com · +64 27 814 2222
 - https://gbtech.co.nz/services/essential-website.html — Essential Business Site: one-time owned website (from $351 NZD), free hosting
 - https://gbtech.co.nz/services/booking-portal.html — Advanced Booking Portal: owned site + Google Calendar booking (from $702 NZD)
 - https://gbtech.co.nz/services/wix-migration.html — Migrate off Wix or Squarespace to an owned GBTech site
+- https://gbtech.co.nz/services/automation-ai.html — Owned operational systems: staff task allocation, customer communication, exception escalation, and management visibility. Scoped as a project, separately from the $702 booking portal
 - https://gbtech.co.nz/services/cyber-security.html — Cyber security and insurance-aligned hardening for small businesses
 
 ## Case studies
 
-- https://gbtech.co.nz/case-studies/beemarshall.html — BeeMarshall: owned booking stack for a Golden Bay apiary business
+- https://gbtech.co.nz/case-studies/beemarshall.html — BeeMarshall: owned hive and field operations system for a Golden Bay apiarist — GPS hive clusters, yard navigation, seasonal task allocation
 - https://gbtech.co.nz/case-studies/home-care-ops.html — Home-care ops: field workflow and scheduling patterns for care providers
+
+## Operational systems (live examples)
+
+- https://goldenbayholidayhomes.nz/ — Golden Bay Holiday Homes: holiday-rental coordination (bookings, cleaning, guest communication) supported by GBTech. Listed under Operational systems at https://gbtech.co.nz/#portfolio
 
 ## Tools
 
