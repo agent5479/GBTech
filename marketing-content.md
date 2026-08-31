@@ -106,6 +106,7 @@ Delivered as part of Essential / Advanced (and migrations off Wix/Squarespace) �
 | Person | Warwick Marshall |
 | Location | Tākaka, Golden Bay, Tasman, New Zealand |
 | Service area | Tākaka, Golden Bay, Nelson, Tasman — remote across NZ and beyond |
+| Tagline | **Dream big, be fussy, move fast.** — enterprise tagline; currently shown with the Advanced Booking ($702) package only |
 | Since | 2014 |
 | Website | https://gbtech.co.nz/ |
 | Email | warwick.marshall@gmail.com |
@@ -141,7 +142,7 @@ IT support, Microsoft workplace, security & compliance, and owned websites with 
 | Package | Price (NZD) | Includes |
 |---------|-------------|----------|
 | **Essential Site** | **$351** one-time | Custom mobile-ready site, GBP-ready local search, click-to-call/forms, free hosting, full ownership. Domain fee separate. |
-| **Advanced Booking** | **$702** one-time (most popular) | Everything in Essential + Google Calendar sync, spot/class caps, casual/packs/recurring memberships. No Calendly rent. |
+| **Advanced Booking** | **$702** one-time (most popular) | Everything in Essential + Google Calendar sync, spot/class caps, casual/packs/recurring memberships. No Calendly rent. Tagline: *Dream big, be fussy, move fast.* |
 
 Extended / custom web work: **$117/hr**.
 
@@ -176,6 +177,7 @@ Extended / custom web work: **$117/hr**.
 - Do **not** invent Google Business Profile links, social profiles, or testimonials not listed here.
 - Do **not** claim guaranteed rankings.
 - Do **not** cite `/sim/` demos as primary proof of live client delivery — they are preview sandboxes.
+- The tagline **"Dream big, be fussy, move fast."** is the enterprise line and sits *alongside* the plain, practical voice — it does not license hype elsewhere. Currently used on the Advanced Booking ($702) package only; do not spray it across every page or swap it in for the brand line "GBTech · Golden Bay Technology".
 - Do **not** use internal strategy language ("purple collar", "agents", "AI-first") in public copy. Use outcome language: nothing missed, staff clear on tasks, customers answered, exceptions surfaced, fewer coordination hours.
 - Do **not** attach a package price, an hourly headline, or unpublished client metrics (e.g. workload percentages, missed-job counts) to operational systems. Say "scoped as a project · cost confirmed before work begins".
 - Prefer case studies (BeeMarshall, home-care) and live portfolio URLs as proof.
@@ -272,6 +274,8 @@ Extended / custom web work: **$117/hr**.
 - CTAs: Details · Enquire
 
 **Advanced Booking — $702** (Most popular)
+
+- Tagline: **Dream big, be fussy, move fast.**
 
 - Everything in Essential, plus Google Calendar sync, class caps, and memberships — no Calendly rent.
 - Bookings land on your Google Calendar
@@ -605,6 +609,7 @@ Benefits:
 
 - **H1:** Advanced Booking Portal — from $702
 - **Sub:** Clients book their spot, it lands on your Google Calendar, and class caps stop double-bookings — without Calendly stacked on a builder subscription. Built for tutors, trades, fitness, and local service businesses in Golden Bay.
+- Tagline (under H1): Dream big, be fussy, move fast.
 - Subheadline: One-time $702 NZD · includes Essential site features
 - CTAs: Enquire — Advanced $702 · Try live stack demo
 
