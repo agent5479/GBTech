@@ -22,12 +22,13 @@ He helps businesses in three practical ways:
 
 | Package | Price | Business outcome |
 |---------|-------|------------------|
-| Essential Site | **$351** one-time | A fast site locals can find — Google Business Profile ready, contact paths, free hosting, full ownership. |
-| Advanced Booking | **$702** one-time | Essential plus bookings that land on your Google Calendar (caps & memberships) without Calendly rent. |
+| Essential Site | **$351** one-time | Be found, mobile-ready, owned code, zero rent — built so Google, Bing, and AI assistants can find and recommend you. GBP setup, click-to-connect, free permanent hosting, full ownership. Domain fee separate. |
+| Advanced Booking | **$702** one-time | Essential + Google Calendar sync, spot caps, memberships. Crawler-ready SEO (llms.txt). Zero monthly hosting rent. Tagline: *Dream big, be fussy, move fast.* |
+| Custom Systems & Apps | Scoped as projects · **$117–$127/hr** | Multi-user portals, custom databases (**Firestore**, Dataverse), staff scheduling, and complex operational workflows. Firestore is more complex than package work and lives here — not in Essential or Advanced. |
 
-Extended / custom web and IT work from **$117/hr**. Cost confirmed before work begins.
+**How to tier offers:** Essential = be found. Advanced = Essential + calendar booking. Custom Systems = multi-user / Firestore / Dataverse / staff ops — always scoped separately. Cost confirmed before work begins.
 
-**Operational systems (scoped separately — no package price):** where a business needs more than booking capture — staff task allocation, customer/guest communication, maintenance tracking, exception escalation, management visibility. Scoped as a project; the client owns the system and GBTech stays on-call. Buyer page: [`/services/automation-ai.html`](https://gbtech.co.nz/services/automation-ai.html). Do **not** quote a package price or an hourly rate as the headline for this work.
+Buyer page for Custom Systems: [`/services/automation-ai.html`](https://gbtech.co.nz/services/automation-ai.html). Do **not** quote a package sticker price for Custom Systems.
 
 ---
 
@@ -141,8 +142,9 @@ IT support, Microsoft workplace, security & compliance, and owned websites with 
 
 | Package | Price (NZD) | Includes |
 |---------|-------------|----------|
-| **Essential Site** | **$351** one-time | Custom mobile-ready site, GBP-ready local search, click-to-call/forms, free hosting, full ownership. Domain fee separate. |
-| **Advanced Booking** | **$702** one-time (most popular) | Everything in Essential + Google Calendar sync, spot/class caps, casual/packs/recurring memberships. No Calendly rent. Tagline: *Dream big, be fussy, move fast.* |
+| **Essential Site** | **$351** one-time | Be found, mobile-ready, owned code, zero rent. GBP setup, click-to-connect, free hosting, full ownership. Domain fee separate. |
+| **Advanced Booking** | **$702** one-time (most popular) | Essential + Google Calendar sync, spot caps, casual slots, memberships. Crawler-ready for Google, Bing & AI (llms.txt). Zero monthly hosting rent. Tagline: *Dream big, be fussy, move fast.* |
+| **Custom Systems & Apps** | Scoped · **$117–$127/hr** | Multi-user portals, Firestore, Dataverse, staff scheduling, complex ops workflows. Not a package sticker. |
 
 Extended / custom web work: **$117/hr**.
 
@@ -267,23 +269,22 @@ Extended / custom web work: **$117/hr**.
 
 **Essential Site — $351**
 
-- Fast, mobile-ready presence — Google Business Profile ready, click-to-call, contact forms.
-- Custom design (or migrate off Wix / Squarespace)
-- Local search setup for Google & Bing
-- Zero monthly hosting
+- Be found, mobile-ready, owned code, zero rent — built so Google, Bing, and AI assistants can find and recommend you.
+- Custom mobile-ready site · Google Business Profile setup
+- Click-to-connect paths · free permanent hosting
+- Full ownership of your code · domain fee separate
 - CTAs: Details · Enquire
 
 **Advanced Booking — $702** (Most popular)
 
 - Tagline: **Dream big, be fussy, move fast.**
-
-- Everything in Essential, plus Google Calendar sync, class caps, and memberships — no Calendly rent.
-- Bookings land on your Google Calendar
-- Spot caps stop double-bookings
-- Casual, packs, or recurring passes
+- Essential + Google Calendar sync, spot caps, and memberships — hands-free scheduling with zero monthly hosting rent.
+- Everything in Essential · crawler-ready for Google, Bing & AI
+- Google Calendar integration · spot caps · casual slots
+- Membership options · no Calendly or builder rent
 - CTAs: Details · Enquire
 
-Footer note: Leave Wix / Squarespace · Cost compare · Extended web/IT work $117/hr · Staff and guest coordination scoped separately
+Footer note: Leave Wix / Squarespace · Cost compare · Custom Systems & Apps (multi-user portals, Firestore, Dataverse, staff scheduling) scoped as projects · $117–$127/hr
 
 ### IT Support (`#it`)
 
@@ -427,13 +428,13 @@ Benefits:
 
 **What you get — Sites and systems without the rent**
 
-- Custom Essential Site from $351 — Google Business Profile ready
-- Advanced Booking portal from $702 — Google Calendar sync, caps, memberships
+- **Essential Site ($351)** — be found, mobile-ready, owned code, zero rent
+- **Advanced Booking ($702)** — Essential + Google Calendar sync, spot caps, memberships
+- **Custom Systems & Apps** — multi-user portals, Firestore, Dataverse, staff scheduling, complex workflows — scoped as projects · $117–$127/hr
 - Migrate off Wix or Squarespace and keep your presence
-- Automation and AI-assisted workflows that cut busywork
 - You own the code and hosting — not another SaaS subscription
 
-**Cards:** Essential Site ($351) · Booking portal ($702) · Leave Wix / Squarespace · Automation & AI
+**Cards:** Essential Site ($351) · Booking portal ($702) · Leave Wix / Squarespace · Custom Systems & Apps
 
 ---
 
@@ -585,41 +586,43 @@ Benefits:
 ## 12. Leaf — Essential website — `/services/essential-website.html`
 
 **Title:** Essential Website Golden Bay from $351 | GBTech  
-**Meta:** Essential Business Site from $351 — custom, mobile-ready website for Golden Bay and Tākaka businesses. Google Business Profile ready, free hosting, own your site. GBTech Web & Digital packages.
+**Meta:** Essential Site from $351 — custom, mobile-ready, crawler-ready website for Golden Bay businesses. Google Business Profile setup, free hosting, full ownership. No monthly builder rent. GBTech.
 
 - **H1:** Essential Business Site — from $351
-- **Sub:** A fast, professional online presence that local clients can find — Google Business Profile ready, click-to-call, and free hosting in accounts you own. No monthly Wix or Squarespace rent.
+- **Sub:** A fast, custom, mobile-ready web presence built so local customers, Google, Bing, and AI assistants can actually find, read, and recommend your business. Google Business Profile setup, click-to-connect contact paths, free permanent hosting, and full ownership of your code — real online traction without monthly builder rent.
 - Subheadline: One-time $351 NZD · standard domain fee separate
 - CTAs: Enquire — Essential $351 · Compare ownership cost
 
 **What ships with Essential**
 
-- Custom design — mobile-ready, fast pages tailored to your brand (or upgraded from Wix/Squarespace)
-- Google Business Profile ready — aggregating your business details for Google Search, Bing, and GBP so local clients find you
-- Click-to-connect — one-tap phone, email paths, and contact forms
-- Zero hosting costs — free permanent hosting included
-- Full ownership — handed over in accounts you control
+- **Be found** — crawler-ready pages so Google, Bing, and AI assistants can find, read, and recommend your business
+- **Google Business Profile setup** — business details aggregated for Search, Bing, and GBP
+- **Click-to-connect** — one-tap phone, email paths, and contact forms
+- **Zero hosting rent** — free permanent hosting configuration included
+- **Owned code** — handed over in accounts you control; standard domain fee separate
 
 ---
 
 ## 13. Leaf — Booking portal — `/services/booking-portal.html`
 
 **Title:** Google Calendar Booking Portal from $702 | GBTech  
-**Meta:** Advanced Booking Portal from $702 — Google Calendar sync, class caps, and memberships for tutors, trades, and service businesses in Golden Bay. Own your portal. GBTech Web & Digital packages.
+**Meta:** Advanced Booking from $702 — owned web and booking presence with Google Calendar sync, spot caps, memberships, and crawler-ready SEO for Google, Bing, and AI. Zero monthly hosting rent. GBTech.
 
 - **H1:** Advanced Booking Portal — from $702
-- **Sub:** Clients book their spot, it lands on your Google Calendar, and class caps stop double-bookings — without Calendly stacked on a builder subscription. Built for tutors, trades, fitness, and local service businesses in Golden Bay.
 - Tagline (under H1): Dream big, be fussy, move fast.
+- **Sub:** A complete, fully owned web and booking presence with zero monthly hosting rent. Custom mobile interface, free hosting, and crawler-ready SEO for Google, Bing, and AI assistants. Direct Google Calendar integration with spot caps, casual slots, and membership options — hands-free scheduling without extra software subscriptions.
 - Subheadline: One-time $702 NZD · includes Essential site features
 - CTAs: Enquire — Advanced $702 · Try live stack demo
 
 **Included — Hands-free scheduling you own**
 
-- Everything in Essential — custom site, GBP-ready local SEO, free hosting
+- Everything in Essential — custom mobile interface, GBP setup, free hosting, owned code
+- Crawler-ready for AI & search — set up for Google, Bing, and AI assistants (including llms.txt)
 - Google Calendar sync — bookings update your existing calendar instantly
-- Smart spot capping — blocks new bookings when a class or slot is full
-- Membership options — casual bookings, class packs, or recurring passes
-- Direct handover — admin tools in your private account
+- Spot caps & casual slots — blocks new bookings when a class or slot is full
+- Membership options — casual bookings, class packs, or recurring passes — no Calendly rent
+
+**Note:** Multi-user portals, Firestore, Dataverse, and staff workflows are **Custom Systems & Apps** — not included in Advanced.
 
 ---
 
@@ -643,26 +646,26 @@ Benefits:
 
 ---
 
-## 15. Leaf — Automation & AI (operational systems) — `/services/automation-ai.html`
+## 15. Leaf — Custom Systems & Apps — `/services/automation-ai.html`
 
-**Title:** Automation & AI for Golden Bay Businesses | GBTech  
-**Meta:** Owned operational systems for Golden Bay and Tākaka businesses — staff tasks, customer replies, scheduling, and exceptions in one place. Scoped as a project by GBTech.
+**Title:** Custom Systems & Apps · Firestore, Dataverse & Ops | GBTech  
+**Meta:** Custom Systems & Apps for Golden Bay businesses — multi-user portals, Firestore, Dataverse, staff scheduling, and complex workflows. Scoped as projects ($117–$127/hr). GBTech.
 
-- **H1:** Automation & AI that works for the Bay
-- **Sub:** Bookings, staff tasks, and customer replies stop living in three places — one operational system sized for how a local business actually runs. Practical, not hype.
-- Subheadline: Scoped as a project — you own the system; we stay on-call
+- **H1:** Custom Systems & Apps
+- **Sub:** Multi-user portals, custom databases (Firestore, Dataverse), staff scheduling, and complex operational workflows — beyond calendar capture. Scoped as a project; you own the system.
+- Subheadline: Scoped as projects · $117–$127/hr · cost confirmed before work begins
 - CTAs: Discuss a system · See an ops case study
 
 **Outcomes — Nothing missed, clearer ops**
 
-- **Nothing missed** — jobs, cleans, and maintenance items stop falling through the cracks
-- **Staff clear on tasks** — who is doing what, on the device they already carry
-- **Customers answered promptly** — enquiries and confirmations handled without someone watching an inbox
-- **Exceptions surfaced** — the things that need a human decision come to you; the rest runs
+- **Beyond Advanced Booking** — calendar capture stays the $702 package; this tier is multi-user portals and complex workflows
+- **Custom databases** — Firestore and Dataverse when you need more than sheets and a calendar (Firestore is scoped here — it is more complex than package work)
+- **Staff scheduling & coordination** — who is doing what, on the device they already carry
+- **Nothing missed** — jobs, cleans, and maintenance items stop falling through; exceptions surface to you
 - **Fewer coordination hours** — measured against how the work runs today
-- You own the system — no extra monthly SaaS landlord, and AI-assisted drafting only where it saves time without leaking client data carelessly
+- You own the system — no extra monthly SaaS landlord
 
-**Positioning vs Advanced Booking ($702):** Advanced is calendar capture — bookings land on the client's Google Calendar. This page is the coordination layer across staff, customers, and exceptions, and it is scoped separately with no package price.
+**Positioning vs Advanced Booking ($702):** Advanced is calendar capture. Custom Systems is multi-user / Firestore / Dataverse / staff ops — always scoped separately with no package sticker price.
 
 ---
 
@@ -836,8 +839,8 @@ Method note: Defaults match common public list prices. GBTech one-time: Essentia
 | Anyone who lost files | Drive failure / no restore | Backup & emergency recovery | `/services/backup-disaster-recovery.html` |
 | Suspicious email / locked accounts | Compromise fear | Practical cyber, not a call centre | `/services/cyber-security.html` |
 | Insurers pushing off local SQL | Compliance pressure | PowerApps + Dataverse / cloud migration | `/services/powerapps-dataverse.html` |
-| Field / ops teams | Spreadsheets & paper | Custom mobile / ops apps (case studies) | `/case-studies/beemarshall.html` |
-| Rentals, field services, small hospitality | Coordination eats the owner's week — missed jobs, staff unclear, guests waiting | Operational system: nothing missed, staff clear, exceptions surfaced. Scoped as a project; you own it | `/services/automation-ai.html` |
+| Field / ops teams | Spreadsheets & paper | Custom Systems & Apps (case studies) | `/case-studies/beemarshall.html` |
+| Rentals, field services, small hospitality | Coordination eats the owner's week — missed jobs, staff unclear, guests waiting | Custom Systems: multi-user portals, Firestore/Dataverse, staff scheduling. Scoped as a project · $117–$127/hr | `/services/automation-ai.html` |
 
 ---
 
