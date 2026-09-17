@@ -51,6 +51,8 @@ jobs:
           test -f case-studies/home-care-ops.html
           test -f tools/hosting-cost-compare.html
           test -f BingSiteAuth.xml
+          test -f f10a58f2a9384a0f8106b9f4da98472f.txt
+          grep -qx 'f10a58f2a9384a0f8106b9f4da98472f' f10a58f2a9384a0f8106b9f4da98472f.txt
           test -f CNAME
           grep -q 'gbtech.co.nz' CNAME
           test -f demoplan/local-seo-entity-checklist.md
@@ -205,3 +207,11 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Submit sitemap URLs to IndexNow
+        env:
+          INDEXNOW_KEY: f10a58f2a9384a0f8106b9f4da98472f
+          INDEXNOW_HOST: gbtech.co.nz
+          INDEXNOW_BASE: https://gbtech.co.nz
+          INDEXNOW_WAIT_S: "120"
+        run: python3 .github/scripts/submit-indexnow.py

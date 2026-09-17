@@ -10,6 +10,7 @@ Primary public entity: **Golden Bay Technologies (GBTech)** at **https://gbtech.
 - [ ] Prefer apex as sole canonical; ensure `.github.io/GBTech` redirects to `gbtech.co.nz` (GitHub Pages usually does this when custom domain is set)
 - [ ] Search Console + Bing ownership on `gbtech.co.nz`; submit `https://gbtech.co.nz/sitemap.xml`
 - [ ] Re-verify Bing with auth file at `https://gbtech.co.nz/BingSiteAuth.xml` if needed after domain change
+- [x] IndexNow key hosted at `https://gbtech.co.nz/f10a58f2a9384a0f8106b9f4da98472f.txt`; CI submits sitemap URLs after Pages deploy
 - [ ] Point GBP website URL at `https://gbtech.co.nz/`
 
 ## Entity & GBP (own brand)

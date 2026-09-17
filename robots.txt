@@ -19,6 +19,7 @@ Allow: /favicon.ico
 Allow: /favicon.png
 Allow: /img/
 Allow: /BingSiteAuth.xml
+Allow: /f10a58f2a9384a0f8106b9f4da98472f.txt
 
 # Simulated booking demos (noindex; thin/demo content)
 Disallow: /sim/
