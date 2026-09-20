@@ -49,6 +49,9 @@ jobs:
           test -f services/mobile-apps.html
           test -f case-studies/beemarshall.html
           test -f case-studies/home-care-ops.html
+          test -f case-studies/site-machinery.html
+          test -f case-studies/gold-standard-dog-training.html
+          test -f case-studies/hack-farm.html
           test -f tools/hosting-cost-compare.html
           test -f BingSiteAuth.xml
           test -f f10a58f2a9384a0f8106b9f4da98472f.txt
@@ -92,6 +95,8 @@ jobs:
             services/wix-migration.html
             services/microsoft-365.html services/powerapps-dataverse.html services/mobile-apps.html
             case-studies/beemarshall.html case-studies/home-care-ops.html
+            case-studies/site-machinery.html case-studies/gold-standard-dog-training.html
+            case-studies/hack-farm.html
             tools/hosting-cost-compare.html"
           for page in $pages; do
             grep -q '<title>' "$page"

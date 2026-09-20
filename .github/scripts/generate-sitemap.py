@@ -35,6 +35,9 @@ ROUTES = [
     # Case studies + tools
     ("case-studies/beemarshall.html", "case-studies/beemarshall.html", "0.7"),
     ("case-studies/home-care-ops.html", "case-studies/home-care-ops.html", "0.7"),
+    ("case-studies/site-machinery.html", "case-studies/site-machinery.html", "0.7"),
+    ("case-studies/gold-standard-dog-training.html", "case-studies/gold-standard-dog-training.html", "0.7"),
+    ("case-studies/hack-farm.html", "case-studies/hack-farm.html", "0.7"),
     ("tools/hosting-cost-compare.html", "tools/hosting-cost-compare.html", "0.7"),
 ]
 

@@ -11,7 +11,11 @@ Primary public entity: **Golden Bay Technologies (GBTech)** at **https://gbtech.
 - [ ] Search Console + Bing ownership on `gbtech.co.nz`; submit `https://gbtech.co.nz/sitemap.xml`
 - [ ] Re-verify Bing with auth file at `https://gbtech.co.nz/BingSiteAuth.xml` if needed after domain change
 - [x] IndexNow key hosted at `https://gbtech.co.nz/f10a58f2a9384a0f8106b9f4da98472f.txt`; CI submits sitemap URLs after Pages deploy
+- [ ] **Enforce HTTPS** on GitHub Pages (HTTP still returns 200 — duplicate of HTTPS; hurts Bing crawl)
+- [ ] Submit `https://gbtech.co.nz/sitemap.xml` in Bing Webmaster Tools + Google Search Console; request indexing on **HTTPS** URLs only
+- [x] SEO entity architecture: [gbtech-seo-master-sheet.md](gbtech-seo-master-sheet.md) — local IT core, systems deployment differentiator, pillar/leaf intents, three new portfolio case studies
 - [ ] Point GBP website URL at `https://gbtech.co.nz/`
+- [ ] Client-site “Built by GBTech” backlinks — ask permission per master-sheet outreach list (do not invent)
 
 ## Entity & GBP (own brand)
 
@@ -42,6 +46,7 @@ Cursor checklist: [`.cursor/rules/seo-geo.mdc`](../.cursor/rules/seo-geo.mdc). P
 - [ ] Further informationally additive assets only when unique — no generic how-to blog
 - [ ] Verify indexing of service/case/tool URLs on `gbtech.co.nz`; demos stay Disallowed
 - [ ] Spot-check competitor-free differentiation (diagnostics, recovery, owned sites/booking, direct contact)
+- [ ] After HTTPS enforce + deploy: Bing live inspect `https://gbtech.co.nz/` and request indexing
 
 ## Client deliveries
 

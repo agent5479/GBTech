@@ -10,13 +10,15 @@
 
 ## What Warwick / GBTech does (plain English)
 
-**Warwick Marshall runs Golden Bay Technologies (GBTech)** from Tākaka. He is a single local technician and systems builder — not a call centre — serving Golden Bay, Nelson, Tasman, and clients further afield via remote.
+**Warwick Marshall runs Golden Bay Technologies (GBTech)** from Tākaka. He is a single local technician and systems builder — not a call centre. **Home base: Tākaka / Golden Bay.** Coverage: Nelson, Tasman, and NZ via remote.
+
+**Core proposition:** IT support when something breaks. Business systems when you need something built.
 
 He helps businesses in three practical ways:
 
-1. **Keep the tech working** — computer repair, office networks, backups, emergency recovery, Microsoft 365, and security/compliance when something is broken or insurers push you off fragile local servers.
+1. **Keep the tech working** — computer repair, office networks, backups, emergency recovery, Microsoft 365, and security that keeps small businesses insurable.
 2. **Own your online presence** — one-time websites and Google Calendar booking portals you control, with free hosting and no monthly Wix / Squarespace / Calendly landlord.
-3. **Make that presence findable** — every client marketing site is built **crawler-ready**: search engines and AI systems can read, index, and recommend the business accurately.
+3. **Deploy custom systems** — multi-user portals, Firestore/Dataverse, staff workflows — and make marketing sites **crawler-ready** so search engines and AI can recommend the business accurately.
 
 **Website packages (Marshall Solutions line under Web & Digital):**
 
@@ -24,11 +26,13 @@ He helps businesses in three practical ways:
 |---------|-------|------------------|
 | Essential Site | **$351** one-time | Be found, mobile-ready, owned code, zero rent — built so Google, Bing, and AI assistants can find and recommend you. GBP setup, click-to-connect, free permanent hosting, full ownership. Domain fee separate. |
 | Advanced Booking | **$702** one-time | Essential + Google Calendar sync, spot caps, memberships. Crawler-ready SEO (llms.txt). Zero monthly hosting rent. Tagline: *Dream big, be fussy, move fast.* |
-| Custom Systems & Apps | Scoped as projects · **$117–$127/hr** | Multi-user portals, custom databases (**Firestore**, Dataverse), staff scheduling, and complex operational workflows. Firestore is more complex than package work and lives here — not in Essential or Advanced. |
+| Custom business software | Scoped as projects · **$117–$127/hr** | Multi-user portals, custom databases (**Firestore**, Dataverse), staff scheduling, and complex operational workflows. Firestore is more complex than package work and lives here — not in Essential or Advanced. |
 
-**How to tier offers:** Essential = be found. Advanced = Essential + calendar booking. Custom Systems = multi-user / Firestore / Dataverse / staff ops — always scoped separately. Cost confirmed before work begins.
+**How to tier offers:** Essential = be found. Advanced = Essential + calendar booking. Custom business software = multi-user / Firestore / Dataverse / staff ops — always scoped separately. Cost confirmed before work begins.
 
-Buyer page for Custom Systems: [`/services/automation-ai.html`](https://gbtech.co.nz/services/automation-ai.html). Do **not** quote a package sticker price for Custom Systems.
+Buyer page for custom business software: [`/services/automation-ai.html`](https://gbtech.co.nz/services/automation-ai.html) (URL unchanged). Do **not** quote a package sticker price for custom software.
+
+SEO architecture source of truth: [`demoplan/gbtech-seo-master-sheet.md`](demoplan/gbtech-seo-master-sheet.md).
 
 ---
 
@@ -144,7 +148,7 @@ IT support, Microsoft workplace, security & compliance, and owned websites with 
 |---------|-------------|----------|
 | **Essential Site** | **$351** one-time | Be found, mobile-ready, owned code, zero rent. GBP setup, click-to-connect, free hosting, full ownership. Domain fee separate. |
 | **Advanced Booking** | **$702** one-time (most popular) | Essential + Google Calendar sync, spot caps, casual slots, memberships. Crawler-ready for Google, Bing & AI (llms.txt). Zero monthly hosting rent. Tagline: *Dream big, be fussy, move fast.* |
-| **Custom Systems & Apps** | Scoped · **$117–$127/hr** | Multi-user portals, Firestore, Dataverse, staff scheduling, complex ops workflows. Not a package sticker. |
+| **Custom business software** | Scoped · **$117–$127/hr** | Multi-user portals, Firestore, Dataverse, staff scheduling, complex ops workflows. Not a package sticker. |
 
 Extended / custom web work: **$117/hr**.
 
@@ -182,7 +186,7 @@ Extended / custom web work: **$117/hr**.
 - The tagline **"Dream big, be fussy, move fast."** is the enterprise line and sits *alongside* the plain, practical voice — it does not license hype elsewhere. Currently used on the Advanced Booking ($702) package only; do not spray it across every page or swap it in for the brand line "GBTech · Golden Bay Technology".
 - Do **not** use internal strategy language ("purple collar", "agents", "AI-first") in public copy. Use outcome language: nothing missed, staff clear on tasks, customers answered, exceptions surfaced, fewer coordination hours.
 - Do **not** attach a package price, an hourly headline, or unpublished client metrics (e.g. workload percentages, missed-job counts) to operational systems. Say "scoped as a project · cost confirmed before work begins".
-- Prefer case studies (BeeMarshall, home-care) and live portfolio URLs as proof.
+- Prefer case studies (BeeMarshall, home-care, Site Machinery, Gold Standard Dog Training, Hack Farm) and live portfolio URLs as proof.
 
 ---
 
@@ -226,6 +230,9 @@ Extended / custom web work: **$117/hr**.
 
 - https://gbtech.co.nz/case-studies/beemarshall.html
 - https://gbtech.co.nz/case-studies/home-care-ops.html
+- https://gbtech.co.nz/case-studies/site-machinery.html
+- https://gbtech.co.nz/case-studies/gold-standard-dog-training.html
+- https://gbtech.co.nz/case-studies/hack-farm.html
 - https://gbtech.co.nz/tools/hosting-cost-compare.html
 
 ### Redirect (noindex)
@@ -238,25 +245,25 @@ Extended / custom web work: **$117/hr**.
 
 ## 1. Homepage — `/`
 
-**Title:** IT Support & Computer Repair Tākaka, Golden Bay, Nelson & Beyond | GBTech  
-**Meta:** Computer repair and IT support in Tākaka and Golden Bay since 2014 — same-day remote fixes, Microsoft 365, security compliance, and owned websites. Nelson, Tasman & beyond. GBTech.
+**Title:** IT Support & Repair Tākaka, Golden Bay | GBTech  
+**Meta:** Computer repair and IT support in Tākaka and Golden Bay since 2014. Same-day remote fixes — plus websites, Microsoft, and security when you need systems built.
 
 ### Hero
 
 - Brand line: GBTech · Golden Bay Technology
 - **H1:** IT support & computer repair for Tākaka, Golden Bay, Nelson & beyond
-- **Sub:** Fix the machine on your desk, harden the network behind it, or move off a rented website builder — one local operator in Tākaka since 2014, remote wherever you work. Microsoft workplace systems and security compliance when insurers push you off local servers.
+- **Sub:** IT support when something breaks. Business systems when you need something built. One local operator in Tākaka since 2014 — computer repair and networks at the base; owned websites, Microsoft workplace, security, and custom apps above it. Golden Bay on-site; Nelson, Tasman and NZ via remote.
 - **CTAs:** Learn more · See Web & Digital
 
 ### Service spectrum (`#spectrum`)
 
 - Role: Service spectrum
 - **H2:** What GBTech does
-- Intro: Four themes — distilled here, detailed on dedicated pages. Tākaka, Golden Bay, Nelson & beyond.
+- Intro: Local IT at the base. Systems deployment above it. Four service pillars — plus live demos and case studies as proof. Based in Tākaka / Golden Bay; Nelson, Tasman and NZ via remote.
 
 | Theme | Blurb |
 |-------|--------|
-| IT Support | Computer repair, day-to-day fixes, networks, backup & recovery. |
+| IT Support | Business IT infrastructure — repair, networks, backup & recovery. |
 | Web & Digital | Own the site and booking — no monthly builder rent. |
 | Microsoft Cloud Workplace | M365, PowerApps & Dataverse, mobile apps. |
 | Security & Compliance | Cyber hardening and insurance-driven cloud moves. |
@@ -284,7 +291,7 @@ Extended / custom web work: **$117/hr**.
 - Membership options · no Calendly or builder rent
 - CTAs: Details · Enquire
 
-Footer note: Leave Wix / Squarespace · Cost compare · Custom Systems & Apps (multi-user portals, Firestore, Dataverse, staff scheduling) scoped as projects · $117–$127/hr
+Footer note: Leave Wix / Squarespace · Cost compare · Custom business software (multi-user portals, Firestore, Dataverse, staff scheduling) scoped as projects · $117–$127/hr
 
 ### IT Support (`#it`)
 
@@ -318,18 +325,18 @@ Footer note: Leave Wix / Squarespace · Cost compare · Custom Systems & Apps (m
 ### Portfolio (`#portfolio`)
 
 - **H2:** Portfolio Showcase
-- Recent Golden Bay & Tasman work — client websites, supported properties, operational systems, and custom business systems live on the open web.
+- Recent Golden Bay & Tasman work — websites, booking, and ops systems. Case studies spell out problem → system → result.
 
-**Client websites**
+**Client websites** (case study where noted)
 
-| Name | URL |
-|------|-----|
-| Site Machinery | sitemachinery.nz |
+| Name | URL / case study |
+|------|------------------|
+| Site Machinery | `/case-studies/site-machinery.html` · sitemachinery.nz |
 | Borrelli Painting | borrellipainting.nz |
 | Equilibrium Health | equilibriumhealth.nz |
 | Golden Bay Organics | goldenbayorganics.co.nz |
-| Gold Standard Dog Training | goldstandarddogtraining.nz |
-| Hack Farm | hackfarm.co.nz |
+| Gold Standard Dog Training | `/case-studies/gold-standard-dog-training.html` · goldstandarddogtraining.nz |
+| Hack Farm | `/case-studies/hack-farm.html` · hackfarm.co.nz |
 | Unlimited Copies Takaka | unlimitedcopies.co.nz |
 
 **Sites supported**
@@ -393,11 +400,11 @@ Benefits:
 
 ## 3. Hub — IT Support — `/services/it.html`
 
-**Title:** Computer Repair & IT Support · Tākaka, Golden Bay, Nelson & Beyond | GBTech  
-**Meta:** Computer repair and IT support from Tākaka — day-to-day fixes, servers and networks, backup and recovery. Golden Bay, Nelson, Tasman & beyond. GBTech since 2014.
+**Title:** Business IT Support Golden Bay | GBTech  
+**Meta:** Business IT from Tākaka — computer repair, office networks and servers, backup and recovery. On-site in Golden Bay; remote across NZ.
 
-- **H1:** Computer repair & IT support for Tākaka, Golden Bay, Nelson & beyond
-- **Sub:** Same-day remote computer repair, office networks that stay up, and recovery when files are at risk — from one local operator. On-site in Golden Bay when needed; remote wherever you work.
+- **H1:** Business IT infrastructure for Tākaka & Golden Bay
+- **Sub:** Computer repair when something breaks; networks, servers and backup when the business depends on them. One local operator in Tākaka — on-site in Golden Bay; remote across Nelson, Tasman and NZ.
 - Subheadline: $117–$127/hr · projects · retainers · since 2014
 - Trust: Golden Bay Technologies · Warwick Marshall · Tākaka · Remote NZ & beyond
 - CTAs: Request IT support · Call 027 814 2222
@@ -408,7 +415,7 @@ Benefits:
 - Same-day remote resolution for most routine faults
 - Office Wi‑Fi, servers, and networks engineered for uptime
 - Automated backups and emergency recovery when systems fail
-- Local presence in Tākaka; remote coverage for Nelson, Tasman & beyond
+- Local presence in Tākaka / Golden Bay; remote coverage for Nelson, Tasman & NZ
 
 **Service cards:** Computer & IT support · Servers & networks · Backup & recovery
 
@@ -418,11 +425,11 @@ Benefits:
 
 ## 4. Hub — Web & Digital — `/services/web-digital.html`
 
-**Title:** Websites & Booking · Own Your Site | GBTech  
-**Meta:** Owned websites from $351 and Google Calendar booking portals from $702 — free hosting, no Wix rent. Automation and AI workflows. Tākaka, Golden Bay, Nelson & beyond. GBTech.
+**Title:** Web Design Golden Bay — Own Your Site | GBTech  
+**Meta:** Web design in Golden Bay — owned sites from $351, booking from $702. Free hosting, no Wix rent. Custom systems when you need more.
 
 - **H1:** Own your website. Fill your calendar.
-- **Sub:** One-time builds you own — Essential sites from $351, Advanced booking from $702. Free hosting. No monthly Wix or Calendly landlord. Built for Tākaka, Golden Bay, Nelson & beyond.
+- **Sub:** Web design for Golden Bay businesses — Essential sites from $351, Advanced booking from $702. Free hosting. No monthly Wix or Calendly landlord. Based in Tākaka; remote across NZ when needed.
 - Subheadline: Domain fee separate · extended work $117/hr
 - CTAs: See packages · Enquire
 
@@ -430,21 +437,21 @@ Benefits:
 
 - **Essential Site ($351)** — be found, mobile-ready, owned code, zero rent
 - **Advanced Booking ($702)** — Essential + Google Calendar sync, spot caps, memberships
-- **Custom Systems & Apps** — multi-user portals, Firestore, Dataverse, staff scheduling, complex workflows — scoped as projects · $117–$127/hr
+- **Custom business software** — multi-user portals, Firestore, Dataverse, staff scheduling, complex workflows — scoped as projects · $117–$127/hr
 - Migrate off Wix or Squarespace and keep your presence
 - You own the code and hosting — not another SaaS subscription
 
-**Cards:** Essential Site ($351) · Booking portal ($702) · Leave Wix / Squarespace · Custom Systems & Apps
+**Cards:** Essential Site ($351) · Booking portal ($702) · Leave Wix / Squarespace · Custom business software
 
 ---
 
 ## 5. Hub — Microsoft Cloud Workplace — `/services/microsoft-workplace.html`
 
-**Title:** Microsoft Cloud Workplace | GBTech  
-**Meta:** Microsoft 365 administration, Teams and SharePoint, secure PowerApps with Dataverse, mobile apps, and email migrations. Tākaka, Golden Bay, Nelson & beyond. GBTech.
+**Title:** Microsoft 365 Support NZ | GBTech  
+**Meta:** Microsoft 365 support for NZ businesses — tenant admin, Teams, SharePoint, PowerApps on Dataverse, and mobile apps. Remote from Tākaka.
 
 - **H1:** Microsoft 365, PowerApps & mobile apps
-- **Sub:** Admin and Teams/SharePoint that stay tidy, secure PowerApps on Dataverse when local SQL is no longer defensible, and mobile apps that match how your team works — delivered remotely for Tākaka, Golden Bay, Nelson & beyond.
+- **Sub:** Microsoft 365 support for NZ small businesses — tidy tenant admin, Teams and SharePoint staff can use, PowerApps on Dataverse when local SQL is no longer defensible, and mobile apps that match how your team works. Remote from Tākaka / Golden Bay.
 - CTAs: Talk Microsoft scope · Call 027 814 2222
 
 **What you get — Workplace systems that stay maintainable**
@@ -461,11 +468,11 @@ Benefits:
 
 ## 6. Hub — Security & Compliance — `/services/security-compliance.html`
 
-**Title:** Security & Insurance Compliance | GBTech  
-**Meta:** Practical cyber security and insurance-driven compliance — hardening, malware response, and moves to secure cloud hosts. Tākaka, Golden Bay, Nelson & beyond. GBTech.
+**Title:** Small Business Cybersecurity NZ | GBTech  
+**Meta:** Practical cybersecurity for NZ SMEs — hardening, malware response, and insurance-driven moves off fragile local servers.
 
-- **H1:** Security and insurance compliance
-- **Sub:** Practical hardening and malware response — and the compliance path insurers and auditors increasingly expect: leave fragile local SQL and file servers for secure cloud hosts. Serving Tākaka, Golden Bay, Nelson & beyond.
+- **H1:** Security that keeps small businesses insurable
+- **Sub:** Practical hardening and malware response — and the compliance path insurers increasingly expect: leave fragile local SQL and file servers for secure cloud hosts. Based in Tākaka / Golden Bay; remote across NZ.
 - CTAs: Talk security scope · Call 027 814 2222
 
 **What you get — Defence that matches how you actually work**
@@ -646,13 +653,13 @@ Benefits:
 
 ---
 
-## 15. Leaf — Custom Systems & Apps — `/services/automation-ai.html`
+## 15. Leaf — Custom business software — `/services/automation-ai.html`
 
-**Title:** Custom Systems & Apps · Firestore, Dataverse & Ops | GBTech  
-**Meta:** Custom Systems & Apps for Golden Bay businesses — multi-user portals, Firestore, Dataverse, staff scheduling, and complex workflows. Scoped as projects ($117–$127/hr). GBTech.
+**Title:** Custom Business Software NZ | GBTech  
+**Meta:** Custom business software for NZ SMEs — multi-user portals, Firestore, Dataverse, staff workflows. Scoped as projects. Try live demos.
 
-- **H1:** Custom Systems & Apps
-- **Sub:** Multi-user portals, custom databases (Firestore, Dataverse), staff scheduling, and complex operational workflows — beyond calendar capture. Scoped as a project; you own the system.
+- **H1:** Custom business software you own
+- **Sub:** Multi-user portals, custom databases (Firestore, Dataverse), staff scheduling, and complex operational workflows — beyond calendar capture. Scoped as a project; you own the system. Try industry demos in the browser.
 - Subheadline: Scoped as projects · $117–$127/hr · cost confirmed before work begins
 - CTAs: Discuss a system · See an ops case study
 
@@ -665,7 +672,7 @@ Benefits:
 - **Fewer coordination hours** — measured against how the work runs today
 - You own the system — no extra monthly SaaS landlord
 
-**Positioning vs Advanced Booking ($702):** Advanced is calendar capture. Custom Systems is multi-user / Firestore / Dataverse / staff ops — always scoped separately with no package sticker price.
+**Positioning vs Advanced Booking ($702):** Advanced is calendar capture. Custom business software is multi-user / Firestore / Dataverse / staff ops — always scoped separately with no package sticker price.
 
 ---
 
