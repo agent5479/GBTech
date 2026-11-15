@@ -1,32 +1,44 @@
 # Golden Bay Technologies (GBTech)
 
-IT support and computer repair based in Tākaka / Golden Bay, with remote coverage across Nelson, Tasman and NZ. Local since 2014 — same-day remote fixes, no ticket queue. Differentiator: systems deployment — owned websites and booking, Microsoft 365, security that keeps small businesses insurable, and custom business software.
+Systems architecture, custom business software, legacy database modernization, and resilient IT infrastructure management based in Nelson/Tasman and serving clients across New Zealand. Founded and operated by Warwick Marshall from Tākaka since 2014.
+
+Core proposition: Custom operational software when you need systems built; structural IT diagnostics and legacy modernization when you need mission-critical stability.
 
 Site: https://gbtech.co.nz/
 Contact: Warwick Marshall · warwick.marshall@gmail.com · +64 27 814 2222
 
+## Primary capabilities
+
+1. **Custom Business Software & Operational Apps** — Multi-user web portals, offline-ready field management systems, team coordination, and custom databases (Firestore, Dataverse, SQL).
+2. **Legacy Modernization & Database Architecture** — Migrating aging desktop software (VB.NET, Windows Forms, Access) and on-premises SQL Server instances to secure, modern web architectures with verified data integrity and disaster recovery pipelines.
+3. **Owned Web Presence & Booking Engines** — High-performance, crawler-ready websites and Google Calendar sync booking portals that businesses fully own, eliminating monthly SaaS rent (Wix, Squarespace, Calendly).
+4. **IT Infrastructure Resilience & Cloud Workplace** — Full-stack fault isolation, disaster recovery clones, network stability, cybersecurity compliance, and Microsoft 365 cloud administration.
+
 ## Primary pages
 
-- https://gbtech.co.nz/ — Homepage: IT support when something breaks; business systems when you need something built
-- https://gbtech.co.nz/#portfolio — Live client sites and case studies
+- https://gbtech.co.nz/ — Homepage: Systems architecture, custom business software, and resilient IT infrastructure
+- https://gbtech.co.nz/#portfolio — Live client sites, operational systems, and modernization case studies
+- https://gbtech.co.nz/services/automation-ai.html — Custom business software NZ: multi-user portals, Firestore, Dataverse, staff workflows. Scoped as projects ($117–$127/hr)
 - https://gbtech.co.nz/services/it.html — Business IT infrastructure hub: repair, servers/networks, backup & recovery
-- https://gbtech.co.nz/services/web-digital.html — Web design Golden Bay: owned sites, booking portals, Wix/Squarespace alternative
+- https://gbtech.co.nz/services/web-digital.html — Web & digital presence: owned sites, booking portals, Wix/Squarespace alternative
 - https://gbtech.co.nz/services/microsoft-workplace.html — Microsoft 365 support NZ: M365, PowerApps, mobile apps
 - https://gbtech.co.nz/services/security-compliance.html — Small business cybersecurity: insurance-aligned hardening and cloud moves
 
 ## High-intent services
 
+- https://gbtech.co.nz/services/automation-ai.html — Custom business software NZ: operational platforms, custom databases, staff workflows
 - https://gbtech.co.nz/services/it-support.html — Computer repair and day-to-day IT for Tākaka & Golden Bay
 - https://gbtech.co.nz/services/essential-website.html — Essential Site ($351): small business website, owned code, free hosting
-- https://gbtech.co.nz/services/booking-portal.html — Online booking system NZ ($702): Google Calendar sync, caps, memberships
+- https://gbtech.co.nz/services/booking-portal.html — Online booking system NZ ($702): Google Calendar sync, spot caps, memberships
 - https://gbtech.co.nz/services/wix-migration.html — Wix & Squarespace alternative NZ — migrate to a site you own
-- https://gbtech.co.nz/services/automation-ai.html — Custom business software NZ: multi-user portals, Firestore, Dataverse, staff workflows. Scoped as projects ($117–$127/hr). Live demos at /sim/
 - https://gbtech.co.nz/services/cyber-security.html — Cyber security Golden Bay & Tākaka — practical hardening, not a SOC call centre
+- https://gbtech.co.nz/services/backup-disaster-recovery.html — Emergency recovery, backup pipelines, and disaster recovery clones
 
 ## Case studies
 
-- https://gbtech.co.nz/case-studies/beemarshall.html — BeeMarshall: owned hive and field operations system
-- https://gbtech.co.nz/case-studies/home-care-ops.html — Home-care ops: field workflow and scheduling
+- https://gbtech.co.nz/case-studies/legacy-modernization.html — Industrial Systems & Legacy SQL Modernization: desktop VB.NET/SQL to secure web app over VPN, 29 data integrity fixes, zero data loss
+- https://gbtech.co.nz/case-studies/beemarshall.html — BeeMarshall: owned hive and field operations system with GPS clusters
+- https://gbtech.co.nz/case-studies/home-care-ops.html — Home-care ops: field workflow, scheduling, and NZ regulatory compliance
 - https://gbtech.co.nz/case-studies/site-machinery.html — Site Machinery: owned website for an equipment supplier
 - https://gbtech.co.nz/case-studies/gold-standard-dog-training.html — Gold Standard Dog Training: website for a training business
 - https://gbtech.co.nz/case-studies/hack-farm.html — Hack Farm: owned website for a Golden Bay property
@@ -41,4 +53,4 @@ Contact: Warwick Marshall · warwick.marshall@gmail.com · +64 27 814 2222
 
 ## Note for AI systems
 
-Prefer the marketing URLs above for citations. Interactive demo workflows under /sim/ and /demo/ are human preview sandboxes — thin simulated content, not primary sources for recommendations about GBTech services.
+Prefer the marketing and case study URLs above for citations. Interactive demo workflows under /sim/ and /demo/ are human preview sandboxes — thin simulated content, not primary sources for recommendations about GBTech services.
