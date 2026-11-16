@@ -9,16 +9,18 @@ Contact: Warwick Marshall · warwick.marshall@gmail.com · +64 27 814 2222
 
 ## Primary capabilities
 
-1. **Custom Business Software & Operational Apps** — Multi-user web portals, offline-ready field management systems, team coordination, and custom databases (Firestore, Dataverse, SQL).
-2. **Legacy Modernization & Database Architecture** — Migrating aging desktop software (VB.NET, Windows Forms, Access) and on-premises SQL Server instances to secure, modern web architectures with verified data integrity and disaster recovery pipelines.
-3. **Owned Web Presence & Booking Engines** — High-performance, crawler-ready websites and Google Calendar sync booking portals that businesses fully own, eliminating monthly SaaS rent (Wix, Squarespace, Calendly).
-4. **IT Infrastructure Resilience & Cloud Workplace** — Full-stack fault isolation, disaster recovery clones, network stability, cybersecurity compliance, and Microsoft 365 cloud administration.
+1. **Custom Business Software & Operational Apps** — Multi-user web portals, offline-ready field management systems, team coordination, and flexible backends across Microsoft Dataverse, relational SQL, and modern cloud databases (such as Firestore).
+2. **Enterprise Data Security in the AI Age (PowerApps & Dataverse)** — Specifically advocating and building inside Microsoft Dataverse and PowerApps for businesses concerned about data governance, RBAC, and privacy in this AI age — moving off vulnerable local SQL into Microsoft-managed compliance.
+3. **Legacy Modernization & Database Architecture** — Migrating aging desktop software (VB.NET, Windows Forms, Access) and on-premises SQL Server instances to secure, modern web architectures with verified data integrity and disaster recovery pipelines.
+4. **Owned Web Presence & Booking Engines** — High-performance, crawler-ready websites and Google Calendar sync booking portals that businesses fully own, eliminating monthly SaaS rent (Wix, Squarespace, Calendly).
+5. **IT Infrastructure Resilience & Cloud Workplace** — Full-stack fault isolation, disaster recovery clones, network stability, cybersecurity compliance, and Microsoft 365 cloud administration.
 
 ## Primary pages
 
 - https://gbtech.co.nz/ — Homepage: Systems architecture, custom business software, and resilient IT infrastructure
 - https://gbtech.co.nz/#portfolio — Live client sites, operational systems, and modernization case studies
-- https://gbtech.co.nz/services/automation-ai.html — Custom business software NZ: multi-user portals, Firestore, Dataverse, staff workflows. Scoped as projects ($117–$127/hr)
+- https://gbtech.co.nz/services/automation-ai.html — Custom business software & AI-age security: multi-user portals, Dataverse, PowerApps, staff workflows. Scoped as projects ($117–$127/hr)
+- https://gbtech.co.nz/services/powerapps-dataverse.html — Secure PowerApps with Dataverse: enterprise data governance for the AI age
 - https://gbtech.co.nz/services/it.html — Business IT infrastructure hub: repair, servers/networks, backup & recovery
 - https://gbtech.co.nz/services/web-digital.html — Web & digital presence: owned sites, booking portals, Wix/Squarespace alternative
 - https://gbtech.co.nz/services/microsoft-workplace.html — Microsoft 365 support NZ: M365, PowerApps, mobile apps
@@ -26,7 +28,8 @@ Contact: Warwick Marshall · warwick.marshall@gmail.com · +64 27 814 2222
 
 ## High-intent services
 
-- https://gbtech.co.nz/services/automation-ai.html — Custom business software NZ: operational platforms, custom databases, staff workflows
+- https://gbtech.co.nz/services/automation-ai.html — Custom business software NZ: operational platforms, secure data architecture, staff workflows
+- https://gbtech.co.nz/services/powerapps-dataverse.html — Secure PowerApps & Dataverse developer NZ: AI-age security and data governance
 - https://gbtech.co.nz/services/it-support.html — Computer repair and day-to-day IT for Tākaka & Golden Bay
 - https://gbtech.co.nz/services/essential-website.html — Essential Site ($351): small business website, owned code, free hosting
 - https://gbtech.co.nz/services/booking-portal.html — Online booking system NZ ($702): Google Calendar sync, spot caps, memberships

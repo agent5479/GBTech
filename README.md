@@ -15,7 +15,8 @@ Most IT support fixes the symptom. GBTech traces failures to their structural ca
 
 ### Core Specializations
 
-- **Custom Business Software & Operational Apps** — Bespoke multi-user web portals, field workflow tracking (GPS/offline care), and automated scheduling tailored to how businesses actually run.
+- **Custom Business Software & Operational Apps** — Bespoke multi-user web portals, field workflow tracking (GPS/offline care), and automated scheduling tailored to how businesses actually run, with flexible backends (Dataverse, SQL, cloud).
+- **Enterprise Data Security in the AI Age (PowerApps & Dataverse)** — Specifically advocating and architecting secure systems inside Microsoft Dataverse and PowerApps for businesses demanding hardened data governance, row/column-level RBAC, and insurance compliance.
 - **Legacy Modernization & Database Architecture** — Transitioning aging desktop stacks (VB.NET, Windows Forms, Access) and on-premises SQL Server instances to secure, modern web architectures with zero data loss.
 - **Owned Digital Presence & Booking Engines** — High-performance, crawler-ready web properties and Google Calendar booking systems that clients fully own, eliminating ongoing SaaS builder rent.
 - **Infrastructure Resilience & Disaster Recovery** — Full-stack fault isolation, verified automated SQL backup pipelines, clone-based disaster recovery, and Microsoft 365 cloud workplace administration.

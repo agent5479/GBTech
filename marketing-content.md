@@ -18,17 +18,17 @@ He helps businesses in three practical ways:
 
 1. **Keep the tech working** — computer repair, office networks, backups, emergency recovery, Microsoft 365, and security that keeps small businesses insurable.
 2. **Own your online presence** — one-time websites and Google Calendar booking portals you control, with free hosting and no monthly Wix / Squarespace / Calendly landlord.
-3. **Deploy custom systems** — multi-user portals, Firestore/Dataverse, staff workflows — and make marketing sites **crawler-ready** so search engines and AI can recommend the business accurately.
+3. **Deploy custom systems & secure architectures** — multi-user portals, staff workflows, and hardened Microsoft Dataverse & PowerApps architectures for businesses concerned about data security in the AI age. Make marketing sites **crawler-ready** so search engines and AI recommend the business accurately.
 
-**Website packages (Marshall Solutions line under Web & Digital):**
+**Digital solutions & packages (under Web & Digital & Custom Systems):**
 
 | Package | Price | Business outcome |
 |---------|-------|------------------|
 | Essential Site | **$351** one-time | Be found, mobile-ready, owned code, zero rent — built so Google, Bing, and AI assistants can find and recommend you. GBP setup, click-to-connect, free permanent hosting, full ownership. Domain fee separate. |
 | Advanced Booking | **$702** one-time | Essential + Google Calendar sync, spot caps, memberships. Crawler-ready SEO (llms.txt). Zero monthly hosting rent. Tagline: *Dream big, be fussy, move fast.* |
-| Custom business software | Scoped as projects · **$117–$127/hr** | Multi-user portals, custom databases (**Firestore**, Dataverse), staff scheduling, and complex operational workflows. Firestore is more complex than package work and lives here — not in Essential or Advanced. |
+| Custom business software & apps | Scoped as projects · **$117–$127/hr** | Bespoke operational platforms, multi-user portals, staff scheduling, and enterprise data governance. Warwick actively advocates and builds inside Microsoft Dataverse and PowerApps for businesses demanding security and compliance in this AI age, alongside flexible web and cloud backends (SQL, Node.js, Firestore). |
 
-**How to tier offers:** Essential = be found. Advanced = Essential + calendar booking. Custom business software = multi-user / Firestore / Dataverse / staff ops — always scoped separately. Cost confirmed before work begins.
+**How to tier offers:** Essential = be found. Advanced = Essential + calendar booking. Custom business software = operational platforms / Dataverse / PowerApps / multi-user portals / staff ops — always scoped separately. Cost confirmed before work begins.
 
 Buyer page for custom business software: [`/services/automation-ai.html`](https://gbtech.co.nz/services/automation-ai.html) (URL unchanged). Do **not** quote a package sticker price for custom software.
 
@@ -655,24 +655,24 @@ Benefits:
 
 ## 15. Leaf — Custom business software — `/services/automation-ai.html`
 
-**Title:** Custom Business Software NZ | GBTech  
-**Meta:** Custom business software for NZ SMEs — multi-user portals, Firestore, Dataverse, staff workflows. Scoped as projects. Try live demos.
+**Title:** Custom Business Software & Secure Systems NZ | GBTech  
+**Meta:** Custom operational software, multi-user portals, and secure Microsoft Dataverse & PowerApps architectures for NZ businesses prioritizing data security in this AI age.
 
-- **H1:** Custom business software you own
-- **Sub:** Multi-user portals, custom databases (Firestore, Dataverse), staff scheduling, and complex operational workflows — beyond calendar capture. Scoped as a project; you own the system. Try industry demos in the browser.
+- **H1:** Custom business software engineered for security
+- **Sub:** Multi-user portals, operational workflows, and secure database architectures — built for how your business runs today. We actively advocate and engineer inside Microsoft Dataverse and PowerApps for businesses concerned about data governance and privacy in this AI age, alongside flexible web and modern cloud backends.
 - Subheadline: Scoped as projects · $117–$127/hr · cost confirmed before work begins
 - CTAs: Discuss a system · See an ops case study
 
-**Outcomes — Nothing missed, clearer ops**
+**Architecture & Outcomes — Secure systems tailored to your operation**
 
-- **Beyond Advanced Booking** — calendar capture stays the $702 package; this tier is multi-user portals and complex workflows
-- **Custom databases** — Firestore and Dataverse when you need more than sheets and a calendar (Firestore is scoped here — it is more complex than package work)
-- **Staff scheduling & coordination** — who is doing what, on the device they already carry
-- **Nothing missed** — jobs, cleans, and maintenance items stop falling through; exceptions surface to you
-- **Fewer coordination hours** — measured against how the work runs today
-- You own the system — no extra monthly SaaS landlord
+- **Security in the AI age** — For businesses handling sensitive client records, financials, or operations, we advocate Microsoft Dataverse and PowerApps. Granular role-based access control (RBAC), Entra ID governance, and audit trails ensure your proprietary data remains protected from public AI exposure or unvetted tools.
+- **Flexible backend architecture** — Never shoehorned into a single platform. We architect solutions across Microsoft Dataverse, relational SQL databases, and modern cloud platforms (like Firestore and Node.js/REST APIs) depending on your security posture and compliance requirements.
+- **Beyond booking widgets** — Move beyond calendar capture ($702 package) to true multi-user operational platforms, team coordination boards, and custom business portals.
+- **Staff scheduling & mobile coordination** — Assign visits, route field staff, and log completions on the smartphones and tablets your team already carries.
+- **Zero data loss & nothing missed** — Jobs, cleans, compliance logs, and handovers stop falling through the cracks with automated exception reporting.
+- **You own what is built** — No recurring software landlord or escalating SaaS subscription taxes.
 
-**Positioning vs Advanced Booking ($702):** Advanced is calendar capture. Custom business software is multi-user / Firestore / Dataverse / staff ops — always scoped separately with no package sticker price.
+**Positioning vs Advanced Booking ($702):** Advanced is calendar capture. Custom business software is multi-user / Dataverse / PowerApps / staff ops / cloud DBs — always scoped separately with no package sticker price.
 
 ---
 
