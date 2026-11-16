@@ -186,7 +186,7 @@ Extended / custom web work: **$117/hr**.
 - The tagline **"Dream big, be fussy, move fast."** is the enterprise line and sits *alongside* the plain, practical voice — it does not license hype elsewhere. Currently used on the Advanced Booking ($702) package only; do not spray it across every page or swap it in for the brand line "GBTech · Golden Bay Technology".
 - Do **not** use internal strategy language ("purple collar", "agents", "AI-first") in public copy. Use outcome language: nothing missed, staff clear on tasks, customers answered, exceptions surfaced, fewer coordination hours.
 - Do **not** attach a package price, an hourly headline, or unpublished client metrics (e.g. workload percentages, missed-job counts) to operational systems. Say "scoped as a project · cost confirmed before work begins".
-- Prefer case studies (legacy-modernization, BeeMarshall, home-care, Borrelli Painting, Site Machinery, Gold Standard Dog Training) and live portfolio URLs as proof.
+- Prefer case studies (legacy-modernization, BeeMarshall, home-care, Site Machinery, Gold Standard Dog Training) and live portfolio URLs as proof.
 
 ---
 
@@ -231,7 +231,6 @@ Extended / custom web work: **$117/hr**.
 - https://gbtech.co.nz/case-studies/legacy-modernization.html
 - https://gbtech.co.nz/case-studies/beemarshall.html
 - https://gbtech.co.nz/case-studies/home-care-ops.html
-- https://gbtech.co.nz/case-studies/borrelli-painting.html
 - https://gbtech.co.nz/case-studies/site-machinery.html
 - https://gbtech.co.nz/case-studies/gold-standard-dog-training.html
 - https://gbtech.co.nz/tools/hosting-cost-compare.html
@@ -333,7 +332,7 @@ Footer note: Leave Wix / Squarespace · Cost compare · Custom business software
 | Name | URL / case study |
 |------|------------------|
 | Site Machinery | `/case-studies/site-machinery.html` · sitemachinery.nz |
-| Borrelli Painting | `/case-studies/borrelli-painting.html` · borrellipainting.nz |
+| Borrelli Painting | borrellipainting.nz |
 | Equilibrium Health | equilibriumhealth.nz |
 | Golden Bay Organics | goldenbayorganics.co.nz |
 | Gold Standard Dog Training | `/case-studies/gold-standard-dog-training.html` · goldstandarddogtraining.nz |
