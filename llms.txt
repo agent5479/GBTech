@@ -42,13 +42,14 @@ Contact: Warwick Marshall · warwick.marshall@gmail.com · +64 27 814 2222
 - https://gbtech.co.nz/case-studies/legacy-modernization.html — Industrial Systems & Legacy SQL Modernization: desktop VB.NET/SQL to secure web app over VPN, 29 data integrity fixes, zero data loss
 - https://gbtech.co.nz/case-studies/beemarshall.html — BeeMarshall: owned hive and field operations system with GPS clusters
 - https://gbtech.co.nz/case-studies/home-care-ops.html — Home-care ops: field workflow, scheduling, and NZ regulatory compliance
+- https://gbtech.co.nz/case-studies/borrelli-painting.html — Borrelli Painting: owned website and digital presence for a trades business
 - https://gbtech.co.nz/case-studies/site-machinery.html — Site Machinery: owned website for an equipment supplier
 - https://gbtech.co.nz/case-studies/gold-standard-dog-training.html — Gold Standard Dog Training: website for a training business
-- https://gbtech.co.nz/case-studies/hack-farm.html — Hack Farm: owned website for a Golden Bay property
 
-## Operational systems (live examples)
+## Operational systems & supported telemetry (live examples)
 
 - https://goldenbayholidayhomes.nz/ — Golden Bay Holiday Homes: holiday-rental coordination (bookings, cleaning, guest communication) supported by GBTech. Listed under Operational systems at https://gbtech.co.nz/#portfolio
+- https://gbweather.helioho.st/FreshWDL/FreshWDL2.html — Golden Bay Weather Station: real-time meteorological telemetry and FreshWDL live dashboard supported by GBTech
 
 ## Tools
 
