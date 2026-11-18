@@ -2613,3 +2613,73 @@ body.gbtech-home .hero.hero-spectrum .hero-text {
     transition: none;
   }
 }
+
+/* About Warwick split layout */
+.about-split {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.about-photo-frame {
+  margin: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-panel);
+  background: var(--bg-subtle);
+}
+
+.about-photo-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 679 / 840;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.about-body h2 {
+  margin-bottom: 0.75rem;
+}
+
+.about-elsewhere {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.15rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.about-link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg);
+  color: var(--accent-magenta-dark);
+  text-decoration: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.about-link-pill:hover {
+  border-color: var(--accent-magenta);
+  background: var(--accent-magenta-light);
+}
+
+@media (max-width: 680px) {
+  .about-split {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .about-photo-frame {
+    max-width: 240px;
+  }
+}
